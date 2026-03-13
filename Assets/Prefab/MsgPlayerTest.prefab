@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6945394380887687367}
   - component: {fileID: 1740560567410338282}
   - component: {fileID: 5613147599910207811}
+  - component: {fileID: 2018729163257646479}
   m_Layer: 5
   m_Name: MsgPlayerTest
   m_TagString: Untagged
@@ -84,6 +85,19 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &2018729163257646479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2163111562131114609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54a3426fdb594ed43a36fca34783d512, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
+  isNPCMsg: 0
 --- !u!1 &4128357265548371253
 GameObject:
   m_ObjectHideFlags: 0
