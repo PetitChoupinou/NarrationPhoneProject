@@ -5,5 +5,6 @@ using XNode;
 
 [CreateAssetMenu]
 public class DialogueGraph : NodeGraph { 
+
 	
 }

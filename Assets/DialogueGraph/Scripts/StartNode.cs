@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using XNode;
 
-public class BaseNode : Node {
+public class StartNode : BaseNode {
 
-	public virtual string GetData()
+    public override string GetData()
     {
-        return "";
+        return "Start";
     }
 }
