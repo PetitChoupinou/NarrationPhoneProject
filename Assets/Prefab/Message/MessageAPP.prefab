@@ -777,6 +777,7 @@ GameObject:
   - component: {fileID: 8727946004373949610}
   - component: {fileID: 7536120174155469681}
   - component: {fileID: 5444285418819318777}
+  - component: {fileID: 215398022711435055}
   m_Layer: 5
   m_Name: MessageAPP
   m_TagString: Untagged
@@ -818,7 +819,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7991513738419085291}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -874,6 +875,24 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &215398022711435055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7991513738419085291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 804d0a7525e3e8249a273ee3bab9e042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MessageApp
+  gameObjectsToDeactivate:
+  - {fileID: 1539277455394698151}
+  - {fileID: 6653783825125809425}
+  - {fileID: 9101714362681302756}
+  - {fileID: 3656543180609035849}
+  - {fileID: 8738768940809101379}
 --- !u!1001 &1268079621327370295
 PrefabInstance:
   m_ObjectHideFlags: 0
