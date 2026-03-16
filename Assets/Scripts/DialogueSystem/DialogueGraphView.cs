@@ -1,8 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static TreeEditor.TreeEditorHelper;
+using static UnityEngine.Audio.GeneratorInstance;
 
 public enum NodeType
 {
@@ -43,7 +46,8 @@ public class DialogueGraphView : GraphView
                     GUID = Guid.NewGuid().ToString(),
                     title = type.ToString(),
                     isEntryPoint = true,
-                    capabilities = Capabilities.Movable | Capabilities.Selectable
+                    capabilities = Capabilities.Movable | Capabilities.Selectable,
+                    nodeType = NodeType.Start
                 };
                 outputPort = node.GeneratePort(Direction.Output);
                 outputPort.portName = "Next";
@@ -58,9 +62,10 @@ public class DialogueGraphView : GraphView
                 {
                     GUID = Guid.NewGuid().ToString(),
                     title = type.ToString(),
-                    dialogueText = "New Dialogue"
-                    
+                    dialogueText = "New Dialogue",
+                    nodeType = NodeType.Dialogue
                 };
+
                 inputPort = node.GeneratePort(Direction.Input, Port.Capacity.Multi);
                 inputPort.portName = "Input";
                 node.inputContainer.Add(inputPort);
@@ -79,7 +84,8 @@ public class DialogueGraphView : GraphView
                 {
                     GUID = Guid.NewGuid().ToString(),
                     title = type.ToString(),
-                    dialogueText = "Choice"
+                    nodeType = NodeType.Choice,
+                    graphView = this
                 };
                 inputPort = node.GeneratePort(Direction.Input, Port.Capacity.Multi);
                 inputPort.portName = "Input";
@@ -91,14 +97,57 @@ public class DialogueGraphView : GraphView
                 };
                 node.titleContainer.Add(button);
 
-                outputPort = node.GeneratePort(Direction.Output);
-                outputPort.portName = "Choice 0";
-                node.outputContainer.Add(outputPort);
+                ((ChoiceNode)node).AddChoicePort(false);
 
                 node.RefreshExpandedState();
                 node.RefreshPorts();
                 node.SetPosition(new Rect(Vector2.zero, BaseNode.defaultNodeSize));
 
+                break;
+        }
+        AddElement(node);
+        return node;
+
+
+    }
+
+    public BaseNode CreateFromData(DialogueData dataCache, NodeData nodeData)
+    {
+        BaseNode node = CreateNode(nodeData.nodeInfos.nodeType);
+        node.SetPosition(new Rect(nodeData.position, BaseNode.defaultNodeSize));
+        switch (nodeData.nodeType)
+        {
+            case NodeType.Start:
+                node.isEntryPoint = true;
+                node.capabilities = Capabilities.Movable | Capabilities.Selectable;
+                break;
+
+            case NodeType.Dialogue:
+                var nodeDialogue = node as DialogueNode;
+                nodeDialogue.dialogueText = ((DialogueNode)nodeData.nodeInfos).dialogueText;
+                break;
+
+            case NodeType.Choice:
+                var nodeChoice = node as ChoiceNode;
+               // var nodePorts = dataCache.nodeLinks.Where(x => x.baseNodeGuid == nodeData.nodeInfos.GUID).ToList();
+                var nodePorts = nodeData.nodeInfos.outputContainer.Query("connector").ToList();
+
+                //nodePorts.ForEach(x => nodeChoice.AddChoicePort(true, ));
+                for (int i = 0; i < nodePorts.Count; i++)
+                {
+                    
+                    var choiceInfos = ((ChoiceNode)nodeData.nodeInfos).choices[i];
+                    if (i <= nodeChoice.choices.Count - 1 && nodeChoice.choices[i] != null)
+                    {
+                        nodeChoice.UpdatePortName(i, choiceInfos.choiceText);
+                        continue;
+                    }
+
+                    if (choiceInfos != null)
+                    {
+                        nodeChoice.AddChoicePort(true, choiceInfos.choiceText);
+                    }
+                }
                 break;
         }
         AddElement(node);
@@ -121,5 +170,4 @@ public class DialogueGraphView : GraphView
 
         return compatiblePorts;
     }
-
 }
