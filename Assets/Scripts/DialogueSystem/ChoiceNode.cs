@@ -85,7 +85,6 @@ public class ChoiceNode : BaseNode
     public void UpdatePortName(int id, string text)
     {
         choices[id].textField.value = text;
-        choices[id].port.portName = text;
         choices[id].choiceText = text;
     }
 }

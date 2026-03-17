@@ -5,6 +5,7 @@ using Unity.VisualScripting.FullSerializer;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class GraphSaveUtility
 {
@@ -33,7 +34,6 @@ public class GraphSaveUtility
 
         var dialogueData = ScriptableObject.CreateInstance<DialogueData>();
 
-        //Check toutes les connections 
         var connectedPorts = _edges.Where(edge => edge.input.node != null).ToArray();
         for(int i = 0;  i < connectedPorts.Length; i++)
         {
@@ -49,9 +49,13 @@ public class GraphSaveUtility
                 targetNodeGuid = inputNode.GUID
             });
         }
-        foreach(var graphNode in _nodes.Where(node => !node.isEntryPoint))
+        foreach(var graphNode in _nodes)
         {
-            
+            if (graphNode.isEntryPoint)
+            {
+                dialogueData.entryPointNodeGuid = graphNode.GUID;
+                continue;
+            }
             dialogueData.nodes.Add(new NodeData
             {
                 nodeInfos = graphNode,
@@ -81,12 +85,68 @@ public class GraphSaveUtility
 
         CreateNodes();
 
-        CreateLinks();
+        ConnectNodes();
     }
 
-    private void CreateLinks()
+    //TODO: _nodes get corrupted so GUID arent the same as the ones in _dataCache, need to find a way to fix this
+    private void ConnectNodes()
     {
-        throw new NotImplementedException();
+        for (int i = 0; i < _nodes.Count; i++)
+        {
+            var connections = _dataCache.nodeLinks.Where(x => x.baseNodeGuid == _nodes[i].GUID).ToList();
+            if (_nodes[i].isEntryPoint)
+            {
+                var targetNodeGuid = connections.First(x=>x.baseNodeGuid == _dataCache.entryPointNodeGuid).targetNodeGuid;
+                var targetNode = _nodes.First(x => x.GUID == targetNodeGuid);
+                LinkNodes(_nodes[i].outputContainer[0].Q<Port>(), (Port)targetNode.inputContainer[0]);
+            }
+            else
+            {
+                var nodeData = _dataCache.nodes.First(x => x.nodeInfos.GUID == _nodes[i].GUID).nodeInfos;
+                int j = 0;
+                int connectionID = 0;
+                foreach (var outputElementData in nodeData.outputContainer.Children())
+                {
+                    
+                    Port portData = outputElementData.Q<Port>();
+                    var connectionsData = portData.connections.ToList();
+                    if (portData == null)
+                    {
+                        
+                        continue;
+                    }
+                    if (portData.connections.Count() > 0)
+                    {
+                        var targetNodeGuid = connections[connectionID].targetNodeGuid;
+                        var targetNode = _nodes.First(x => x.GUID == targetNodeGuid);
+                        LinkNodes(_nodes[i].outputContainer[j].Q<Port>(), (Port)targetNode.inputContainer[0]);
+                        j++;
+                        connectionID++;
+                    }
+                    else
+                    {
+                        j++;
+                    }
+
+
+                }
+            }
+           
+        }
+    }
+
+    private void LinkNodes(Port output, Port input)
+    {
+        var newEdge = new Edge
+        {
+            output = output,
+            input = input
+        };
+
+        newEdge?.input.Connect(newEdge);
+        newEdge?.output.Connect(newEdge);
+
+        _targetGraphView.Add(newEdge);
     }
 
     private void CreateNodes()
@@ -100,11 +160,13 @@ public class GraphSaveUtility
 
     private void ClearGraph()
     {
-        //_nodes.Find(x => x.isEntryPoint).GUID = _dataCache.nodeLinks[0].baseNodeGuid;
-
+        if(_dataCache.nodeLinks.Count > 0 && _dataCache.nodeLinks[0].baseNodeGuid == _dataCache.entryPointNodeGuid) 
+        {
+            _nodes.Find(x => x.isEntryPoint).GUID = _dataCache.nodeLinks[0].baseNodeGuid;
+        }
         foreach (var node in _nodes)
         {
-            if (node.isEntryPoint) return;
+            if (node.isEntryPoint) continue;
             _edges.Where(x => x.input.node == node).ToList().ForEach(edge => _targetGraphView.RemoveElement(edge));
 
             _targetGraphView.RemoveElement(node);

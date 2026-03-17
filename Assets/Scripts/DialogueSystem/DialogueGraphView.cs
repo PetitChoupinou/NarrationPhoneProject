@@ -90,6 +90,7 @@ public class DialogueGraphView : GraphView
                 inputPort = node.GeneratePort(Direction.Input, Port.Capacity.Multi);
                 inputPort.portName = "Input";
                 node.inputContainer.Add(inputPort);
+                
 
                 var button = new Button(() => ((ChoiceNode)node).AddChoicePort())
                 {
@@ -114,6 +115,7 @@ public class DialogueGraphView : GraphView
     public BaseNode CreateFromData(DialogueData dataCache, NodeData nodeData)
     {
         BaseNode node = CreateNode(nodeData.nodeInfos.nodeType);
+        node.GUID = nodeData.nodeInfos.GUID;
         node.SetPosition(new Rect(nodeData.position, BaseNode.defaultNodeSize));
         switch (nodeData.nodeType)
         {
@@ -169,5 +171,10 @@ public class DialogueGraphView : GraphView
         }
 
         return compatiblePorts;
+    }
+
+    public BaseNode GetStarterNode()
+    {
+        return nodes.FirstOrDefault(node => (node as BaseNode).isEntryPoint) as BaseNode;
     }
 }

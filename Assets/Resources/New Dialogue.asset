@@ -14,5 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   nodes:
   - nodeType: 2
-    position: {x: 237.6, y: 164}
-  nodeLinks: []
+    position: {x: 279.2, y: 176}
+  - nodeType: 2
+    position: {x: 653.6, y: 176}
+  - nodeType: 2
+    position: {x: 653.6, y: 252.80002}
+  nodeLinks:
+  - baseNodeGuid: 67435d72-599b-4d17-818f-65f12b3bd2e4
+    portName: Choice 1
+    targetNodeGuid: 1a28ee12-3644-4ae5-8487-59b8c5a01ca9
+  - baseNodeGuid: 67435d72-599b-4d17-818f-65f12b3bd2e4
+    portName: Choice 3
+    targetNodeGuid: 01b12012-825a-463c-bec5-105a233ff275
+  - baseNodeGuid: 16779be1-8151-4212-9ce4-e8f354c5f690
+    portName: Next
+    targetNodeGuid: 67435d72-599b-4d17-818f-65f12b3bd2e4
+  entryPointNodeGuid: 16779be1-8151-4212-9ce4-e8f354c5f690
