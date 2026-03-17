@@ -8,6 +8,9 @@ public class MessageTextBase : MonoBehaviour
     private TMP_Text _message;
     [SerializeField] private bool _isNPCMsg;
     [SerializeField] int _maxMsgWidth=15;
+
+    public TMP_Text Message { get => _message;}
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
@@ -24,6 +27,10 @@ public class MessageTextBase : MonoBehaviour
             SetTextMsg("alors bonjour d'abords");
         }
     }
+    public void SetIsNPC(bool isNPC)
+    {
+        _isNPCMsg = isNPC;
+    }
     void Start()
     {
 
@@ -33,11 +40,9 @@ public class MessageTextBase : MonoBehaviour
     {
         if (msg.Length > _maxMsgWidth)
         {
-            print(msg);
            msg= AddLineReturn(msg);
-            print(msg);
         }
-        _message.text = msg;
+        Message.text = msg;
     }
     public string AddLineReturn(string text)
     {
