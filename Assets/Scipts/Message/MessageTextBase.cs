@@ -16,24 +16,19 @@ public class MessageTextBase : MonoBehaviour
     {
         _message = GetComponentInChildren<TMP_Text>();
         _layoutGroup = GetComponent<HorizontalLayoutGroup>();
-        if (_isNPCMsg)
-        {
-            _layoutGroup.childAlignment = TextAnchor.UpperRight;
-            SetTextMsg("ahhhhhh\nhhhhhhhhhaouifhozlhafiughghahhhheAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-        }
-        else
-        {
-            _layoutGroup.childAlignment = TextAnchor.UpperLeft;
-            SetTextMsg("alors bonjour d'abords");
-        }
+
     }
     public void SetIsNPC(bool isNPC)
     {
         _isNPCMsg = isNPC;
-    }
-    void Start()
-    {
-
+        if (_isNPCMsg)
+        {
+            _layoutGroup.childAlignment = TextAnchor.UpperRight;
+        }
+        else
+        {
+            _layoutGroup.childAlignment = TextAnchor.UpperLeft;
+        }
     }
 
     public void SetTextMsg(string msg)
@@ -52,7 +47,6 @@ public class MessageTextBase : MonoBehaviour
         int j = 1;
         for (int i = 1; i < text.Length; i++)
         {
-            print(text[i]);
             if(text[i] == '\n')
             {
                 j = 1;

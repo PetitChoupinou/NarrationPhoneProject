@@ -4,14 +4,26 @@ using TMPro;
 using System.Collections;
 public class Discussion : MonoBehaviour
 {
-    [SerializeField] private TMP_Text _lastMessage;
-    [SerializeField] private TMP_Text _preview;
+    private TMP_Text _lastMessage;
+    private string _iD;
+    private TMP_Text _preview;
+    private GameObject _messageButton;
     [SerializeField] private GameObject _content;
     [SerializeField] private GameObject _messagePrefab;
 
+    public string ID { get => _iD;}
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void SetUp(string name,SentText[] texts,GameObject button)
     {
+        _iD = name;
+        _messageButton = button;
+        _preview = _messageButton.GetComponent<ButtonMsg>().Preview;
+        if (texts.Length<=0) return;
+        for (int i = 0; i < texts.Length; i++)
+        {
+            AddMessage(texts[i].Text, texts[i].isNPC);
+        }
         if (_lastMessage)
         {
             ChangePreview(_lastMessage.text);
@@ -24,12 +36,14 @@ public class Discussion : MonoBehaviour
 
     public void AddMessage(string text,bool isNPC)
     {
+        StopAllCoroutines();
         GameObject newMessage = Instantiate(_messagePrefab, _content.transform);
         MessageTextBase message = newMessage.GetComponent<MessageTextBase>();
         message.SetTextMsg(text);
         message.SetIsNPC(isNPC);
         _lastMessage = message.Message;
-        ChangePreview(text);
+   ChangePreview(text);
+        StartCoroutine(MessageApplyResize(newMessage));
     }
     public void AddMessage(string text)
     {
@@ -59,9 +73,13 @@ public class Discussion : MonoBehaviour
     IEnumerator MessageApplyResize(GameObject newMessage)
     {
         yield return new WaitForSeconds(.01f);
-        newMessage.GetComponent<HorizontalLayoutGroup>().childControlWidth = true;
         newMessage.GetComponent<HorizontalLayoutGroup>().childControlHeight = true;
         newMessage.GetComponent<HorizontalLayoutGroup>().CalculateLayoutInputHorizontal();
         yield return null;
+    }
+    public void CloseDiscussion()
+    {
+        _messageButton.GetComponent<ButtonMsg>().Parent.SetActive(true);
+        gameObject.SetActive(false);
     }
 }
