@@ -22,6 +22,4 @@ MonoBehaviour:
     isNPC: 1
   - Text: pour feur!!!
     isNPC: 0
-  - Text: pour feur!!!
-    isNPC: 0
   baseNotes: 

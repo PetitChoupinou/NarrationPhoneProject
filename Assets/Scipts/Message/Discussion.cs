@@ -7,16 +7,24 @@ public class Discussion : MonoBehaviour
     private TMP_Text _lastMessage;
     private string _iD;
     private TMP_Text _preview;
+    private TMP_Text _headerText;
     private GameObject _messageButton;
     [SerializeField] private GameObject _content;
     [SerializeField] private GameObject _messagePrefab;
 
     public string ID { get => _iD;}
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public void SetUp(string name,SentText[] texts,GameObject button)
+    private void OnEnable()
+    {
+        FindAnyObjectByType<MessageApp>().CurrentConv = gameObject;
+        if(_headerText)
+        _headerText.text = _iD;
+    }
+
+    public void SetUp(string name,SentText[] texts,GameObject button, TMP_Text headerText)
     {
         _iD = name;
+        _headerText = headerText;
         _messageButton = button;
         _preview = _messageButton.GetComponent<ButtonMsg>().Preview;
         if (texts.Length<=0) return;

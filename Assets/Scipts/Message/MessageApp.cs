@@ -2,6 +2,7 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
+using TMPro;
 
 public class MessageApp : MonoBehaviour
 {
@@ -9,8 +10,13 @@ public class MessageApp : MonoBehaviour
    [SerializeField] private GameObject _buttonPrefab;
    [SerializeField] private GameObject _discussionPrefab;
    [SerializeField] private GameObject _buttonCanvas;
- 
-   public  void SetUp(List<CharacterSheet> characters)
+   [SerializeField] private GameObject _headerButton;
+   [SerializeField] private TMP_Text _headerText;
+    private GameObject _currentConv;
+
+    public GameObject CurrentConv { get => _currentConv; set => _currentConv = value; }
+
+    public  void SetUp(List<CharacterSheet> characters)
     {
         for(int i=0;i<characters.Count; i++)
         {
@@ -18,12 +24,18 @@ public class MessageApp : MonoBehaviour
             SentText[] texts = characters[i].BaseText;
             GameObject button = Instantiate(_buttonPrefab, _buttonCanvas.transform);
             GameObject discussion = Instantiate(_discussionPrefab,transform);
-            button.GetComponent<ButtonMsg>().SetUp(name, discussion);
-            discussion.GetComponent<Discussion>().SetUp(name,texts, button);
+            button.GetComponent<ButtonMsg>().SetUp(name, discussion,_headerButton);
+            discussion.GetComponent<Discussion>().SetUp(name,texts, button,_headerText);
             gameObjectsToDeactivate.Add(discussion);
             
         }
         StartCoroutine(StartGame());
+    }
+    public void CloseCurrentConv()
+    {
+        _currentConv.SetActive(false);
+        _headerText.text = "message";
+
     }
     IEnumerator StartGame()
     {
@@ -34,4 +46,5 @@ public class MessageApp : MonoBehaviour
         }
         yield return null;
     }
+  
 }
