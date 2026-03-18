@@ -13,20 +13,20 @@ MonoBehaviour:
   m_Name: New Dialogue
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   nodes:
+  - nodeType: 1
+    position: {x: 753.6, y: 161.6}
+  - nodeType: 1
+    position: {x: 724, y: 328}
   - nodeType: 2
-    position: {x: 279.2, y: 176}
-  - nodeType: 2
-    position: {x: 653.6, y: 176}
-  - nodeType: 2
-    position: {x: 653.6, y: 252.80002}
+    position: {x: 369.6, y: 161.6}
   nodeLinks:
-  - baseNodeGuid: 67435d72-599b-4d17-818f-65f12b3bd2e4
-    portName: Choice 1
-    targetNodeGuid: 1a28ee12-3644-4ae5-8487-59b8c5a01ca9
-  - baseNodeGuid: 67435d72-599b-4d17-818f-65f12b3bd2e4
-    portName: Choice 3
-    targetNodeGuid: 01b12012-825a-463c-bec5-105a233ff275
-  - baseNodeGuid: 16779be1-8151-4212-9ce4-e8f354c5f690
+  - baseNodeGuid: a56cf1e9-a498-45c7-87d0-814d9fb017a0
     portName: Next
-    targetNodeGuid: 67435d72-599b-4d17-818f-65f12b3bd2e4
-  entryPointNodeGuid: 16779be1-8151-4212-9ce4-e8f354c5f690
+    targetNodeGuid: 432c6c25-ce23-45d5-863d-d614fc17e84f
+  - baseNodeGuid: 432c6c25-ce23-45d5-863d-d614fc17e84f
+    portName: Choice 1
+    targetNodeGuid: e7607a0d-4b76-4f11-b17c-143f10f8f77e
+  - baseNodeGuid: 432c6c25-ce23-45d5-863d-d614fc17e84f
+    portName: Choice 3
+    targetNodeGuid: 893590cb-5417-4c46-87e9-a613e9ea6722
+  entryPointNodeGuid: a56cf1e9-a498-45c7-87d0-814d9fb017a0

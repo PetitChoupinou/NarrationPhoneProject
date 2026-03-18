@@ -5,9 +5,8 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 
-public class ChoiceNode : BaseNode
+public class ChoiceNode : DialogueNode
 {
-    public string dialogueText;
     public DialogueGraphView graphView;
     public List<ChoiceInfos> choices = new List<ChoiceInfos>();
 
@@ -24,7 +23,8 @@ public class ChoiceNode : BaseNode
         var textField = new TextField
         {
             name = string.Empty,
-            value = choicePortName
+            value = choicePortName,
+            multiline = true
         };
         textField.RegisterValueChangedCallback(evt => 
         {

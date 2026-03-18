@@ -18,9 +18,10 @@ public class DialogueGraph : EditorWindow
 
     private void ConstructGraph()
     {
-        _graphView = new DialogueGraphView
+        _graphView = new DialogueGraphView(this)
         {
             name = "Dialogue Graph"
+
         };
 
         _graphView.StretchToParentSize();
@@ -39,11 +40,6 @@ public class DialogueGraph : EditorWindow
 
         toolbar.Add(new Button(() => Save() ) { text = "Save" });
         toolbar.Add(new Button(() => Load() ) { text = "Load" });
-
-
-        var nodeCreateButton = new Button(() => { _graphView.CreateNode(NodeType.Choice); });
-        nodeCreateButton.text = "Create Node";
-        toolbar.Add(nodeCreateButton);
 
         rootVisualElement.Add(toolbar);
     }

@@ -1,0 +1,8 @@
+DialogueNode #title{
+	background-color: rgb(15, 90, 15);
+}
+
+ChoiceNode #title{
+	background-color: rgb(15, 15, 90);
+
+}
