@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class ButtonMsg : MonoBehaviour
+public class InAppButton : MonoBehaviour
 {
     [SerializeField] TMP_Text _name;
      public TMP_Text Preview;

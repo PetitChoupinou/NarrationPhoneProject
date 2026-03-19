@@ -24,7 +24,7 @@ public class MessageApp : MonoBehaviour
             SentText[] texts = characters[i].BaseText;
             GameObject button = Instantiate(_buttonPrefab, _buttonCanvas.transform);
             GameObject discussion = Instantiate(_discussionPrefab,transform);
-            button.GetComponent<ButtonMsg>().SetUp(name, discussion,_headerButton);
+            button.GetComponent<InAppButton>().SetUp(name, discussion,_headerButton);
             discussion.GetComponent<Discussion>().SetUp(name,texts, button,_headerText);
             gameObjectsToDeactivate.Add(discussion);
             

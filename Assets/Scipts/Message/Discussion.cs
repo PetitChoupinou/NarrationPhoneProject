@@ -26,7 +26,7 @@ public class Discussion : MonoBehaviour
         _iD = name;
         _headerText = headerText;
         _messageButton = button;
-        _preview = _messageButton.GetComponent<ButtonMsg>().Preview;
+        _preview = _messageButton.GetComponent<InAppButton>().Preview;
         if (texts.Length<=0) return;
         for (int i = 0; i < texts.Length; i++)
         {
@@ -87,7 +87,7 @@ public class Discussion : MonoBehaviour
     }
     public void CloseDiscussion()
     {
-        _messageButton.GetComponent<ButtonMsg>().Parent.SetActive(true);
+        _messageButton.GetComponent<InAppButton>().Parent.SetActive(true);
         gameObject.SetActive(false);
     }
 }

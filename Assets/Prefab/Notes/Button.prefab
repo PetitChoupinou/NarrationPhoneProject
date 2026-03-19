@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4580430142239543666}
   - component: {fileID: 6902028916800694244}
   - component: {fileID: 5650238880819615245}
+  - component: {fileID: 3406628611819770215}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -122,7 +123,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4580430142239543666}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3406628611819770215}
+        m_TargetAssemblyTypeName: InAppButton, Assembly-CSharp
+        m_MethodName: OnButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &5650238880819615245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,6 +162,20 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &3406628611819770215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655638322311523039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f916f4cde73c0048b78bcb53fe57d3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InAppButton
+  _name: {fileID: 7553608220577630039}
+  Preview: {fileID: 210791737168758407}
 --- !u!1 &1136570586383476734
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,7 +188,7 @@ GameObject:
   - component: {fileID: 6346224492816173216}
   - component: {fileID: 210791737168758407}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Preview
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -181,10 +208,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1107905562372143276}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 355, y: -119.4825}
-  m_SizeDelta: {x: 690, y: 61.035}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6346224492816173216
 CanvasRenderer:
@@ -298,7 +325,7 @@ GameObject:
   - component: {fileID: 5353449526235841236}
   - component: {fileID: 7553608220577630039}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Titre
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -318,10 +345,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1107905562372143276}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 355, y: -44.4825}
-  m_SizeDelta: {x: 690, y: 88.965}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5353449526235841236
 CanvasRenderer:

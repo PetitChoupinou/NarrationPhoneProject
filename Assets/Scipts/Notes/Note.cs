@@ -5,28 +5,43 @@ using System.Collections;
 public class Note : MonoBehaviour
 {
 
-    
+    private string _iD;
     private GameObject _noteButton;
-    [SerializeField] private TMP_Text _preview;
-    [SerializeField] private TMP_Text _title;
+    private TMP_Text _preview;
+    private TMP_Text _headerText;
     [SerializeField] private TMP_Text _content;
+    public string ID { get => _iD; }
 
-    public  void SetUp(string title,string content)
+    private void Start()
     {
-        _title.text = title;
+        AddNote(" vraiment mais vraiment trop conne");
+    }
+    private void OnEnable()
+    {
+        FindAnyObjectByType<NoteApp>().CurrentNote = gameObject;
+        if (_headerText)
+            _headerText.text = _iD;
+    }
+    public void SetUp(string title,string content,GameObject button,TMP_Text headerText)
+    {
+         _iD = title;
+        _noteButton = button;
+        _headerText = headerText;
+        _preview = _noteButton.GetComponent<InAppButton>().Preview;
         _content.text = content;
+        ChangePreview(content);
     }
 
     public void AddNote(string content)
     {
-        _content.text += "\r\n" + content;
+        _content.text += "\r\n\r\n" + content;
     }
     public void ChangePreview(string text)
     {
         string previewText = "";
-        if (text.Length > 15)
+        if (text.Length > 30)
         {
-            for (int i = 0; i < 12; i++)
+            for (int i = 0; i < 27; i++)
             {
                 previewText += text[i];
                 if (text[i] == '\n')
@@ -41,7 +56,7 @@ public class Note : MonoBehaviour
     }
     public void CloseDiscussion()
     {
-        _noteButton.GetComponent<ButtonMsg>().Parent.SetActive(true);
+        _noteButton.GetComponent<InAppButton>().Parent.SetActive(true);
         gameObject.SetActive(false);
     }
 
