@@ -12,10 +12,7 @@ public class Note : MonoBehaviour
     [SerializeField] private TMP_Text _content;
     public string ID { get => _iD; }
 
-    private void Start()
-    {
-        AddNote(" vraiment mais vraiment trop conne");
-    }
+ 
     private void OnEnable()
     {
         FindAnyObjectByType<NoteApp>().CurrentNote = gameObject;

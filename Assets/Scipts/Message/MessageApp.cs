@@ -12,6 +12,7 @@ public class MessageApp : MonoBehaviour
    [SerializeField] private GameObject _buttonCanvas;
    [SerializeField] private GameObject _headerButton;
    [SerializeField] private TMP_Text _headerText;
+   private List<Discussion> _discussions;
     private GameObject _currentConv;
 
     public GameObject CurrentConv { get => _currentConv; set => _currentConv = value; }
@@ -27,7 +28,7 @@ public class MessageApp : MonoBehaviour
             button.GetComponent<InAppButton>().SetUp(name, discussion,_headerButton);
             discussion.GetComponent<Discussion>().SetUp(name,texts, button,_headerText);
             gameObjectsToDeactivate.Add(discussion);
-            
+            _discussions.Add(discussion.GetComponent<Discussion>());
         }
         StartCoroutine(StartGame());
     }
@@ -35,6 +36,14 @@ public class MessageApp : MonoBehaviour
     {
         _currentConv.SetActive(false);
         _headerText.text = "message";
+
+    }
+    public void AddMessage(string text, bool isNPC,string ID)
+    {
+        _discussions.Find( x=>x.ID == ID).AddMessage(text,isNPC);
+    }
+    public void SendChoice(List<string> choices,string ID)
+    {
 
     }
     IEnumerator StartGame()

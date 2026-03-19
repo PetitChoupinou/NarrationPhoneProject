@@ -903,6 +903,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterManager
   _characters:
   - {fileID: 11400000, guid: 7c059581a45e5404db6932ee8be5f6c2, type: 2}
+  - {fileID: 11400000, guid: 4568a7c5844589e4fa6a8d726392a2a5, type: 2}
   _messageApp: {fileID: 1320753570}
   _noteApp: {fileID: 1984929174}
 --- !u!1 &573706546

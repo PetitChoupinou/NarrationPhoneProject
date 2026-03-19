@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c6fcc9d44dae16c4ebfccd6530d48821, type: 3}
-  m_Name: SashaSheet
+  m_Name: l'autre
   m_EditorClassIdentifier: Assembly-CSharp::CharacterSheet
-  name: Sasha
+  name: L'autre
   baseText:
-  - Text: bjr cv?
+  - Text: Bonsoir
     isNPC: 1
-  - Text: Non pas trop
+  - Text: C'est qui?
     isNPC: 0
-  - Text: pk?
+  - Text: oui
     isNPC: 1
-  - Text: pour feur!!!
+  - Text: ah ok
     isNPC: 0
-  baseNotes: vraiment trop conne comme personne
+  baseNotes: ',,,fazhegoahio^rhgpialh'
