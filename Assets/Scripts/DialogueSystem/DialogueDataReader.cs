@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 
@@ -10,44 +11,67 @@ public class DialogueDataReader : MonoBehaviour
 
     public DialogueData dialogueData;
 
+    private NodeData _currentNodeData;
+
     private void Start()
     {
         List<NodeData> nodes = dialogueData.nodes;
-        foreach (var nodeData in dialogueData.nodes)
-        {
-            Action action = ReadNodeData(nodeData.nodeInfos);
-            action.Invoke();
-        }
+        //Start the conversation => Need a coroutine
+        ReadNodeData(GetNextNodeData(nodes.FirstOrDefault(node => node.nodeGUID == dialogueData.entryPointNodeGuid)));
+
     }
 
-    public Action ReadNodeData(BaseNode nodeData)
+    private NodeData GetNextNodeData(NodeData currentNodeData, int outputID = 0)
     {
+        if(currentNodeData == null) { return null; } 
+        return dialogueData.nodes.FirstOrDefault(node => node.nodeGUID == currentNodeData.outputs[outputID].targetNodeGuid);
+    }
+
+    private void ReadNextNode(NodeData currentNodeData, int outputID = 0)
+    {
+        var nextData = GetNextNodeData(currentNodeData, outputID);
+        if(nextData == null) { return; }
+        ReadNodeData(nextData)();
+    }
+
+    public Action ReadNodeData(NodeData nodeData)
+    {
+        _currentNodeData = nodeData;
+        if (nodeData == null)
+            return () => { };
         switch (nodeData.nodeType)
         {
-                
+
             case NodeType.Dialogue:
-                DialogueNode dialogueData = nodeData as DialogueNode;
-                return () => SendMessage(dialogueData.dialogueText);
+                DialogueNodeData dialogueData = nodeData as DialogueNodeData;
+                return () =>
+                {
+                    SendNewMessage(dialogueData.dialogueText);
+                    ReadNextNode(nodeData);
+                };
             case NodeType.Choice:
-                ChoiceNode choiceData = nodeData as ChoiceNode;
-                return () => DisplayChoices(choiceData.choices);
+                ChoiceNodeData choiceData = nodeData as ChoiceNodeData;
+                return () => DisplayChoices(choiceData.outputs);
             default:
                 return () => { };
         }
+        
     }
 
-    void SendMessage(string text)
+    void SendNewMessage(string text)
     {
         Debug.Log(text);
+        
     }
 
-    void DisplayChoices(List<ChoiceInfos> choices)
+    void DisplayChoices(List<OutputData> choices)
     {
-        for (int i = 0; i < choices.Count; i++)
-        {
-            Debug.Log("Choix " + i +": " + choices[i].choiceText);
-        }
+        //=> More like display one choice to test
+        int id = UnityEngine.Random.Range(0, choices.Count);
+        var choice = choices[id];
+        Debug.Log("Choix " + id + ": " + choices[id].portValue);
     }
+
 
 
     IEnumerator Conversation()

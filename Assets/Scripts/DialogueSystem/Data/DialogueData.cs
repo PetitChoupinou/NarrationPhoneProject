@@ -6,7 +6,7 @@ using UnityEngine;
 [Serializable]
 public class DialogueData : ScriptableObject
 {
+    [SerializeReference]
     public List<NodeData> nodes = new List<NodeData>();
-    public List<NodeLinkData> nodeLinks = new List<NodeLinkData>();
     public string entryPointNodeGuid = "";
 }

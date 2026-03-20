@@ -144,41 +144,39 @@ public class DialogueGraphView : GraphView
 
     public BaseNode CreateFromData(DialogueData dataCache, NodeData nodeData)
     {
-        BaseNode node = CreateNode(nodeData.nodeInfos.nodeType, nodeData.position);
-        node.GUID = nodeData.nodeInfos.GUID;
+        BaseNode node = CreateNode(nodeData.nodeType, nodeData.position);
+        node.GUID = nodeData.nodeGUID;
         switch (nodeData.nodeType)
         {
             case NodeType.Start:
                 node.isEntryPoint = true;
-                node.capabilities = Capabilities.Movable | Capabilities.Selectable;
+                node.capabilities = Capabilities.Selectable;
                 break;
 
             case NodeType.Dialogue:
                 var nodeDialogue = node as DialogueNode;
-                nodeDialogue.dialogueText = ((DialogueNode)nodeData.nodeInfos).dialogueText;
+                var nodeDialogueData = nodeData as DialogueNodeData;
+                nodeDialogue.dialogueText = nodeDialogueData.dialogueText;
                 nodeDialogue.UpdateTextFieldValue();
                 break;
 
             case NodeType.Choice:
                 var nodeChoice = node as ChoiceNode;
-                nodeChoice.dialogueText = ((ChoiceNode)nodeData.nodeInfos).dialogueText;
+                var nodeChoiceData = nodeData as ChoiceNodeData;
+                nodeChoice.dialogueText = nodeChoiceData.dialogueText;
                 nodeChoice.UpdateTextFieldValue();
-                var nodePorts = nodeData.nodeInfos.outputContainer.Query("connector").ToList();
+                var nodeOutputs = nodeData.outputs;
 
-                for (int i = 0; i < nodePorts.Count; i++)
+                for (int i = 0; i < nodeOutputs.Count; i++)
                 {
                     
-                    var choiceInfos = ((ChoiceNode)nodeData.nodeInfos).choices[i];
                     if (i <= nodeChoice.choices.Count - 1 && nodeChoice.choices[i] != null)
                     {
-                        nodeChoice.UpdatePortName(i, choiceInfos.choiceText);
+                        nodeChoice.UpdatePort(i, nodeOutputs[i].portValue);
                         continue;
                     }
 
-                    if (choiceInfos != null)
-                    {
-                        nodeChoice.AddChoicePort(true, choiceInfos.choiceText);
-                    }
+                    nodeChoice.AddChoicePort(true, nodeOutputs[i].portValue);   
                 }
                 break;
         }

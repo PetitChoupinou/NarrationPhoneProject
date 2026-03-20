@@ -10,7 +10,6 @@ public class ChoiceNode : DialogueNode
     public DialogueGraphView graphView;
     public List<ChoiceInfos> choices = new List<ChoiceInfos>();
 
-    //Faire que le bouton X soit pas là pour le premier choice
     public void AddChoicePort(bool isDeletable = true, string overriddenPortName = "")
     {
         var generatedPort = GeneratePort(Direction.Output);
@@ -82,7 +81,7 @@ public class ChoiceNode : DialogueNode
         return choices.FirstOrDefault(x => x.port == port);
     }
 
-    public void UpdatePortName(int id, string text)
+    public void UpdatePort(int id, string text)
     {
         choices[id].textField.value = text;
         choices[id].choiceText = text;

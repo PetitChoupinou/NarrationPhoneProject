@@ -4,8 +4,11 @@ using System.Linq;
 using Unity.VisualScripting.FullSerializer;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.Windows;
+using static UnityEditor.Rendering.CameraUI;
 
 public class GraphSaveUtility
 {
@@ -35,33 +38,15 @@ public class GraphSaveUtility
         var dialogueData = ScriptableObject.CreateInstance<DialogueData>();
 
         var connectedPorts = _edges.Where(edge => edge.input.node != null).ToArray();
-        for(int i = 0;  i < connectedPorts.Length; i++)
-        {
-           
-            var outputNode = connectedPorts[i].output.node as BaseNode;
-            var inputNode = connectedPorts[i].input.node as BaseNode;
-
-            
-            dialogueData.nodeLinks.Add(new NodeLinkData
-            {
-                baseNodeGuid = outputNode.GUID,
-                portName = connectedPorts[i].output.portName,
-                targetNodeGuid = inputNode.GUID
-            });
-        }
+        
         foreach(var graphNode in _nodes)
         {
             if (graphNode.isEntryPoint)
             {
                 dialogueData.entryPointNodeGuid = graphNode.GUID;
-                continue;
+                /*continue;*/
             }
-            dialogueData.nodes.Add(new NodeData
-            {
-                nodeInfos = graphNode,
-                position = graphNode.GetPosition().position,
-                nodeType = graphNode.nodeType
-            });
+            dialogueData.nodes.Add(CreateNodeData(graphNode, connectedPorts));
         }
         if (!AssetDatabase.IsValidFolder("Assets/Resources")){
             AssetDatabase.CreateFolder("Assets", "Resources");
@@ -70,6 +55,76 @@ public class GraphSaveUtility
         AssetDatabase.CreateAsset(dialogueData, $"Assets/Resources/{fileName}.asset");
         AssetDatabase.SaveAssets();
 
+    }
+
+    public NodeData CreateNodeData(BaseNode node, Edge[] connectedPorts)
+    {
+        NodeData data = new NodeData
+        {
+            position = node.GetPosition().position,
+            nodeType = node.nodeType,
+            nodeGUID = node.GUID,
+
+        };
+
+
+        switch (node.nodeType)
+        {
+            case NodeType.Start:
+                data.outputs.Add(CreateOutputData(connectedPorts, node, "Next"));
+                break;
+            case NodeType.Dialogue:
+                var dialogueNode = node as DialogueNode;
+                DialogueNodeData dialogueNodeData = new DialogueNodeData(data);
+
+                dialogueNodeData.dialogueText = dialogueNode.dialogueText;
+
+                dialogueNodeData.outputs.Add(CreateOutputData(connectedPorts, node, "Next"));
+                data = dialogueNodeData;
+                break;
+            case NodeType.Choice:
+                var choiceNode = node as ChoiceNode;
+                ChoiceNodeData choiceNodeData = new ChoiceNodeData(data);
+                var nodePorts = choiceNode.outputContainer.Query("connector").ToList();
+                for (int i = 0; i < nodePorts.Count; i++)
+                {
+
+                    var choiceInfos = choiceNode.choices[i];
+                    
+                    if (choiceInfos != null)
+                    {
+                        choiceNodeData.outputs.Add(CreateOutputData(connectedPorts, node, choiceInfos.choiceText));
+                    }
+                }
+                choiceNodeData.dialogueText = choiceNode.dialogueText;
+                data = choiceNodeData;
+                break;
+            default:
+                break;
+        }
+
+        return data;
+    }
+
+    public OutputData CreateOutputData(Edge[] connectedPorts, BaseNode node, string outputName)
+    {
+        BaseNode nextNode = null;
+        string nextNodeGUID = "";
+        var outputs = connectedPorts.Where(x => x.output.node == node).ToList();
+        var nextNodeEdge = outputs.FirstOrDefault(x => x.output.portName == outputName);
+
+        if (nextNodeEdge != null)
+        {
+            nextNode = nextNodeEdge.input.node as BaseNode;
+            nextNodeGUID = nextNode.GUID;
+            
+        }
+
+        return new OutputData
+        {
+            portValue = outputName,
+            targetNodeGuid = nextNodeGUID
+        };
     }
 
     public void LoadGraph(string fileName)
@@ -88,31 +143,30 @@ public class GraphSaveUtility
         ConnectNodes();
     }
 
-    //TODO: _nodes get corrupted so GUID arent the same as the ones in _dataCache, need to find a way to fix this
     private void ConnectNodes()
     {
-        for (int i = 0; i < _nodes.Count; i++)
+        /*for (int i = 0; i < _nodes.Count; i++)
         {
             var connections = _dataCache.nodeLinks.Where(x => x.baseNodeGuid == _nodes[i].GUID).ToList();
             if (_nodes[i].isEntryPoint)
             {
-                var targetNodeGuid = connections.First(x=>x.baseNodeGuid == _dataCache.entryPointNodeGuid).targetNodeGuid;
+                var targetNodeGuid = connections.First(x => x.baseNodeGuid == _dataCache.entryPointNodeGuid).targetNodeGuid;
                 var targetNode = _nodes.First(x => x.GUID == targetNodeGuid);
                 LinkNodes(_nodes[i].outputContainer[0].Q<Port>(), (Port)targetNode.inputContainer[0]);
             }
             else
             {
-                var nodeData = _dataCache.nodes.First(x => x.nodeInfos.GUID == _nodes[i].GUID).nodeInfos;
+                var nodeData = _dataCache.nodes.First(x => x.nodeGUID == _nodes[i].GUID);
                 int j = 0;
                 int connectionID = 0;
                 foreach (var outputElementData in nodeData.outputContainer.Children())
                 {
-                    
+
                     Port portData = outputElementData.Q<Port>();
                     var connectionsData = portData.connections.ToList();
                     if (portData == null)
                     {
-                        
+
                         continue;
                     }
                     if (portData.connections.Count() > 0)
@@ -131,7 +185,37 @@ public class GraphSaveUtility
 
                 }
             }
-           
+
+        }*/
+        
+        for (int i = 0; i < _nodes.Count; i++)
+        {
+            int j = 0;
+            var nodeData = _dataCache.nodes.First(x => x.nodeGUID == _nodes[i].GUID);
+            
+            foreach (var output in _nodes[i].outputContainer.Children())
+            {
+
+                Port port = output.Q<Port>();
+                
+                if (port == null)
+                {
+                    continue;
+                }
+
+                var targetNodeGUID = nodeData.outputs[j].targetNodeGuid;
+                if (targetNodeGUID != "")
+                {
+                    var targetNode = _nodes.First(x => x.GUID == targetNodeGUID);
+                    LinkNodes(_nodes[i].outputContainer[j].Q<Port>(), (Port)targetNode.inputContainer[0]);
+                }
+
+
+                j++;
+
+
+            }
+
         }
     }
 
@@ -153,6 +237,7 @@ public class GraphSaveUtility
     {
         foreach (var nodeData in _dataCache.nodes)
         {
+            if(nodeData.nodeGUID == _dataCache.entryPointNodeGuid) { continue; }
             var tempNode = _targetGraphView.CreateFromData(_dataCache, nodeData);
 
         }
@@ -160,10 +245,19 @@ public class GraphSaveUtility
 
     private void ClearGraph()
     {
-        if(_dataCache.nodeLinks.Count > 0 && _dataCache.nodeLinks[0].baseNodeGuid == _dataCache.entryPointNodeGuid) 
+        /*if(_dataCache.nodeLinks.Count > 0 && _dataCache.nodeLinks[0].baseNodeGuid == _dataCache.entryPointNodeGuid) 
         {
             _nodes.Find(x => x.isEntryPoint).GUID = _dataCache.nodeLinks[0].baseNodeGuid;
         }
+        foreach (var node in _nodes)
+        {
+            if (node.isEntryPoint) continue;
+            _edges.Where(x => x.input.node == node).ToList().ForEach(edge => _targetGraphView.RemoveElement(edge));
+
+            _targetGraphView.RemoveElement(node);
+        }*/
+       
+        _nodes.Find(x => x.isEntryPoint).GUID = _dataCache.entryPointNodeGuid;
         foreach (var node in _nodes)
         {
             if (node.isEntryPoint) continue;
