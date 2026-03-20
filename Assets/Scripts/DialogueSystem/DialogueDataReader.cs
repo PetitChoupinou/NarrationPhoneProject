@@ -57,7 +57,7 @@ public class DialogueDataReader : MonoBehaviour
         }
         
     }
-
+    //Faire quoi ca choisisses bien le bon choice et hop
     void SendNewMessage(string text)
     {
         Debug.Log(text);
