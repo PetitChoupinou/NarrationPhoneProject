@@ -103,11 +103,16 @@ public class Discussion : MonoBehaviour
         newMessage.GetComponent<HorizontalLayoutGroup>().CalculateLayoutInputHorizontal();
         yield return null;
     }
-    public void Choose()
+    public void StartChoice()
     {
         if (_canChoose)
         {
             _choicePanel.SetActive(true);
         }
+    }
+    public void Choose(string msg)
+    {
+        AddMessage(msg, false);
+        //fait ce que tu veux
     }
 }
