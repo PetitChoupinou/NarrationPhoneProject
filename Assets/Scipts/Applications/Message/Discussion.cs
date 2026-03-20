@@ -25,6 +25,7 @@ public class Discussion : MonoBehaviour
         FindAnyObjectByType<MessageApp>().CurrentConv = gameObject;
         if(_headerText)
         _headerText.text = _iD;
+        PhoneManager.Instance.ChangeDepth(PhoneManager.AppDepth.inApp);
     }
 
     public void SetUp(string name,SentText[] texts,GameObject button, TMP_Text headerText)
@@ -101,11 +102,6 @@ public class Discussion : MonoBehaviour
         newMessage.GetComponent<HorizontalLayoutGroup>().childControlHeight = true;
         newMessage.GetComponent<HorizontalLayoutGroup>().CalculateLayoutInputHorizontal();
         yield return null;
-    }
-    public void CloseDiscussion()
-    {
-        _messageButton.GetComponent<InAppButton>().Parent.SetActive(true);
-        gameObject.SetActive(false);
     }
     public void Choose()
     {

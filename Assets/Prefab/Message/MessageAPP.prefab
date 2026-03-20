@@ -574,32 +574,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 215398022711435055}
         m_TargetAssemblyTypeName: MessageApp, Assembly-CSharp
-        m_MethodName: CloseCurrentConv
+        m_MethodName: CloseCurrent
         m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 6048162570261343852}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 6982702714539537987}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -829,6 +805,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 804d0a7525e3e8249a273ee3bab9e042, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MessageApp
+  _phoneCanvas: {fileID: 0}
   _buttonPrefab: {fileID: 1615588720625825027, guid: 2c31c95c68d89914db78d5ab7f70ebdd, type: 3}
   _discussionPrefab: {fileID: 5606949172641801510, guid: ad5ece03613391e4dad3ed204b722dcc, type: 3}
   _buttonCanvas: {fileID: 6048162570261343852}

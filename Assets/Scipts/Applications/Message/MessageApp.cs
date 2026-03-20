@@ -4,7 +4,7 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 
-public class MessageApp : MonoBehaviour
+public class MessageApp : Application
 {
     private List<GameObject> gameObjectsToDeactivate=new List<GameObject>();
    [SerializeField] private GameObject _buttonPrefab;
@@ -12,12 +12,12 @@ public class MessageApp : MonoBehaviour
    [SerializeField] private GameObject _buttonCanvas;
    [SerializeField] private GameObject _headerButton;
    [SerializeField] private TMP_Text _headerText;
-   private List<Discussion> _discussions;
+   private List<Discussion> _discussions = new List<Discussion>();
     private GameObject _currentConv;
 
     public GameObject CurrentConv { get => _currentConv; set => _currentConv = value; }
 
-    public  void SetUp(List<CharacterSheet> characters)
+    override public  void SetUp(List<CharacterSheet> characters)
     {
         for(int i=0;i<characters.Count; i++)
         {
@@ -32,11 +32,15 @@ public class MessageApp : MonoBehaviour
         }
         StartCoroutine(StartGame());
     }
-    public void CloseCurrentConv()
+    public override void CloseCurrent()
     {
+        if (CurrentConv == null) return;
         _currentConv.SetActive(false);
         _headerText.text = "message";
-
+        PhoneManager.Instance.ChangeDepth(PhoneManager.AppDepth.app);
+        _buttonCanvas.SetActive(true);
+        _headerButton.SetActive(false);
+        _currentConv = null;
     }
     public void AddMessage(string text, bool isNPC,string ID)
     {

@@ -904,8 +904,9 @@ MonoBehaviour:
   _characters:
   - {fileID: 11400000, guid: 7c059581a45e5404db6932ee8be5f6c2, type: 2}
   - {fileID: 11400000, guid: 4568a7c5844589e4fa6a8d726392a2a5, type: 2}
-  _messageApp: {fileID: 1320753570}
-  _noteApp: {fileID: 1984929174}
+  _apps:
+  - {fileID: 1320753570}
+  - {fileID: 1984929174}
 --- !u!1 &573706546
 GameObject:
   m_ObjectHideFlags: 0
@@ -1113,7 +1114,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 698531937}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 494902900}
+        m_TargetAssemblyTypeName: PhoneManager, Assembly-CSharp
+        m_MethodName: ReturnButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &698531937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1775,6 +1788,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 494902900}
+        m_TargetAssemblyTypeName: PhoneManager, Assembly-CSharp
+        m_MethodName: GetInApp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &880114787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1911,6 +1936,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.Canvas, UnityEngine
         m_MethodName: set_enabled
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 494902900}
+        m_TargetAssemblyTypeName: PhoneManager, Assembly-CSharp
+        m_MethodName: GetInApp
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2529,7 +2566,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1417662874}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 494902900}
+        m_TargetAssemblyTypeName: PhoneManager, Assembly-CSharp
+        m_MethodName: CloseApps
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1417662874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3367,6 +3416,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4070853044964711539, guid: c04bc797bdc1ea949acd8b45d27686bc, type: 3}
+      propertyPath: _phoneCanvas
+      value: 
+      objectReference: {fileID: 494902898}
     - target: {fileID: 5333776568390965855, guid: c04bc797bdc1ea949acd8b45d27686bc, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -3448,6 +3501,10 @@ PrefabInstance:
       propertyPath: _headerText
       value: 
       objectReference: {fileID: 309649567}
+    - target: {fileID: 215398022711435055, guid: 1699363c4bee2a9438541c194156c950, type: 3}
+      propertyPath: _phoneCanvas
+      value: 
+      objectReference: {fileID: 494902898}
     - target: {fileID: 888668505796929206, guid: 1699363c4bee2a9438541c194156c950, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3550,6 +3607,10 @@ PrefabInstance:
 
 '
       objectReference: {fileID: 0}
+    - target: {fileID: 5444285418819318777, guid: 1699363c4bee2a9438541c194156c950, type: 3}
+      propertyPath: m_IgnoreReversedGraphics
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5918005534170844515, guid: 1699363c4bee2a9438541c194156c950, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3565,6 +3626,10 @@ PrefabInstance:
     - target: {fileID: 5918005534170844515, guid: 1699363c4bee2a9438541c194156c950, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7286322099391171303, guid: 1699363c4bee2a9438541c194156c950, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7991513738419085291, guid: 1699363c4bee2a9438541c194156c950, type: 3}
       propertyPath: m_Name

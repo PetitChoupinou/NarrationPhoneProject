@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class NoteApp : MonoBehaviour
+public class NoteApp : Application
 {
     [SerializeField] private GameObject _buttonPrefab;
     [SerializeField] private GameObject _notePrefab;
@@ -13,7 +14,7 @@ public class NoteApp : MonoBehaviour
 
     public GameObject CurrentNote { get => _currentNote; set => _currentNote = value; }
 
-    public void SetUp(List<CharacterSheet> characters)
+    override public void SetUp(List<CharacterSheet> characters)
     {
         for (int i = 0; i < characters.Count; i++)
         {
@@ -24,13 +25,15 @@ public class NoteApp : MonoBehaviour
             button.GetComponent<InAppButton>().SetUp(name, note, _headerButton);
             note.GetComponent<Note>().SetUp(name, content,button,_headerText);
             note.SetActive(false);
-
+            
         }
     }
-    public void CloseCurrentNote()
+    public override void CloseCurrent()
     {
+        if (CurrentNote == null) return;
         _currentNote.SetActive(false);
         _headerText.text = "note";
-
+        PhoneManager.Instance.ChangeDepth(PhoneManager.AppDepth.app);
+        _currentNote = null;
     }
 }

@@ -18,6 +18,7 @@ public class Note : MonoBehaviour
         FindAnyObjectByType<NoteApp>().CurrentNote = gameObject;
         if (_headerText)
             _headerText.text = _iD;
+        PhoneManager.Instance.ChangeDepth(PhoneManager.AppDepth.inApp);
     }
     public void SetUp(string title,string content,GameObject button,TMP_Text headerText)
     {
@@ -50,11 +51,6 @@ public class Note : MonoBehaviour
         }
         else previewText = text;
         _preview.text = previewText;
-    }
-    public void CloseDiscussion()
-    {
-        _noteButton.GetComponent<InAppButton>().Parent.SetActive(true);
-        gameObject.SetActive(false);
     }
 
 }
