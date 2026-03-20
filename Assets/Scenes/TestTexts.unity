@@ -3416,73 +3416,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4070853044964711539, guid: c04bc797bdc1ea949acd8b45d27686bc, type: 3}
-      propertyPath: _phoneCanvas
-      value: 
-      objectReference: {fileID: 494902898}
-    - target: {fileID: 5333776568390965855, guid: c04bc797bdc1ea949acd8b45d27686bc, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7210978492273578181, guid: c04bc797bdc1ea949acd8b45d27686bc, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7210978492273578181, guid: c04bc797bdc1ea949acd8b45d27686bc, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7210978492273578181, guid: c04bc797bdc1ea949acd8b45d27686bc, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7210978492273578181, guid: c04bc797bdc1ea949acd8b45d27686bc, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7210978492273578181, guid: c04bc797bdc1ea949acd8b45d27686bc, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7329500344041122597, guid: c04bc797bdc1ea949acd8b45d27686bc, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7329500344041122597, guid: c04bc797bdc1ea949acd8b45d27686bc, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7329500344041122597, guid: c04bc797bdc1ea949acd8b45d27686bc, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7329500344041122597, guid: c04bc797bdc1ea949acd8b45d27686bc, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7331036238270016989, guid: c04bc797bdc1ea949acd8b45d27686bc, type: 3}
       propertyPath: m_Name
       value: NotesApp
-      objectReference: {fileID: 0}
-    - target: {fileID: 8784504775891910232, guid: c04bc797bdc1ea949acd8b45d27686bc, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8784504775891910232, guid: c04bc797bdc1ea949acd8b45d27686bc, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8784504775891910232, guid: c04bc797bdc1ea949acd8b45d27686bc, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8784504775891910232, guid: c04bc797bdc1ea949acd8b45d27686bc, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8868303512911894472, guid: c04bc797bdc1ea949acd8b45d27686bc, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
