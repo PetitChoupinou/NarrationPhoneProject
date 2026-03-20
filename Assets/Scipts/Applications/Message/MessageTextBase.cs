@@ -23,11 +23,11 @@ public class MessageTextBase : MonoBehaviour
         _isNPCMsg = isNPC;
         if (_isNPCMsg)
         {
-            _layoutGroup.childAlignment = TextAnchor.UpperRight;
+            _layoutGroup.childAlignment = TextAnchor.UpperLeft;
         }
         else
         {
-            _layoutGroup.childAlignment = TextAnchor.UpperLeft;
+            _layoutGroup.childAlignment = TextAnchor.UpperRight;
         }
     }
 

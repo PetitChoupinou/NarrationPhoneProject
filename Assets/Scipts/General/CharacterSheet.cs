@@ -11,6 +11,7 @@ public class CharacterSheet : ScriptableObject
 
     public string Name { get => name;}
     public SentText[] BaseText { get => baseText; }
+    public string BaseNotes { get => baseNotes;}
 }
 [Serializable]
 public class SentText
