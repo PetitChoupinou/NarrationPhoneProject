@@ -15,10 +15,13 @@ public class Discussion : MonoBehaviour
     [SerializeField] private GameObject _choicePrefab;
     [SerializeField] private GameObject _choicePanel;
     private bool _canChoose=false;
-    private List<string> _choices;
+    private List<string> _choices = new List<string>();
+
+    private DialogueDataReader _dialogueDataReader;
 
     public string ID { get => _iD;}
     public bool CanChoose { get => _canChoose; set => _canChoose = value; }
+    public DialogueDataReader DialogueDataReader { get => _dialogueDataReader; set => _dialogueDataReader = value; }
 
     private void OnEnable()
     {
@@ -30,11 +33,12 @@ public class Discussion : MonoBehaviour
 
     public void SetUp(string name,SentText[] texts,GameObject button, TMP_Text headerText)
     {
+        DialogueDataReader = GetComponent<DialogueDataReader>();
         _iD = name;
         _headerText = headerText;
         _messageButton = button;
         _preview = _messageButton.GetComponent<InAppButton>().Preview;
-        if (texts.Length<=0) return;
+        /*if (texts.Length<=0) return;
         for (int i = 0; i < texts.Length; i++)
         {
             AddMessage(texts[i].Text, texts[i].isNPC);
@@ -46,7 +50,7 @@ public class Discussion : MonoBehaviour
         else
         {
             _preview.text = "";
-        }
+        }*/
     }
 
     public void AddMessage(string text,bool isNPC)
@@ -63,10 +67,15 @@ public class Discussion : MonoBehaviour
     public void TriggerChoice(List<string> choices)
     {
         _canChoose = true;
+        
         _choices.AddRange(choices);
-        for(int i=0;i<choices.Count; i++)
+        _choicePanel.SetActive(true);
+        for (int i=0;i<choices.Count; i++)
         {
-            GameObject choice=Instantiate(_choicePrefab, _choicePrefab.transform);
+            Debug.Log(i);
+            GameObject choice=Instantiate(_choicePrefab, _choicePanel.transform);
+            choice.GetComponentInChildren<TMP_Text>().text = choices[i];
+            //GameObject choice=Instantiate(_choicePrefab, transform);
             _choicePrefab.GetComponent<RectTransform>().localPosition += new Vector3(0,40,0);
         }
 
@@ -112,7 +121,11 @@ public class Discussion : MonoBehaviour
     }
     public void Choose(string msg)
     {
-        AddMessage(msg, false);
+        _choicePanel.SetActive(false);
+        _canChoose = false;
+        _choices.Clear();
+        _dialogueDataReader.MakeChoice(msg);
         //fait ce que tu veux
+
     }
 }
