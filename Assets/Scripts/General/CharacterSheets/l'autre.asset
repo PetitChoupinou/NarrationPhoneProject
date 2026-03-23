@@ -23,3 +23,6 @@ MonoBehaviour:
   - Text: ah ok
     isNPC: 0
   baseNotes: ',,,fazhegoahio^rhgpialh'
+  baseLikeness: 1
+  telNum: 1111111111
+  profilePic: {fileID: 0}

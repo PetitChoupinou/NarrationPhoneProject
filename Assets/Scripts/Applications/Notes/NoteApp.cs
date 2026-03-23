@@ -34,6 +34,9 @@ public class NoteApp : Application
         _currentNote.SetActive(false);
         _headerText.text = "note";
         PhoneManager.Instance.ChangeDepth(PhoneManager.AppDepth.app);
+        _buttonCanvas.SetActive(true);
+        _headerButton.SetActive(false);
         _currentNote = null;
     }
+
 }

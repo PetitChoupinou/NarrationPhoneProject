@@ -3420,11 +3420,144 @@ PrefabInstance:
       propertyPath: m_Name
       value: NotesApp
       objectReference: {fileID: 0}
+    - target: {fileID: 8784504775891910232, guid: c04bc797bdc1ea949acd8b45d27686bc, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8784504775891910232, guid: c04bc797bdc1ea949acd8b45d27686bc, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8784504775891910232, guid: c04bc797bdc1ea949acd8b45d27686bc, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8784504775891910232, guid: c04bc797bdc1ea949acd8b45d27686bc, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c04bc797bdc1ea949acd8b45d27686bc, type: 3}
+--- !u!1001 &7109597365183584862
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 326699901590157241, guid: 31bdf925851815b4d9048c9b477bdc4f, type: 3}
+      propertyPath: m_Name
+      value: ContactApp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7970441273224676732, guid: 31bdf925851815b4d9048c9b477bdc4f, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7970441273224676732, guid: 31bdf925851815b4d9048c9b477bdc4f, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7970441273224676732, guid: 31bdf925851815b4d9048c9b477bdc4f, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7970441273224676732, guid: 31bdf925851815b4d9048c9b477bdc4f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7970441273224676732, guid: 31bdf925851815b4d9048c9b477bdc4f, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7970441273224676732, guid: 31bdf925851815b4d9048c9b477bdc4f, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7970441273224676732, guid: 31bdf925851815b4d9048c9b477bdc4f, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7970441273224676732, guid: 31bdf925851815b4d9048c9b477bdc4f, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7970441273224676732, guid: 31bdf925851815b4d9048c9b477bdc4f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7970441273224676732, guid: 31bdf925851815b4d9048c9b477bdc4f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7970441273224676732, guid: 31bdf925851815b4d9048c9b477bdc4f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7970441273224676732, guid: 31bdf925851815b4d9048c9b477bdc4f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7970441273224676732, guid: 31bdf925851815b4d9048c9b477bdc4f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7970441273224676732, guid: 31bdf925851815b4d9048c9b477bdc4f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7970441273224676732, guid: 31bdf925851815b4d9048c9b477bdc4f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7970441273224676732, guid: 31bdf925851815b4d9048c9b477bdc4f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7970441273224676732, guid: 31bdf925851815b4d9048c9b477bdc4f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7970441273224676732, guid: 31bdf925851815b4d9048c9b477bdc4f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7970441273224676732, guid: 31bdf925851815b4d9048c9b477bdc4f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7970441273224676732, guid: 31bdf925851815b4d9048c9b477bdc4f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 326699901590157241, guid: 31bdf925851815b4d9048c9b477bdc4f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7109597365183584864}
+  m_SourcePrefab: {fileID: 100100000, guid: 31bdf925851815b4d9048c9b477bdc4f, type: 3}
+--- !u!1 &7109597365183584863 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 326699901590157241, guid: 31bdf925851815b4d9048c9b477bdc4f, type: 3}
+  m_PrefabInstance: {fileID: 7109597365183584862}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7109597365183584864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7109597365183584863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 780eb8e8bd5f8974792a628854625b37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ContactApp
 --- !u!1001 &8792035256776375686
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3589,5 +3722,6 @@ SceneRoots:
   - {fileID: 494902899}
   - {fileID: 8792035256776375686}
   - {fileID: 388342027509365040}
+  - {fileID: 7109597365183584862}
   - {fileID: 1093804357}
   - {fileID: 221021131}

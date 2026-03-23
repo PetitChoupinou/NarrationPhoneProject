@@ -17,9 +17,12 @@ MonoBehaviour:
   - Text: bjr cv?
     isNPC: 1
   - Text: Non pas trop
-    isNPC: 0
+    isNPC: 1
   - Text: pk?
     isNPC: 1
   - Text: pour feur!!!
     isNPC: 0
   baseNotes: vraiment trop conne comme personne
+  baseLikeness: 0
+  telNum: 
+  profilePic: {fileID: 0}
