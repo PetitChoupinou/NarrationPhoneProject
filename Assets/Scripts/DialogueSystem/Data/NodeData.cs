@@ -39,7 +39,7 @@ public class ChoiceNodeData : DialogueNodeData
         outputs = data.outputs;
     }
 }
-
+[Serializable]
 public class AffinityNodeData : NodeData
 {
     public AffinityNodeData(NodeData data)

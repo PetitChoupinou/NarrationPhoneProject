@@ -1,5 +1,7 @@
 using System;
 using UnityEditor;
+using UnityEditor.Experimental.GraphView;
+using UnityEditor.PackageManager.UI;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -74,6 +76,29 @@ public class DialogueGraph : EditorWindow
     {
         ConstructGraph();
         GenerateToolbar();
+        GenerateBlackBoard();
+    }
+
+    private void GenerateBlackBoard()
+    {
+        var blackboard = new Blackboard(_graphView)
+        {
+            name = "Blackboard",
+            
+        };
+        blackboard.Add(new BlackboardSection { title = "Exposed Properties" });
+        //blackboard.addItemRequested = blackboard => { _graphView.AddPropertyToBlackboard(3, "AAAA"); };
+        blackboard.addItemRequested = blackboard =>
+        {
+            Vector2 screenPos = blackboard.LocalToWorld(new Vector2(blackboard.layout.width, 0));
+            screenPos = GUIUtility.GUIToScreenPoint(screenPos);
+            _graphView.OpenBlackboardTypeWindow(screenPos);
+        };
+        
+        blackboard.SetPosition(new Rect(10, 30, 200, 300));
+        
+        _graphView.Add(blackboard);
+        _graphView.blackboard = blackboard;
     }
 
     private void OnDisable()

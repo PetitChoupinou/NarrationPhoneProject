@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
+using UnityEditor.PackageManager.UI;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -22,7 +23,10 @@ public enum Talker
 
 public class DialogueGraphView : GraphView
 {
+    public Blackboard blackboard;
     private GraphSearchWindow _searchWindow;
+    private PropertyTypeWindow _propertyTypeWindow;
+    public List<ExposedProperty> exposedProperties = new List<ExposedProperty>();
 
     public DialogueGraphView(EditorWindow window)
     {
@@ -39,6 +43,7 @@ public class DialogueGraphView : GraphView
 
         CreateNode(NodeType.Start, new Vector2(100, 200));
         AddSearchWindow(window);
+        AddBlackboardTypeWindow(window);
     }
 
     private void AddSearchWindow(EditorWindow window)
@@ -49,6 +54,18 @@ public class DialogueGraphView : GraphView
             SearchWindow.Open(new SearchWindowContext(context.screenMousePosition), _searchWindow);
     }
 
+    private void AddBlackboardTypeWindow(EditorWindow window)
+    {
+        _propertyTypeWindow = ScriptableObject.CreateInstance<PropertyTypeWindow>();
+        _propertyTypeWindow.Init(window, this);
+    }
+
+    public void OpenBlackboardTypeWindow(Vector2 pos)
+    {
+
+        SearchWindow.Open(new SearchWindowContext(pos), _propertyTypeWindow);
+       
+    }
     public BaseNode CreateNode(NodeType type, Vector2 position)
     {
         BaseNode node = null;
@@ -264,4 +281,77 @@ public class DialogueGraphView : GraphView
     {
         return nodes.FirstOrDefault(node => (node as BaseNode).isEntryPoint) as BaseNode;
     }
+    public void AddPropertyToBlackboard(Type type)
+    {
+        switch (type)
+        {
+            case Type t when t == typeof(bool):
+                AddPropertyToBlackboard<bool>();
+                break;
+            case Type t when t == typeof(int):
+                AddPropertyToBlackboard<int>();
+                break;
+            case Type t when t == typeof(float):
+                AddPropertyToBlackboard<float>();
+                break;
+            case Type t when t == typeof(string):
+                AddPropertyToBlackboard<string>();
+                break;
+
+            default:
+                break;
+        }
+    }
+
+
+    public void AddPropertyToBlackboard<T>()
+    {
+
+        ExposedProperty property = new ExposedProperty<T>(name);
+        exposedProperties.Add(property);
+
+        var container = new VisualElement();
+        string typeName = typeof(T).Name;
+        var blackboardField = new BlackboardField { text = $"New {typeName}" , typeText = typeName };
+        container.Add(blackboardField);
+        var propertyField = CreateFieldForType(typeof(T), value => property.SetValue(value));
+        var row = new BlackboardRow(blackboardField, propertyField);
+        container.Add(row);
+
+
+        blackboard.Add(container);
+    }
+
+
+    private VisualElement CreateFieldForType(Type type, Action<object> onValueChanged)
+    {
+        switch (type)
+        {
+            case Type t when t == typeof(bool):
+                var toggle = new Toggle();
+                toggle.RegisterValueChangedCallback(e => onValueChanged(e.newValue));
+                return toggle;
+
+            case Type t when t == typeof(int):
+                var intField = new IntegerField();
+                intField.RegisterValueChangedCallback(e => onValueChanged(e.newValue));
+                return intField;
+
+            case Type t when t == typeof(float):
+                var floatField = new FloatField();
+                floatField.RegisterValueChangedCallback(e => onValueChanged(e.newValue));
+                return floatField;
+
+            case Type t when t == typeof(string):
+                var textField = new TextField();
+                textField.RegisterValueChangedCallback(e => onValueChanged(e.newValue));
+                return textField;
+
+            default:
+                return new Label($"Type non supporté: {type.Name}");
+        }
+    }
+
 }
+
+
