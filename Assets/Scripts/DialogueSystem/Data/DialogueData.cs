@@ -9,4 +9,5 @@ public class DialogueData : ScriptableObject
     [SerializeReference]
     public List<NodeData> nodes = new List<NodeData>();
     public string entryPointNodeGuid = "";
+    public string characterID = "Sasha";
 }

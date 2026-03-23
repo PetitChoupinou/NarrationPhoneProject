@@ -626,6 +626,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ba837a9f5295184aa3d4bcfac06d234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NoteApp
+  _appType: 3
   _buttonPrefab: {fileID: 655638322311523039, guid: 2e3db80c297a3a8409b93013fcb5ed33, type: 3}
   _notePrefab: {fileID: 6406431919721692063, guid: f08b8c59ba280a84096d4299d90be3dc, type: 3}
   _buttonCanvas: {fileID: 5665901121596040025}

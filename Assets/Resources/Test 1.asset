@@ -1,0 +1,122 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ef08a29b60933941822e91151f6e732, type: 3}
+  m_Name: Test 1
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  nodes:
+  - rid: 5096477699076259915
+  - rid: 5096477699076259916
+  - rid: 5096477699076259917
+  - rid: 5096477699076259918
+  - rid: 5096477699076259919
+  - rid: 5096477699076259920
+  - rid: 5096477699076259921
+  - rid: 5096477699076259922
+  entryPointNodeGuid: 5653d6cf-be6d-4602-ace4-48e5f9b6457f
+  characterID: Sasha
+  references:
+    version: 2
+    RefIds:
+    - rid: 5096477699076259915
+      type: {class: NodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 5653d6cf-be6d-4602-ace4-48e5f9b6457f
+        nodeType: 0
+        position: {x: 100, y: 200}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 410403f0-0165-471a-ab02-b4f44e37e8c2
+        isSent: 0
+    - rid: 5096477699076259916
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 410403f0-0165-471a-ab02-b4f44e37e8c2
+        nodeType: 1
+        position: {x: 277.6, y: 188}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 26b0b70c-40e9-4af0-8312-67bb56e78041
+        isSent: 0
+        dialogueText: AJlna;,fnafea
+    - rid: 5096477699076259917
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 26b0b70c-40e9-4af0-8312-67bb56e78041
+        nodeType: 1
+        position: {x: 450.4, y: 188}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 039815f1-ac4b-4e59-8615-aedc7953fdff
+        isSent: 0
+        dialogueText: Quoi?
+    - rid: 5096477699076259918
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 039815f1-ac4b-4e59-8615-aedc7953fdff
+        nodeType: 1
+        position: {x: 621.6, y: 188}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 0d64971b-7ced-476a-8175-1bb5c19b3fea
+        isSent: 0
+        dialogueText: Feur!
+    - rid: 5096477699076259919
+      type: {class: ChoiceNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 0d64971b-7ced-476a-8175-1bb5c19b3fea
+        nodeType: 2
+        position: {x: 809.6, y: 188}
+        outputs:
+        - portValue: Jvais te tuer haha
+          targetNodeGuid: d1b966b0-99a7-4bd5-a2be-4b9214172d9f
+        - portValue: Jvais te broyer
+          targetNodeGuid: 73624add-68ac-4f32-bc7f-ce5ea397c21d
+        - portValue: Jvais ME tuer
+          targetNodeGuid: 3a569209-280b-425a-a6e3-c0ba1155e165
+        isSent: 0
+        dialogueText: 'Haha oh non jpense qu''il va se passer
+
+          un truc
+          grave dommage soon haha:'
+    - rid: 5096477699076259920
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: d1b966b0-99a7-4bd5-a2be-4b9214172d9f
+        nodeType: 1
+        position: {x: 1107.2, y: 126.4}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 
+        isSent: 0
+        dialogueText: 'Oh nan fait chier me tue pas haha ^^ '
+    - rid: 5096477699076259921
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 3a569209-280b-425a-a6e3-c0ba1155e165
+        nodeType: 1
+        position: {x: 1158.4, y: 322.4}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 
+        isSent: 0
+        dialogueText: "Allez \xE7a part"
+    - rid: 5096477699076259922
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 73624add-68ac-4f32-bc7f-ce5ea397c21d
+        nodeType: 1
+        position: {x: 1141.6, y: 228}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 
+        isSent: 0
+        dialogueText: Miam~

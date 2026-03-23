@@ -12,6 +12,7 @@ public class NodeData
     public NodeType nodeType;
     public Vector2 position;
     public List<OutputData> outputs = new List<OutputData>();
+    public bool isSent;
 
 }
 [Serializable]

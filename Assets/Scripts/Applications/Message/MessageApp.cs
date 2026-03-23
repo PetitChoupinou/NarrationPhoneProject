@@ -7,28 +7,54 @@ using TMPro;
 public class MessageApp : Application
 {
     private List<GameObject> gameObjectsToDeactivate=new List<GameObject>();
-   [SerializeField] private GameObject _buttonPrefab;
-   [SerializeField] private GameObject _discussionPrefab;
-   [SerializeField] private GameObject _buttonCanvas;
-   [SerializeField] private GameObject _headerButton;
-   [SerializeField] private TMP_Text _headerText;
-   private List<Discussion> _discussions = new List<Discussion>();
+    [SerializeField] private GameObject _buttonPrefab;
+    [SerializeField] private GameObject _discussionPrefab;
+    [SerializeField] private GameObject _buttonCanvas;
+    [SerializeField] private GameObject _headerButton;
+    [SerializeField] private TMP_Text _headerText;
+    private List<Discussion> _discussions = new List<Discussion>();
     private GameObject _currentConv;
 
     public GameObject CurrentConv { get => _currentConv; set => _currentConv = value; }
 
     override public  void SetUp(List<CharacterSheet> characters)
     {
-        for(int i=0;i<characters.Count; i++)
+        // Debug => only character 0 (Sasha) displayed here => NEED CHANGES
+
+        /*for(int i=0;i<characters.Count; i++)
         {
             string name = characters[i].Name;
             SentText[] texts = characters[i].BaseText;
             GameObject button = Instantiate(_buttonPrefab, _buttonCanvas.transform);
             GameObject discussion = Instantiate(_discussionPrefab,transform);
+
             button.GetComponent<InAppButton>().SetUp(name, discussion,_headerButton);
             discussion.GetComponent<Discussion>().SetUp(name,texts, button,_headerText);
+
             gameObjectsToDeactivate.Add(discussion);
             _discussions.Add(discussion.GetComponent<Discussion>());
+
+            if(discussion.GetComponent<Discussion>().DialogueDataReader != null)
+            {
+                //Debug.Log("Launch conversation " + this.name);
+                discussion.GetComponent<Discussion>().DialogueDataReader.StartConversation();
+            }
+        }*/
+        string name = characters[0].Name;
+        SentText[] texts = characters[0].BaseText;
+        GameObject button = Instantiate(_buttonPrefab, _buttonCanvas.transform);
+        GameObject discussion = Instantiate(_discussionPrefab, transform);
+
+        button.GetComponent<InAppButton>().SetUp(name, discussion, _headerButton);
+        discussion.GetComponent<Discussion>().SetUp(name, texts, button, _headerText);
+
+        gameObjectsToDeactivate.Add(discussion);
+        _discussions.Add(discussion.GetComponent<Discussion>());
+
+        if (discussion.GetComponent<Discussion>().DialogueDataReader != null)
+        {
+            //Debug.Log("Launch conversation " + this.name);
+            discussion.GetComponent<Discussion>().DialogueDataReader.StartConversation();
         }
         StartCoroutine(StartGame());
     }
@@ -44,10 +70,14 @@ public class MessageApp : Application
     }
     public void AddMessage(string text, bool isNPC,string ID)
     {
-        _discussions.Find( x=>x.ID == ID).AddMessage(text,isNPC);
+        var discussion = _discussions.Find(x => x.ID == ID);
+        //Debug.Log(_discussions.Count + " " + this.name);
+        discussion.AddMessage(text, isNPC);
     }
     public void SendChoice(List<string> choices,string ID)
     {
+        _discussions.Find(x => x.ID == ID).TriggerChoice(choices);
+
 
     }
     IEnumerator StartGame()
