@@ -26,6 +26,7 @@ public class GraphSearchWindow : ScriptableObject, ISearchWindowProvider
             new SearchTreeGroupEntry(new GUIContent("Create Node"), 0),
             new SearchTreeEntry(new GUIContent("Dialogue Node", _indentationIcon)) { level = 1, userData = NodeType.Dialogue },
             new SearchTreeEntry(new GUIContent("Choice Node", _indentationIcon)) { level = 1, userData = NodeType.Choice },
+            new SearchTreeEntry(new GUIContent("Affinity Node", _indentationIcon)) { level = 1, userData = NodeType.Affinity },
         };
         return tree;
     }
@@ -34,7 +35,9 @@ public class GraphSearchWindow : ScriptableObject, ISearchWindowProvider
     {
         var worldMousePosition = _window.rootVisualElement.ChangeCoordinatesTo(_window.rootVisualElement.parent, context.screenMousePosition - _window.position.position);
         var localMousePosition = _graphView.contentViewContainer.WorldToLocal(worldMousePosition);
-        switch (SearchTreeEntry.userData)
+        _graphView.CreateNode((NodeType)SearchTreeEntry.userData, localMousePosition);
+        return true;
+        /*switch (SearchTreeEntry.userData)
         {
             case NodeType.Dialogue:
                 _graphView.CreateNode(NodeType.Dialogue, localMousePosition);
@@ -42,8 +45,11 @@ public class GraphSearchWindow : ScriptableObject, ISearchWindowProvider
             case NodeType.Choice:
                 _graphView.CreateNode(NodeType.Choice, localMousePosition);
                 return true;
+            case NodeType.Affinity:
+                _graphView.CreateNode(NodeType.Affinity, localMousePosition);
+                return true;
             default:
                 return false;
-        }
+        }*/
     }
 }

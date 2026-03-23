@@ -9,7 +9,8 @@ public class CharacterSheet : ScriptableObject
     [SerializeField] private SentText[] baseText;
     [SerializeField] private string  baseNotes;
     [SerializeField] private DialogueData[] dialogues;
-     public int dialogueIndex;
+    private float affinity;
+    public int dialogueIndex;
 
     public string Name { get => name;}
     public SentText[] BaseText { get => baseText; }
@@ -22,8 +23,8 @@ public class CharacterSheet : ScriptableObject
             return dialogues[dialogueIndex];
         }
     }
-    
-           
+
+    public float Affinity { get => affinity; set => affinity = value; }
 }
 [Serializable]
 public class SentText

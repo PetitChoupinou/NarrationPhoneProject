@@ -76,5 +76,11 @@ public class MessageApp : Application
         }
         yield return null;
     }
-  
+
+    public void GainAffinity(float value, string targetID)
+    {
+        //Get the character with the targetID and increase their affinity by value
+        Debug.Log($"You gain {value} affinity with {targetID}!");
+    }
+
 }

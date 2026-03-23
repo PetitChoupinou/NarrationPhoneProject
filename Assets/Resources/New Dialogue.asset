@@ -13,20 +13,21 @@ MonoBehaviour:
   m_Name: New Dialogue
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   nodes:
-  - rid: 5096477716557332557
-  - rid: 5096477716557332558
-  - rid: 5096477716557332559
-  - rid: 5096477716557332560
-  - rid: 5096477716557332561
-  - rid: 5096477716557332562
-  - rid: 5096477716557332563
-  - rid: 5096477716557332564
+  - rid: 5096477718562996299
+  - rid: 5096477718562996300
+  - rid: 5096477718562996301
+  - rid: 5096477718562996302
+  - rid: 5096477718562996303
+  - rid: 5096477718562996304
+  - rid: 5096477718562996305
+  - rid: 5096477718562996306
+  - rid: 5096477718562996307
   entryPointNodeGuid: 5653d6cf-be6d-4602-ace4-48e5f9b6457f
   characterID: Sasha
   references:
     version: 2
     RefIds:
-    - rid: 5096477716557332557
+    - rid: 5096477718562996299
       type: {class: NodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 5653d6cf-be6d-4602-ace4-48e5f9b6457f
@@ -36,7 +37,7 @@ MonoBehaviour:
         - portValue: Next
           targetNodeGuid: 410403f0-0165-471a-ab02-b4f44e37e8c2
         isSent: 0
-    - rid: 5096477716557332558
+    - rid: 5096477718562996300
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 410403f0-0165-471a-ab02-b4f44e37e8c2
@@ -48,7 +49,7 @@ MonoBehaviour:
         isSent: 0
         dialogueText: AJlna;,fnafea
         isNPC: 1
-    - rid: 5096477716557332559
+    - rid: 5096477718562996301
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 26b0b70c-40e9-4af0-8312-67bb56e78041
@@ -60,7 +61,7 @@ MonoBehaviour:
         isSent: 0
         dialogueText: Quoi?
         isNPC: 0
-    - rid: 5096477716557332560
+    - rid: 5096477718562996302
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 039815f1-ac4b-4e59-8615-aedc7953fdff
@@ -72,7 +73,7 @@ MonoBehaviour:
         isSent: 0
         dialogueText: Feur!
         isNPC: 1
-    - rid: 5096477716557332561
+    - rid: 5096477718562996303
       type: {class: ChoiceNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 0d64971b-7ced-476a-8175-1bb5c19b3fea
@@ -91,7 +92,7 @@ MonoBehaviour:
           un truc
           grave dommage soon haha:'
         isNPC: 0
-    - rid: 5096477716557332562
+    - rid: 5096477718562996304
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: d1b966b0-99a7-4bd5-a2be-4b9214172d9f
@@ -99,11 +100,11 @@ MonoBehaviour:
         position: {x: 1107.2, y: 126.4}
         outputs:
         - portValue: Next
-          targetNodeGuid: 
+          targetNodeGuid: b11e272c-55bc-40c6-886a-25fec0817222
         isSent: 0
         dialogueText: 'Oh nan fait chier me tue pas haha ^^ '
         isNPC: 1
-    - rid: 5096477716557332563
+    - rid: 5096477718562996305
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 3a569209-280b-425a-a6e3-c0ba1155e165
@@ -115,7 +116,7 @@ MonoBehaviour:
         isSent: 0
         dialogueText: "Allez \xE7a part"
         isNPC: 1
-    - rid: 5096477716557332564
+    - rid: 5096477718562996306
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 73624add-68ac-4f32-bc7f-ce5ea397c21d
@@ -127,3 +128,14 @@ MonoBehaviour:
         isSent: 0
         dialogueText: Miam~
         isNPC: 1
+    - rid: 5096477718562996307
+      type: {class: AffinityNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: b11e272c-55bc-40c6-886a-25fec0817222
+        nodeType: 3
+        position: {x: 1399.2, y: 126.4}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 
+        isSent: 0
+        affinityGain: 10

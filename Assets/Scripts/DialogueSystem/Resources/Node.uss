@@ -6,3 +6,8 @@ ChoiceNode #title{
 	background-color: rgb(15, 15, 90);
 
 }
+
+AffinityNode #title{
+	background-color: rgb(120, 15, 60);
+
+}

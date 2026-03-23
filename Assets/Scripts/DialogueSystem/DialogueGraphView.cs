@@ -10,7 +10,8 @@ public enum NodeType
 {
     Start,
     Dialogue,
-    Choice
+    Choice,
+    Affinity
 }
 
 public enum Talker
@@ -154,6 +155,36 @@ public class DialogueGraphView : GraphView
                 node.SetPosition(new Rect(position, BaseNode.defaultNodeSize));
 
                 break;
+            case NodeType.Affinity:
+                node = new AffinityNode
+                {
+                    GUID = Guid.NewGuid().ToString(),
+                    title = type.ToString(),
+                    nodeType = NodeType.Affinity
+                };
+                inputPort = node.GeneratePort(Direction.Input, Port.Capacity.Multi);
+                inputPort.portName = "Input";
+                node.inputContainer.Add(inputPort);
+                AffinityNode affinityNode = node as AffinityNode;
+                var affinityField = new FloatField
+                {
+                    label = "Affinity Gain:",
+                    value = 0,
+                    
+                };
+                affinityField.RegisterValueChangedCallback(evt => affinityNode.affinityGain = evt.newValue);
+                affinityNode.affinityField = affinityField;
+                node.mainContainer.Add(affinityField);
+
+                outputPort = node.GeneratePort(Direction.Output);
+                outputPort.portName = "Next";
+                node.outputContainer.Add(outputPort);
+
+                node.RefreshExpandedState();
+                node.RefreshPorts();
+                node.SetPosition(new Rect(position, BaseNode.defaultNodeSize));
+
+                break;
         }
 
         AddElement(node);
@@ -200,6 +231,12 @@ public class DialogueGraphView : GraphView
 
                     nodeChoice.AddChoicePort(true, nodeOutputs[i].portValue);   
                 }
+                break;
+            case NodeType.Affinity:
+                var nodeAffinity = node as AffinityNode;
+                var nodeAffinityData = nodeData as AffinityNodeData;
+                nodeAffinity.affinityGain = nodeAffinityData.affinityGain;
+                nodeAffinity.UpdateAffinityField();
                 break;
         }
         AddElement(node);

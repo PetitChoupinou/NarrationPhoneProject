@@ -100,6 +100,13 @@ public class GraphSaveUtility
                 choiceNodeData.dialogueText = choiceNode.dialogueText;
                 data = choiceNodeData;
                 break;
+            case NodeType.Affinity:
+                var affinityNode = node as AffinityNode;
+                AffinityNodeData affinityNodeData = new AffinityNodeData(data);
+                affinityNodeData.affinityGain = affinityNode.affinityGain;
+                affinityNodeData.outputs.Add(CreateOutputData(connectedPorts, node, "Next"));
+                data = affinityNodeData;
+                break;
             default:
                 break;
         }

@@ -68,6 +68,13 @@ public class DialogueDataReader : MonoBehaviour
                     }
                     _messageApp.SendChoice(GetChoicesTexts(choiceData.outputs), _characterID);
                 };
+            case NodeType.Affinity:
+                AffinityNodeData affinityNodeData = nodeData as AffinityNodeData;
+                return () =>
+                {
+                    _messageApp.GainAffinity(affinityNodeData.affinityGain, _characterID);
+                    ReadNextNode(nodeData, 0);
+                };
             default:
                 return () => { };
         }
@@ -100,6 +107,7 @@ public class DialogueDataReader : MonoBehaviour
         ReadNextNode(_currentNodeData, choiceID);
 
     }
+
 
     IEnumerator Conversation()
     {

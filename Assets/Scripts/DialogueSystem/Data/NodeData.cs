@@ -39,6 +39,18 @@ public class ChoiceNodeData : DialogueNodeData
         outputs = data.outputs;
     }
 }
+
+public class AffinityNodeData : NodeData
+{
+    public AffinityNodeData(NodeData data)
+    {
+        nodeGUID = data.nodeGUID;
+        nodeType = data.nodeType;
+        position = data.position;
+        outputs = data.outputs;
+    }
+    public float affinityGain;
+}
 [Serializable]
 public class OutputData
 {
