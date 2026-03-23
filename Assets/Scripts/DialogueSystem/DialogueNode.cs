@@ -6,9 +6,15 @@ public class DialogueNode : BaseNode
 {
     public string dialogueText;
     public TextField textField;
-
+    public DropdownField talkerField;
+    public bool isNPC;
     public void UpdateTextFieldValue()
     {
         textField.SetValueWithoutNotify(dialogueText);
+    }
+
+    public void UpdateTalkerField()
+    {
+        talkerField.SetValueWithoutNotify(isNPC ? "NPC" : "Player");
     }
 }

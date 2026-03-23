@@ -21,41 +21,28 @@ public class MessageApp : Application
     {
         // Debug => only character 0 (Sasha) displayed here => NEED CHANGES
 
-        /*for(int i=0;i<characters.Count; i++)
+        for (int i = 0; i < characters.Count; i++)
         {
-            string name = characters[i].Name;
-            SentText[] texts = characters[i].BaseText;
+            CharacterSheet character = characters[i];
+            string name = character.Name;
+            SentText[] texts = character.BaseText;
             GameObject button = Instantiate(_buttonPrefab, _buttonCanvas.transform);
-            GameObject discussion = Instantiate(_discussionPrefab,transform);
+            GameObject discussion = Instantiate(_discussionPrefab, transform);
 
-            button.GetComponent<InAppButton>().SetUp(name, discussion,_headerButton);
-            discussion.GetComponent<Discussion>().SetUp(name,texts, button,_headerText);
+            button.GetComponent<InAppButton>().SetUp(name, discussion, _headerButton);
+            discussion.GetComponent<Discussion>().SetUp(name, texts, button, _headerText);
 
             gameObjectsToDeactivate.Add(discussion);
             _discussions.Add(discussion.GetComponent<Discussion>());
-
-            if(discussion.GetComponent<Discussion>().DialogueDataReader != null)
+            DialogueDataReader dialogueDataReader = discussion.GetComponent<DialogueDataReader>();
+            if (dialogueDataReader != null)
             {
-                //Debug.Log("Launch conversation " + this.name);
-                discussion.GetComponent<Discussion>().DialogueDataReader.StartConversation();
+                dialogueDataReader.dialogueData = character.currentDialogue;
+                if(dialogueDataReader.dialogueData != null) dialogueDataReader.StartConversation();
+
             }
-        }*/
-        string name = characters[0].Name;
-        SentText[] texts = characters[0].BaseText;
-        GameObject button = Instantiate(_buttonPrefab, _buttonCanvas.transform);
-        GameObject discussion = Instantiate(_discussionPrefab, transform);
-
-        button.GetComponent<InAppButton>().SetUp(name, discussion, _headerButton);
-        discussion.GetComponent<Discussion>().SetUp(name, texts, button, _headerText);
-
-        gameObjectsToDeactivate.Add(discussion);
-        _discussions.Add(discussion.GetComponent<Discussion>());
-
-        if (discussion.GetComponent<Discussion>().DialogueDataReader != null)
-        {
-            //Debug.Log("Launch conversation " + this.name);
-            discussion.GetComponent<Discussion>().DialogueDataReader.StartConversation();
         }
+
         StartCoroutine(StartGame());
     }
     public override void CloseCurrent()

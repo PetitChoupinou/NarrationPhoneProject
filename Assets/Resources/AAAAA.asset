@@ -13,12 +13,31 @@ MonoBehaviour:
   m_Name: AAAAA
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   nodes:
-  - position: {x: 379.2, y: 60.799995}
-  - position: {x: 312, y: 289.6}
-  nodeLinks:
-  - baseNodeGuid: 0ec16cba-17b3-4a59-836b-09d285a3dd8c
-    portName: Next
-    targetNodeGuid: d48d372f-f3b6-4463-a274-9e86e871c158
-  - baseNodeGuid: d48d372f-f3b6-4463-a274-9e86e871c158
-    portName: Choice 0
-    targetNodeGuid: 2004b9cf-e072-4c88-8110-7471693db946
+  - rid: 5096477716557332547
+  - rid: 5096477716557332548
+  entryPointNodeGuid: 
+  characterID: Sasha
+  references:
+    version: 2
+    RefIds:
+    - rid: 5096477716557332547
+      type: {class: NodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 
+        nodeType: 0
+        position: {x: 100, y: 200}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 3bb84ac6-eb32-4aaa-8e7e-dd07a86f651d
+        isSent: 0
+    - rid: 5096477716557332548
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 3bb84ac6-eb32-4aaa-8e7e-dd07a86f651d
+        nodeType: 1
+        position: {x: 334.4, y: 284}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 
+        isSent: 0
+        dialogueText: UwU

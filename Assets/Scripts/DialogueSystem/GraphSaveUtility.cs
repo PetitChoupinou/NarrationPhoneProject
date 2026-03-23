@@ -80,6 +80,7 @@ public class GraphSaveUtility
                 dialogueNodeData.dialogueText = dialogueNode.dialogueText;
 
                 dialogueNodeData.outputs.Add(CreateOutputData(connectedPorts, node, "Next"));
+                dialogueNodeData.isNPC = dialogueNode.isNPC;
                 data = dialogueNodeData;
                 break;
             case NodeType.Choice:

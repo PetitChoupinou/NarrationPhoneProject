@@ -58,7 +58,7 @@ public class MessageTextBase : MonoBehaviour
             }
             if (j == _maxMsgWidth)
             {
-                print("bitch" + text[i]);
+                //print("bitch" + text[i]);
                 if (lastSpace == 0|| lastSpace+ _maxMsgWidth < i)
                 {
                     returnText= returnText.Insert(i+offset, "\n");

@@ -26,6 +26,7 @@ public class DialogueNodeData : NodeData
         position = data.position;
         outputs = data.outputs;
     }
+    public bool isNPC;
 }
 [Serializable]
 public class ChoiceNodeData : DialogueNodeData

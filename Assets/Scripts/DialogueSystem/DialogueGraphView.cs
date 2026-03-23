@@ -5,14 +5,18 @@ using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
-using static TreeEditor.TreeEditorHelper;
-using static UnityEngine.Audio.GeneratorInstance;
 
 public enum NodeType
 {
     Start,
     Dialogue,
     Choice
+}
+
+public enum Talker
+{
+    NPC,
+    Player,
 }
 
 public class DialogueGraphView : GraphView
@@ -91,6 +95,21 @@ public class DialogueGraphView : GraphView
                 node.mainContainer.Add(textFieldDialogue);
                 dialogueNode.textField = textFieldDialogue;
 
+                var talkerDialogue = new DropdownField
+                {
+                    choices = Enum.GetNames(typeof(Talker)).ToList(),
+                };
+                talkerDialogue.value = talkerDialogue.choices[0];
+                talkerDialogue.RegisterValueChangedCallback(evt =>
+                {
+                    if (Enum.TryParse<Talker>(evt.newValue, out var talker))
+                    {
+                        dialogueNode.isNPC = talker == Talker.NPC;
+                    }
+                });
+                node.titleContainer.Add(talkerDialogue);
+                dialogueNode.talkerField = talkerDialogue;
+
                 outputPort = node.GeneratePort(Direction.Output);
                 outputPort.portName = "Next";
                 node.outputContainer.Add(outputPort);
@@ -116,11 +135,12 @@ public class DialogueGraphView : GraphView
                     value = "New Dialogue",
                     multiline = true
                 };
+                
                 ChoiceNode choiceNode = node as ChoiceNode;
                 textFieldChoice.RegisterValueChangedCallback(evt => choiceNode.dialogueText = evt.newValue);
                 node.mainContainer.Add(textFieldChoice);
                 choiceNode.textField = textFieldChoice;
-
+                
                 var button = new Button(() => ((ChoiceNode)node).AddChoicePort())
                 {
                     text = "Add Choice"
@@ -158,6 +178,8 @@ public class DialogueGraphView : GraphView
                 var nodeDialogueData = nodeData as DialogueNodeData;
                 nodeDialogue.dialogueText = nodeDialogueData.dialogueText;
                 nodeDialogue.UpdateTextFieldValue();
+                nodeDialogue.isNPC = nodeDialogueData.isNPC;
+                nodeDialogue.UpdateTalkerField();
                 break;
 
             case NodeType.Choice:
