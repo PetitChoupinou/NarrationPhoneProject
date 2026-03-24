@@ -17,11 +17,11 @@ public class ExposedProperty<T> : ExposedProperty
 
     public T PropertyValue;
 
-    public ExposedProperty(string propertyName)
+    public ExposedProperty(string propertyName, T value)
     {
         Name = propertyName;
         type = typeof(T);
-        PropertyValue = default(T);
+        PropertyValue = value;
     }
 
     public override object GetValue()
@@ -31,7 +31,6 @@ public class ExposedProperty<T> : ExposedProperty
 
     public override void SetValue(object value)
     {
-        Debug.Log(typeof(T).ToString());
         PropertyValue = (T)value;
     }
 }

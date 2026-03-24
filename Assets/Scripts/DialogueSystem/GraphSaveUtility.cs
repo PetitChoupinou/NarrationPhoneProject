@@ -36,7 +36,7 @@ public class GraphSaveUtility
         }
 
         var dialogueData = ScriptableObject.CreateInstance<DialogueData>();
-
+        SaveBlackboard(dialogueData);
         var connectedPorts = _edges.Where(edge => edge.input.node != null).ToArray();
         
         foreach(var graphNode in _nodes)
@@ -44,7 +44,6 @@ public class GraphSaveUtility
             if (graphNode.isEntryPoint)
             {
                 dialogueData.entryPointNodeGuid = graphNode.GUID;
-                /*continue;*/
             }
             dialogueData.nodes.Add(CreateNodeData(graphNode, connectedPorts));
         }
@@ -55,6 +54,11 @@ public class GraphSaveUtility
         AssetDatabase.CreateAsset(dialogueData, $"Assets/Resources/{fileName}.asset");
         AssetDatabase.SaveAssets();
 
+    }
+
+    public void SaveBlackboard(DialogueData data)
+    {
+        data.properties.AddRange(_targetGraphView.exposedProperties);
     }
 
     public NodeData CreateNodeData(BaseNode node, Edge[] connectedPorts)
@@ -144,7 +148,10 @@ public class GraphSaveUtility
             return;
         }
 
+
         ClearGraph();
+
+        LoadBlackboard();
 
         CreateNodes();
 
@@ -251,6 +258,14 @@ public class GraphSaveUtility
         }
     }
 
+    private void LoadBlackboard()
+    {
+        _targetGraphView.ClearBlackboard();
+        foreach (var property in _dataCache.properties)
+        {
+            _targetGraphView.AddPropertyToBlackboard(property);
+        }
+    }
     private void ClearGraph()
     {
         /*if(_dataCache.nodeLinks.Count > 0 && _dataCache.nodeLinks[0].baseNodeGuid == _dataCache.entryPointNodeGuid) 

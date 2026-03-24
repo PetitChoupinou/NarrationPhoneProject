@@ -87,15 +87,28 @@ public class DialogueGraph : EditorWindow
             
         };
         blackboard.Add(new BlackboardSection { title = "Exposed Properties" });
-        //blackboard.addItemRequested = blackboard => { _graphView.AddPropertyToBlackboard(3, "AAAA"); };
         blackboard.addItemRequested = blackboard =>
         {
             Vector2 screenPos = blackboard.LocalToWorld(new Vector2(blackboard.layout.width, 0));
             screenPos = GUIUtility.GUIToScreenPoint(screenPos);
             _graphView.OpenBlackboardTypeWindow(screenPos);
         };
+        blackboard.editTextRequested = (blackboard, element, newValue) =>
+        {
+            var oldPropertyName = ((BlackboardField)element).text;
+            if(_graphView.exposedProperties.Exists(p => p.Name == newValue))
+            {
+                EditorUtility.DisplayDialog("Duplicate property name!", $"A property with the name '{newValue}' already exists. Please choose a different name.", "OK");
+                return;
+            }
+            var propertyIndex = _graphView.exposedProperties.FindIndex(p => p.Name == oldPropertyName);
+            _graphView.exposedProperties[propertyIndex].Name = newValue;
+            ((BlackboardField)element).text = newValue;
+        };
+
         
-        blackboard.SetPosition(new Rect(10, 30, 200, 300));
+
+        blackboard.SetPosition(new Rect(10, 30, 215, 300));
         
         _graphView.Add(blackboard);
         _graphView.blackboard = blackboard;

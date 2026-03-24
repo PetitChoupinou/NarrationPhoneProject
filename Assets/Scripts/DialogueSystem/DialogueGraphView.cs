@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.PackageManager.UI;
@@ -281,21 +282,54 @@ public class DialogueGraphView : GraphView
     {
         return nodes.FirstOrDefault(node => (node as BaseNode).isEntryPoint) as BaseNode;
     }
+    public void ClearBlackboard()
+    {
+        exposedProperties.Clear();
+        blackboard.Clear();
+    }
     public void AddPropertyToBlackboard(Type type)
     {
+        ExposedProperty property = null;
         switch (type)
         {
             case Type t when t == typeof(bool):
-                AddPropertyToBlackboard<bool>();
+                property = new ExposedProperty<bool>($"New {type.Name}", false);
+                AddPropertyToBlackboard<bool>(property);
                 break;
             case Type t when t == typeof(int):
-                AddPropertyToBlackboard<int>();
+                property = new ExposedProperty<int>($"New {type.Name}", 0);
+                AddPropertyToBlackboard<int>(property);
                 break;
             case Type t when t == typeof(float):
-                AddPropertyToBlackboard<float>();
+                property = new ExposedProperty<float>($"New {type.Name}", 0);
+                AddPropertyToBlackboard<float>(property);
                 break;
             case Type t when t == typeof(string):
-                AddPropertyToBlackboard<string>();
+                property = new ExposedProperty<string>($"New {type.Name}", "");
+                AddPropertyToBlackboard<string>(property);
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    public void AddPropertyToBlackboard(ExposedProperty exposedProperty)
+    {
+        Type type = exposedProperty.type;
+        switch (type)
+        {
+            case Type t when t == typeof(bool):
+                AddPropertyToBlackboard<bool>(exposedProperty);
+                break;
+            case Type t when t == typeof(int):
+                AddPropertyToBlackboard<int>(exposedProperty);
+                break;
+            case Type t when t == typeof(float):
+                AddPropertyToBlackboard<float>(exposedProperty);
+                break;
+            case Type t when t == typeof(string):
+                AddPropertyToBlackboard<string>(exposedProperty);
                 break;
 
             default:
@@ -304,51 +338,88 @@ public class DialogueGraphView : GraphView
     }
 
 
-    public void AddPropertyToBlackboard<T>()
+    public void AddPropertyToBlackboard<T>(ExposedProperty exposedProperty)
     {
-
-        ExposedProperty property = new ExposedProperty<T>(name);
+        if (exposedProperty == null) return;
+        var localPropertyName = exposedProperty.Name;
+        var localPropertyValue = exposedProperty.GetValue();
+        string newName = localPropertyName;
+        int index = 0;
+        while (exposedProperties.Any(p => p.Name == newName)){
+            index++;
+            newName = $"{localPropertyName}_{index}";
+        }
+        localPropertyName = newName;
+        ExposedProperty property = new ExposedProperty<T>(localPropertyName, (T)localPropertyValue);
         exposedProperties.Add(property);
 
         var container = new VisualElement();
         string typeName = typeof(T).Name;
-        var blackboardField = new BlackboardField { text = $"New {typeName}" , typeText = typeName };
+        //var blackboardField = new BlackboardField { text = $"New {typeName}" , typeText = typeName };
+        var blackboardField = new BlackboardField { text = localPropertyName, typeText = typeName, capabilities = Capabilities.Selectable | Capabilities.Renamable};
+        
         container.Add(blackboardField);
-        var propertyField = CreateFieldForType(typeof(T), value => property.SetValue(value));
+
+        var deleteButton = new Button(() =>
+        {
+            exposedProperties.Remove(property);
+            blackboard.Remove(container);
+        })
+        { text = "X",  };
+        blackboardField.Add(deleteButton);
+        var propertyField = CreateFieldForType(typeof(T), (T)localPropertyValue, value => {
+            
+            var propertyIndex = exposedProperties.FindIndex(p => p.Name == property.Name);
+            exposedProperties[propertyIndex].SetValue(value);
+        });
         var row = new BlackboardRow(blackboardField, propertyField);
         container.Add(row);
-
-
         blackboard.Add(container);
+       
     }
 
 
-    private VisualElement CreateFieldForType(Type type, Action<object> onValueChanged)
+    private VisualElement CreateFieldForType(Type type, object value, Action<object> onValueChanged)
     {
         switch (type)
         {
             case Type t when t == typeof(bool):
-                var toggle = new Toggle();
+                var toggle = new Toggle(){
+                    label = "Value",
+                    value = (bool)value
+                };
                 toggle.RegisterValueChangedCallback(e => onValueChanged(e.newValue));
                 return toggle;
 
             case Type t when t == typeof(int):
-                var intField = new IntegerField();
+                var intField = new IntegerField()
+                {
+                    label = "Value",
+                    value = (int)value
+                };
                 intField.RegisterValueChangedCallback(e => onValueChanged(e.newValue));
                 return intField;
 
             case Type t when t == typeof(float):
-                var floatField = new FloatField();
+                var floatField = new FloatField()
+                {
+                    label = "Value",
+                    value = (float)value
+                };
                 floatField.RegisterValueChangedCallback(e => onValueChanged(e.newValue));
                 return floatField;
 
             case Type t when t == typeof(string):
-                var textField = new TextField();
+                var textField = new TextField()
+                {
+                    label = "Value",
+                    value = (string)value
+                };
                 textField.RegisterValueChangedCallback(e => onValueChanged(e.newValue));
                 return textField;
 
             default:
-                return new Label($"Type non supporté: {type.Name}");
+                return new UnityEngine.UIElements.Label($"Type non supporté: {type.Name}");
         }
     }
 
