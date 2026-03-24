@@ -8,17 +8,16 @@ public class CharacterSheet : ScriptableObject
     [SerializeField] private string name;
     [SerializeField] private SentText[] baseText;
     [SerializeField] private string  baseNotes;
-    [SerializeField,Range(-10,10)] private int  baseLikeness;
+    [SerializeField,Range(-10,10)] private int  baseAffinity;
     [SerializeField,Header("+33")] private string telNum;
     [SerializeField] private Sprite profilePic;
     [SerializeField] private DialogueData[] dialogues;
-    private float affinity;
     public int dialogueIndex;
 
     public string Name { get => name;}
     public SentText[] BaseText { get => baseText; }
     public string BaseNotes { get => baseNotes;}
-    public int BaseLikeness { get => baseLikeness;}
+    public int BaseAffinity { get => baseAffinity;}
     public string TelNum { get => telNum; }
     public Sprite ProfilePic { get => profilePic;}
     public DialogueData currentDialogue
@@ -29,8 +28,6 @@ public class CharacterSheet : ScriptableObject
             return dialogues[dialogueIndex];
         }
     }
-
-    public float Affinity { get => affinity; set => affinity = value; }
 }
 [Serializable]
 public class SentText

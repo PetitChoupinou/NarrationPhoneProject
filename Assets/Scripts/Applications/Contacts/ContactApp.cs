@@ -23,6 +23,7 @@ public class ContactApp : Application
     {
         _canvas = GetComponent<Canvas>();
         _buttonCanvasRect = _buttonCanvas.GetComponent<RectTransform>();
+        _canvas.enabled = false;
     }
     public void OnActivated()
     {
@@ -33,7 +34,7 @@ public class ContactApp : Application
         for (int i = 0; i < characters.Count; i++)
         {
             string name = characters[i].Name;
-            int relation = characters[i].BaseLikeness;
+            int relation = characters[i].BaseAffinity;
             string num = characters[i].TelNum;
             Sprite profilePic =characters[i].ProfilePic;
             if (!alphabeticalStorage.ContainsKey(name[0]))
