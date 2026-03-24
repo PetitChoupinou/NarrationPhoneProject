@@ -1,23 +1,33 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
+using UnityEditor.PackageManager.UI;
 using UnityEngine;
 using UnityEngine.UIElements;
-using static TreeEditor.TreeEditorHelper;
-using static UnityEngine.Audio.GeneratorInstance;
 
 public enum NodeType
 {
     Start,
     Dialogue,
-    Choice
+    Choice,
+    Affinity
+}
+
+public enum Talker
+{
+    NPC,
+    Player,
 }
 
 public class DialogueGraphView : GraphView
 {
+    public Blackboard blackboard;
     private GraphSearchWindow _searchWindow;
+    private PropertyTypeWindow _propertyTypeWindow;
+    public List<ExposedProperty> exposedProperties = new List<ExposedProperty>();
 
     public DialogueGraphView(EditorWindow window)
     {
@@ -34,6 +44,7 @@ public class DialogueGraphView : GraphView
 
         CreateNode(NodeType.Start, new Vector2(100, 200));
         AddSearchWindow(window);
+        AddBlackboardTypeWindow(window);
     }
 
     private void AddSearchWindow(EditorWindow window)
@@ -44,6 +55,18 @@ public class DialogueGraphView : GraphView
             SearchWindow.Open(new SearchWindowContext(context.screenMousePosition), _searchWindow);
     }
 
+    private void AddBlackboardTypeWindow(EditorWindow window)
+    {
+        _propertyTypeWindow = ScriptableObject.CreateInstance<PropertyTypeWindow>();
+        _propertyTypeWindow.Init(window, this);
+    }
+
+    public void OpenBlackboardTypeWindow(Vector2 pos)
+    {
+
+        SearchWindow.Open(new SearchWindowContext(pos), _propertyTypeWindow);
+       
+    }
     public BaseNode CreateNode(NodeType type, Vector2 position)
     {
         BaseNode node = null;
@@ -91,6 +114,21 @@ public class DialogueGraphView : GraphView
                 node.mainContainer.Add(textFieldDialogue);
                 dialogueNode.textField = textFieldDialogue;
 
+                var talkerDialogue = new DropdownField
+                {
+                    choices = Enum.GetNames(typeof(Talker)).ToList(),
+                };
+                talkerDialogue.value = talkerDialogue.choices[0];
+                talkerDialogue.RegisterValueChangedCallback(evt =>
+                {
+                    if (Enum.TryParse<Talker>(evt.newValue, out var talker))
+                    {
+                        dialogueNode.isNPC = talker == Talker.NPC;
+                    }
+                });
+                node.titleContainer.Add(talkerDialogue);
+                dialogueNode.talkerField = talkerDialogue;
+
                 outputPort = node.GeneratePort(Direction.Output);
                 outputPort.portName = "Next";
                 node.outputContainer.Add(outputPort);
@@ -116,11 +154,12 @@ public class DialogueGraphView : GraphView
                     value = "New Dialogue",
                     multiline = true
                 };
+                
                 ChoiceNode choiceNode = node as ChoiceNode;
                 textFieldChoice.RegisterValueChangedCallback(evt => choiceNode.dialogueText = evt.newValue);
                 node.mainContainer.Add(textFieldChoice);
                 choiceNode.textField = textFieldChoice;
-
+                
                 var button = new Button(() => ((ChoiceNode)node).AddChoicePort())
                 {
                     text = "Add Choice"
@@ -128,6 +167,36 @@ public class DialogueGraphView : GraphView
                 node.titleContainer.Add(button);
 
                 ((ChoiceNode)node).AddChoicePort(false);
+
+                node.RefreshExpandedState();
+                node.RefreshPorts();
+                node.SetPosition(new Rect(position, BaseNode.defaultNodeSize));
+
+                break;
+            case NodeType.Affinity:
+                node = new AffinityNode
+                {
+                    GUID = Guid.NewGuid().ToString(),
+                    title = type.ToString(),
+                    nodeType = NodeType.Affinity
+                };
+                inputPort = node.GeneratePort(Direction.Input, Port.Capacity.Multi);
+                inputPort.portName = "Input";
+                node.inputContainer.Add(inputPort);
+                AffinityNode affinityNode = node as AffinityNode;
+                var affinityField = new FloatField
+                {
+                    label = "Affinity Gain:",
+                    value = 0,
+                    
+                };
+                affinityField.RegisterValueChangedCallback(evt => affinityNode.affinityGain = evt.newValue);
+                affinityNode.affinityField = affinityField;
+                node.mainContainer.Add(affinityField);
+
+                outputPort = node.GeneratePort(Direction.Output);
+                outputPort.portName = "Next";
+                node.outputContainer.Add(outputPort);
 
                 node.RefreshExpandedState();
                 node.RefreshPorts();
@@ -158,6 +227,8 @@ public class DialogueGraphView : GraphView
                 var nodeDialogueData = nodeData as DialogueNodeData;
                 nodeDialogue.dialogueText = nodeDialogueData.dialogueText;
                 nodeDialogue.UpdateTextFieldValue();
+                nodeDialogue.isNPC = nodeDialogueData.isNPC;
+                nodeDialogue.UpdateTalkerField();
                 break;
 
             case NodeType.Choice:
@@ -178,6 +249,12 @@ public class DialogueGraphView : GraphView
 
                     nodeChoice.AddChoicePort(true, nodeOutputs[i].portValue);   
                 }
+                break;
+            case NodeType.Affinity:
+                var nodeAffinity = node as AffinityNode;
+                var nodeAffinityData = nodeData as AffinityNodeData;
+                nodeAffinity.affinityGain = nodeAffinityData.affinityGain;
+                nodeAffinity.UpdateAffinityField();
                 break;
         }
         AddElement(node);
@@ -205,4 +282,147 @@ public class DialogueGraphView : GraphView
     {
         return nodes.FirstOrDefault(node => (node as BaseNode).isEntryPoint) as BaseNode;
     }
+    public void ClearBlackboard()
+    {
+        exposedProperties.Clear();
+        blackboard.Clear();
+    }
+    public void AddPropertyToBlackboard(Type type)
+    {
+        ExposedProperty property = null;
+        switch (type)
+        {
+            case Type t when t == typeof(bool):
+                property = new ExposedProperty<bool>($"New {type.Name}", false);
+                AddPropertyToBlackboard<bool>(property);
+                break;
+            case Type t when t == typeof(int):
+                property = new ExposedProperty<int>($"New {type.Name}", 0);
+                AddPropertyToBlackboard<int>(property);
+                break;
+            case Type t when t == typeof(float):
+                property = new ExposedProperty<float>($"New {type.Name}", 0);
+                AddPropertyToBlackboard<float>(property);
+                break;
+            case Type t when t == typeof(string):
+                property = new ExposedProperty<string>($"New {type.Name}", "");
+                AddPropertyToBlackboard<string>(property);
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    public void AddPropertyToBlackboard(ExposedProperty exposedProperty)
+    {
+        Type type = exposedProperty.type;
+        switch (type)
+        {
+            case Type t when t == typeof(bool):
+                AddPropertyToBlackboard<bool>(exposedProperty);
+                break;
+            case Type t when t == typeof(int):
+                AddPropertyToBlackboard<int>(exposedProperty);
+                break;
+            case Type t when t == typeof(float):
+                AddPropertyToBlackboard<float>(exposedProperty);
+                break;
+            case Type t when t == typeof(string):
+                AddPropertyToBlackboard<string>(exposedProperty);
+                break;
+
+            default:
+                break;
+        }
+    }
+
+
+    public void AddPropertyToBlackboard<T>(ExposedProperty exposedProperty)
+    {
+        if (exposedProperty == null) return;
+        var localPropertyName = exposedProperty.Name;
+        var localPropertyValue = exposedProperty.GetValue();
+        string newName = localPropertyName;
+        int index = 0;
+        while (exposedProperties.Any(p => p.Name == newName)){
+            index++;
+            newName = $"{localPropertyName}_{index}";
+        }
+        localPropertyName = newName;
+        ExposedProperty property = new ExposedProperty<T>(localPropertyName, (T)localPropertyValue);
+        exposedProperties.Add(property);
+
+        var container = new VisualElement();
+        string typeName = typeof(T).Name;
+        //var blackboardField = new BlackboardField { text = $"New {typeName}" , typeText = typeName };
+        var blackboardField = new BlackboardField { text = localPropertyName, typeText = typeName, capabilities = Capabilities.Selectable | Capabilities.Renamable};
+        
+        container.Add(blackboardField);
+
+        var deleteButton = new Button(() =>
+        {
+            exposedProperties.Remove(property);
+            blackboard.Remove(container);
+        })
+        { text = "X",  };
+        blackboardField.Add(deleteButton);
+        var propertyField = CreateFieldForType(typeof(T), (T)localPropertyValue, value => {
+            
+            var propertyIndex = exposedProperties.FindIndex(p => p.Name == property.Name);
+            exposedProperties[propertyIndex].SetValue(value);
+        });
+        var row = new BlackboardRow(blackboardField, propertyField);
+        container.Add(row);
+        blackboard.Add(container);
+       
+    }
+
+
+    private VisualElement CreateFieldForType(Type type, object value, Action<object> onValueChanged)
+    {
+        switch (type)
+        {
+            case Type t when t == typeof(bool):
+                var toggle = new Toggle(){
+                    label = "Value",
+                    value = (bool)value
+                };
+                toggle.RegisterValueChangedCallback(e => onValueChanged(e.newValue));
+                return toggle;
+
+            case Type t when t == typeof(int):
+                var intField = new IntegerField()
+                {
+                    label = "Value",
+                    value = (int)value
+                };
+                intField.RegisterValueChangedCallback(e => onValueChanged(e.newValue));
+                return intField;
+
+            case Type t when t == typeof(float):
+                var floatField = new FloatField()
+                {
+                    label = "Value",
+                    value = (float)value
+                };
+                floatField.RegisterValueChangedCallback(e => onValueChanged(e.newValue));
+                return floatField;
+
+            case Type t when t == typeof(string):
+                var textField = new TextField()
+                {
+                    label = "Value",
+                    value = (string)value
+                };
+                textField.RegisterValueChangedCallback(e => onValueChanged(e.newValue));
+                return textField;
+
+            default:
+                return new UnityEngine.UIElements.Label($"Type non supporté: {type.Name}");
+        }
+    }
+
 }
+
+

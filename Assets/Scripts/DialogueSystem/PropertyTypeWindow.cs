@@ -1,10 +1,11 @@
+using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class GraphSearchWindow : ScriptableObject, ISearchWindowProvider
+public class PropertyTypeWindow : ScriptableObject, ISearchWindowProvider
 {
     private DialogueGraphView _graphView;
     private EditorWindow _window;
@@ -23,10 +24,11 @@ public class GraphSearchWindow : ScriptableObject, ISearchWindowProvider
     {
         var tree = new List<SearchTreeEntry>()
         {
-            new SearchTreeGroupEntry(new GUIContent("Create Node"), 0),
-            new SearchTreeEntry(new GUIContent("Dialogue Node", _indentationIcon)) { level = 1, userData = NodeType.Dialogue },
-            new SearchTreeEntry(new GUIContent("Choice Node", _indentationIcon)) { level = 1, userData = NodeType.Choice },
-            new SearchTreeEntry(new GUIContent("Affinity Node", _indentationIcon)) { level = 1, userData = NodeType.Affinity },
+            new SearchTreeGroupEntry(new GUIContent("Property Type")) { level = 0 },
+            new SearchTreeEntry(new GUIContent("Bool", _indentationIcon)) { level = 1, userData = typeof(bool) },
+            new SearchTreeEntry(new GUIContent("Int", _indentationIcon)) { level = 1, userData = typeof(int) },
+            new SearchTreeEntry(new GUIContent("Float", _indentationIcon)) { level = 1, userData = typeof(float) },
+            new SearchTreeEntry(new GUIContent("String", _indentationIcon)) { level = 1, userData = typeof(string) },
         };
         return tree;
     }
@@ -35,7 +37,8 @@ public class GraphSearchWindow : ScriptableObject, ISearchWindowProvider
     {
         var worldMousePosition = _window.rootVisualElement.ChangeCoordinatesTo(_window.rootVisualElement.parent, context.screenMousePosition - _window.position.position);
         var localMousePosition = _graphView.contentViewContainer.WorldToLocal(worldMousePosition);
-        _graphView.CreateNode((NodeType)SearchTreeEntry.userData, localMousePosition);
+        _graphView.AddPropertyToBlackboard((Type)SearchTreeEntry.userData);
+        //_graphView.CreateNode((NodeType)SearchTreeEntry.userData, localMousePosition);
         return true;
         /*switch (SearchTreeEntry.userData)
         {

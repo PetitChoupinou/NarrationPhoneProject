@@ -35,6 +35,7 @@ public class Discussion : MonoBehaviour
     {
         DialogueDataReader = GetComponent<DialogueDataReader>();
         _iD = name;
+        DialogueDataReader.CharacterID = name;
         _headerText = headerText;
         _messageButton = button;
         _preview = _messageButton.GetComponent<InAppButton>().Preview;
@@ -61,7 +62,7 @@ public class Discussion : MonoBehaviour
         message.SetTextMsg(text);
         message.SetIsNPC(isNPC);
         _lastMessage = message.Message;
-   ChangePreview(text);
+        ChangePreview(text);
         StartCoroutine(MessageApplyResize(newMessage));
     }
     public void TriggerChoice(List<string> choices)
@@ -72,7 +73,6 @@ public class Discussion : MonoBehaviour
         _choicePanel.SetActive(true);
         for (int i=0;i<choices.Count; i++)
         {
-            Debug.Log(i);
             GameObject choice=Instantiate(_choicePrefab, _choicePanel.transform);
             choice.GetComponentInChildren<TMP_Text>().text = choices[i];
             //GameObject choice=Instantiate(_choicePrefab, transform);

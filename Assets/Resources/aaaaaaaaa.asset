@@ -10,34 +10,35 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5ef08a29b60933941822e91151f6e732, type: 3}
-  m_Name: AAAAA
+  m_Name: AAAAAAAAA
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   nodes:
-  - rid: 5096477716557332547
-  - rid: 5096477716557332548
-  entryPointNodeGuid: 
+  - rid: 5096477740686901328
+  - rid: 5096477740686901329
+  entryPointNodeGuid: e19905f3-3418-4f33-bdbd-4023525a4ed6
   characterID: Sasha
   references:
     version: 2
     RefIds:
-    - rid: 5096477716557332547
+    - rid: 5096477740686901328
       type: {class: NodeData, ns: , asm: Assembly-CSharp}
       data:
-        nodeGUID: 
+        nodeGUID: e19905f3-3418-4f33-bdbd-4023525a4ed6
         nodeType: 0
         position: {x: 100, y: 200}
         outputs:
         - portValue: Next
-          targetNodeGuid: 3bb84ac6-eb32-4aaa-8e7e-dd07a86f651d
+          targetNodeGuid: 1163e863-4bac-4d2a-9ed3-da6565ea8e82
         isSent: 0
-    - rid: 5096477716557332548
+    - rid: 5096477740686901329
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
-        nodeGUID: 3bb84ac6-eb32-4aaa-8e7e-dd07a86f651d
+        nodeGUID: 1163e863-4bac-4d2a-9ed3-da6565ea8e82
         nodeType: 1
-        position: {x: 334.4, y: 284}
+        position: {x: 300.8, y: 205.6}
         outputs:
         - portValue: Next
           targetNodeGuid: 
         isSent: 0
-        dialogueText: UwU
+        dialogueText: New Dialogue
+        isNPC: 0

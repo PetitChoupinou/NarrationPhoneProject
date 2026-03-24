@@ -14,6 +14,10 @@ public class DialogueDataReader : MonoBehaviour
 
     private MessageApp _messageApp;
 
+    private string _characterID;
+
+    public string CharacterID { get => _characterID; set => _characterID = value; }
+
     private void OnEnable()
     {
         _messageApp = AppManager.Instance.GetApplication(ApplicationType.Messages) as MessageApp;
@@ -51,41 +55,32 @@ public class DialogueDataReader : MonoBehaviour
                 DialogueNodeData dialogueNodeData = nodeData as DialogueNodeData;
                 return () =>
                 {
-                    //SendNewMessage(dialogueNodeData.dialogueText);
-                    Debug.Log("AddMessage");
-                    _messageApp.AddMessage(dialogueNodeData.dialogueText, true, dialogueData.characterID);
+                    _messageApp.AddMessage(dialogueNodeData.dialogueText, dialogueNodeData.isNPC, _characterID);
                     ReadNextNode(nodeData, 0);
                 };
             case NodeType.Choice:
                 ChoiceNodeData choiceData = nodeData as ChoiceNodeData;
                 return () =>
                 {
-                    //DisplayChoices(choiceData.outputs);
-                    if(string.IsNullOrEmpty(choiceData.dialogueText))
+                    if(!string.IsNullOrEmpty(choiceData.dialogueText))
                     {
-                        _messageApp.AddMessage(choiceData.dialogueText, false, dialogueData.characterID);
+                        _messageApp.AddMessage(choiceData.dialogueText, false, _characterID);
                     }
-                    _messageApp.SendChoice(GetChoicesTexts(choiceData.outputs), dialogueData.characterID);
+                    _messageApp.SendChoice(GetChoicesTexts(choiceData.outputs), _characterID);
+                };
+            case NodeType.Affinity:
+                AffinityNodeData affinityNodeData = nodeData as AffinityNodeData;
+                return () =>
+                {
+                    _messageApp.GainAffinity(affinityNodeData.affinityGain, _characterID);
+                    ReadNextNode(nodeData, 0);
                 };
             default:
                 return () => { };
         }
         
     }
-    //Faire quoi ca choisisses bien le bon choice et hop
-    void SendNewMessage(string text)
-    {
-        //Debug.Log(text);
-        
-    }
 
-    void DisplayChoices(List<OutputData> choices)
-    {
-        //=> More like display one choice to test
-        int id = UnityEngine.Random.Range(0, choices.Count);
-        var choice = choices[id];
-        //Debug.Log("Choix " + id + ": " + choices[id].portValue);
-    }
 
     List<string> GetChoicesTexts(List<OutputData> choices)
     {
@@ -107,11 +102,12 @@ public class DialogueDataReader : MonoBehaviour
     public void MakeChoice(string choiceText)
     {
         OutputData choice = GetChoiceFromText(choiceText);
-        _messageApp.AddMessage(choiceText, false, dialogueData.characterID);
+        _messageApp.AddMessage(choiceText, false, _characterID);
         int choiceID = _currentNodeData.outputs.IndexOf(choice);
         ReadNextNode(_currentNodeData, choiceID);
 
     }
+
 
     IEnumerator Conversation()
     {

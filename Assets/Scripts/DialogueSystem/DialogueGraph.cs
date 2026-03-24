@@ -1,5 +1,7 @@
 using System;
 using UnityEditor;
+using UnityEditor.Experimental.GraphView;
+using UnityEditor.PackageManager.UI;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -74,6 +76,42 @@ public class DialogueGraph : EditorWindow
     {
         ConstructGraph();
         GenerateToolbar();
+        GenerateBlackBoard();
+    }
+
+    private void GenerateBlackBoard()
+    {
+        var blackboard = new Blackboard(_graphView)
+        {
+            name = "Blackboard",
+            
+        };
+        blackboard.Add(new BlackboardSection { title = "Exposed Properties" });
+        blackboard.addItemRequested = blackboard =>
+        {
+            Vector2 screenPos = blackboard.LocalToWorld(new Vector2(blackboard.layout.width, 0));
+            screenPos = GUIUtility.GUIToScreenPoint(screenPos);
+            _graphView.OpenBlackboardTypeWindow(screenPos);
+        };
+        blackboard.editTextRequested = (blackboard, element, newValue) =>
+        {
+            var oldPropertyName = ((BlackboardField)element).text;
+            if(_graphView.exposedProperties.Exists(p => p.Name == newValue))
+            {
+                EditorUtility.DisplayDialog("Duplicate property name!", $"A property with the name '{newValue}' already exists. Please choose a different name.", "OK");
+                return;
+            }
+            var propertyIndex = _graphView.exposedProperties.FindIndex(p => p.Name == oldPropertyName);
+            _graphView.exposedProperties[propertyIndex].Name = newValue;
+            ((BlackboardField)element).text = newValue;
+        };
+
+        
+
+        blackboard.SetPosition(new Rect(10, 30, 215, 300));
+        
+        _graphView.Add(blackboard);
+        _graphView.blackboard = blackboard;
     }
 
     private void OnDisable()

@@ -26,6 +26,7 @@ public class DialogueNodeData : NodeData
         position = data.position;
         outputs = data.outputs;
     }
+    public bool isNPC;
 }
 [Serializable]
 public class ChoiceNodeData : DialogueNodeData
@@ -37,6 +38,18 @@ public class ChoiceNodeData : DialogueNodeData
         position = data.position;
         outputs = data.outputs;
     }
+}
+[Serializable]
+public class AffinityNodeData : NodeData
+{
+    public AffinityNodeData(NodeData data)
+    {
+        nodeGUID = data.nodeGUID;
+        nodeType = data.nodeType;
+        position = data.position;
+        outputs = data.outputs;
+    }
+    public float affinityGain;
 }
 [Serializable]
 public class OutputData

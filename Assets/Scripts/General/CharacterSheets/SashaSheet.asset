@@ -17,12 +17,13 @@ MonoBehaviour:
   - Text: bjr cv?
     isNPC: 1
   - Text: Non pas trop
-    isNPC: 1
+    isNPC: 0
   - Text: pk?
     isNPC: 1
   - Text: pour feur!!!
     isNPC: 0
   baseNotes: vraiment trop conne comme personne
-  baseLikeness: 5
-  telNum: 777
-  profilePic: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  dialogues:
+  - {fileID: 11400000, guid: bd7343c1469b4d9459b7be8f3e0a3c5b, type: 2}
+  - {fileID: 11400000, guid: cfd3afb6514c49f48903037c86413dd0, type: 2}
+  dialogueIndex: 0

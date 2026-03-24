@@ -11,6 +11,9 @@ public class CharacterSheet : ScriptableObject
     [SerializeField,Range(-10,10)] private int  baseLikeness;
     [SerializeField,Header("+33")] private string telNum;
     [SerializeField] private Sprite profilePic;
+    [SerializeField] private DialogueData[] dialogues;
+    private float affinity;
+    public int dialogueIndex;
 
     public string Name { get => name;}
     public SentText[] BaseText { get => baseText; }
@@ -18,6 +21,16 @@ public class CharacterSheet : ScriptableObject
     public int BaseLikeness { get => baseLikeness;}
     public string TelNum { get => telNum; }
     public Sprite ProfilePic { get => profilePic;}
+    public DialogueData currentDialogue
+    {
+        get
+        {
+            if (dialogueIndex >= dialogues.Length) return null;
+            return dialogues[dialogueIndex];
+        }
+    }
+
+    public float Affinity { get => affinity; set => affinity = value; }
 }
 [Serializable]
 public class SentText
@@ -25,3 +38,4 @@ public class SentText
     public string Text;
     public bool isNPC; 
 }
+
