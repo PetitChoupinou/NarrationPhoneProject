@@ -432,7 +432,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2512585461487230511
 RectTransform:
   m_ObjectHideFlags: 0
@@ -448,9 +448,9 @@ RectTransform:
   - {fileID: 5126938898016422287}
   m_Father: {fileID: 1304350206600609646}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 30, y: -90}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9009789495237209684
@@ -735,7 +735,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6712939520116750977}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -806,7 +806,7 @@ MonoBehaviour:
   _appType: 1
   _buttonPrefab: {fileID: 8993750035258260197, guid: 4fd9f05865e3942438e5b45b79e6a9aa, type: 3}
   _contactPagePrefab: {fileID: 3944856552290277509, guid: 6a7416e6b91f8ff43bee1b2e08177214, type: 3}
-  _storagePrefab: {fileID: 4705190887171759042, guid: 86ca4afa8d5c29441a0220aff8caede4, type: 3}
+  _storagePrefab: {fileID: 6917142741193607416, guid: 5c6c7b9d4b576174eb0c5b203ce7d617, type: 3}
   _buttonCanvas: {fileID: 2553029532750174205}
   _headerButton: {fileID: 3327320630740058872}
   _headerText: {fileID: 3484756882581980327}

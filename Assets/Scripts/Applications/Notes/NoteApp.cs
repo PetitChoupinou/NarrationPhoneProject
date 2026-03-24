@@ -38,5 +38,6 @@ public class NoteApp : Application
         _headerButton.SetActive(false);
         _currentNote = null;
     }
+     
 
 }

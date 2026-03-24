@@ -4,7 +4,10 @@ using UnityEngine;
 public class PhoneManager : MonoBehaviour
 {
     [SerializeField] private List<CharacterSheet> _characters;
-    [SerializeField] private List<Application> _apps;
+    [SerializeField] private List<GameObject> _appPrefabs;
+    [SerializeField] private GameObject _appButtonPrefabs;
+    [SerializeField] private GameObject _appButtonCanvas;
+     private List<Application> _apps=new List<Application>();
     private AppDepth _currentDepth;
 
     private static PhoneManager instance = null;
@@ -30,9 +33,14 @@ public class PhoneManager : MonoBehaviour
     };
     void Start()
     {
-        for(int i = 0; i < _apps.Count; i++)
+        for(int i = 0; i < _appPrefabs.Count; i++)
         {
+            GameObject app = Instantiate(_appPrefabs[i]);
+            _apps.Add(app.GetComponent<Application>());
+            AppManager.Instance.addToApps(_apps[i]);
             _apps[i].SetUp(_characters);
+            GameObject button = Instantiate(_appButtonPrefabs, _appButtonCanvas.transform);
+            button.GetComponent<AppButton>().Type = app.GetComponent<Application>()._appType;
         }
     }
     public void CloseApps()
@@ -59,6 +67,7 @@ public class PhoneManager : MonoBehaviour
     }
     public void GetInApp()
     {
+        GetComponent<Canvas>().enabled = false;
         ChangeDepth(AppDepth.app);
     }
     public void ReturnButton()

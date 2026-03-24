@@ -65,12 +65,12 @@ public class ContactApp : Application
 
         foreach (Transform child in children)
         {
-            child.parent = null;
+            child.SetParent(null);
         }
 
         foreach (Transform child in children)
         {
-            child.parent = _buttonCanvas.transform;
+            child.SetParent(_buttonCanvas.transform); 
         }
     }
     public override void CloseCurrent()
