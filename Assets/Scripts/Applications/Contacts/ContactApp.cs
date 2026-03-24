@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,7 @@ public class ContactApp : Application
     [SerializeField] private GameObject _contactPagePrefab;
     [SerializeField] private GameObject _storagePrefab;
     [SerializeField] private GameObject _buttonCanvas;
+    private RectTransform _buttonCanvasRect;
     [SerializeField] private GameObject _headerButton;
     [SerializeField] private TMP_Text _headerText;
     private Dictionary<char, GameObject> alphabeticalStorage = new Dictionary<char, GameObject>();
@@ -17,6 +19,15 @@ public class ContactApp : Application
 
     public GameObject CurrentContact { get => _currentContact; set => _currentContact = value; }
 
+    private void Awake()
+    {
+        _canvas = GetComponent<Canvas>();
+        _buttonCanvasRect = _buttonCanvas.GetComponent<RectTransform>();
+    }
+    public void OnActivated()
+    {
+        _buttonCanvasRect.anchoredPosition = new Vector3(0, -180 - _buttonCanvasRect.sizeDelta.y / 2, 0);
+    }
     public override void SetUp(List<CharacterSheet> characters)
     {
         for (int i = 0; i < characters.Count; i++)

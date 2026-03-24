@@ -23,6 +23,6 @@ MonoBehaviour:
   - Text: pour feur!!!
     isNPC: 0
   baseNotes: vraiment trop conne comme personne
-  baseLikeness: 0
-  telNum: 
-  profilePic: {fileID: 0}
+  baseLikeness: 5
+  telNum: 777
+  profilePic: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}

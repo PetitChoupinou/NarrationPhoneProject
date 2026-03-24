@@ -16,7 +16,7 @@ public class ContactAppButton : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void SetUp(string name, Sprite image, GameObject discussion, GameObject returnButton)
     {
-        _parent = transform.parent.gameObject;
+        _parent = transform.parent.parent.gameObject;
         _name.text = name;
         _discussion = discussion;
         _returnButton = returnButton;

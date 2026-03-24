@@ -788,8 +788,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ContactPage
   _content: {fileID: 5895142668598187688}
   _profilPic: {fileID: 3267434098299718512}
-  _relationshipGoodColor: {r: 0.13523743, g: 0, b: 0.2735849, a: 0}
-  _relationshipBadColor: {r: 1, g: 0, b: 0.45596027, a: 0}
+  _relationshipGoodColor: {r: 1, g: 0, b: 0.454902, a: 1}
+  _relationshipBadColor: {r: 0.12941177, g: 0, b: 0.227451, a: 1}
   _relationSlider: {fileID: 8427749283629788098}
   _relationBackground: {fileID: 8862699950304639897}
 --- !u!1 &4463840158563891394

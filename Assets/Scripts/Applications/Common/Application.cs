@@ -10,12 +10,15 @@ public enum ApplicationType
 }
 abstract public class Application : MonoBehaviour
 {
-    private Canvas _canvas;
+    protected Canvas _canvas;
     Canvas _phoneCanvas;
     public ApplicationType _appType;
     private void Awake()
     {
         _canvas = GetComponent<Canvas>();
+    }
+    private void Start()
+    {
         _phoneCanvas = PhoneManager.Instance.gameObject.GetComponent<Canvas>();
     }
     abstract public void SetUp(List<CharacterSheet> characters);

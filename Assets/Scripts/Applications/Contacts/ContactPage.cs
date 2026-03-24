@@ -23,17 +23,14 @@ public class ContactPage : MonoBehaviour
     public string ID { get => _iD; }
     public int Relation { get => _relation;
         set {
-            _relationSlider.rectTransform.position = new Vector3(Mathf.Lerp(-450,450,(value/10)+1),0,0);
-            if(value<=0)
-                _relationBackground.color=Color.Lerp(Color.white,_relationshipBadColor,-value/10);
-            else
-                _relationBackground.color = Color.Lerp(Color.white, _relationshipGoodColor, value / 10);
+            _relationSlider.rectTransform.anchoredPosition = new Vector3(Mathf.Lerp(-400,400,(value+10.0f)/20.0f),0,0);
+            _relationBackground.color = Color.Lerp(_relationshipBadColor, _relationshipGoodColor, (value + 10.0f) / 20.0f);
             _relation = value;
         }}
 
     private void OnEnable()
     {
-        FindAnyObjectByType<NoteApp>().CurrentNote = gameObject;
+        FindAnyObjectByType<ContactApp>().CurrentContact = gameObject;
         if (_headerText)
             _headerText.text = _iD;
         PhoneManager.Instance.ChangeDepth(PhoneManager.AppDepth.inApp);
@@ -47,6 +44,7 @@ public class ContactPage : MonoBehaviour
         _preview = _noteButton.GetComponent<ContactAppButton>().Preview;
         _content.text = num;
         ChangePreview(num);
+        print(FindAnyObjectByType<ContactApp>().GetComponent<ContactApp>().isActiveAndEnabled);
     }
     public void ChangePreview(string text)
     {
