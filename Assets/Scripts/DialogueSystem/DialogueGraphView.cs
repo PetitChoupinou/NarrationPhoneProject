@@ -13,7 +13,8 @@ public enum NodeType
     Start,
     Dialogue,
     Choice,
-    Affinity
+    Affinity,
+    Condition
 }
 
 public enum Talker
@@ -203,12 +204,161 @@ public class DialogueGraphView : GraphView
                 node.SetPosition(new Rect(position, BaseNode.defaultNodeSize));
 
                 break;
+            case NodeType.Condition:
+                node = new ConditionNode
+                {
+                    GUID = Guid.NewGuid().ToString(),
+                    title = type.ToString(),
+                    nodeType = NodeType.Condition
+                };
+                ConditionNode conditionNode = node as ConditionNode;
+                inputPort = node.GeneratePort(Direction.Input, Port.Capacity.Multi);
+                inputPort.portName = "Input";
+                node.inputContainer.Add(inputPort);
+                var conditionsListContainer = new VisualElement();
+                var buttonCondition = new Button(() => AddCondition(new Condition(), conditionsListContainer, conditionNode))
+                {
+                    text = "Add Condition"
+                };
+                node.mainContainer.Add(buttonCondition);
+                node.mainContainer.Add(conditionsListContainer);
+                /*talkerDialogue.value = talkerDialogue.choices[0];
+                talkerDialogue.RegisterValueChangedCallback(evt =>
+                {
+                    if (Enum.TryParse<Talker>(evt.newValue, out var talker))
+                    {
+                        dialogueNode.isNPC = talker == Talker.NPC;
+                    }
+                });
+                textFieldDialogue.RegisterValueChangedCallback(evt => dialogueNode.dialogueText = evt.newValue);
+                node.mainContainer.Add(textFieldDialogue);
+                dialogueNode.textField = textFieldDialogue;
+
+                var talkerDialogue = new DropdownField
+                {
+                    choices = Enum.GetNames(typeof(Talker)).ToList(),
+                };
+                talkerDialogue.value = talkerDialogue.choices[0];
+                talkerDialogue.RegisterValueChangedCallback(evt =>
+                {
+                    if (Enum.TryParse<Talker>(evt.newValue, out var talker))
+                    {
+                        dialogueNode.isNPC = talker == Talker.NPC;
+                    }
+                });
+                node.titleContainer.Add(talkerDialogue);
+                dialogueNode.talkerField = talkerDialogue;*/
+
+                outputPort = node.GeneratePort(Direction.Output);
+                outputPort.portName = "Next";
+                node.outputContainer.Add(outputPort);
+
+                node.RefreshExpandedState();
+                node.RefreshPorts();
+                node.SetPosition(new Rect(position, BaseNode.defaultNodeSize));
+
+                break;
         }
 
         AddElement(node);
         return node;
 
 
+    }
+
+    private void AddCondition(Condition data, VisualElement mainContainer, ConditionNode conditionNode)
+    {
+        Condition newCondition = new Condition
+        {
+            property = data.property,
+            condition = data.condition,
+            value = data.value,
+            typeCondition = data.typeCondition
+        };
+        var row = new VisualElement()
+        {
+            style = {
+                    flexDirection = FlexDirection.Row,
+                    alignItems = Align.Center,
+                    marginBottom = 5
+                }
+        };
+        var propertyConditionField = new DropdownField
+        {
+            choices = GetProperties(),
+            
+            value = data.property != null ? data.property.Name : "Property"
+        };
+
+        
+
+
+        var valueField = new VisualElement();
+
+        propertyConditionField.RegisterCallback<MouseDownEvent>(_ =>
+        {
+            propertyConditionField.choices = GetProperties();
+        });
+
+        var conditionField = new DropdownField
+        {
+            choices = GetChoiceConditionsFromType(data.typeCondition),
+            value = data.property != null ? data.condition.ToString() : "="
+        };
+        conditionField.RegisterValueChangedCallback(evt =>
+        {
+            newCondition.condition = newCondition.GetConditionType(evt.newValue);
+        });
+
+        propertyConditionField.RegisterValueChangedCallback(evt =>
+        {
+            ExposedProperty selectedProperty = exposedProperties.FirstOrDefault(p => p.Name == evt.newValue);
+            Type type = selectedProperty.type;
+            conditionField.value = "=";
+            conditionField.choices = GetChoiceConditionsFromType(selectedProperty.type);
+            newCondition.property = selectedProperty;
+
+            row.Remove(valueField);
+            valueField = CreateFieldForType(type, selectedProperty.GetValue(), value =>
+            {
+                newCondition.value = value;
+            });
+            row.Add(valueField);
+        });
+
+        Button deleteButton = new Button(() =>
+        {
+            conditionNode.conditions.Remove(newCondition);
+            mainContainer.Remove(row);
+        })
+        { text = "X", };
+
+
+        conditionNode.conditions.Add(newCondition);
+        row.Add(deleteButton);
+        row.Add(propertyConditionField);
+        row.Add(conditionField);
+        row.Add(valueField);
+        
+        mainContainer.Add(row);
+    }
+
+    public List<string> GetChoiceConditionsFromType(Type type)
+    {
+        List<string> conditions = new List<string>() { "=", "!=", ">", "<", ">=", "<=" };
+        switch (type)
+        {
+            case Type t when t == typeof(bool):
+                conditions.Clear();
+                conditions = new List<string>() { "=" };
+                break;
+            case Type t when t == typeof(string):
+                conditions.Clear();
+                conditions = new List<string>() { "=", "!=" };
+                break;
+
+        }
+        return conditions;
     }
 
     public BaseNode CreateFromData(DialogueData dataCache, NodeData nodeData)
@@ -423,6 +573,16 @@ public class DialogueGraphView : GraphView
         }
     }
 
+
+    private List<string> GetProperties()
+    {
+        List<string> properties = new List<string>();
+        foreach(var property in exposedProperties)
+        {
+            properties.Add(property.Name);
+        }
+        return properties;
+    }
 }
 
 
