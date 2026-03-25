@@ -20,12 +20,7 @@ public class NoteApp : Application
         {
             string name = characters[i].Name;
             string content = characters[i].BaseNotes;
-            GameObject button = Instantiate(_buttonPrefab, _buttonCanvas.transform);
-            GameObject note = Instantiate(_notePrefab, transform);
-            button.GetComponent<InAppButton>().SetUp(name, note, _headerButton);
-            note.GetComponent<Note>().SetUp(name, content,button,_headerText);
-            note.SetActive(false);
-            
+            AddNote(name, content);
         }
     }
     public override void CloseCurrent()
@@ -38,6 +33,12 @@ public class NoteApp : Application
         _headerButton.SetActive(false);
         _currentNote = null;
     }
-     
-
+    public void AddNote(string name,string content)
+    {
+        GameObject button = Instantiate(_buttonPrefab, _buttonCanvas.transform);
+        GameObject note = Instantiate(_notePrefab, transform);
+        button.GetComponent<InAppButton>().SetUp(name, note, _headerButton);
+        note.GetComponent<Note>().SetUp(name, content, button, _headerText);
+        note.SetActive(false);
+    }
 }

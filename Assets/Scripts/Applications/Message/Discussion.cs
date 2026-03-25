@@ -56,7 +56,6 @@ public class Discussion : MonoBehaviour
 
     public void AddMessage(string text,bool isNPC)
     {
-        StopAllCoroutines();
         GameObject newMessage = Instantiate(_messagePrefab, _content.transform);
         MessageTextBase message = newMessage.GetComponent<MessageTextBase>();
         message.SetTextMsg(text);
