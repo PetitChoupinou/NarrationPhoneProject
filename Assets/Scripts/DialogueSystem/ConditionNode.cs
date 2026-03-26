@@ -97,6 +97,7 @@ public class Condition
 
     public bool Evaluate()
     {
+        GetValueFromString();
         object propertyValue = property.GetValue();
         int Compare() => ((IComparable)propertyValue).CompareTo(Value);
         switch (condition)

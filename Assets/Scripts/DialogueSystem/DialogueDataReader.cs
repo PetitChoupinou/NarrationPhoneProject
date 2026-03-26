@@ -20,7 +20,8 @@ public class DialogueDataReader : MonoBehaviour
 
     private void OnEnable()
     {
-        _messageApp = AppManager.Instance.GetApplication(ApplicationType.Messages) as MessageApp;
+        //_messageApp = AppManager.Instance.GetApplication(ApplicationType.Messages) as MessageApp;
+        StartConversation();
     }
 
 
@@ -46,6 +47,7 @@ public class DialogueDataReader : MonoBehaviour
     public Action ReadNodeData(NodeData nodeData)
     {
         _currentNodeData = nodeData;
+        
         if (nodeData == null)
             return () => { };
         switch (nodeData.nodeType)
@@ -75,6 +77,26 @@ public class DialogueDataReader : MonoBehaviour
                     _messageApp.GainAffinity(affinityNodeData.affinityGain, _characterID);
                     ReadNextNode(nodeData, 0);
                 };
+            case NodeType.Condition:
+                ConditionNodeData conditionNodeData = nodeData as ConditionNodeData;
+                return () =>
+                {
+                    
+                    if (GetFinalConditionValue(conditionNodeData.conditions))
+                    {
+                        Debug.Log("True");
+                        ReadNextNode(nodeData, 0);
+                    }
+                    else
+                    {
+                        Debug.Log("False");
+                        ReadNextNode(nodeData, 1);
+                    }
+
+                };
+
+
+
             default:
                 return () => { };
         }
@@ -106,6 +128,16 @@ public class DialogueDataReader : MonoBehaviour
         int choiceID = _currentNodeData.outputs.IndexOf(choice);
         ReadNextNode(_currentNodeData, choiceID);
 
+    }
+
+    public bool GetFinalConditionValue(List<Condition> conditions)
+    {
+        
+        foreach (var condition in conditions)
+        {
+            if(!condition.Evaluate()) return false;
+        }
+        return true;
     }
 
 

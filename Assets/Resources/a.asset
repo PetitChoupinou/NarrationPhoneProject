@@ -13,18 +13,20 @@ MonoBehaviour:
   m_Name: a
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   nodes:
-  - rid: 5096477789534289998
-  - rid: 5096477789534289999
+  - rid: 5096477789534290078
+  - rid: 5096477789534290079
+  - rid: 5096477789534290080
+  - rid: 5096477789534290081
   properties:
-  - rid: 5096477789534290000
-  - rid: 5096477789534290001
-  - rid: 5096477789534290002
+  - rid: 5096477789534290082
+  - rid: 5096477789534290083
+  - rid: 5096477789534290084
   entryPointNodeGuid: d43e69b9-5f81-4f6c-afbc-71815328929d
   characterID: Sasha
   references:
     version: 2
     RefIds:
-    - rid: 5096477789534289998
+    - rid: 5096477789534290078
       type: {class: NodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: d43e69b9-5f81-4f6c-afbc-71815328929d
@@ -34,7 +36,7 @@ MonoBehaviour:
         - portValue: Next
           targetNodeGuid: 5e7bd9e3-69a1-48c4-bd5c-522cf02eed67
         isSent: 0
-    - rid: 5096477789534289999
+    - rid: 5096477789534290079
       type: {class: ConditionNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 5e7bd9e3-69a1-48c4-bd5c-522cf02eed67
@@ -42,40 +44,74 @@ MonoBehaviour:
         position: {x: 348.8, y: 196.8}
         outputs:
         - portValue: True
-          targetNodeGuid: 
+          targetNodeGuid: 868d12d3-6fff-4ed4-8d6b-52b7b91f28cf
         - portValue: False
-          targetNodeGuid: 
+          targetNodeGuid: f247cb7e-daca-4355-a52b-6486aa00196d
         isSent: 0
         conditions:
         - property:
-            rid: 5096477789534290003
+            rid: 5096477789534290085
           condition: 0
-          valueString: OwO
+          valueString: UwU
         - property:
-            rid: 5096477789534290001
+            rid: 5096477789534290086
           condition: 0
-          valueString: 2,4
+          valueString: 1,4
         - property:
-            rid: 5096477789534290002
+            rid: 5096477789534290087
           condition: 0
-          valueString: 1,7
-    - rid: 5096477789534290000
+          valueString: 2,7
+    - rid: 5096477789534290080
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 868d12d3-6fff-4ed4-8d6b-52b7b91f28cf
+        nodeType: 1
+        position: {x: 751.2, y: -30.4}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 
+        isSent: 0
+        dialogueText: TRUE TRUE
+        isNPC: 1
+    - rid: 5096477789534290081
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: f247cb7e-daca-4355-a52b-6486aa00196d
+        nodeType: 1
+        position: {x: 830.4, y: 310.4}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 
+        isSent: 0
+        dialogueText: FALSE
+        isNPC: 1
+    - rid: 5096477789534290082
       type: {class: 'ExposedProperty`1[[System.String, mscorlib]]', ns: , asm: Assembly-CSharp}
       data:
         Name: UwU
         PropertyValue: UwU
-    - rid: 5096477789534290001
+    - rid: 5096477789534290083
       type: {class: 'ExposedProperty`1[[System.Single, mscorlib]]', ns: , asm: Assembly-CSharp}
       data:
         Name: FLOWOat
         PropertyValue: 1.4
-    - rid: 5096477789534290002
+    - rid: 5096477789534290084
       type: {class: 'ExposedProperty`1[[System.Single, mscorlib]]', ns: , asm: Assembly-CSharp}
       data:
         Name: MMMH PIPI
         PropertyValue: 2.7
-    - rid: 5096477789534290003
+    - rid: 5096477789534290085
       type: {class: 'ExposedProperty`1[[System.String, mscorlib]]', ns: , asm: Assembly-CSharp}
       data:
         Name: UwU
         PropertyValue: UwU
+    - rid: 5096477789534290086
+      type: {class: 'ExposedProperty`1[[System.Single, mscorlib]]', ns: , asm: Assembly-CSharp}
+      data:
+        Name: FLOWOat
+        PropertyValue: 1.4
+    - rid: 5096477789534290087
+      type: {class: 'ExposedProperty`1[[System.Single, mscorlib]]', ns: , asm: Assembly-CSharp}
+      data:
+        Name: MMMH PIPI
+        PropertyValue: 2.7
