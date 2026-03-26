@@ -102,7 +102,7 @@ public class DialogueDataReader : MonoBehaviour
     public void MakeChoice(string choiceText)
     {
         OutputData choice = GetChoiceFromText(choiceText);
-        _messageApp.AddMessage(choiceText, false, _characterID);
+        //_messageApp.AddMessage(choiceText, false, _characterID);
         int choiceID = _currentNodeData.outputs.IndexOf(choice);
         ReadNextNode(_currentNodeData, choiceID);
 

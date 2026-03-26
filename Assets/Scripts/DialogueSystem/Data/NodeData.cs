@@ -51,9 +51,24 @@ public class AffinityNodeData : NodeData
     }
     public float affinityGain;
 }
+
+[Serializable]
+public class ConditionNodeData : NodeData
+{
+    public ConditionNodeData(NodeData data)
+    {
+        nodeGUID = data.nodeGUID;
+        nodeType = data.nodeType;
+        position = data.position;
+        outputs = data.outputs;
+    }
+    public List<Condition> conditions = new List<Condition>();
+}
 [Serializable]
 public class OutputData
 {
     public string portValue;
     public string targetNodeGuid;
 }
+
+

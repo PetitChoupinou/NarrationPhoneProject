@@ -111,6 +111,14 @@ public class GraphSaveUtility
                 affinityNodeData.outputs.Add(CreateOutputData(connectedPorts, node, "Next"));
                 data = affinityNodeData;
                 break;
+            case NodeType.Condition:
+                var conditionNode = node as ConditionNode;
+                ConditionNodeData conditionNodeData = new ConditionNodeData(data);
+                conditionNodeData.outputs.Add(CreateOutputData(connectedPorts, node, "True"));
+                conditionNodeData.outputs.Add(CreateOutputData(connectedPorts, node, "False"));
+                conditionNodeData.conditions = conditionNode.conditions;
+                data = conditionNodeData;
+                break;
             default:
                 break;
         }

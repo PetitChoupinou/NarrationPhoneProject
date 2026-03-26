@@ -13,21 +13,25 @@ MonoBehaviour:
   m_Name: New Dialogue
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   nodes:
-  - rid: 5096477718562996299
-  - rid: 5096477718562996300
-  - rid: 5096477718562996301
-  - rid: 5096477718562996302
-  - rid: 5096477718562996303
-  - rid: 5096477718562996304
-  - rid: 5096477718562996305
-  - rid: 5096477718562996306
-  - rid: 5096477718562996307
+  - rid: 5096477784593137901
+  - rid: 5096477784593137902
+  - rid: 5096477784593137903
+  - rid: 5096477784593137904
+  - rid: 5096477784593137905
+  - rid: 5096477784593137906
+  - rid: 5096477784593137907
+  - rid: 5096477784593137908
+  - rid: 5096477784593137909
+  - rid: 5096477784593137910
+  properties:
+  - rid: 5096477784593137911
+  - rid: 5096477784593137912
   entryPointNodeGuid: 5653d6cf-be6d-4602-ace4-48e5f9b6457f
   characterID: Sasha
   references:
     version: 2
     RefIds:
-    - rid: 5096477718562996299
+    - rid: 5096477784593137901
       type: {class: NodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 5653d6cf-be6d-4602-ace4-48e5f9b6457f
@@ -37,7 +41,7 @@ MonoBehaviour:
         - portValue: Next
           targetNodeGuid: 410403f0-0165-471a-ab02-b4f44e37e8c2
         isSent: 0
-    - rid: 5096477718562996300
+    - rid: 5096477784593137902
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 410403f0-0165-471a-ab02-b4f44e37e8c2
@@ -49,7 +53,7 @@ MonoBehaviour:
         isSent: 0
         dialogueText: AJlna;,fnafea
         isNPC: 1
-    - rid: 5096477718562996301
+    - rid: 5096477784593137903
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 26b0b70c-40e9-4af0-8312-67bb56e78041
@@ -61,7 +65,7 @@ MonoBehaviour:
         isSent: 0
         dialogueText: Quoi?
         isNPC: 0
-    - rid: 5096477718562996302
+    - rid: 5096477784593137904
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 039815f1-ac4b-4e59-8615-aedc7953fdff
@@ -73,16 +77,16 @@ MonoBehaviour:
         isSent: 0
         dialogueText: Feur!
         isNPC: 1
-    - rid: 5096477718562996303
+    - rid: 5096477784593137905
       type: {class: ChoiceNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 0d64971b-7ced-476a-8175-1bb5c19b3fea
         nodeType: 2
         position: {x: 809.6, y: 188}
         outputs:
-        - portValue: Jvais te tuer haha
+        - portValue: Jvais le tuer haha
           targetNodeGuid: d1b966b0-99a7-4bd5-a2be-4b9214172d9f
-        - portValue: Jvais te broyer
+        - portValue: Jvais le broyer
           targetNodeGuid: 73624add-68ac-4f32-bc7f-ce5ea397c21d
         - portValue: Jvais ME tuer
           targetNodeGuid: 3a569209-280b-425a-a6e3-c0ba1155e165
@@ -90,21 +94,9 @@ MonoBehaviour:
         dialogueText: 'Haha oh non jpense qu''il va se passer
 
           un truc
-          grave dommage soon haha:'
+          de type mort bientot!!'
         isNPC: 0
-    - rid: 5096477718562996304
-      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
-      data:
-        nodeGUID: d1b966b0-99a7-4bd5-a2be-4b9214172d9f
-        nodeType: 1
-        position: {x: 1107.2, y: 126.4}
-        outputs:
-        - portValue: Next
-          targetNodeGuid: b11e272c-55bc-40c6-886a-25fec0817222
-        isSent: 0
-        dialogueText: 'Oh nan fait chier me tue pas haha ^^ '
-        isNPC: 1
-    - rid: 5096477718562996305
+    - rid: 5096477784593137906
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 3a569209-280b-425a-a6e3-c0ba1155e165
@@ -114,9 +106,9 @@ MonoBehaviour:
         - portValue: Next
           targetNodeGuid: 
         isSent: 0
-        dialogueText: "Allez \xE7a part"
-        isNPC: 1
-    - rid: 5096477718562996306
+        dialogueText: "En mode d\xE9c\xE8s"
+        isNPC: 0
+    - rid: 5096477784593137907
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 73624add-68ac-4f32-bc7f-ce5ea397c21d
@@ -124,18 +116,58 @@ MonoBehaviour:
         position: {x: 1141.6, y: 228}
         outputs:
         - portValue: Next
+          targetNodeGuid: 5937771f-e9b4-44c4-b3ce-3686eecb82bf
+        isSent: 0
+        dialogueText: Viens ici mon ptit loup uwu
+        isNPC: 0
+    - rid: 5096477784593137908
+      type: {class: ConditionNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 5937771f-e9b4-44c4-b3ce-3686eecb82bf
+        nodeType: 4
+        position: {x: 1485.6, y: 228}
+        outputs:
+        - portValue: True
+          targetNodeGuid: 
+        - portValue: False
           targetNodeGuid: 
         isSent: 0
-        dialogueText: Miam~
-        isNPC: 1
-    - rid: 5096477718562996307
-      type: {class: AffinityNodeData, ns: , asm: Assembly-CSharp}
+        conditions: []
+    - rid: 5096477784593137909
+      type: {class: ConditionNodeData, ns: , asm: Assembly-CSharp}
       data:
-        nodeGUID: b11e272c-55bc-40c6-886a-25fec0817222
-        nodeType: 3
-        position: {x: 1399.2, y: 126.4}
+        nodeGUID: 95ee844f-3644-45f2-83fa-3b2993416b9d
+        nodeType: 4
+        position: {x: 1404.8, y: -81.6}
+        outputs:
+        - portValue: True
+          targetNodeGuid: 
+        - portValue: False
+          targetNodeGuid: 
+        isSent: 0
+        conditions:
+        - condition: 0
+        - condition: 0
+        - condition: 0
+    - rid: 5096477784593137910
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: d1b966b0-99a7-4bd5-a2be-4b9214172d9f
+        nodeType: 1
+        position: {x: 1107.2, y: 126.4}
         outputs:
         - portValue: Next
-          targetNodeGuid: 
+          targetNodeGuid: 95ee844f-3644-45f2-83fa-3b2993416b9d
         isSent: 0
-        affinityGain: 10
+        dialogueText: Allez hop un coup de shlass dans le bidou
+        isNPC: 0
+    - rid: 5096477784593137911
+      type: {class: 'ExposedProperty`1[[System.Boolean, mscorlib]]', ns: , asm: Assembly-CSharp}
+      data:
+        Name: Bowol
+        PropertyValue: 0
+    - rid: 5096477784593137912
+      type: {class: 'ExposedProperty`1[[System.Single, mscorlib]]', ns: , asm: Assembly-CSharp}
+      data:
+        Name: Flowoat
+        PropertyValue: 54

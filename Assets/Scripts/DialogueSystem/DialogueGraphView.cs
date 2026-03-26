@@ -199,6 +199,8 @@ public class DialogueGraphView : GraphView
                 outputPort.portName = "Next";
                 node.outputContainer.Add(outputPort);
 
+                
+
                 node.RefreshExpandedState();
                 node.RefreshPorts();
                 node.SetPosition(new Rect(position, BaseNode.defaultNodeSize));
@@ -222,36 +224,15 @@ public class DialogueGraphView : GraphView
                 };
                 node.mainContainer.Add(buttonCondition);
                 node.mainContainer.Add(conditionsListContainer);
-                /*talkerDialogue.value = talkerDialogue.choices[0];
-                talkerDialogue.RegisterValueChangedCallback(evt =>
-                {
-                    if (Enum.TryParse<Talker>(evt.newValue, out var talker))
-                    {
-                        dialogueNode.isNPC = talker == Talker.NPC;
-                    }
-                });
-                textFieldDialogue.RegisterValueChangedCallback(evt => dialogueNode.dialogueText = evt.newValue);
-                node.mainContainer.Add(textFieldDialogue);
-                dialogueNode.textField = textFieldDialogue;
 
-                var talkerDialogue = new DropdownField
-                {
-                    choices = Enum.GetNames(typeof(Talker)).ToList(),
-                };
-                talkerDialogue.value = talkerDialogue.choices[0];
-                talkerDialogue.RegisterValueChangedCallback(evt =>
-                {
-                    if (Enum.TryParse<Talker>(evt.newValue, out var talker))
-                    {
-                        dialogueNode.isNPC = talker == Talker.NPC;
-                    }
-                });
-                node.titleContainer.Add(talkerDialogue);
-                dialogueNode.talkerField = talkerDialogue;*/
 
-                outputPort = node.GeneratePort(Direction.Output);
-                outputPort.portName = "Next";
-                node.outputContainer.Add(outputPort);
+                var truePort = node.GeneratePort(Direction.Output);
+                truePort.portName = "True";
+                node.outputContainer.Add(truePort);
+
+                var falsePort = node.GeneratePort(Direction.Output);
+                falsePort.portName = "False";
+                node.outputContainer.Add(falsePort);
 
                 node.RefreshExpandedState();
                 node.RefreshPorts();
@@ -289,11 +270,16 @@ public class DialogueGraphView : GraphView
             
             value = data.property != null ? data.property.Name : "Property"
         };
-
-        
-
-
         var valueField = new VisualElement();
+        if (data.property != null)
+        {
+            ExposedProperty property = data.property;
+            valueField = CreateFieldForType(property.type, property.GetValue(), value =>
+            {
+                newCondition.value = value;
+            }, data.value);
+
+        }
 
         propertyConditionField.RegisterCallback<MouseDownEvent>(_ =>
         {
@@ -303,13 +289,13 @@ public class DialogueGraphView : GraphView
         var conditionField = new DropdownField
         {
             choices = GetChoiceConditionsFromType(data.typeCondition),
-            value = data.property != null ? data.condition.ToString() : "="
+            value = data.property != null ? data.GetConditionText(data.condition) : "="
         };
         conditionField.RegisterValueChangedCallback(evt =>
         {
             newCondition.condition = newCondition.GetConditionType(evt.newValue);
         });
-
+        
         propertyConditionField.RegisterValueChangedCallback(evt =>
         {
             ExposedProperty selectedProperty = exposedProperties.FirstOrDefault(p => p.Name == evt.newValue);
@@ -319,7 +305,7 @@ public class DialogueGraphView : GraphView
             newCondition.property = selectedProperty;
 
             row.Remove(valueField);
-            valueField = CreateFieldForType(type, selectedProperty.GetValue(), value =>
+            valueField = CreateFieldForType(type, Activator.CreateInstance(selectedProperty.type), value =>
             {
                 newCondition.value = value;
             });
@@ -397,7 +383,7 @@ public class DialogueGraphView : GraphView
                         continue;
                     }
 
-                    nodeChoice.AddChoicePort(true, nodeOutputs[i].portValue);   
+                    nodeChoice.AddChoicePort(true, nodeOutputs[i].portValue);
                 }
                 break;
             case NodeType.Affinity:
@@ -405,6 +391,14 @@ public class DialogueGraphView : GraphView
                 var nodeAffinityData = nodeData as AffinityNodeData;
                 nodeAffinity.affinityGain = nodeAffinityData.affinityGain;
                 nodeAffinity.UpdateAffinityField();
+                break;
+            case NodeType.Condition:
+                var nodeCondition = node as ConditionNode;
+                var nodeConditionData = nodeData as ConditionNodeData;
+                foreach (var conditionData in nodeConditionData.conditions)
+                {
+                    AddCondition(conditionData, nodeCondition.mainContainer, nodeCondition);
+                }
                 break;
         }
         AddElement(node);
@@ -529,14 +523,14 @@ public class DialogueGraphView : GraphView
     }
 
 
-    private VisualElement CreateFieldForType(Type type, object value, Action<object> onValueChanged)
+    private VisualElement CreateFieldForType(Type type, object value, Action<object> onValueChanged, object baseValue = null)
     {
         switch (type)
         {
             case Type t when t == typeof(bool):
                 var toggle = new Toggle(){
                     label = "Value",
-                    value = (bool)value
+                    value = baseValue != null ? (bool)baseValue : (bool)value
                 };
                 toggle.RegisterValueChangedCallback(e => onValueChanged(e.newValue));
                 return toggle;
@@ -545,7 +539,7 @@ public class DialogueGraphView : GraphView
                 var intField = new IntegerField()
                 {
                     label = "Value",
-                    value = (int)value
+                    value = baseValue != null ? (int)baseValue : (int)value
                 };
                 intField.RegisterValueChangedCallback(e => onValueChanged(e.newValue));
                 return intField;
@@ -554,7 +548,7 @@ public class DialogueGraphView : GraphView
                 var floatField = new FloatField()
                 {
                     label = "Value",
-                    value = (float)value
+                    value = baseValue != null ? (float)baseValue : (float)value
                 };
                 floatField.RegisterValueChangedCallback(e => onValueChanged(e.newValue));
                 return floatField;
@@ -563,7 +557,7 @@ public class DialogueGraphView : GraphView
                 var textField = new TextField()
                 {
                     label = "Value",
-                    value = (string)value
+                    value = baseValue != null ? (string)baseValue : (string)value
                 };
                 textField.RegisterValueChangedCallback(e => onValueChanged(e.newValue));
                 return textField;
