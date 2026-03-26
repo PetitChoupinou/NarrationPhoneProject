@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ef08a29b60933941822e91151f6e732, type: 3}
+  m_Name: a
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  nodes:
+  - rid: 5096477789534289998
+  - rid: 5096477789534289999
+  properties:
+  - rid: 5096477789534290000
+  - rid: 5096477789534290001
+  - rid: 5096477789534290002
+  entryPointNodeGuid: d43e69b9-5f81-4f6c-afbc-71815328929d
+  characterID: Sasha
+  references:
+    version: 2
+    RefIds:
+    - rid: 5096477789534289998
+      type: {class: NodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: d43e69b9-5f81-4f6c-afbc-71815328929d
+        nodeType: 0
+        position: {x: 100, y: 200}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 5e7bd9e3-69a1-48c4-bd5c-522cf02eed67
+        isSent: 0
+    - rid: 5096477789534289999
+      type: {class: ConditionNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 5e7bd9e3-69a1-48c4-bd5c-522cf02eed67
+        nodeType: 4
+        position: {x: 348.8, y: 196.8}
+        outputs:
+        - portValue: True
+          targetNodeGuid: 
+        - portValue: False
+          targetNodeGuid: 
+        isSent: 0
+        conditions:
+        - property:
+            rid: 5096477789534290003
+          condition: 0
+          valueString: OwO
+        - property:
+            rid: 5096477789534290001
+          condition: 0
+          valueString: 2,4
+        - property:
+            rid: 5096477789534290002
+          condition: 0
+          valueString: 1,7
+    - rid: 5096477789534290000
+      type: {class: 'ExposedProperty`1[[System.String, mscorlib]]', ns: , asm: Assembly-CSharp}
+      data:
+        Name: UwU
+        PropertyValue: UwU
+    - rid: 5096477789534290001
+      type: {class: 'ExposedProperty`1[[System.Single, mscorlib]]', ns: , asm: Assembly-CSharp}
+      data:
+        Name: FLOWOat
+        PropertyValue: 1.4
+    - rid: 5096477789534290002
+      type: {class: 'ExposedProperty`1[[System.Single, mscorlib]]', ns: , asm: Assembly-CSharp}
+      data:
+        Name: MMMH PIPI
+        PropertyValue: 2.7
+    - rid: 5096477789534290003
+      type: {class: 'ExposedProperty`1[[System.String, mscorlib]]', ns: , asm: Assembly-CSharp}
+      data:
+        Name: UwU
+        PropertyValue: UwU

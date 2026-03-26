@@ -253,9 +253,10 @@ public class DialogueGraphView : GraphView
         {
             property = data.property,
             condition = data.condition,
-            value = data.value,
-            typeCondition = data.typeCondition
+            valueString = data.valueString,
+
         };
+        newCondition.GetValueFromString();
         var row = new VisualElement()
         {
             style = {
@@ -271,13 +272,15 @@ public class DialogueGraphView : GraphView
             value = data.property != null ? data.property.Name : "Property"
         };
         var valueField = new VisualElement();
+
+        //If loading a data
         if (data.property != null)
         {
             ExposedProperty property = data.property;
             valueField = CreateFieldForType(property.type, property.GetValue(), value =>
             {
-                newCondition.value = value;
-            }, data.value);
+                newCondition.Value = value;
+            }, newCondition.Value);
 
         }
 
@@ -305,9 +308,9 @@ public class DialogueGraphView : GraphView
             newCondition.property = selectedProperty;
 
             row.Remove(valueField);
-            valueField = CreateFieldForType(type, Activator.CreateInstance(selectedProperty.type), value =>
+            valueField = CreateFieldForType(type, GetDefaultValue(selectedProperty.type), value =>
             {
-                newCondition.value = value;
+                newCondition.Value = value;
             });
             row.Add(valueField);
         });
@@ -430,6 +433,7 @@ public class DialogueGraphView : GraphView
     {
         exposedProperties.Clear();
         blackboard.Clear();
+        blackboard.Add(new BlackboardSection { title = "Exposed Properties" });
     }
     public void AddPropertyToBlackboard(Type type)
     {
@@ -576,6 +580,23 @@ public class DialogueGraphView : GraphView
             properties.Add(property.Name);
         }
         return properties;
+    }
+
+    private object GetDefaultValue(Type type)
+    {
+        switch (type)
+        {
+            case Type t when t == typeof(bool):
+                return false;
+            case Type t when t == typeof(int):
+                return 0;
+            case Type t when t == typeof(float):
+                return 0f;
+            case Type t when t == typeof(string):
+                return "";
+            default:
+                return null;
+        }
     }
 }
 

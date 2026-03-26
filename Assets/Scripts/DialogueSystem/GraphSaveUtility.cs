@@ -269,8 +269,10 @@ public class GraphSaveUtility
     private void LoadBlackboard()
     {
         _targetGraphView.ClearBlackboard();
+        Debug.Log("Properties count = " + _dataCache.properties.Count);
         foreach (var property in _dataCache.properties)
         {
+            
             _targetGraphView.AddPropertyToBlackboard(property);
         }
     }

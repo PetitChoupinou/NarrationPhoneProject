@@ -23,10 +23,51 @@ public class ConditionNode : BaseNode
 [Serializable]
 public class Condition
 {
+    [SerializeReference]
     public ExposedProperty property;
     public ConditionType condition;
-    public object value;
-    public Type typeCondition;
+    private object value;
+    public string valueString;
+
+        
+    public Type typeCondition { get
+        {
+            if (property == null) return typeof(object);
+            return property.type;
+        }
+    }
+
+    public void GetValueFromString()
+    {
+        switch (typeCondition.Name)
+        {
+            case "Int32":
+                Value = int.Parse(valueString);
+                break;
+            case "Single":
+                Value = float.Parse(valueString);
+                break;
+            case "String":
+                Value = valueString;
+                break;
+            case "Boolean":
+                Value = bool.Parse(valueString);
+                break;
+            default:
+                Value = null;
+                break;
+        }
+    }
+
+    public object Value { 
+        get => value; 
+        set 
+        { 
+            this.value = value;
+            if (value == null) valueString = "null";
+            else valueString = value.ToString();
+        } 
+    }
 
     Dictionary<string, ConditionType> conditionDic = new Dictionary<string, ConditionType>()
     {
@@ -57,13 +98,13 @@ public class Condition
     public bool Evaluate()
     {
         object propertyValue = property.GetValue();
-        int Compare() => ((IComparable)propertyValue).CompareTo(value);
+        int Compare() => ((IComparable)propertyValue).CompareTo(Value);
         switch (condition)
         {
             case ConditionType.Equals:
-                return propertyValue.Equals(value);
+                return propertyValue.Equals(Value);
             case ConditionType.NotEquals:
-                return !propertyValue.Equals(value);
+                return !propertyValue.Equals(Value);
             case ConditionType.GreaterThan:
                 return Compare() > 0;
             case ConditionType.LessThan:
@@ -75,8 +116,5 @@ public class Condition
         }
         return false;
     }
+
 }
-
-
-
-

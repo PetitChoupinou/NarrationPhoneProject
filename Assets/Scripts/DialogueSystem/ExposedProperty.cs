@@ -6,7 +6,7 @@ using UnityEngine;
 public abstract class ExposedProperty
 {
     public string Name;
-    public Type type;
+    public Type type { get => GetValue().GetType(); }
     public abstract object GetValue();
     public abstract void SetValue(object value);
 }
@@ -20,7 +20,6 @@ public class ExposedProperty<T> : ExposedProperty
     public ExposedProperty(string propertyName, T value)
     {
         Name = propertyName;
-        type = typeof(T);
         PropertyValue = value;
     }
 
