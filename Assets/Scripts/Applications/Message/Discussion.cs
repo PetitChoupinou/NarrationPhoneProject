@@ -79,17 +79,6 @@ public class Discussion : MonoBehaviour
         }
 
     }
-    public void AddMessage(string text)
-    {
-        StopAllCoroutines();
-        GameObject newMessage = Instantiate(_messagePrefab, _content.transform);
-        MessageTextBase message = newMessage.GetComponent<MessageTextBase>();
-        message.SetTextMsg(text);
-        message.SetIsNPC(false);
-        StartCoroutine(MessageApplyResize(newMessage));
-        _lastMessage = message.Message;
-        ChangePreview(text);
-    }
     public void ChangePreview(string text)
     {
         string previewText = "";
