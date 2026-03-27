@@ -119,6 +119,14 @@ public class GraphSaveUtility
                 conditionNodeData.conditions = conditionNode.conditions;
                 data = conditionNodeData;
                 break;
+            case NodeType.Set:
+                var setPropertyNode = node as SetPropertyNode;
+                SetPropertyNodeData setPropertyNodeData = new SetPropertyNodeData(data);
+                setPropertyNodeData.property = setPropertyNode.property;
+                setPropertyNodeData.valueString = setPropertyNode.valueString;
+                setPropertyNodeData.outputs.Add(CreateOutputData(connectedPorts, node, "Next"));
+                data = setPropertyNodeData;
+                break;
             default:
                 break;
         }

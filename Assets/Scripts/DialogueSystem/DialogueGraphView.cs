@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Emit;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
-using UnityEditor.PackageManager.UI;
 using UnityEngine;
 using UnityEngine.UIElements;
+
 
 public enum NodeType
 {
@@ -14,7 +13,8 @@ public enum NodeType
     Dialogue,
     Choice,
     Affinity,
-    Condition
+    Condition,
+    Set,
 }
 
 public enum Talker
@@ -239,6 +239,74 @@ public class DialogueGraphView : GraphView
                 node.SetPosition(new Rect(position, BaseNode.defaultNodeSize));
 
                 break;
+            case NodeType.Set:
+                node = new SetPropertyNode
+                {
+                    GUID = Guid.NewGuid().ToString(),
+                    title = type.ToString(),
+                    nodeType = NodeType.Set
+                };
+                SetPropertyNode setPropertyNode = node as SetPropertyNode;
+                inputPort = node.GeneratePort(Direction.Input, Port.Capacity.Multi);
+                inputPort.portName = "Input";
+                node.inputContainer.Add(inputPort);
+
+                var setPropertyRow = new VisualElement()
+                {
+                    name = "Row",
+                    style = {
+                    flexDirection = FlexDirection.Row,
+                    alignItems = Align.Center,
+                    marginBottom = 5
+                }
+                };
+                DropdownField propertyDropdown = new DropdownField
+                {
+                    choices = GetProperties(),
+                    value = "Property"
+                };
+                var valuePropertyField = new VisualElement();
+                TextElement labelValue = new TextElement { text = " = ", style = { fontSize = 30 } };
+                propertyDropdown.RegisterCallback<MouseDownEvent>(_ =>
+                {
+                    propertyDropdown.choices = GetProperties();
+                });
+                
+                propertyDropdown.RegisterValueChangedCallback(evt =>
+                {
+                    ExposedProperty selectedProperty = exposedProperties.FirstOrDefault(p => p.Name == evt.newValue);
+                    if (selectedProperty != null)
+                    {
+                        setPropertyNode.property = selectedProperty;
+                        if(setPropertyRow.Contains(valuePropertyField)) setPropertyRow.Remove(valuePropertyField);
+                        object fieldValue = setPropertyNode.Value != null ? setPropertyNode.Value : GetDefaultValue(selectedProperty.type);
+                        valuePropertyField = CreateFieldForType(selectedProperty.type, fieldValue, value =>
+                        {
+                            setPropertyNode.Value = value;
+                            
+                        }, false);
+                        setPropertyRow.Add(labelValue);
+                        setPropertyNode.valueField = valuePropertyField;
+                        setPropertyRow.Add(valuePropertyField);
+
+
+                    }
+                });
+
+                setPropertyRow.Add(propertyDropdown);
+                setPropertyNode.propertyField = propertyDropdown;
+                
+                node.mainContainer.Add(setPropertyRow);
+
+                outputPort = node.GeneratePort(Direction.Output);
+                outputPort.portName = "Next";
+                node.outputContainer.Add(outputPort);
+
+                node.RefreshExpandedState();
+                node.RefreshPorts();
+                node.SetPosition(new Rect(position, BaseNode.defaultNodeSize));
+
+                break;
         }
 
         AddElement(node);
@@ -280,7 +348,7 @@ public class DialogueGraphView : GraphView
             valueField = CreateFieldForType(property.type, property.GetValue(), value =>
             {
                 newCondition.Value = value;
-            }, newCondition.Value);
+            }, true, newCondition.Value);
 
         }
 
@@ -401,6 +469,19 @@ public class DialogueGraphView : GraphView
                 foreach (var conditionData in nodeConditionData.conditions)
                 {
                     AddCondition(conditionData, nodeCondition.mainContainer, nodeCondition);
+                }
+                break;
+            case NodeType.Set:
+                var nodeSetProperty = node as SetPropertyNode;
+                var nodeSetPropertyData = nodeData as SetPropertyNodeData;
+                ExposedProperty property = exposedProperties.FirstOrDefault(p => p.Name == nodeSetPropertyData.property.Name);
+                nodeSetProperty.valueString = nodeSetPropertyData.valueString;
+                if (property != null)
+                {
+                    nodeSetProperty.property = property;
+                    nodeSetProperty.GetValueFromString();
+                    nodeSetProperty.propertyField.value = property.Name;
+                   
                 }
                 break;
         }
@@ -527,42 +608,43 @@ public class DialogueGraphView : GraphView
     }
 
 
-    private VisualElement CreateFieldForType(Type type, object value, Action<object> onValueChanged, object baseValue = null)
+    private VisualElement CreateFieldForType(Type type, object value, Action<object> onValueChanged, bool doesNeedLabel = true, object baseValue = null)
     {
         switch (type)
         {
             case Type t when t == typeof(bool):
                 var toggle = new Toggle(){
-                    label = "Value",
+                    
                     value = baseValue != null ? (bool)baseValue : (bool)value
                 };
+                if(doesNeedLabel) toggle.label = "Value";
                 toggle.RegisterValueChangedCallback(e => onValueChanged(e.newValue));
                 return toggle;
 
             case Type t when t == typeof(int):
                 var intField = new IntegerField()
                 {
-                    label = "Value",
                     value = baseValue != null ? (int)baseValue : (int)value
                 };
+                if (doesNeedLabel) intField.label = "Value";
                 intField.RegisterValueChangedCallback(e => onValueChanged(e.newValue));
                 return intField;
 
             case Type t when t == typeof(float):
                 var floatField = new FloatField()
                 {
-                    label = "Value",
                     value = baseValue != null ? (float)baseValue : (float)value
                 };
+                if (doesNeedLabel) floatField.label = "Value";
                 floatField.RegisterValueChangedCallback(e => onValueChanged(e.newValue));
                 return floatField;
 
             case Type t when t == typeof(string):
                 var textField = new TextField()
                 {
-                    label = "Value",
                     value = baseValue != null ? (string)baseValue : (string)value
                 };
+                if (doesNeedLabel) textField.label = "Value";
                 textField.RegisterValueChangedCallback(e => onValueChanged(e.newValue));
                 return textField;
 

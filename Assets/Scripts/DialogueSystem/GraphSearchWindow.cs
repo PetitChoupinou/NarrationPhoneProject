@@ -28,6 +28,7 @@ public class GraphSearchWindow : ScriptableObject, ISearchWindowProvider
             new SearchTreeEntry(new GUIContent("Choice Node", _indentationIcon)) { level = 1, userData = NodeType.Choice },
             new SearchTreeEntry(new GUIContent("Affinity Node", _indentationIcon)) { level = 1, userData = NodeType.Affinity },
             new SearchTreeEntry(new GUIContent("Conditional Node", _indentationIcon)) { level = 1, userData = NodeType.Condition },
+            new SearchTreeEntry(new GUIContent("Set Property Node", _indentationIcon)) { level = 1, userData = NodeType.Set },
         };
         return tree;
     }
