@@ -16,12 +16,13 @@ public class DialogueDataReader : MonoBehaviour
 
     private string _characterID;
 
+
     public string CharacterID { get => _characterID; set => _characterID = value; }
 
     private void OnEnable()
     {
-        //_messageApp = AppManager.Instance.GetApplication(ApplicationType.Messages) as MessageApp;
-        StartConversation();
+        _messageApp = AppManager.Instance.GetApplication(ApplicationType.Messages) as MessageApp;
+        
     }
 
 
@@ -84,18 +85,26 @@ public class DialogueDataReader : MonoBehaviour
                     
                     if (GetFinalConditionValue(conditionNodeData.conditions))
                     {
-                        Debug.Log("True");
                         ReadNextNode(nodeData, 0);
                     }
                     else
                     {
-                        Debug.Log("False");
                         ReadNextNode(nodeData, 1);
                     }
 
                 };
 
-
+            case NodeType.Set:
+                SetPropertyNodeData setNodeData = nodeData as SetPropertyNodeData;
+                return () =>
+                {
+                    ExposedProperty property = dialogueData.properties.FirstOrDefault(prop => prop.Name == setNodeData.property.Name);
+                    if(property != null)
+                    {
+                        property.SetValue(ExposedProperty.GetValueFromString(property.type, setNodeData.valueString));
+                    }
+                    ReadNextNode(nodeData, 0);
+                };
 
             default:
                 return () => { };
@@ -124,7 +133,6 @@ public class DialogueDataReader : MonoBehaviour
     public void MakeChoice(string choiceText)
     {
         OutputData choice = GetChoiceFromText(choiceText);
-        //_messageApp.AddMessage(choiceText, false, _characterID);
         int choiceID = _currentNodeData.outputs.IndexOf(choice);
         ReadNextNode(_currentNodeData, choiceID);
 
@@ -135,7 +143,7 @@ public class DialogueDataReader : MonoBehaviour
         
         foreach (var condition in conditions)
         {
-            if(!condition.Evaluate()) return false;
+            if(!condition.Evaluate(dialogueData.properties)) return false;
         }
         return true;
     }

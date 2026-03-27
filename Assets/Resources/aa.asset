@@ -13,14 +13,21 @@ MonoBehaviour:
   m_Name: aa
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   nodes:
-  - rid: 5096477766169133145
-  - rid: 5096477766169133146
+  - rid: 5096477811484655700
+  - rid: 5096477811484655701
+  - rid: 5096477811484655702
+  - rid: 5096477811484655703
+  - rid: 5096477811484655704
+  - rid: 5096477811484655705
+  - rid: 5096477811484655706
+  properties:
+  - rid: 5096477811484655707
   entryPointNodeGuid: 67071042-021e-44b3-a1ac-7ea22db8539a
   characterID: Sasha
   references:
     version: 2
     RefIds:
-    - rid: 5096477766169133145
+    - rid: 5096477811484655700
       type: {class: NodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 67071042-021e-44b3-a1ac-7ea22db8539a
@@ -28,20 +35,98 @@ MonoBehaviour:
         position: {x: 100, y: 200}
         outputs:
         - portValue: Next
-          targetNodeGuid: 
+          targetNodeGuid: c54ba172-29e1-4e66-b700-e97c94fa0df8
         isSent: 0
-    - rid: 5096477766169133146
+    - rid: 5096477811484655701
       type: {class: ConditionNodeData, ns: , asm: Assembly-CSharp}
       data:
-        nodeGUID: 4fc72a06-c377-407a-ac59-0cd5c8dfc6bc
+        nodeGUID: c54ba172-29e1-4e66-b700-e97c94fa0df8
         nodeType: 4
-        position: {x: 206.4, y: 120.799995}
+        position: {x: 260, y: 211.20001}
         outputs:
         - portValue: True
-          targetNodeGuid: 
+          targetNodeGuid: 26f6a3ba-38a2-4b7c-ab0b-6818d0b6adaa
         - portValue: False
-          targetNodeGuid: 
+          targetNodeGuid: d6fcd3c0-7f5f-49b1-8e39-605756d6c40c
         isSent: 0
         conditions:
-        - condition: 0
-        - condition: 0
+        - property:
+            rid: 5096477811484655708
+          condition: 0
+          valueString: True
+    - rid: 5096477811484655702
+      type: {class: SetPropertyNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: d6fcd3c0-7f5f-49b1-8e39-605756d6c40c
+        nodeType: 5
+        position: {x: 700.8, y: 264}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: bb361cc3-8f93-4c44-b3a1-8ed14e1480af
+        isSent: 0
+        property:
+          rid: 5096477811484655707
+        valueString: True
+    - rid: 5096477811484655703
+      type: {class: ConditionNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: bb361cc3-8f93-4c44-b3a1-8ed14e1480af
+        nodeType: 4
+        position: {x: 917.6, y: 258.4}
+        outputs:
+        - portValue: True
+          targetNodeGuid: 7b50abbf-945e-433f-946d-b7e5f25dcc84
+        - portValue: False
+          targetNodeGuid: 34bf1a81-9511-40bb-9d9d-5ccb20bac3ed
+        isSent: 0
+        conditions:
+        - property:
+            rid: 5096477811484655708
+          condition: 0
+          valueString: True
+    - rid: 5096477811484655704
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 26f6a3ba-38a2-4b7c-ab0b-6818d0b6adaa
+        nodeType: 1
+        position: {x: 685.6, y: 132}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 
+        isSent: 0
+        dialogueText: GAGAGGA
+        isNPC: 0
+    - rid: 5096477811484655705
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 7b50abbf-945e-433f-946d-b7e5f25dcc84
+        nodeType: 1
+        position: {x: 1284, y: 164}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 
+        isSent: 0
+        dialogueText: UwU
+        isNPC: 0
+    - rid: 5096477811484655706
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 34bf1a81-9511-40bb-9d9d-5ccb20bac3ed
+        nodeType: 1
+        position: {x: 1275.2, y: 296}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 
+        isSent: 0
+        dialogueText: PIPI
+        isNPC: 0
+    - rid: 5096477811484655707
+      type: {class: 'ExposedProperty`1[[System.Boolean, mscorlib]]', ns: , asm: Assembly-CSharp}
+      data:
+        Name: New Boolean
+        PropertyValue: 0
+    - rid: 5096477811484655708
+      type: {class: 'ExposedProperty`1[[System.Boolean, mscorlib]]', ns: , asm: Assembly-CSharp}
+      data:
+        Name: New Boolean
+        PropertyValue: 1

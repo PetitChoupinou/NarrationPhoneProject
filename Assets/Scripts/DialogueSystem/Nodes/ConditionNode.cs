@@ -95,10 +95,11 @@ public class Condition
 
 
 
-    public bool Evaluate()
+    public bool Evaluate(List<ExposedProperty> properties)
     {
         GetValueFromString();
-        object propertyValue = property.GetValue();
+        var foundProperty = properties.FirstOrDefault(prop => prop.Name == property.Name);
+        object propertyValue = foundProperty.GetValue();
         int Compare() => ((IComparable)propertyValue).CompareTo(Value);
         switch (condition)
         {
