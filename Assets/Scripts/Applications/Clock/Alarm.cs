@@ -27,7 +27,7 @@ public class Alarm : MonoBehaviour
     private int _hours, _minutes;
     [SerializeField] private Toggle _active;
 
-    private void SetUp(int hours,int mins, AlarmRepetition recurrenceSettings,bool isActive, string tag = "")
+    public void SetUp(int hours,int mins, AlarmRepetition recurrenceSettings,bool isActive, string tag = "")
     {
         _hours=hours;
         _minutes= mins;
@@ -50,6 +50,7 @@ public class Alarm : MonoBehaviour
             min += mins;
         }
         _time.text = hour + ":" + min;
+        _tag.text = tag;
         _recurrenceSettings = recurrenceSettings;
         
         _active.isOn = isActive;
@@ -68,7 +69,7 @@ public class Alarm : MonoBehaviour
                 {
                     if (now.Hour > _hours || (now.Minute > _minutes && now.Hour == _hours))
                     {
-                        alarm.AddDays(1);
+                        alarm = alarm.AddDays(1);
                     }
                     TimeSpan timeUntilN = alarm.Subtract(now);
                     _recurrenceTxt.text = TextTimeTillAlarm(timeUntilN);
@@ -83,10 +84,10 @@ public class Alarm : MonoBehaviour
                     if (now.DayOfWeek != DayOfWeek.Monday)
                     {
                         int mod = (1 - (int)now.DayOfWeek) % 7;
-                        alarm.AddDays(mod);
+                        alarm=alarm.AddDays(mod);
                     }
                     TimeSpan timeUntilM = alarm.Subtract(now);
-                    _recurrenceTxt.text =" | "+ TextTimeTillAlarm(timeUntilM);
+                    _recurrenceTxt.text +=" | "+ TextTimeTillAlarm(timeUntilM);
                 }
                 break;
             case AlarmRepetition.Tuesday:
@@ -97,10 +98,10 @@ public class Alarm : MonoBehaviour
                     if (now.DayOfWeek != DayOfWeek.Tuesday)
                     {
                         int mod = (2 - (int)now.DayOfWeek) % 7;
-                        alarm.AddDays(mod);
+                        alarm=alarm.AddDays(mod);
                     }
                     TimeSpan timeUntilTue = alarm.Subtract(now);
-                    _recurrenceTxt.text = " | " + TextTimeTillAlarm(timeUntilTue);
+                    _recurrenceTxt.text += " | " + TextTimeTillAlarm(timeUntilTue);
                 }
                 break;
             case AlarmRepetition.Wednesday:
@@ -111,10 +112,10 @@ public class Alarm : MonoBehaviour
                     if (now.DayOfWeek != DayOfWeek.Wednesday)
                     {
                         int mod = (3 - (int)now.DayOfWeek) % 7;
-                        alarm.AddDays(mod);
+                        alarm=alarm.AddDays(mod);
                     }
                     TimeSpan timeUntilW = alarm.Subtract(now);
-                    _recurrenceTxt.text = " | " + TextTimeTillAlarm(timeUntilW);
+                    _recurrenceTxt.text += " | " + TextTimeTillAlarm(timeUntilW);
                 }
                 break;
             case AlarmRepetition.Thursday:
@@ -124,10 +125,10 @@ public class Alarm : MonoBehaviour
                     if (now.DayOfWeek != DayOfWeek.Thursday)
                     {
                         int mod = (4 - (int)now.DayOfWeek) % 7;
-                        alarm.AddDays(mod);
+                        alarm=alarm.AddDays(mod);
                     }
                     TimeSpan timeUntilThur = alarm.Subtract(now);
-                    _recurrenceTxt.text = " | " + TextTimeTillAlarm(timeUntilThur);
+                    _recurrenceTxt.text += " | " + TextTimeTillAlarm(timeUntilThur);
                 }
                 break;
             case AlarmRepetition.Friday:
@@ -137,10 +138,10 @@ public class Alarm : MonoBehaviour
                     if (now.DayOfWeek != DayOfWeek.Friday)
                     {
                         int mod = (5 - (int)now.DayOfWeek) % 7;
-                        alarm.AddDays(mod);
+                        alarm=alarm.AddDays(mod);
                     }
                     TimeSpan timeUntilF = alarm.Subtract(now);
-                    _recurrenceTxt.text = " | " + TextTimeTillAlarm(timeUntilF);
+                    _recurrenceTxt.text += " | " + TextTimeTillAlarm(timeUntilF);
                 }
                 break;
             case AlarmRepetition.Saturday:
@@ -150,10 +151,10 @@ public class Alarm : MonoBehaviour
                     if (now.DayOfWeek != DayOfWeek.Thursday)
                     {
                         int mod = (6 - (int)now.DayOfWeek) % 7;
-                        alarm.AddDays(mod);
+                        alarm=alarm.AddDays(mod);
                     }
                     TimeSpan timeUntilS = alarm.Subtract(now);
-                    _recurrenceTxt.text = " | " + TextTimeTillAlarm(timeUntilS);
+                    _recurrenceTxt.text += " | " + TextTimeTillAlarm(timeUntilS);
                 }
                 break;
             case AlarmRepetition.Sunday:
@@ -163,10 +164,10 @@ public class Alarm : MonoBehaviour
                     if (now.DayOfWeek != DayOfWeek.Thursday)
                     {
                         int mod = (0 - (int)now.DayOfWeek) % 7;
-                        alarm.AddDays(mod);
+                        alarm=alarm.AddDays(mod);
                     }
                     TimeSpan timeUntilSun = alarm.Subtract(now);
-                    _recurrenceTxt.text = " | " + TextTimeTillAlarm(timeUntilSun);
+                    _recurrenceTxt.text += " | " + TextTimeTillAlarm(timeUntilSun);
                 }
                 break;
             case AlarmRepetition.WeekDays:
@@ -177,13 +178,13 @@ public class Alarm : MonoBehaviour
                     if (now.DayOfWeek == DayOfWeek.Saturday || now.DayOfWeek == DayOfWeek.Sunday)
                     {
                         int mod = (1 - (int)now.DayOfWeek) % 7;
-                        alarm.AddDays(mod);
+                        alarm=alarm.AddDays(mod);
                     }
                     else if (now.Hour > _hours || (now.Minute > _minutes && now.Hour == _hours) ){
-                        alarm.AddDays(1);
+                        alarm=alarm.AddDays(1);
                     }
                     TimeSpan timeUntilWD = alarm.Subtract(now);
-                    _recurrenceTxt.text = " | " + TextTimeTillAlarm(timeUntilWD);
+                    _recurrenceTxt.text += " | " + TextTimeTillAlarm(timeUntilWD);
                 }
                 break;
             case AlarmRepetition.WeekEnd:
@@ -194,13 +195,13 @@ public class Alarm : MonoBehaviour
                     if (now.DayOfWeek != DayOfWeek.Saturday && now.DayOfWeek != DayOfWeek.Sunday)
                     {
                         int mod = (6 - (int)now.DayOfWeek) % 7;
-                        alarm.AddDays(mod);
+                        alarm=alarm.AddDays(mod);
                     }
                     else if (now.Hour > _hours || (now.Minute > _minutes && now.Hour == _hours)) {
-                        alarm.AddDays(1);
+                        alarm=alarm.AddDays(1);
                     }
                     TimeSpan timeUntilWE = alarm.Subtract(now);
-                    _recurrenceTxt.text = " | " + TextTimeTillAlarm(timeUntilWE);
+                    _recurrenceTxt.text += " | " + TextTimeTillAlarm(timeUntilWE);
                 }
                 break;
             case AlarmRepetition.AllWeek:
@@ -209,17 +210,17 @@ public class Alarm : MonoBehaviour
                 {
                     if (now.Hour > _hours || (now.Minute > _minutes && now.Hour == _hours))
                     {
-                        alarm.AddDays(1);
+                        alarm=alarm.AddDays(1);
                     }
                     TimeSpan timeUntilWE = alarm.Subtract(now);
-                    _recurrenceTxt.text = " | " + TextTimeTillAlarm(timeUntilWE);
+                    _recurrenceTxt.text += " | " + TextTimeTillAlarm(timeUntilWE);
                 }
                 break;
         }
         string recurrenceTxtTemp="";
-        if (_recurrenceTxt.text.Length > 30)
+        if (_recurrenceTxt.text.Length > 50)
         {
-            for (int i = 0; i < 27; i++)
+            for (int i = 0; i < 47; i++)
             {
                 recurrenceTxtTemp += _recurrenceTxt.text[i];
             }
@@ -248,12 +249,20 @@ public class Alarm : MonoBehaviour
         }
         if (time.Minutes > 0)
         {
-            returnValue += " " + time.Minutes + " minute";
+            returnValue += " " + (time.Minutes+1) + " minute";
             if (time.Minutes > 1)
             {
                 returnValue += "s";
             }
         }
         return returnValue;
+    }
+    private void FixedUpdate()
+    {
+        if (_active.isOn) UpdateRepText();
+    }
+    public void Toggle()
+    {
+        UpdateRepText();
     }
 }

@@ -1077,6 +1077,7 @@ MonoBehaviour:
   - {fileID: 7991513738419085291, guid: 1699363c4bee2a9438541c194156c950, type: 3}
   - {fileID: 7331036238270016989, guid: c04bc797bdc1ea949acd8b45d27686bc, type: 3}
   - {fileID: 6712939520116750977, guid: 793e509e335ffba41b32e01d5a542f30, type: 3}
+  - {fileID: 6775899789610250122, guid: 1027d6c83a2b2c14796ecb2a046f8dce, type: 3}
   _appButtonPrefabs: {fileID: 5699618625647100262, guid: 3bd891322c9c61141bee94eede4fc1e4, type: 3}
   _appButtonCanvas: {fileID: 325279069}
 --- !u!114 &991798627

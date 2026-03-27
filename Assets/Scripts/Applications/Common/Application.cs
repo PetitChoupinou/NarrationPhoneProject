@@ -6,6 +6,7 @@ public enum ApplicationType
     Contacts,
     Calendar,
     Notes,
+    Clock,
     Settings
 }
 abstract public class Application : MonoBehaviour
