@@ -85,6 +85,7 @@ public class GraphSaveUtility
 
                 dialogueNodeData.outputs.Add(CreateOutputData(connectedPorts, node, "Next"));
                 dialogueNodeData.isNPC = dialogueNode.isNPC;
+                dialogueNodeData.timerSending = dialogueNode.timerSending;
                 data = dialogueNodeData;
                 break;
             case NodeType.Choice:
@@ -111,10 +112,26 @@ public class GraphSaveUtility
                 affinityNodeData.outputs.Add(CreateOutputData(connectedPorts, node, "Next"));
                 data = affinityNodeData;
                 break;
+            case NodeType.Condition:
+                var conditionNode = node as ConditionNode;
+                ConditionNodeData conditionNodeData = new ConditionNodeData(data);
+                conditionNodeData.outputs.Add(CreateOutputData(connectedPorts, node, "True"));
+                conditionNodeData.outputs.Add(CreateOutputData(connectedPorts, node, "False"));
+                conditionNodeData.conditions = conditionNode.conditions;
+                data = conditionNodeData;
+                break;
+            case NodeType.Set:
+                var setPropertyNode = node as SetPropertyNode;
+                SetPropertyNodeData setPropertyNodeData = new SetPropertyNodeData(data);
+                setPropertyNodeData.property = setPropertyNode.property;
+                setPropertyNodeData.valueString = setPropertyNode.valueString;
+                setPropertyNodeData.outputs.Add(CreateOutputData(connectedPorts, node, "Next"));
+                data = setPropertyNodeData;
+                break;
             default:
                 break;
         }
-
+        data.isSent = node.isSent;
         return data;
     }
 
@@ -261,8 +278,14 @@ public class GraphSaveUtility
     private void LoadBlackboard()
     {
         _targetGraphView.ClearBlackboard();
+        Debug.Log("Properties count = " + _dataCache.properties.Count);
         foreach (var property in _dataCache.properties)
         {
+            if(property.Name == "Affinity")
+            {
+                continue;
+
+            }
             _targetGraphView.AddPropertyToBlackboard(property);
         }
     }

@@ -1,19 +1,20 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Emit;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
-using UnityEditor.PackageManager.UI;
 using UnityEngine;
 using UnityEngine.UIElements;
+
 
 public enum NodeType
 {
     Start,
     Dialogue,
     Choice,
-    Affinity
+    Affinity,
+    Condition,
+    Set,
 }
 
 public enum Talker
@@ -73,6 +74,7 @@ public class DialogueGraphView : GraphView
         Port inputPort = null;
         Port outputPort = null;
         styleSheets.Add(Resources.Load<StyleSheet>("Node"));
+        
         switch (type)
         {
             case NodeType.Start:
@@ -101,6 +103,7 @@ public class DialogueGraphView : GraphView
                     nodeType = NodeType.Dialogue
                 };
                 DialogueNode dialogueNode = node as DialogueNode;
+                
                 inputPort = node.GeneratePort(Direction.Input, Port.Capacity.Multi);
                 inputPort.portName = "Input";
                 node.inputContainer.Add(inputPort);
@@ -114,6 +117,18 @@ public class DialogueGraphView : GraphView
                 node.mainContainer.Add(textFieldDialogue);
                 dialogueNode.textField = textFieldDialogue;
 
+                FloatField timeField = new FloatField
+                {
+                    label = "Time before sending"
+                };
+                dialogueNode.TimeField = timeField;
+                timeField.RegisterValueChangedCallback(evt =>
+                {
+                    dialogueNode.timerSending = evt.newValue;
+                });
+
+                node.mainContainer.Add(timeField);
+
                 var talkerDialogue = new DropdownField
                 {
                     choices = Enum.GetNames(typeof(Talker)).ToList(),
@@ -124,10 +139,16 @@ public class DialogueGraphView : GraphView
                     if (Enum.TryParse<Talker>(evt.newValue, out var talker))
                     {
                         dialogueNode.isNPC = talker == Talker.NPC;
+                        
                     }
+                    
+                    timeField.enabledSelf = dialogueNode.isNPC;
+                    
                 });
+
                 node.titleContainer.Add(talkerDialogue);
                 dialogueNode.talkerField = talkerDialogue;
+                dialogueNode.isNPC = true;
 
                 outputPort = node.GeneratePort(Direction.Output);
                 outputPort.portName = "Next";
@@ -198,17 +219,237 @@ public class DialogueGraphView : GraphView
                 outputPort.portName = "Next";
                 node.outputContainer.Add(outputPort);
 
+                
+
+                node.RefreshExpandedState();
+                node.RefreshPorts();
+                node.SetPosition(new Rect(position, BaseNode.defaultNodeSize));
+
+                break;
+            case NodeType.Condition:
+                node = new ConditionNode
+                {
+                    GUID = Guid.NewGuid().ToString(),
+                    title = type.ToString(),
+                    nodeType = NodeType.Condition
+                };
+                ConditionNode conditionNode = node as ConditionNode;
+                inputPort = node.GeneratePort(Direction.Input, Port.Capacity.Multi);
+                inputPort.portName = "Input";
+                node.inputContainer.Add(inputPort);
+                var conditionsListContainer = new VisualElement();
+                var buttonCondition = new Button(() => AddCondition(new Condition(), conditionsListContainer, conditionNode))
+                {
+                    text = "Add Condition"
+                };
+                node.mainContainer.Add(buttonCondition);
+                node.mainContainer.Add(conditionsListContainer);
+
+
+                var truePort = node.GeneratePort(Direction.Output);
+                truePort.portName = "True";
+                node.outputContainer.Add(truePort);
+
+                var falsePort = node.GeneratePort(Direction.Output);
+                falsePort.portName = "False";
+                node.outputContainer.Add(falsePort);
+
+                node.RefreshExpandedState();
+                node.RefreshPorts();
+                node.SetPosition(new Rect(position, BaseNode.defaultNodeSize));
+
+                break;
+            case NodeType.Set:
+                node = new SetPropertyNode
+                {
+                    GUID = Guid.NewGuid().ToString(),
+                    title = type.ToString(),
+                    nodeType = NodeType.Set
+                };
+                SetPropertyNode setPropertyNode = node as SetPropertyNode;
+                inputPort = node.GeneratePort(Direction.Input, Port.Capacity.Multi);
+                inputPort.portName = "Input";
+                node.inputContainer.Add(inputPort);
+
+                var setPropertyRow = new VisualElement()
+                {
+                    name = "Row",
+                    style = {
+                    flexDirection = FlexDirection.Row,
+                    alignItems = Align.Center,
+                    marginBottom = 5
+                }
+                };
+                DropdownField propertyDropdown = new DropdownField
+                {
+                    choices = GetProperties(),
+                    value = "Property"
+                };
+                var valuePropertyField = new VisualElement();
+                TextElement labelValue = new TextElement { text = " = ", style = { fontSize = 30 } };
+                propertyDropdown.RegisterCallback<MouseDownEvent>(_ =>
+                {
+                    propertyDropdown.choices = GetProperties();
+                });
+                
+                propertyDropdown.RegisterValueChangedCallback(evt =>
+                {
+                    ExposedProperty selectedProperty = exposedProperties.FirstOrDefault(p => p.Name == evt.newValue);
+                    if (selectedProperty != null)
+                    {
+                        setPropertyNode.property = selectedProperty;
+                        if(setPropertyRow.Contains(valuePropertyField)) setPropertyRow.Remove(valuePropertyField);
+                        object fieldValue = setPropertyNode.Value != null ? setPropertyNode.Value : GetDefaultValue(selectedProperty.type);
+                        valuePropertyField = CreateFieldForType(selectedProperty.type, fieldValue, value =>
+                        {
+                            setPropertyNode.Value = value;
+                            
+                        }, false);
+                        setPropertyRow.Add(labelValue);
+                        setPropertyNode.valueField = valuePropertyField;
+                        setPropertyRow.Add(valuePropertyField);
+
+
+                    }
+                });
+
+                setPropertyRow.Add(propertyDropdown);
+                setPropertyNode.propertyField = propertyDropdown;
+                
+                node.mainContainer.Add(setPropertyRow);
+
+                outputPort = node.GeneratePort(Direction.Output);
+                outputPort.portName = "Next";
+                node.outputContainer.Add(outputPort);
+
                 node.RefreshExpandedState();
                 node.RefreshPorts();
                 node.SetPosition(new Rect(position, BaseNode.defaultNodeSize));
 
                 break;
         }
-
+        if(type != NodeType.Start)
+        {
+            Toggle isSentToggle = new Toggle
+            {
+                text = "Is Sent"
+            };
+            isSentToggle.RegisterValueChangedCallback(evt =>
+            {
+                node.isSent = evt.newValue;
+                
+            });
+            node.isSentToggle = isSentToggle;
+            node.titleContainer.Add(isSentToggle);
+        }
+        
         AddElement(node);
         return node;
 
 
+    }
+
+    private void AddCondition(Condition data, VisualElement mainContainer, ConditionNode conditionNode)
+    {
+        Condition newCondition = new Condition
+        {
+            property = data.property,
+            condition = data.condition,
+            valueString = data.valueString,
+
+        };
+        newCondition.GetValueFromString();
+        var row = new VisualElement()
+        {
+            style = {
+                    flexDirection = FlexDirection.Row,
+                    alignItems = Align.Center,
+                    marginBottom = 5
+                }
+        };
+        var propertyConditionField = new DropdownField
+        {
+            choices = GetProperties(),
+            
+            value = data.property != null ? data.property.Name : "Property"
+        };
+        var valueField = new VisualElement();
+
+        //If loading a data
+        if (data.property != null)
+        {
+            ExposedProperty property = data.property;
+            valueField = CreateFieldForType(property.type, property.GetValue(), value =>
+            {
+                newCondition.Value = value;
+            }, true, newCondition.Value);
+
+        }
+
+        propertyConditionField.RegisterCallback<MouseDownEvent>(_ =>
+        {
+            propertyConditionField.choices = GetProperties();
+        });
+
+        var conditionField = new DropdownField
+        {
+            choices = GetChoiceConditionsFromType(data.typeCondition),
+            value = data.property != null ? data.GetConditionText(data.condition) : "="
+        };
+        conditionField.RegisterValueChangedCallback(evt =>
+        {
+            newCondition.condition = newCondition.GetConditionType(evt.newValue);
+        });
+        
+        propertyConditionField.RegisterValueChangedCallback(evt =>
+        {
+            ExposedProperty selectedProperty = exposedProperties.FirstOrDefault(p => p.Name == evt.newValue);
+            Type type = selectedProperty.type;
+            conditionField.value = "=";
+            conditionField.choices = GetChoiceConditionsFromType(selectedProperty.type);
+            newCondition.property = selectedProperty;
+
+            row.Remove(valueField);
+            valueField = CreateFieldForType(type, GetDefaultValue(selectedProperty.type), value =>
+            {
+                newCondition.Value = value;
+            });
+            row.Add(valueField);
+        });
+
+        Button deleteButton = new Button(() =>
+        {
+            conditionNode.conditions.Remove(newCondition);
+            mainContainer.Remove(row);
+        })
+        { text = "X", };
+
+
+        conditionNode.conditions.Add(newCondition);
+        row.Add(deleteButton);
+        row.Add(propertyConditionField);
+        row.Add(conditionField);
+        row.Add(valueField);
+        
+        mainContainer.Add(row);
+    }
+
+    public List<string> GetChoiceConditionsFromType(Type type)
+    {
+        List<string> conditions = new List<string>() { "=", "!=", ">", "<", ">=", "<=" };
+        switch (type)
+        {
+            case Type t when t == typeof(bool):
+                conditions.Clear();
+                conditions = new List<string>() { "=" };
+                break;
+            case Type t when t == typeof(string):
+                conditions.Clear();
+                conditions = new List<string>() { "=", "!=" };
+                break;
+
+        }
+        return conditions;
     }
 
     public BaseNode CreateFromData(DialogueData dataCache, NodeData nodeData)
@@ -228,6 +469,8 @@ public class DialogueGraphView : GraphView
                 nodeDialogue.dialogueText = nodeDialogueData.dialogueText;
                 nodeDialogue.UpdateTextFieldValue();
                 nodeDialogue.isNPC = nodeDialogueData.isNPC;
+                nodeDialogue.timerSending = nodeDialogueData.timerSending;
+                nodeDialogue.TimeField.value = nodeDialogue.timerSending;
                 nodeDialogue.UpdateTalkerField();
                 break;
 
@@ -247,7 +490,7 @@ public class DialogueGraphView : GraphView
                         continue;
                     }
 
-                    nodeChoice.AddChoicePort(true, nodeOutputs[i].portValue);   
+                    nodeChoice.AddChoicePort(true, nodeOutputs[i].portValue);
                 }
                 break;
             case NodeType.Affinity:
@@ -256,7 +499,30 @@ public class DialogueGraphView : GraphView
                 nodeAffinity.affinityGain = nodeAffinityData.affinityGain;
                 nodeAffinity.UpdateAffinityField();
                 break;
+            case NodeType.Condition:
+                var nodeCondition = node as ConditionNode;
+                var nodeConditionData = nodeData as ConditionNodeData;
+                foreach (var conditionData in nodeConditionData.conditions)
+                {
+                    AddCondition(conditionData, nodeCondition.mainContainer, nodeCondition);
+                }
+                break;
+            case NodeType.Set:
+                var nodeSetProperty = node as SetPropertyNode;
+                var nodeSetPropertyData = nodeData as SetPropertyNodeData;
+                ExposedProperty property = exposedProperties.FirstOrDefault(p => p.Name == nodeSetPropertyData.property.Name);
+                nodeSetProperty.valueString = nodeSetPropertyData.valueString;
+                if (property != null)
+                {
+                    nodeSetProperty.property = property;
+                    nodeSetProperty.GetValueFromString();
+                    nodeSetProperty.propertyField.value = property.Name;
+                   
+                }
+                break;
         }
+        node.isSentToggle.value = nodeData.isSent;
+
         AddElement(node);
         return node;
 
@@ -286,26 +552,29 @@ public class DialogueGraphView : GraphView
     {
         exposedProperties.Clear();
         blackboard.Clear();
+        blackboard.Add(new BlackboardSection { title = "Exposed Properties" });
+        AddPropertyToBlackboard(typeof(float), "Affinity");
     }
-    public void AddPropertyToBlackboard(Type type)
+    public void AddPropertyToBlackboard(Type type, string propertyName = "")
     {
         ExposedProperty property = null;
+        if (propertyName == "") propertyName = $"New {type.Name}";
         switch (type)
         {
             case Type t when t == typeof(bool):
-                property = new ExposedProperty<bool>($"New {type.Name}", false);
+                property = new ExposedProperty<bool>(propertyName, false);
                 AddPropertyToBlackboard<bool>(property);
                 break;
             case Type t when t == typeof(int):
-                property = new ExposedProperty<int>($"New {type.Name}", 0);
+                property = new ExposedProperty<int>(propertyName, 0);
                 AddPropertyToBlackboard<int>(property);
                 break;
             case Type t when t == typeof(float):
-                property = new ExposedProperty<float>($"New {type.Name}", 0);
+                property = new ExposedProperty<float>(propertyName, 0);
                 AddPropertyToBlackboard<float>(property);
                 break;
             case Type t when t == typeof(string):
-                property = new ExposedProperty<string>($"New {type.Name}", "");
+                property = new ExposedProperty<string>(propertyName, "");
                 AddPropertyToBlackboard<string>(property);
                 break;
 
@@ -359,62 +628,75 @@ public class DialogueGraphView : GraphView
         var blackboardField = new BlackboardField { text = localPropertyName, typeText = typeName, capabilities = Capabilities.Selectable | Capabilities.Renamable};
         
         container.Add(blackboardField);
-
-        var deleteButton = new Button(() =>
+        if (property.Name == "Affinity")
         {
-            exposedProperties.Remove(property);
-            blackboard.Remove(container);
-        })
-        { text = "X",  };
-        blackboardField.Add(deleteButton);
-        var propertyField = CreateFieldForType(typeof(T), (T)localPropertyValue, value => {
-            
-            var propertyIndex = exposedProperties.FindIndex(p => p.Name == property.Name);
-            exposedProperties[propertyIndex].SetValue(value);
-        });
-        var row = new BlackboardRow(blackboardField, propertyField);
-        container.Add(row);
+            container.enabledSelf = false;
+        }
+        else 
+        { 
+            var deleteButton = new Button(() =>
+            {
+                exposedProperties.Remove(property);
+                blackboard.Remove(container);
+            })
+            { text = "X", };
+            blackboardField.Add(deleteButton);
+            var propertyField = CreateFieldForType(typeof(T), (T)localPropertyValue, value => {
+
+                var propertyIndex = exposedProperties.FindIndex(p => p.Name == property.Name);
+                exposedProperties[propertyIndex].SetValue(value);
+            });
+            var row = new BlackboardRow(blackboardField, propertyField);
+            container.Add(row);
+        }
+        
+        
+        
+        
         blackboard.Add(container);
        
     }
 
 
-    private VisualElement CreateFieldForType(Type type, object value, Action<object> onValueChanged)
+    private VisualElement CreateFieldForType(Type type, object value, Action<object> onValueChanged, bool doesNeedLabel = true, object baseValue = null)
     {
         switch (type)
         {
             case Type t when t == typeof(bool):
                 var toggle = new Toggle(){
-                    label = "Value",
-                    value = (bool)value
+                    
+                    value = baseValue != null ? (bool)baseValue : (bool)value,
+                    
                 };
+                if(doesNeedLabel) toggle.label = "Value";
                 toggle.RegisterValueChangedCallback(e => onValueChanged(e.newValue));
                 return toggle;
 
             case Type t when t == typeof(int):
                 var intField = new IntegerField()
                 {
-                    label = "Value",
-                    value = (int)value
+                    value = baseValue != null ? (int)baseValue : (int)value
                 };
+                if (doesNeedLabel) intField.label = "Value";
                 intField.RegisterValueChangedCallback(e => onValueChanged(e.newValue));
                 return intField;
 
             case Type t when t == typeof(float):
                 var floatField = new FloatField()
                 {
-                    label = "Value",
-                    value = (float)value
+                    value = baseValue != null ? (float)baseValue : (float)value,
+                   
                 };
+                if (doesNeedLabel) floatField.label = "Value";
                 floatField.RegisterValueChangedCallback(e => onValueChanged(e.newValue));
                 return floatField;
 
             case Type t when t == typeof(string):
                 var textField = new TextField()
                 {
-                    label = "Value",
-                    value = (string)value
+                    value = baseValue != null ? (string)baseValue : (string)value
                 };
+                if (doesNeedLabel) textField.label = "Value";
                 textField.RegisterValueChangedCallback(e => onValueChanged(e.newValue));
                 return textField;
 
@@ -423,6 +705,33 @@ public class DialogueGraphView : GraphView
         }
     }
 
+
+    private List<string> GetProperties()
+    {
+        List<string> properties = new List<string>();
+        foreach(var property in exposedProperties)
+        {
+            properties.Add(property.Name);
+        }
+        return properties;
+    }
+
+    private object GetDefaultValue(Type type)
+    {
+        switch (type)
+        {
+            case Type t when t == typeof(bool):
+                return false;
+            case Type t when t == typeof(int):
+                return 0;
+            case Type t when t == typeof(float):
+                return 0f;
+            case Type t when t == typeof(string):
+                return "";
+            default:
+                return null;
+        }
+    }
 }
 
 

@@ -11,3 +11,13 @@ AffinityNode #title{
 	background-color: rgb(120, 15, 60);
 
 }
+
+ConditionNode #title{
+	background-color: rgb(90, 15, 15);
+
+}
+
+SetPropertyNode #title{
+	background-color: rgb(120, 100, 15);
+
+}

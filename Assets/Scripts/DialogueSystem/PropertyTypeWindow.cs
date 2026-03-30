@@ -38,21 +38,7 @@ public class PropertyTypeWindow : ScriptableObject, ISearchWindowProvider
         var worldMousePosition = _window.rootVisualElement.ChangeCoordinatesTo(_window.rootVisualElement.parent, context.screenMousePosition - _window.position.position);
         var localMousePosition = _graphView.contentViewContainer.WorldToLocal(worldMousePosition);
         _graphView.AddPropertyToBlackboard((Type)SearchTreeEntry.userData);
-        //_graphView.CreateNode((NodeType)SearchTreeEntry.userData, localMousePosition);
         return true;
-        /*switch (SearchTreeEntry.userData)
-        {
-            case NodeType.Dialogue:
-                _graphView.CreateNode(NodeType.Dialogue, localMousePosition);
-                return true;
-            case NodeType.Choice:
-                _graphView.CreateNode(NodeType.Choice, localMousePosition);
-                return true;
-            case NodeType.Affinity:
-                _graphView.CreateNode(NodeType.Affinity, localMousePosition);
-                return true;
-            default:
-                return false;
-        }*/
+        
     }
 }
