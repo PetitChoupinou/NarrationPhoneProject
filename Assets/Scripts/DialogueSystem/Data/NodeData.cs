@@ -27,6 +27,7 @@ public class DialogueNodeData : NodeData
         outputs = data.outputs;
     }
     public bool isNPC;
+    public float timerSending;
 }
 [Serializable]
 public class ChoiceNodeData : DialogueNodeData

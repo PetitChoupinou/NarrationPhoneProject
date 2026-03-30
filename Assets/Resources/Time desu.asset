@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ef08a29b60933941822e91151f6e732, type: 3}
+  m_Name: Time desu
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  nodes:
+  - rid: 5096477874155159637
+  - rid: 5096477874155159638
+  - rid: 5096477874155159639
+  properties:
+  - rid: 5096477874155159640
+  entryPointNodeGuid: 0a533947-b796-4e67-a50a-0f2c21964395
+  characterID: Sasha
+  references:
+    version: 2
+    RefIds:
+    - rid: 5096477874155159637
+      type: {class: NodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 0a533947-b796-4e67-a50a-0f2c21964395
+        nodeType: 0
+        position: {x: 100, y: 200}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 
+        isSent: 0
+    - rid: 5096477874155159638
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: c07647a2-244e-40f5-85e5-6e69b685a080
+        nodeType: 1
+        position: {x: 677.6, y: 333.6}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 
+        isSent: 0
+        dialogueText: Timing desu
+        isNPC: 1
+        timerSending: 5
+    - rid: 5096477874155159639
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 6d2112ee-da68-4d98-8722-05e1c6c87f85
+        nodeType: 1
+        position: {x: 1025.6, y: 195.20001}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 
+        isSent: 0
+        dialogueText: New Dialogue
+        isNPC: 1
+        timerSending: 0
+    - rid: 5096477874155159640
+      type: {class: 'ExposedProperty`1[[System.Single, mscorlib]]', ns: , asm: Assembly-CSharp}
+      data:
+        Name: Affinity
+        PropertyValue: 0

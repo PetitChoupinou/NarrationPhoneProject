@@ -8,6 +8,11 @@ public class DialogueNode : BaseNode
     public TextField textField;
     public DropdownField talkerField;
     public bool isNPC;
+    private FloatField _timeField;
+    public float timerSending;
+
+    public FloatField TimeField { get => _timeField; set => _timeField = value; }
+
     public void UpdateTextFieldValue()
     {
         textField.SetValueWithoutNotify(dialogueText);

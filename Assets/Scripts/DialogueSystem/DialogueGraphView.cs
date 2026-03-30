@@ -74,6 +74,7 @@ public class DialogueGraphView : GraphView
         Port inputPort = null;
         Port outputPort = null;
         styleSheets.Add(Resources.Load<StyleSheet>("Node"));
+        
         switch (type)
         {
             case NodeType.Start:
@@ -102,6 +103,7 @@ public class DialogueGraphView : GraphView
                     nodeType = NodeType.Dialogue
                 };
                 DialogueNode dialogueNode = node as DialogueNode;
+                
                 inputPort = node.GeneratePort(Direction.Input, Port.Capacity.Multi);
                 inputPort.portName = "Input";
                 node.inputContainer.Add(inputPort);
@@ -115,6 +117,18 @@ public class DialogueGraphView : GraphView
                 node.mainContainer.Add(textFieldDialogue);
                 dialogueNode.textField = textFieldDialogue;
 
+                FloatField timeField = new FloatField
+                {
+                    label = "Time before sending"
+                };
+                dialogueNode.TimeField = timeField;
+                timeField.RegisterValueChangedCallback(evt =>
+                {
+                    dialogueNode.timerSending = evt.newValue;
+                });
+
+                node.mainContainer.Add(timeField);
+
                 var talkerDialogue = new DropdownField
                 {
                     choices = Enum.GetNames(typeof(Talker)).ToList(),
@@ -125,10 +139,16 @@ public class DialogueGraphView : GraphView
                     if (Enum.TryParse<Talker>(evt.newValue, out var talker))
                     {
                         dialogueNode.isNPC = talker == Talker.NPC;
+                        
                     }
+                    
+                    timeField.enabledSelf = dialogueNode.isNPC;
+                    
                 });
+
                 node.titleContainer.Add(talkerDialogue);
                 dialogueNode.talkerField = talkerDialogue;
+                dialogueNode.isNPC = true;
 
                 outputPort = node.GeneratePort(Direction.Output);
                 outputPort.portName = "Next";
@@ -317,6 +337,7 @@ public class DialogueGraphView : GraphView
             isSentToggle.RegisterValueChangedCallback(evt =>
             {
                 node.isSent = evt.newValue;
+                
             });
             node.isSentToggle = isSentToggle;
             node.titleContainer.Add(isSentToggle);
@@ -448,6 +469,8 @@ public class DialogueGraphView : GraphView
                 nodeDialogue.dialogueText = nodeDialogueData.dialogueText;
                 nodeDialogue.UpdateTextFieldValue();
                 nodeDialogue.isNPC = nodeDialogueData.isNPC;
+                nodeDialogue.timerSending = nodeDialogueData.timerSending;
+                nodeDialogue.TimeField.value = nodeDialogue.timerSending;
                 nodeDialogue.UpdateTalkerField();
                 break;
 
