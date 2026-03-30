@@ -25,7 +25,9 @@ public class ClockApp : Application
         newAlarm2.GetComponent<Alarm>().SetUp(14, 54, AlarmRepetition.WeekEnd, false);
         _baseClock.SetUp();
         GameObject newClock = Instantiate(_clockPrefab, _clockContent.transform);
-        newClock.GetComponent<Clock>().SetUp(+12);
+        newClock.GetComponent<Clock>().SetUp(+7,"Tokyo");
+        GameObject newClock2 = Instantiate(_clockPrefab, _clockContent.transform);
+        newClock2.GetComponent<Clock>().SetUp(-1, "Dublin");
     }
     public void OnActivated()
     {

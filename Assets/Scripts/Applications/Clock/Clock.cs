@@ -6,46 +6,53 @@ public class Clock : MonoBehaviour
 {
     [SerializeField] private TMP_Text _clock;
     [SerializeField] private TMP_Text _date;
+    [SerializeField] private TMP_Text _place;
+    private string _hours = "";
+    private string _minute = "";
+    private string _second = "";
+    private string _day = "";
+    private string _month = "";
     private int _lag;
     public void SetUp()
     {
         TimeSpan timeZone = DateTime.UtcNow.Subtract(DateTime.Now);
         _lag = -timeZone.Hours;
     }
-    public void SetUp(int lag)
+    public void SetUp(int lag,string town)
     {
         TimeSpan timeZone = DateTime.UtcNow.Subtract(DateTime.Now.AddHours(lag));
         _lag = -timeZone.Hours;
+        _place.text=town;
     }
     private void Update()
     {
         DateTime thisClock = DateTime.UtcNow.AddHours(_lag);
-        string hours = "";
-        string minute = "";
-        string second = "";
-        string day = "";
-        string month = "";
         if (thisClock.Hour < 10)
         {
-            hours = "0" + thisClock.Hour;
+            _hours = "0" + thisClock.Hour;
         }
+        else _hours =""+ thisClock.Hour;
         if (thisClock.Minute < 10)
         {
-            minute = "0" + thisClock.Minute;
+            _minute = "0" + thisClock.Minute;
         }
+        else _minute = "" + thisClock.Minute;
         if (thisClock.Second < 10)
         {
-            second = "0" + thisClock.Second;
+            _second = "0" + thisClock.Second;
         }
+        else _second = "" + thisClock.Second;
         if (thisClock.Day < 10)
         {
-            day = "0" + thisClock.Day;
+            _day = "0" + thisClock.Day;
         }
+        else _day = "" + thisClock.Day;
         if (thisClock.Month < 10)
         {
-            month = "0" + thisClock.Month;
+            _month = "0" + thisClock.Month;
         }
-        _clock.text = thisClock.Hour + " : " + thisClock.Minute + " : " + thisClock.Second;
-        _date.text = thisClock.Day+"/"+thisClock.Month+"/"+thisClock.Year;
+        else _month = "" + thisClock.Month;
+        _clock.text = _hours + " : " + _minute + " : " + _second;
+        _date.text = _day+"/"+_month+"/"+thisClock.Year;
     }
 }
