@@ -10,6 +10,9 @@ public class BaseNode : Node
     public NodeType nodeType;
 
     public bool isEntryPoint = false;
+    public bool isSent = false;
+
+    public Toggle isSentToggle;
 
     public Port GeneratePort(Direction direction, Port.Capacity capacity = Port.Capacity.Single)
     {

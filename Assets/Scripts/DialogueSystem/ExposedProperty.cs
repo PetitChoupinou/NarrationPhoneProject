@@ -53,5 +53,5 @@ public class ExposedProperty<T> : ExposedProperty
         PropertyValue = (T)value;
     }
 
-    
+
 }

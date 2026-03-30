@@ -308,7 +308,20 @@ public class DialogueGraphView : GraphView
 
                 break;
         }
-
+        if(type != NodeType.Start)
+        {
+            Toggle isSentToggle = new Toggle
+            {
+                text = "Is Sent"
+            };
+            isSentToggle.RegisterValueChangedCallback(evt =>
+            {
+                node.isSent = evt.newValue;
+            });
+            node.isSentToggle = isSentToggle;
+            node.titleContainer.Add(isSentToggle);
+        }
+        
         AddElement(node);
         return node;
 
@@ -485,6 +498,8 @@ public class DialogueGraphView : GraphView
                 }
                 break;
         }
+        node.isSentToggle.value = nodeData.isSent;
+
         AddElement(node);
         return node;
 
@@ -515,26 +530,28 @@ public class DialogueGraphView : GraphView
         exposedProperties.Clear();
         blackboard.Clear();
         blackboard.Add(new BlackboardSection { title = "Exposed Properties" });
+        AddPropertyToBlackboard(typeof(float), "Affinity");
     }
-    public void AddPropertyToBlackboard(Type type)
+    public void AddPropertyToBlackboard(Type type, string propertyName = "")
     {
         ExposedProperty property = null;
+        if (propertyName == "") propertyName = $"New {type.Name}";
         switch (type)
         {
             case Type t when t == typeof(bool):
-                property = new ExposedProperty<bool>($"New {type.Name}", false);
+                property = new ExposedProperty<bool>(propertyName, false);
                 AddPropertyToBlackboard<bool>(property);
                 break;
             case Type t when t == typeof(int):
-                property = new ExposedProperty<int>($"New {type.Name}", 0);
+                property = new ExposedProperty<int>(propertyName, 0);
                 AddPropertyToBlackboard<int>(property);
                 break;
             case Type t when t == typeof(float):
-                property = new ExposedProperty<float>($"New {type.Name}", 0);
+                property = new ExposedProperty<float>(propertyName, 0);
                 AddPropertyToBlackboard<float>(property);
                 break;
             case Type t when t == typeof(string):
-                property = new ExposedProperty<string>($"New {type.Name}", "");
+                property = new ExposedProperty<string>(propertyName, "");
                 AddPropertyToBlackboard<string>(property);
                 break;
 
@@ -588,21 +605,31 @@ public class DialogueGraphView : GraphView
         var blackboardField = new BlackboardField { text = localPropertyName, typeText = typeName, capabilities = Capabilities.Selectable | Capabilities.Renamable};
         
         container.Add(blackboardField);
-
-        var deleteButton = new Button(() =>
+        if (property.Name == "Affinity")
         {
-            exposedProperties.Remove(property);
-            blackboard.Remove(container);
-        })
-        { text = "X",  };
-        blackboardField.Add(deleteButton);
-        var propertyField = CreateFieldForType(typeof(T), (T)localPropertyValue, value => {
-            
-            var propertyIndex = exposedProperties.FindIndex(p => p.Name == property.Name);
-            exposedProperties[propertyIndex].SetValue(value);
-        });
-        var row = new BlackboardRow(blackboardField, propertyField);
-        container.Add(row);
+            container.enabledSelf = false;
+        }
+        else 
+        { 
+            var deleteButton = new Button(() =>
+            {
+                exposedProperties.Remove(property);
+                blackboard.Remove(container);
+            })
+            { text = "X", };
+            blackboardField.Add(deleteButton);
+            var propertyField = CreateFieldForType(typeof(T), (T)localPropertyValue, value => {
+
+                var propertyIndex = exposedProperties.FindIndex(p => p.Name == property.Name);
+                exposedProperties[propertyIndex].SetValue(value);
+            });
+            var row = new BlackboardRow(blackboardField, propertyField);
+            container.Add(row);
+        }
+        
+        
+        
+        
         blackboard.Add(container);
        
     }
@@ -615,7 +642,8 @@ public class DialogueGraphView : GraphView
             case Type t when t == typeof(bool):
                 var toggle = new Toggle(){
                     
-                    value = baseValue != null ? (bool)baseValue : (bool)value
+                    value = baseValue != null ? (bool)baseValue : (bool)value,
+                    
                 };
                 if(doesNeedLabel) toggle.label = "Value";
                 toggle.RegisterValueChangedCallback(e => onValueChanged(e.newValue));
@@ -633,7 +661,8 @@ public class DialogueGraphView : GraphView
             case Type t when t == typeof(float):
                 var floatField = new FloatField()
                 {
-                    value = baseValue != null ? (float)baseValue : (float)value
+                    value = baseValue != null ? (float)baseValue : (float)value,
+                   
                 };
                 if (doesNeedLabel) floatField.label = "Value";
                 floatField.RegisterValueChangedCallback(e => onValueChanged(e.newValue));

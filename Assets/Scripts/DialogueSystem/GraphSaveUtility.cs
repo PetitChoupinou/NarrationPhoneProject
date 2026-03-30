@@ -130,7 +130,7 @@ public class GraphSaveUtility
             default:
                 break;
         }
-
+        data.isSent = node.isSent;
         return data;
     }
 
@@ -280,7 +280,11 @@ public class GraphSaveUtility
         Debug.Log("Properties count = " + _dataCache.properties.Count);
         foreach (var property in _dataCache.properties)
         {
-            
+            if(property.Name == "Affinity")
+            {
+                continue;
+
+            }
             _targetGraphView.AddPropertyToBlackboard(property);
         }
     }

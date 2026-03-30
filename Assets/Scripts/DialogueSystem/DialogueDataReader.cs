@@ -29,6 +29,9 @@ public class DialogueDataReader : MonoBehaviour
     public void StartConversation()
     {
         List<NodeData> nodes = dialogueData.nodes;
+        var affinityProperty = dialogueData.properties.FirstOrDefault(x => x.Name == "Affinity");
+        //Get affinity from character ID
+        //affinityProperty.SetValue()
         ReadNodeData(GetNextNodeData(dialogueData.nodes.FirstOrDefault(node => node.nodeGUID == dialogueData.entryPointNodeGuid))).Invoke();
     }
 
@@ -76,6 +79,7 @@ public class DialogueDataReader : MonoBehaviour
                 return () =>
                 {
                     _messageApp.GainAffinity(affinityNodeData.affinityGain, _characterID);
+                    
                     ReadNextNode(nodeData, 0);
                 };
             case NodeType.Condition:
