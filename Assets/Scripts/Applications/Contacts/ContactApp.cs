@@ -16,6 +16,7 @@ public class ContactApp : Application
     [SerializeField] private TMP_Text _headerText;
     private Dictionary<char, GameObject> alphabeticalStorage = new Dictionary<char, GameObject>();
     private GameObject _currentContact;
+    private List<ContactPage> _contacts = new List<ContactPage>();
 
     public GameObject CurrentContact { get => _currentContact; set => _currentContact = value; }
 
@@ -24,6 +25,7 @@ public class ContactApp : Application
         _canvas = GetComponent<Canvas>();
         _buttonCanvasRect = _buttonCanvas.GetComponent<RectTransform>();
         _canvas.enabled = false;
+
     }
     public void OnActivated()
     {
@@ -31,6 +33,7 @@ public class ContactApp : Application
     }
     public override void SetUp(List<CharacterSheet> characters)
     {
+        Debug.Log("Setup");
         for (int i = 0; i < characters.Count; i++)
         {
             string name = characters[i].Name;
@@ -45,7 +48,9 @@ public class ContactApp : Application
             GameObject contact = Instantiate(_contactPagePrefab, transform);
             print(name);
             button.GetComponent<ContactAppButton>().SetUp(name, profilePic,contact, _headerButton);
-            contact.GetComponent<ContactPage>().SetUp(name, num, relation, button, _headerText);
+            var contactPage = contact.GetComponent<ContactPage>();
+            contactPage.SetUp(name, num, relation, button, _headerText);
+            _contacts.Add(contactPage);
             contact.SetActive(false);
         }
         SortStorage();
@@ -83,5 +88,12 @@ public class ContactApp : Application
         _buttonCanvas.SetActive(true);
         _headerButton.SetActive(false);
         _currentContact = null;
+    }
+
+    public void GainRelation(float value, string targetID)
+    {
+        var contact = _contacts.FirstOrDefault(x => x.ID == targetID);
+        contact.Relation += value;
+        Debug.Log($"You gain {value} affinity with {targetID}!");
     }
 }

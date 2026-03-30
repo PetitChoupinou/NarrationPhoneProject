@@ -8,7 +8,7 @@ public class ContactPage : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private string _iD;
     private GameObject _noteButton;
-    private int _relation;
+    private float _relation;
     private string _tel;
    
     private TMP_Text _preview;
@@ -21,7 +21,7 @@ public class ContactPage : MonoBehaviour
     [SerializeField] private Image _relationSlider;
     [SerializeField] private Image _relationBackground;
     public string ID { get => _iD; }
-    public int Relation { get => _relation;
+    public float Relation { get => _relation;
         set {
             _relationSlider.rectTransform.anchoredPosition = new Vector3(Mathf.Lerp(-400,400,(value+10.0f)/20.0f),0,0);
             _relationBackground.color = Color.Lerp(_relationshipBadColor, _relationshipGoodColor, (value + 10.0f) / 20.0f);

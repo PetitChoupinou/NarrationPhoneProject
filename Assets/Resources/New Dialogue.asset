@@ -13,53 +13,50 @@ MonoBehaviour:
   m_Name: New Dialogue
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   nodes:
-  - rid: 5096477784593137938
-  - rid: 5096477784593137939
+  - rid: 5096477874155159644
+  - rid: 5096477874155159645
+  - rid: 5096477874155159646
   properties:
-  - rid: 5096477784593137940
-  entryPointNodeGuid: 13a08ec6-31ec-43be-b532-68865dad3e4f
+  - rid: 5096477874155159647
+  entryPointNodeGuid: ce851e31-1c34-4b36-b578-a85b29501c1b
   characterID: Sasha
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
-    - rid: 5096477784593137938
+    - rid: 5096477874155159644
       type: {class: NodeData, ns: , asm: Assembly-CSharp}
       data:
-        nodeGUID: 13a08ec6-31ec-43be-b532-68865dad3e4f
+        nodeGUID: ce851e31-1c34-4b36-b578-a85b29501c1b
         nodeType: 0
         position: {x: 100, y: 200}
         outputs:
         - portValue: Next
-          targetNodeGuid: ee716917-0367-4af7-b912-6df2b7b12e31
+          targetNodeGuid: 12b143d4-e38b-4b24-9985-9baec2ee618a
         isSent: 0
-    - rid: 5096477784593137939
-      type: {class: ConditionNodeData, ns: , asm: Assembly-CSharp}
+    - rid: 5096477874155159645
+      type: {class: AffinityNodeData, ns: , asm: Assembly-CSharp}
       data:
-        nodeGUID: ee716917-0367-4af7-b912-6df2b7b12e31
-        nodeType: 4
-        position: {x: 428.8, y: 154.40001}
+        nodeGUID: 12b143d4-e38b-4b24-9985-9baec2ee618a
+        nodeType: 3
+        position: {x: 380, y: 228}
         outputs:
-        - portValue: True
-          targetNodeGuid: 
-        - portValue: False
+        - portValue: Next
+          targetNodeGuid: 790366df-4a7e-4031-b99d-535c2f1e0cd6
+        isSent: 0
+        affinityGain: 5
+    - rid: 5096477874155159646
+      type: {class: AffinityNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 790366df-4a7e-4031-b99d-535c2f1e0cd6
+        nodeType: 3
+        position: {x: 684, y: 216}
+        outputs:
+        - portValue: Next
           targetNodeGuid: 
         isSent: 0
-        conditions:
-        - property:
-            rid: 5096477784593137941
-          condition: 0
-        - property:
-            rid: -2
-          condition: 0
-    - rid: 5096477784593137940
+        affinityGain: -8
+    - rid: 5096477874155159647
       type: {class: 'ExposedProperty`1[[System.Single, mscorlib]]', ns: , asm: Assembly-CSharp}
       data:
-        Name: aaaa
-        PropertyValue: 5
-    - rid: 5096477784593137941
-      type: {class: 'ExposedProperty`1[[System.Single, mscorlib]]', ns: , asm: Assembly-CSharp}
-      data:
-        Name: aaaa
-        PropertyValue: 5
+        Name: Affinity
+        PropertyValue: 0

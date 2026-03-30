@@ -13,6 +13,7 @@ public class DialogueDataReader : MonoBehaviour
     private NodeData _currentNodeData;
 
     private MessageApp _messageApp;
+    private ContactApp _contactApp;
 
     private string _characterID;
 
@@ -23,16 +24,22 @@ public class DialogueDataReader : MonoBehaviour
     {
         _messageApp = AppManager.Instance.GetApplication(ApplicationType.Messages) as MessageApp;
         
+        //Get dialogueData from contact app
+        /*var contactApp = AppManager.Instance.GetApplication(ApplicationType.Contacts) as ContactApp;
+        dialogueData = contactApp.*/
     }
 
 
     public void StartConversation()
     {
+        _contactApp = AppManager.Instance.GetApplication(ApplicationType.Contacts) as ContactApp;
         List<NodeData> nodes = dialogueData.nodes;
         var affinityProperty = dialogueData.properties.FirstOrDefault(x => x.Name == "Affinity");
+        //StartCoroutine(DelayMessage(5, "hihi"));
         //Get affinity from character ID
         //affinityProperty.SetValue()
         ReadNodeData(GetNextNodeData(dialogueData.nodes.FirstOrDefault(node => node.nodeGUID == dialogueData.entryPointNodeGuid))).Invoke();
+        
     }
 
     private NodeData GetNextNodeData(NodeData currentNodeData, int outputID = 0)
@@ -78,8 +85,8 @@ public class DialogueDataReader : MonoBehaviour
                 AffinityNodeData affinityNodeData = nodeData as AffinityNodeData;
                 return () =>
                 {
-                    _messageApp.GainAffinity(affinityNodeData.affinityGain, _characterID);
                     
+                    _contactApp.GainRelation(affinityNodeData.affinityGain, _characterID);
                     ReadNextNode(nodeData, 0);
                 };
             case NodeType.Condition:
@@ -159,5 +166,11 @@ public class DialogueDataReader : MonoBehaviour
         yield return new WaitForSeconds(1f);
     }
 
+    IEnumerator DelayMessage(float timer, string text)
+    {
+        print("Commenceeee :D");
+        yield return new WaitForSeconds(timer);
+        print("ayai :D");
 
+    }
 }

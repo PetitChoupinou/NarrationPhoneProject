@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using UnityEngine.TextCore.Text;
+using System.Linq;
 
 public class MessageApp : Application
 {
@@ -35,12 +37,7 @@ public class MessageApp : Application
             gameObjectsToDeactivate.Add(discussion);
             _discussions.Add(discussion.GetComponent<Discussion>());
             DialogueDataReader dialogueDataReader = discussion.GetComponent<DialogueDataReader>();
-            if (dialogueDataReader != null)
-            {
-                dialogueDataReader.dialogueData = character.currentDialogue;
-                if(dialogueDataReader.dialogueData != null) dialogueDataReader.StartConversation();
-
-            }
+            dialogueDataReader.dialogueData = character.currentDialogue;
         }
 
         StartCoroutine(StartGame());
@@ -73,14 +70,18 @@ public class MessageApp : Application
         for (int i = 0; i < gameObjectsToDeactivate.Count; i++)
         {
             gameObjectsToDeactivate[i].SetActive(false);
+
+        }
+        foreach(var discussion in _discussions)
+        {
+            DialogueDataReader dialogueDataReader = discussion.GetComponent<DialogueDataReader>();
+            if (dialogueDataReader != null)
+            {
+                if (dialogueDataReader.dialogueData != null) dialogueDataReader.StartConversation();
+
+            }
         }
         yield return null;
-    }
-
-    public void GainAffinity(float value, string targetID)
-    {
-        //Get the character with the targetID and increase their affinity by value
-        Debug.Log($"You gain {value} affinity with {targetID}!");
     }
 
 }
