@@ -148,7 +148,7 @@ public class Alarm : MonoBehaviour
                 _recurrenceTxt.text = "Samedi ";
                 if (_active.isOn)
                 {
-                    if (now.DayOfWeek != DayOfWeek.Thursday)
+                    if (now.DayOfWeek != DayOfWeek.Saturday)
                     {
                         int mod = (6 - (int)now.DayOfWeek) % 7;
                         alarm=alarm.AddDays(mod);
@@ -161,7 +161,7 @@ public class Alarm : MonoBehaviour
                 _recurrenceTxt.text = "Dimanche ";
                 if (_active.isOn)
                 {
-                    if (now.DayOfWeek != DayOfWeek.Thursday)
+                    if (now.DayOfWeek != DayOfWeek.Sunday)
                     {
                         int mod = (0 - (int)now.DayOfWeek) % 7;
                         alarm=alarm.AddDays(mod);

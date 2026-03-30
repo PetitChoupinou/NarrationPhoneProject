@@ -21,12 +21,16 @@ public class ContactPage : MonoBehaviour
     [SerializeField] private Image _relationSlider;
     [SerializeField] private Image _relationBackground;
     public string ID { get => _iD; }
-    public int Relation { get => _relation;
-        set {
+    public int Relation 
+    {
+        get => _relation;
+        set 
+        {
             _relationSlider.rectTransform.anchoredPosition = new Vector3(Mathf.Lerp(-400,400,(value+10.0f)/20.0f),0,0);
             _relationBackground.color = Color.Lerp(_relationshipBadColor, _relationshipGoodColor, (value + 10.0f) / 20.0f);
             _relation = value;
-        }}
+        }
+    }
 
     private void OnEnable()
     {

@@ -805,6 +805,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 804d0a7525e3e8249a273ee3bab9e042, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MessageApp
+  _appType: 0
   _buttonPrefab: {fileID: 1615588720625825027, guid: 2c31c95c68d89914db78d5ab7f70ebdd, type: 3}
   _discussionPrefab: {fileID: 5606949172641801510, guid: ad5ece03613391e4dad3ed204b722dcc, type: 3}
   _buttonCanvas: {fileID: 6048162570261343852}

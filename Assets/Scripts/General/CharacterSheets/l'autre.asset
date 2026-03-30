@@ -23,6 +23,9 @@ MonoBehaviour:
   - Text: ah ok
     isNPC: 0
   baseNotes: ',,,fazhegoahio^rhgpialh'
+  baseAffinity: 5
+  telNum: 
+  profilePic: {fileID: 0}
   dialogues:
   - {fileID: 11400000, guid: c71547385c045b2488ef8f73c0e6f758, type: 2}
   - {fileID: 11400000, guid: d11d07275fbac2646a376ac45751183e, type: 2}
