@@ -106,7 +106,6 @@ public class DialogueGraph : EditorWindow
             ((BlackboardField)element).text = newValue;
         };
 
-        
 
         blackboard.SetPosition(new Rect(10, 30, 215, 300));
         
