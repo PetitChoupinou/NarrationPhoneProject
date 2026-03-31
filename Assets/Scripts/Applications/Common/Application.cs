@@ -7,7 +7,8 @@ public enum ApplicationType
     Calendar,
     Notes,
     Clock,
-    Settings
+    Settings,
+    Photos
 }
 abstract public class Application : MonoBehaviour
 {

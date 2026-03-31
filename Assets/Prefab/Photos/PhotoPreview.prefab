@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6979137949706118700}
   - component: {fileID: 2387096582480740287}
   - component: {fileID: 4245286650839411290}
+  - component: {fileID: 6519977415252465774}
   m_Layer: 5
   m_Name: PhotoPreview
   m_TagString: Untagged
@@ -75,3 +76,15 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6519977415252465774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5987758341083110789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e059a53e1b621614c927e8ab80d4f150, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Photo

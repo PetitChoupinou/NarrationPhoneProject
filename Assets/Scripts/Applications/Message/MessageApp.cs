@@ -38,7 +38,7 @@ public class MessageApp : Application
             if (dialogueDataReader != null)
             {
                 dialogueDataReader.dialogueData = character.currentDialogue;
-                if(dialogueDataReader.dialogueData != null) dialogueDataReader.StartConversation();
+                //if(dialogueDataReader.dialogueData != null) dialogueDataReader.StartConversation();
 
             }
         }
@@ -48,7 +48,7 @@ public class MessageApp : Application
     public override void CloseCurrent()
     {
         if (CurrentConv == null) return;
-        _currentConv.SetActive(false);
+        _currentConv.GetComponent<RectTransform>().localScale=Vector3.zero;
         _headerText.text = "message";
         PhoneManager.Instance.ChangeDepth(PhoneManager.AppDepth.app);
         _buttonCanvas.SetActive(true);
