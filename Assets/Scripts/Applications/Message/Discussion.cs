@@ -23,7 +23,7 @@ public class Discussion : MonoBehaviour
     public bool CanChoose { get => _canChoose; set => _canChoose = value; }
     public DialogueDataReader DialogueDataReader { get => _dialogueDataReader; set => _dialogueDataReader = value; }
 
-    private void OnEnable()
+    public void Enable()
     {
         FindAnyObjectByType<MessageApp>().CurrentConv = gameObject;
         if(_headerText)
