@@ -27,6 +27,7 @@ public class DialogueNodeData : NodeData
         outputs = data.outputs;
     }
     public bool isNPC;
+    public float timerSending;
 }
 [Serializable]
 public class ChoiceNodeData : DialogueNodeData
@@ -51,9 +52,38 @@ public class AffinityNodeData : NodeData
     }
     public float affinityGain;
 }
+
+[Serializable]
+public class ConditionNodeData : NodeData
+{
+    public ConditionNodeData(NodeData data)
+    {
+        nodeGUID = data.nodeGUID;
+        nodeType = data.nodeType;
+        position = data.position;
+        outputs = data.outputs;
+    }
+    public List<Condition> conditions = new List<Condition>();
+}
+[Serializable]
+public class SetPropertyNodeData : NodeData
+{
+    public SetPropertyNodeData(NodeData data)
+    {
+        nodeGUID = data.nodeGUID;
+        nodeType = data.nodeType;
+        position = data.position;
+        outputs = data.outputs;
+    }
+    [SerializeReference]
+    public ExposedProperty property;
+    public string valueString;
+}
 [Serializable]
 public class OutputData
 {
     public string portValue;
     public string targetNodeGuid;
 }
+
+

@@ -16,17 +16,22 @@ public class DialogueDataReader : MonoBehaviour
 
     private string _characterID;
 
+
     public string CharacterID { get => _characterID; set => _characterID = value; }
 
     private void OnEnable()
     {
         _messageApp = AppManager.Instance.GetApplication(ApplicationType.Messages) as MessageApp;
+        
     }
 
 
     public void StartConversation()
     {
         List<NodeData> nodes = dialogueData.nodes;
+        var affinityProperty = dialogueData.properties.FirstOrDefault(x => x.Name == "Affinity");
+        //Get affinity from character ID
+        //affinityProperty.SetValue()
         ReadNodeData(GetNextNodeData(dialogueData.nodes.FirstOrDefault(node => node.nodeGUID == dialogueData.entryPointNodeGuid))).Invoke();
     }
 
@@ -46,6 +51,7 @@ public class DialogueDataReader : MonoBehaviour
     public Action ReadNodeData(NodeData nodeData)
     {
         _currentNodeData = nodeData;
+        
         if (nodeData == null)
             return () => { };
         switch (nodeData.nodeType)
@@ -73,8 +79,37 @@ public class DialogueDataReader : MonoBehaviour
                 return () =>
                 {
                     _messageApp.GainAffinity(affinityNodeData.affinityGain, _characterID);
+                    
                     ReadNextNode(nodeData, 0);
                 };
+            case NodeType.Condition:
+                ConditionNodeData conditionNodeData = nodeData as ConditionNodeData;
+                return () =>
+                {
+                    
+                    if (GetFinalConditionValue(conditionNodeData.conditions))
+                    {
+                        ReadNextNode(nodeData, 0);
+                    }
+                    else
+                    {
+                        ReadNextNode(nodeData, 1);
+                    }
+
+                };
+
+            case NodeType.Set:
+                SetPropertyNodeData setNodeData = nodeData as SetPropertyNodeData;
+                return () =>
+                {
+                    ExposedProperty property = dialogueData.properties.FirstOrDefault(prop => prop.Name == setNodeData.property.Name);
+                    if(property != null)
+                    {
+                        property.SetValue(ExposedProperty.GetValueFromString(property.type, setNodeData.valueString));
+                    }
+                    ReadNextNode(nodeData, 0);
+                };
+
             default:
                 return () => { };
         }
@@ -102,10 +137,19 @@ public class DialogueDataReader : MonoBehaviour
     public void MakeChoice(string choiceText)
     {
         OutputData choice = GetChoiceFromText(choiceText);
-        _messageApp.AddMessage(choiceText, false, _characterID);
         int choiceID = _currentNodeData.outputs.IndexOf(choice);
         ReadNextNode(_currentNodeData, choiceID);
 
+    }
+
+    public bool GetFinalConditionValue(List<Condition> conditions)
+    {
+        
+        foreach (var condition in conditions)
+        {
+            if(!condition.Evaluate(dialogueData.properties)) return false;
+        }
+        return true;
     }
 
 

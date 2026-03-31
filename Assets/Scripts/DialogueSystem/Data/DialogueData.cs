@@ -8,6 +8,7 @@ public class DialogueData : ScriptableObject
 {
     [SerializeReference]
     public List<NodeData> nodes = new List<NodeData>();
+    [SerializeReference]
     public List<ExposedProperty> properties = new List<ExposedProperty>();
     public string entryPointNodeGuid = "";
     public string characterID = "Sasha";

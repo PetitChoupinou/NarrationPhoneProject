@@ -112,6 +112,7 @@ public class DialogueGraph : EditorWindow
         
         _graphView.Add(blackboard);
         _graphView.blackboard = blackboard;
+        _graphView.AddPropertyToBlackboard(typeof(float), "Affinity");
     }
 
     private void OnDisable()
