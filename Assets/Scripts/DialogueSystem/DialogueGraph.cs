@@ -105,10 +105,7 @@ public class DialogueGraph : EditorWindow
             _graphView.exposedProperties[propertyIndex].Name = newValue;
             ((BlackboardField)element).text = newValue;
         };
-
-
         blackboard.SetPosition(new Rect(10, 30, 215, 300));
-        
         _graphView.Add(blackboard);
         _graphView.blackboard = blackboard;
         _graphView.AddPropertyToBlackboard(typeof(float), "Affinity");

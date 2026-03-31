@@ -46,6 +46,9 @@ public class AppManager : MonoBehaviour
             case ApplicationType.Contacts:
                 GetApplication(apps).GetComponent<ContactApp>().OnActivated();
                 break;
-            }
+            case ApplicationType.Clock:
+                GetApplication(apps).GetComponent<ClockApp>().OnActivated();
+                break;
+        }
         }
 }

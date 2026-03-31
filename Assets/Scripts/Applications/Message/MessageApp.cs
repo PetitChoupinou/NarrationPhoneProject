@@ -18,7 +18,7 @@ public class MessageApp : Application
     private GameObject _currentConv;
 
     public GameObject CurrentConv { get => _currentConv; set => _currentConv = value; }
-
+  
     override public  void SetUp(List<CharacterSheet> characters)
     {
         // Debug => only character 0 (Sasha) displayed here => NEED CHANGES
@@ -30,7 +30,7 @@ public class MessageApp : Application
             SentText[] texts = character.BaseText;
             GameObject button = Instantiate(_buttonPrefab, _buttonCanvas.transform);
             GameObject discussion = Instantiate(_discussionPrefab, transform);
-
+            discussion.name = "message " + name;
             button.GetComponent<InAppButton>().SetUp(name, discussion, _headerButton);
             discussion.GetComponent<Discussion>().SetUp(name, texts, button, _headerText);
 
@@ -69,8 +69,7 @@ public class MessageApp : Application
         yield return new WaitForSeconds(.02f);
         for (int i = 0; i < gameObjectsToDeactivate.Count; i++)
         {
-            gameObjectsToDeactivate[i].SetActive(false);
-
+            gameObjectsToDeactivate[i].GetComponent<RectTransform>().localScale=Vector3.zero;
         }
         foreach(var discussion in _discussions)
         {

@@ -23,7 +23,7 @@ public class Discussion : MonoBehaviour
     public bool CanChoose { get => _canChoose; set => _canChoose = value; }
     public DialogueDataReader DialogueDataReader { get => _dialogueDataReader; set => _dialogueDataReader = value; }
 
-    private void OnEnable()
+    public void Enable()
     {
         FindAnyObjectByType<MessageApp>().CurrentConv = gameObject;
         if(_headerText)
@@ -34,7 +34,6 @@ public class Discussion : MonoBehaviour
     public void SetUp(string name,SentText[] texts,GameObject button, TMP_Text headerText)
     {
         DialogueDataReader = GetComponent<DialogueDataReader>();
-        
         _iD = name;
         DialogueDataReader.CharacterID = name;
         _headerText = headerText;
@@ -65,8 +64,6 @@ public class Discussion : MonoBehaviour
         ChangePreview(text);
         StartCoroutine(MessageApplyResize(newMessage));
     }
-
-    
     public void TriggerChoice(List<string> choices)
     {
         _canChoose = true;
@@ -81,17 +78,6 @@ public class Discussion : MonoBehaviour
             _choicePrefab.GetComponent<RectTransform>().localPosition += new Vector3(0,40,0);
         }
 
-    }
-    public void AddMessage(string text)
-    {
-        //StopAllCoroutines();
-        GameObject newMessage = Instantiate(_messagePrefab, _content.transform);
-        MessageTextBase message = newMessage.GetComponent<MessageTextBase>();
-        message.SetTextMsg(text);
-        message.SetIsNPC(false);
-        StartCoroutine(MessageApplyResize(newMessage));
-        _lastMessage = message.Message;
-        ChangePreview(text);
     }
     public void ChangePreview(string text)
     {
@@ -127,8 +113,7 @@ public class Discussion : MonoBehaviour
         _canChoose = false;
         _choices.Clear();
         _dialogueDataReader.MakeChoice(msg);
+        //fait ce que tu veux
 
     }
-
-    
 }

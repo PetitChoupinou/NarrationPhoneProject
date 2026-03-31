@@ -22,6 +22,13 @@ public class InAppButton : MonoBehaviour
     public void OnButtonClicked()
     {
         _discussion.SetActive(true);
+        _discussion.GetComponent<RectTransform>().localScale = Vector3.one;
+        Discussion d;
+        _discussion.TryGetComponent<Discussion>(out d);
+        if (d)
+        {
+            d.Enable();
+        }
         _parent.SetActive(false);
         _returnButton.SetActive(true);
     }

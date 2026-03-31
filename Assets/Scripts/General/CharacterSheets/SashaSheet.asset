@@ -23,8 +23,10 @@ MonoBehaviour:
   - Text: pour feur!!!
     isNPC: 0
   baseNotes: vraiment trop conne comme personne
-  baseAffinity: 0
+  baseAffinity: -5
   telNum: 
   profilePic: {fileID: 0}
-  dialogues: []
+  dialogues:
+  - {fileID: 11400000, guid: bd7343c1469b4d9459b7be8f3e0a3c5b, type: 2}
+  - {fileID: 11400000, guid: cfd3afb6514c49f48903037c86413dd0, type: 2}
   dialogueIndex: 0
