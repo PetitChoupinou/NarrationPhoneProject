@@ -113,7 +113,6 @@ public class Discussion : MonoBehaviour
         _canChoose = false;
         _choices.Clear();
         _dialogueDataReader.MakeChoice(msg);
-        //fait ce que tu veux
 
     }
 }

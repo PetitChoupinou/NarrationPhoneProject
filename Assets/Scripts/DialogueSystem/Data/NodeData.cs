@@ -39,6 +39,8 @@ public class ChoiceNodeData : DialogueNodeData
         position = data.position;
         outputs = data.outputs;
     }
+
+    public int chosenChoiceID = -1;
 }
 [Serializable]
 public class AffinityNodeData : NodeData

@@ -10,20 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5ef08a29b60933941822e91151f6e732, type: 3}
-  m_Name: Time desu
+  m_Name: time desu
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   nodes:
-  - rid: 5096477874155159637
-  - rid: 5096477874155159638
-  - rid: 5096477874155159639
+  - rid: 5760394223956787272
+  - rid: 5760394223956787273
+  - rid: 5760394223956787274
+  - rid: 5760394223956787275
+  - rid: 5760394223956787276
+  - rid: 5760394223956787277
+  - rid: 5760394223956787278
+  - rid: 5760394223956787279
   properties:
-  - rid: 5096477874155159640
+  - rid: 5760394223956787280
   entryPointNodeGuid: 0a533947-b796-4e67-a50a-0f2c21964395
   characterID: Sasha
   references:
     version: 2
     RefIds:
-    - rid: 5096477874155159637
+    - rid: 5760394223956787272
       type: {class: NodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 0a533947-b796-4e67-a50a-0f2c21964395
@@ -31,35 +36,105 @@ MonoBehaviour:
         position: {x: 100, y: 200}
         outputs:
         - portValue: Next
-          targetNodeGuid: 
+          targetNodeGuid: c07647a2-244e-40f5-85e5-6e69b685a080
         isSent: 0
-    - rid: 5096477874155159638
+    - rid: 5760394223956787273
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: c07647a2-244e-40f5-85e5-6e69b685a080
         nodeType: 1
-        position: {x: 677.6, y: 333.6}
+        position: {x: 363.2, y: 195.20001}
         outputs:
         - portValue: Next
-          targetNodeGuid: 
+          targetNodeGuid: 6d2112ee-da68-4d98-8722-05e1c6c87f85
         isSent: 0
         dialogueText: Timing desu
         isNPC: 1
         timerSending: 5
-    - rid: 5096477874155159639
+    - rid: 5760394223956787274
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 6d2112ee-da68-4d98-8722-05e1c6c87f85
         nodeType: 1
-        position: {x: 1025.6, y: 195.20001}
+        position: {x: 670.4, y: 195.20001}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 41333938-ea35-49e1-99b7-263250929abd
+        isSent: 0
+        dialogueText: tic tac
+        isNPC: 0
+        timerSending: 0
+    - rid: 5760394223956787275
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 41333938-ea35-49e1-99b7-263250929abd
+        nodeType: 1
+        position: {x: 1004.8, y: 195.20001}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 143175ea-6a97-487d-a3ff-a4cddc8080fe
+        isSent: 0
+        dialogueText: vroum
+        isNPC: 1
+        timerSending: 3
+    - rid: 5760394223956787276
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 5fb30e77-03bc-477f-a247-7cdb9a14d4df
+        nodeType: 1
+        position: {x: 1629.6, y: 100.799995}
         outputs:
         - portValue: Next
           targetNodeGuid: 
         isSent: 0
-        dialogueText: New Dialogue
+        dialogueText: aaa
         isNPC: 1
         timerSending: 0
-    - rid: 5096477874155159640
+    - rid: 5760394223956787277
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 78d11dcb-4379-429b-abed-736bcd4c9043
+        nodeType: 1
+        position: {x: 1629.6, y: 225.6}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 
+        isSent: 0
+        dialogueText: qqq
+        isNPC: 1
+        timerSending: 0
+    - rid: 5760394223956787278
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 5cc10059-d6c3-4645-96e0-c7bf10d30011
+        nodeType: 1
+        position: {x: 1636.8, y: 404}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 
+        isSent: 0
+        dialogueText: dd
+        isNPC: 1
+        timerSending: 0
+    - rid: 5760394223956787279
+      type: {class: ChoiceNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 143175ea-6a97-487d-a3ff-a4cddc8080fe
+        nodeType: 2
+        position: {x: 1334.4, y: 212.8}
+        outputs:
+        - portValue: aaa
+          targetNodeGuid: 5fb30e77-03bc-477f-a247-7cdb9a14d4df
+        - portValue: qqq
+          targetNodeGuid: 78d11dcb-4379-429b-abed-736bcd4c9043
+        - portValue: dd
+          targetNodeGuid: 5cc10059-d6c3-4645-96e0-c7bf10d30011
+        isSent: 0
+        dialogueText: Niong
+        isNPC: 0
+        timerSending: 0
+        chosenChoiceID: -1
+    - rid: 5760394223956787280
       type: {class: 'ExposedProperty`1[[System.Single, mscorlib]]', ns: , asm: Assembly-CSharp}
       data:
         Name: Affinity
