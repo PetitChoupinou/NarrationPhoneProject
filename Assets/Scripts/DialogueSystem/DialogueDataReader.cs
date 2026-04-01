@@ -123,7 +123,7 @@ public class DialogueDataReader : MonoBehaviour
                     ReadNextNode(nodeData, 0);
                 };
             case NodeType.Condition:
-                ConditionNodeData conditionNodeData = nodeData as ConditionNodeData;
+                ConditionPropertyNodeData conditionNodeData = nodeData as ConditionPropertyNodeData;
                 return () =>
                 {
                     

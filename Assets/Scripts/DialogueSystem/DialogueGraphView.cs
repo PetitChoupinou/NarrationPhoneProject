@@ -227,13 +227,13 @@ public class DialogueGraphView : GraphView
 
                 break;
             case NodeType.Condition:
-                node = new ConditionNode
+                node = new ConditionPropertyNode
                 {
                     GUID = Guid.NewGuid().ToString(),
                     title = type.ToString(),
                     nodeType = NodeType.Condition
                 };
-                ConditionNode conditionNode = node as ConditionNode;
+                ConditionPropertyNode conditionNode = node as ConditionPropertyNode;
                 inputPort = node.GeneratePort(Direction.Input, Port.Capacity.Multi);
                 inputPort.portName = "Input";
                 node.inputContainer.Add(inputPort);
@@ -349,7 +349,7 @@ public class DialogueGraphView : GraphView
 
     }
 
-    private void AddCondition(Condition data, VisualElement mainContainer, ConditionNode conditionNode)
+    private void AddCondition(Condition data, VisualElement mainContainer, ConditionPropertyNode conditionNode)
     {
         Condition newCondition = new Condition
         {
@@ -512,8 +512,8 @@ public class DialogueGraphView : GraphView
                 nodeAffinity.UpdateAffinityField();
                 break;
             case NodeType.Condition:
-                var nodeCondition = node as ConditionNode;
-                var nodeConditionData = nodeData as ConditionNodeData;
+                var nodeCondition = node as ConditionPropertyNode;
+                var nodeConditionData = nodeData as ConditionPropertyNodeData;
                 foreach (var conditionData in nodeConditionData.conditions)
                 {
                     AddCondition(conditionData, nodeCondition.mainContainer, nodeCondition);

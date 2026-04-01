@@ -56,9 +56,9 @@ public class AffinityNodeData : NodeData
 }
 
 [Serializable]
-public class ConditionNodeData : NodeData
+public class ConditionPropertyNodeData : NodeData
 {
-    public ConditionNodeData(NodeData data)
+    public ConditionPropertyNodeData(NodeData data)
     {
         nodeGUID = data.nodeGUID;
         nodeType = data.nodeType;

@@ -17,7 +17,7 @@ AffinityNode #title{
 
 }
 
-ConditionNode #title{
+ConditionPropertyNode #title{
 	background-color: rgb(90, 15, 15);
 
 }
