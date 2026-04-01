@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.PackageManager.UI;
@@ -9,13 +10,18 @@ using UnityEngine.UIElements;
 public class DialogueGraph : EditorWindow
 {
     private DialogueGraphView _graphView;
-    private string _fileName = "New Dialogue";
+    private string _fileName = "";
 
     [MenuItem("Window/Dialogue Graph")]
     public static void OpenDialogueGraph()
     {
         DialogueGraph window = GetWindow<DialogueGraph>();
         window.titleContent = new GUIContent("Dialogue Graph");
+    }
+
+    private void ChangeWindowTitle(string name)
+    {
+        titleContent = new GUIContent(name);
     }
 
     private void ConstructGraph()
@@ -34,13 +40,9 @@ public class DialogueGraph : EditorWindow
     {
         var toolbar = new Toolbar();
 
-        var fileNameTextField = new TextField("File Name:");
-        fileNameTextField.SetValueWithoutNotify(_fileName);
-        fileNameTextField.MarkDirtyRepaint();
-        fileNameTextField.RegisterValueChangedCallback(evt => _fileName = evt.newValue);
-        toolbar.Add(fileNameTextField);
-
+        
         toolbar.Add(new Button(() => Save() ) { text = "Save" });
+        toolbar.Add(new Button(() => Save(true) ) { text = "Save as" });
         toolbar.Add(new Button(() => Load() ) { text = "Load" });
 
         rootVisualElement.Add(toolbar);
@@ -48,27 +50,44 @@ public class DialogueGraph : EditorWindow
 
     private void Load()
     {
-        if(string.IsNullOrEmpty(_fileName))
+        string path = EditorUtility.OpenFilePanel("Open a file", "Assets/Resources", "asset");
+        if(string.IsNullOrEmpty(path))
         {
             EditorUtility.DisplayDialog("Invalid file name!", "File name cannot be empty.", "OK");
             return;
         }
 
         var graphSaveUtility = GraphSaveUtility.GetInstance(_graphView);
-
+        _fileName = Path.GetFileNameWithoutExtension(path);
         graphSaveUtility.LoadGraph(_fileName);
+        ChangeWindowTitle($"Dialogue Graph ({_fileName})");
     }
 
-    private void Save()
+    private void Save(bool isNew = false)
     {
-        if (string.IsNullOrEmpty(_fileName))
+
+        if (isNew)
         {
-            EditorUtility.DisplayDialog("Invalid file name!", "File name cannot be empty.", "OK");
-            return;
+            string path = EditorUtility.SaveFilePanel("Save a file", "Assets/Resources", "New Dialogue", "asset");
+            if (string.IsNullOrEmpty(path))
+            {
+                EditorUtility.DisplayDialog("Invalid file name!", "File name cannot be empty.", "OK");
+                return;
+            }
+            _fileName = Path.GetFileNameWithoutExtension(path);
+            ChangeWindowTitle($"Dialogue Graph ({_fileName})");
+        }
+        else
+        {
+            var existingAsset = Resources.Load(_fileName);
+            if (string.IsNullOrEmpty(_fileName) || existingAsset == null)
+            {
+                EditorUtility.DisplayDialog("Invalid file!", $"The file '{_fileName}' does no exist.", "OK");
+                Save(isNew: true);
+            }
         }
 
         var graphSaveUtility = GraphSaveUtility.GetInstance(_graphView);
-
         graphSaveUtility.SaveGraph(_fileName);
     }
 
