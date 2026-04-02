@@ -14,14 +14,23 @@ public class NoteApp : Application
 
     public GameObject CurrentNote { get => _currentNote; set => _currentNote = value; }
 
-    override public void SetUp(List<CharacterSheet> characters)
+    public override void SetUp(StoryAppSetup setup)
     {
+        List<NotesData> notes = setup.Notes;
+        for (int i = 0; i < notes.Count; i++)
+        {
+            string name = notes[i].title;
+            string content = notes[i].content;
+            AddNote(name, content);
+        }
+        List<CharacterSheet> characters = setup.Characters;
         for (int i = 0; i < characters.Count; i++)
         {
             string name = characters[i].Name;
             string content = characters[i].BaseNotes;
             AddNote(name, content);
         }
+        
     }
     public override void CloseCurrent()
     {

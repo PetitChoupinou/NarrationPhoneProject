@@ -17,7 +17,7 @@ public class ClockApp : Application
         return;//Unused in clock
     }
 
-    public override void SetUp(List<CharacterSheet> characters)//voir à ce qu'il prennent des clocks?
+    public override void SetUp(StoryAppSetup setup)//voir à ce qu'il prennent des clocks?
     {
         GameObject newAlarm = Instantiate(_alarmPrefab, _alarmContent.transform);
         newAlarm.GetComponent<Alarm>().SetUp(14,32,AlarmRepetition.None,true,"aled");

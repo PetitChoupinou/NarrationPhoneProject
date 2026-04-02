@@ -23,7 +23,7 @@ abstract public class Application : MonoBehaviour
     {
         _phoneCanvas = PhoneManager.Instance.gameObject.GetComponent<Canvas>();
     }
-    abstract public void SetUp(List<CharacterSheet> characters);
+    abstract public void SetUp(StoryAppSetup setup);
     abstract public void CloseCurrent();
     //indentedfield = serialzlizedIs=true:
 

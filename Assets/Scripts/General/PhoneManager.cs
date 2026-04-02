@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PhoneManager : MonoBehaviour
 {
-    [SerializeField] private List<CharacterSheet> _characters;
+    [SerializeField] private StoryAppSetup _setup;
     [SerializeField] private List<GameObject> _appPrefabs;
     [SerializeField] private GameObject _appButtonPrefabs;
     [SerializeField] private GameObject _appButtonCanvas;
@@ -38,7 +38,7 @@ public class PhoneManager : MonoBehaviour
             GameObject app = Instantiate(_appPrefabs[i]);
             _apps.Add(app.GetComponent<Application>());
             AppManager.Instance.addToApps(_apps[i]);
-            _apps[i].SetUp(_characters);
+            _apps[i].SetUp(_setup);
             GameObject button = Instantiate(_appButtonPrefabs, _appButtonCanvas.transform);
             button.GetComponent<AppButton>().Type = app.GetComponent<Application>()._appType;
         }

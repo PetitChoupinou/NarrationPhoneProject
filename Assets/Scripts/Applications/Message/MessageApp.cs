@@ -16,10 +16,10 @@ public class MessageApp : Application
     private GameObject _currentConv;
 
     public GameObject CurrentConv { get => _currentConv; set => _currentConv = value; }
-  
-    override public  void SetUp(List<CharacterSheet> characters)
+
+    public override void SetUp(StoryAppSetup setup)
     {
-        // Debug => only character 0 (Sasha) displayed here => NEED CHANGES
+        List<CharacterSheet> characters = setup.Characters;
 
         for (int i = 0; i < characters.Count; i++)
         {
@@ -38,7 +38,7 @@ public class MessageApp : Application
             if (dialogueDataReader != null)
             {
                 dialogueDataReader.dialogueData = character.currentDialogue;
-                //if(dialogueDataReader.dialogueData != null) dialogueDataReader.StartConversation();
+                if(dialogueDataReader.dialogueData != null) dialogueDataReader.StartConversation();
 
             }
         }

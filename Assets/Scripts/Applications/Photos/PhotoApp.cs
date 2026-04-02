@@ -26,9 +26,10 @@ public class PhotoApp : Application
         _storagePanel.SetActive(true);
         _headerTxt.text = "photo";
     }
-    public override void SetUp(List<CharacterSheet> characters)
+    public override void SetUp(StoryAppSetup setup)
     {
-        foreach (PhotoData data in _photosData)
+        List<PhotoData> photos = setup.Photos;
+        foreach (PhotoData data in photos)
         {
             int date = data.day + data.month * 100 + data.year * 10000;
             if (!_chronologicalStorage.ContainsKey(date))

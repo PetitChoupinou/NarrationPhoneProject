@@ -29,8 +29,9 @@ public class ContactApp : Application
     {
         _buttonCanvasRect.anchoredPosition = new Vector3(0, -180 - _buttonCanvasRect.sizeDelta.y / 2, 0);
     }
-    public override void SetUp(List<CharacterSheet> characters)
+    public override void SetUp(StoryAppSetup setup)
     {
+        List<CharacterSheet> characters = setup.Characters;
         for (int i = 0; i < characters.Count; i++)
         {
             string name = characters[i].Name;
