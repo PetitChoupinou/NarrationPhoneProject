@@ -1070,9 +1070,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f781b1872d9571d42bc9c1554765b15e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterManager
-  _characters:
-  - {fileID: 11400000, guid: 7c059581a45e5404db6932ee8be5f6c2, type: 2}
-  - {fileID: 11400000, guid: 4568a7c5844589e4fa6a8d726392a2a5, type: 2}
+  _setup: {fileID: 11400000, guid: 03585ea8afc96ef49a64f511cd395e0d, type: 2}
   _appPrefabs:
   - {fileID: 7991513738419085291, guid: 1699363c4bee2a9438541c194156c950, type: 3}
   - {fileID: 7331036238270016989, guid: c04bc797bdc1ea949acd8b45d27686bc, type: 3}

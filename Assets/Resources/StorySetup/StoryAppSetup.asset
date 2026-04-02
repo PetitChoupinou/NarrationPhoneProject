@@ -16,9 +16,21 @@ MonoBehaviour:
   _characters:
   - {fileID: 11400000, guid: 4568a7c5844589e4fa6a8d726392a2a5, type: 2}
   - {fileID: 11400000, guid: 7c059581a45e5404db6932ee8be5f6c2, type: 2}
-  _photos: []
+  _photos:
+  - image: {fileID: 21300000, guid: 95c4f4dc310010f45ba633c5169df214, type: 3}
+    year: 2024
+    month: 2
+    day: 12
+    hour: 4
+    minute: 38
+  - image: {fileID: 21300000, guid: 010861aecb582804594e2e5b87bbe5db, type: 3}
+    year: 2024
+    month: 3
+    day: 11
+    hour: 5
+    minute: 42
   _notes:
-  - tiltle: A
+  - title: A
     content: ah
-  - tiltle: B
+  - title: B
     content: beh

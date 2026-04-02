@@ -70,6 +70,7 @@ public class PhotoApp : Application
         foreach (Transform child in children)
         {
             child.SetParent(_storagePanel.transform);
+            child.GetComponent<RectTransform>().localScale = Vector3.one;
         }
     }
 }

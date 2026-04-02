@@ -38,7 +38,7 @@ public class MessageApp : Application
             if (dialogueDataReader != null)
             {
                 dialogueDataReader.dialogueData = character.currentDialogue;
-                if(dialogueDataReader.dialogueData != null) dialogueDataReader.StartConversation();
+                //if(dialogueDataReader.dialogueData != null) dialogueDataReader.StartConversation();
 
             }
         }
