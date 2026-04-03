@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -96,4 +97,5 @@ public class ContactApp : Application
         contact.Relation += value;
         Debug.Log($"You gain {value} affinity with {targetID}!");
     }
+
 }

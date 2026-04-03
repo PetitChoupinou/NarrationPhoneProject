@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -15,6 +16,7 @@ public enum NodeType
     Affinity,
     Condition,
     Set,
+    Unlock,
 }
 
 public enum Talker
@@ -327,6 +329,89 @@ public class DialogueGraphView : GraphView
                 node.SetPosition(new Rect(position, BaseNode.defaultNodeSize));
 
                 break;
+            case NodeType.Unlock:
+                node = new UnlockNode
+                {
+                    GUID = Guid.NewGuid().ToString(),
+                    title = type.ToString(),
+                    nodeType = NodeType.Unlock
+                };
+                UnlockNode unlockNode = node as UnlockNode;
+                inputPort = node.GeneratePort(Direction.Input, Port.Capacity.Multi);
+                inputPort.portName = "Input";
+                node.inputContainer.Add(inputPort);
+                CharacterSheet character = null;
+                
+                ObjectField characterUnlockField = new ObjectField
+                {
+                    label = "Character",
+                    objectType = typeof(CharacterSheet)
+                };
+                unlockNode.characterField = characterUnlockField;
+                DropdownField dialogueUnlockField = new DropdownField
+                {
+                    label = "Dialogue",
+                    choices = new List<string> {},
+                    value = ""
+                };
+                unlockNode.dialogueField = dialogueUnlockField;
+                dialogueUnlockField.RegisterValueChangedCallback(evt =>
+                {
+                    if(character != null && evt.newValue != "")
+                    {
+                        unlockNode.IDDialogue = character.Dialogues.FirstOrDefault(d => d.name == evt.newValue).name;
+
+                    }
+                });
+                characterUnlockField.RegisterValueChangedCallback(evt =>
+                {
+                    character = evt.newValue as CharacterSheet;
+                    if (unlockNode.IDCharacter != character.Name && unlockNode.IDCharacter != "")
+                    {
+                        unlockNode.IDDialogue = "";
+                    }
+                    unlockNode.IDCharacter = character.Name;
+                    
+                    if (node.mainContainer.Contains(dialogueUnlockField)) node.mainContainer.Remove(dialogueUnlockField);
+                    dialogueUnlockField.choices.Clear();
+                    foreach (var dialogue in character.Dialogues)
+                    {
+                        if (dialogue == null) continue;
+                        dialogueUnlockField.choices.Add(dialogue.name);
+                    }
+                    if (string.IsNullOrEmpty(unlockNode.IDDialogue) || unlockNode.IDDialogue == "Dialogue")
+                    {
+                        if (character.Dialogues.Count() > 0)
+                        {
+                            unlockNode.IDDialogue = dialogueUnlockField.choices[0];
+                            dialogueUnlockField.value = dialogueUnlockField.choices[0];
+                        }
+                        else
+                        {
+                            dialogueUnlockField.value = "Dialogue";
+                        }
+                        
+                    }
+                    else
+                    {
+                        var dialogue = character.Dialogues.FirstOrDefault(x => x.name == unlockNode.IDDialogue);
+                        dialogueUnlockField.value = dialogue != null ? dialogue.name : "Dialogue";
+                    }
+                    node.mainContainer.Add(dialogueUnlockField);
+                });
+                node.mainContainer.Add(characterUnlockField);
+                node.mainContainer.Add(dialogueUnlockField);
+
+
+                outputPort = node.GeneratePort(Direction.Output);
+                outputPort.portName = "Next";
+                node.outputContainer.Add(outputPort);
+
+                node.RefreshExpandedState();
+                node.RefreshPorts();
+                node.SetPosition(new Rect(position, BaseNode.defaultNodeSize));
+
+                break;
         }
         if(type != NodeType.Start)
         {
@@ -532,8 +617,16 @@ public class DialogueGraphView : GraphView
                    
                 }
                 break;
+            case NodeType.Unlock:
+                var nodeUnlock = node as UnlockNode;
+                var nodeUnlockData = nodeData as UnlockNodeData;
+                nodeUnlock.IDCharacter = nodeUnlockData.characterID;
+                nodeUnlock.IDDialogue = nodeUnlockData.dialogueID;
+                nodeUnlock.UpdateCharacterField();
+                nodeUnlock.UpdateDialogueField();
+                break;
         }
-        node.isSentToggle.value = nodeData.isSent;
+        node.isSentToggle.value = nodeData.IsSentBase;
 
         AddElement(node);
         return node;

@@ -10,8 +10,8 @@ using static UnityEngine.EventSystems.EventTrigger;
 
 public class DialogueDataReader : MonoBehaviour
 {
-
-    public DialogueData dialogueData;
+    public List<DialogueData> dialogueDatas = new List<DialogueData>();
+    private DialogueData _currentDialogueData;
 
     private NodeData _currentNodeData;
 
@@ -36,26 +36,27 @@ public class DialogueDataReader : MonoBehaviour
     }
 
 
-    public void StartConversation()
+    public void StartConversation(string conversationID)
     {
         _contactApp = AppManager.Instance.GetApplication(ApplicationType.Contacts) as ContactApp;
-        List<NodeData> nodes = dialogueData.nodes;
-        var affinityProperty = dialogueData.properties.FirstOrDefault(x => x.Name == "Affinity");
-        //Get affinity from character ID
-        //affinityProperty.SetValue()
-        ReadNodeData(GetNextNodeData(dialogueData.nodes.FirstOrDefault(node => node.nodeGUID == dialogueData.entryPointNodeGuid))).Invoke();
+        if(dialogueDatas.Count == 0) { return; }
+        _currentDialogueData = dialogueDatas.FirstOrDefault(data => data.name == conversationID);
+        List<NodeData> nodes = _currentDialogueData.nodes;
+        var affinityProperty = _currentDialogueData.properties.FirstOrDefault(x => x.Name == "Affinity");
+        ReadNodeData(GetNextNodeData(_currentDialogueData.nodes.FirstOrDefault(node => node.nodeGUID == _currentDialogueData.entryPointNodeGuid))).Invoke();
         
     }
+
 
     private NodeData GetNextNodeData(NodeData currentNodeData, int outputID = 0)
     {
         if(currentNodeData == null) { return null; }
-        return dialogueData.nodes.FirstOrDefault(node => node.nodeGUID == currentNodeData.outputs[outputID].targetNodeGuid);
+        return _currentDialogueData.nodes.FirstOrDefault(node => node.nodeGUID == currentNodeData.outputs[outputID].targetNodeGuid);
     }
 
     private void ReadNextNode(NodeData currentNodeData, int outputID = 0)
     {
-        currentNodeData.isSent = true;
+        currentNodeData.isSentCurrent = true;
         var nextData = GetNextNodeData(currentNodeData, outputID);
         if(nextData == null) { return; } // End of conversation
         ReadNodeData(nextData).Invoke();
@@ -74,7 +75,7 @@ public class DialogueDataReader : MonoBehaviour
                 DialogueNodeData dialogueNodeData = nodeData as DialogueNodeData;
                 return () =>
                 {
-                    if (dialogueNodeData.isSent)
+                    if (dialogueNodeData.isSentCurrent)
                     {
                         _messageApp.AddMessage(dialogueNodeData.dialogueText, dialogueNodeData.isNPC, _characterID);
                         ReadNextNode(nodeData, 0);
@@ -99,7 +100,7 @@ public class DialogueDataReader : MonoBehaviour
                 return () =>
                 {
                     
-                    if (choiceData.isSent && choiceData.chosenChoiceID > -1)
+                    if (choiceData.isSentCurrent && choiceData.chosenChoiceID > -1)
                     {
                         if (!string.IsNullOrEmpty(choiceData.dialogueText))
                         {
@@ -142,14 +143,20 @@ public class DialogueDataReader : MonoBehaviour
                 SetPropertyNodeData setNodeData = nodeData as SetPropertyNodeData;
                 return () =>
                 {
-                    ExposedProperty property = dialogueData.properties.FirstOrDefault(prop => prop.Name == setNodeData.property.Name);
+                    ExposedProperty property = _currentDialogueData.properties.FirstOrDefault(prop => prop.Name == setNodeData.property.Name);
                     if(property != null)
                     {
                         property.SetValue(ExposedProperty.GetValueFromString(property.type, setNodeData.valueString));
                     }
                     ReadNextNode(nodeData, 0);
                 };
-
+            case NodeType.Unlock:
+                UnlockNodeData unlockNodeData = nodeData as UnlockNodeData;
+                return () =>
+                {
+                    _messageApp.UnlockDialogue(unlockNodeData.characterID, unlockNodeData.dialogueID);
+                    ReadNextNode(nodeData, 0);
+                };
             default:
                 return () => { };
         }
@@ -223,7 +230,7 @@ public class DialogueDataReader : MonoBehaviour
         
         foreach (var condition in conditions)
         {
-            if(!condition.Evaluate(dialogueData.properties)) return false;
+            if(!condition.Evaluate(_currentDialogueData.properties)) return false;
         }
         return true;
     }
@@ -242,5 +249,13 @@ public class DialogueDataReader : MonoBehaviour
         _messageApp.AddMessage(currentData.dialogueText, true, _characterID);
         ReadNextNode(currentData, 0);
 
+    }
+
+    internal void UnlockDialogue(string dialogueID)
+    {
+        var data = dialogueDatas.FirstOrDefault(x => x.name == dialogueID);
+        data.isLocked = false;
+        StartConversation(dialogueID);  
+        Debug.Log($"Dialogue avec {CharacterID} est maintenant débloqué");
     }
 }

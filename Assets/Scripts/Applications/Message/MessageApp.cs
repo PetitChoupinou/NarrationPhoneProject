@@ -37,7 +37,8 @@ public class MessageApp : Application
             gameObjectsToDeactivate.Add(discussion);
             _discussions.Add(discussion.GetComponent<Discussion>());
             DialogueDataReader dialogueDataReader = discussion.GetComponent<DialogueDataReader>();
-            dialogueDataReader.dialogueData = character.currentDialogue;
+            //dialogueDataReader._currentDialogueData = character.currentDialogue;
+            dialogueDataReader.dialogueDatas.AddRange(character.Dialogues);
         }
 
         StartCoroutine(StartGame());
@@ -74,13 +75,23 @@ public class MessageApp : Application
         foreach(var discussion in _discussions)
         {
             DialogueDataReader dialogueDataReader = discussion.GetComponent<DialogueDataReader>();
-            if (dialogueDataReader != null)
+            if (dialogueDataReader != null && dialogueDataReader.dialogueDatas.Count > 0)
             {
-                if (dialogueDataReader.dialogueData != null) dialogueDataReader.StartConversation();
-
+                var availableData = dialogueDataReader.dialogueDatas.FirstOrDefault(x => x.isLocked == false);
+                if(availableData != null) dialogueDataReader.StartConversation(availableData.name);
             }
         }
         yield return null;
     }
 
+
+    void StartConversation(string characterID)
+    {
+        _discussions.Find(x => x.ID == characterID).Enable();
+    }
+
+    public void UnlockDialogue(string characterID, string dialogueID)
+    {
+        _discussions.Find(x => x.ID == characterID).DialogueDataReader.UnlockDialogue(dialogueID);
+    }
 }

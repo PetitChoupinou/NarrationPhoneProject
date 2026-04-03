@@ -28,11 +28,17 @@ public class CharacterSheet : ScriptableObject
             return dialogues[dialogueIndex];
         }
     }
+
+    public DialogueData[] Dialogues { get => dialogues; set => dialogues = value; }
+
+    
 }
+
 [Serializable]
 public class SentText
 {
     public string Text;
     public bool isNPC; 
 }
+
 

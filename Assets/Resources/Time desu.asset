@@ -24,7 +24,7 @@ MonoBehaviour:
   properties:
   - rid: 5760394223956787280
   entryPointNodeGuid: 0a533947-b796-4e67-a50a-0f2c21964395
-  characterID: Sasha
+  isLocked: 1
   references:
     version: 2
     RefIds:

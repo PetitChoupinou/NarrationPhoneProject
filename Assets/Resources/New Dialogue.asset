@@ -13,17 +13,18 @@ MonoBehaviour:
   m_Name: New Dialogue
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   nodes:
-  - rid: 5760394223956787281
-  - rid: 5760394223956787282
-  - rid: 5760394223956787283
+  - rid: 5760394270185357405
+  - rid: 5760394270185357406
+  - rid: 5760394270185357407
   properties:
-  - rid: 5760394223956787284
+  - rid: 5760394270185357408
   entryPointNodeGuid: ce851e31-1c34-4b36-b578-a85b29501c1b
-  characterID: Sasha
+  isLocked: 1
+  _isLocked: 1
   references:
     version: 2
     RefIds:
-    - rid: 5760394223956787281
+    - rid: 5760394270185357405
       type: {class: NodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: ce851e31-1c34-4b36-b578-a85b29501c1b
@@ -32,8 +33,8 @@ MonoBehaviour:
         outputs:
         - portValue: Next
           targetNodeGuid: 12b143d4-e38b-4b24-9985-9baec2ee618a
-        isSent: 0
-    - rid: 5760394223956787282
+        isSentCurrent: 0
+    - rid: 5760394270185357406
       type: {class: AffinityNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 790366df-4a7e-4031-b99d-535c2f1e0cd6
@@ -42,9 +43,9 @@ MonoBehaviour:
         outputs:
         - portValue: Next
           targetNodeGuid: 
-        isSent: 0
+        isSentCurrent: 0
         affinityGain: -8
-    - rid: 5760394223956787283
+    - rid: 5760394270185357407
       type: {class: AffinityNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 12b143d4-e38b-4b24-9985-9baec2ee618a
@@ -53,9 +54,9 @@ MonoBehaviour:
         outputs:
         - portValue: Next
           targetNodeGuid: 790366df-4a7e-4031-b99d-535c2f1e0cd6
-        isSent: 0
+        isSentCurrent: 0
         affinityGain: 5
-    - rid: 5760394223956787284
+    - rid: 5760394270185357408
       type: {class: 'ExposedProperty`1[[System.Single, mscorlib]]', ns: , asm: Assembly-CSharp}
       data:
         Name: Affinity
