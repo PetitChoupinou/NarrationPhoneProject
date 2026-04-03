@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: StoryAppSetup
   m_EditorClassIdentifier: Assembly-CSharp::StoryAppSetup
   _name: TestSetup
+  _applications: []
   _characters:
   - {fileID: 11400000, guid: 4568a7c5844589e4fa6a8d726392a2a5, type: 2}
   - {fileID: 11400000, guid: 7c059581a45e5404db6932ee8be5f6c2, type: 2}
@@ -34,3 +35,39 @@ MonoBehaviour:
     content: ah
   - title: B
     content: beh
+  _clocks:
+  - Town: Tokyo
+    timeDiff: 7
+  - Town: Dublin
+    timeDiff: -1
+  _alarms:
+  - tag: "R\xE9veil"
+    repetition: 8
+    isActive: 1
+    hours: 6
+    minutes: 20
+  - tag: "R\xE9veil 2"
+    repetition: 8
+    isActive: 1
+    hours: 6
+    minutes: 25
+  - tag: 3
+    repetition: 8
+    isActive: 1
+    hours: 6
+    minutes: 30
+  - tag: Rdv psy
+    repetition: 4
+    isActive: 0
+    hours: 17
+    minutes: 15
+  - tag: Argh
+    repetition: 9
+    isActive: 0
+    hours: 22
+    minutes: 38
+  - tag: 
+    repetition: 0
+    isActive: 0
+    hours: 13
+    minutes: 19

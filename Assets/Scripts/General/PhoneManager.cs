@@ -33,9 +33,9 @@ public class PhoneManager : MonoBehaviour
     };
     void Start()
     {
-        for(int i = 0; i < _appPrefabs.Count; i++)
+        for(int i = 0; i < _setup.Applications.Count; i++)
         {
-            GameObject app = Instantiate(_appPrefabs[i]);
+            GameObject app = Instantiate(_setup.Applications[i]);
             _apps.Add(app.GetComponent<Application>());
             AppManager.Instance.addToApps(_apps[i]);
             _apps[i].SetUp(_setup);

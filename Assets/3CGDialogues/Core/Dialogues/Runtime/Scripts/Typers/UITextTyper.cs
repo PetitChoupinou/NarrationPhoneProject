@@ -21,7 +21,7 @@ namespace TCG.Core.Dialogues
         }
         private void Start()
         {
-            
+            ReadText("ahahahahahahahahahahahahaahahahahahahahahahahahahahahahahahahahhaha");
         }
         public bool IsReadingText { get; private set; } = false;
 
