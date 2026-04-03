@@ -10,9 +10,11 @@ namespace TCG.Core.Dialogues
     {
         [SerializeField] private TextMeshProUGUI _textField;
         [SerializeField] private int _charactersPerSecond = 5;
+        [SerializeField] private int _maxMsgWidth = 15;
         [SerializeField]private AudioClip _clip;
         [SerializeField]private AudioSource _source;
         [SerializeField] GameObject _panel;
+        RectTransform _panelRect;
         private int _clipIndex = 0;
         public int currentCharactersPerSeconds;
         private void Awake()
@@ -21,7 +23,43 @@ namespace TCG.Core.Dialogues
         }
         private void Start()
         {
+            _panelRect=_panel.GetComponent<RectTransform>();
             ReadText("ahahahahahahahahahahahahaahahahahahahahahahahahahahahahahahahahhaha");
+        }
+        public string AddLineReturn(string text)
+        {
+            int lastSpace = 0;
+            int offset = 0;
+            string returnText = text;
+            int j = 1;
+            for (int i = 1; i < text.Length; i++)
+            {
+                if (text[i] == '\n')
+                {
+                    j = 1;
+                    continue;
+                }
+                if (text[i] == ' ')
+                {
+                    lastSpace = i;
+                }
+                if (j == _maxMsgWidth)
+                {
+                    //print("bitch" + text[i]);
+                    if (lastSpace == 0 || lastSpace + _maxMsgWidth < i)
+                    {
+                        returnText = returnText.Insert(i + offset, "\n");
+                    }
+                    else
+                    {
+                        returnText = returnText.Insert(lastSpace + offset, "\n");
+                    }
+                    offset += 2;
+                    j = 0;
+                }
+                j++;
+            }
+            return returnText;
         }
         public bool IsReadingText { get; private set; } = false;
 
@@ -45,7 +83,10 @@ namespace TCG.Core.Dialogues
 
         public void ReadText(string text )
         {
-            StartCoroutine(ReadingText(text));
+            _panelRect.localScale = Vector3.one;
+            _text.text = "";
+            string txt = AddLineReturn(text);
+            StartCoroutine(ReadingText(txt));
         }
         IEnumerator ReadingText(string text)
         {
@@ -65,8 +106,6 @@ namespace TCG.Core.Dialogues
                 command.Init(this);
             }
 
-            //TODO: Use TextCommandUtils.FindAlwaysUpdatedCommands to store always updated commands
-
             text = _RemoveCustomTags(text);
             TextField.text = text;
             TextField.ForceMeshUpdate();
@@ -81,6 +120,7 @@ namespace TCG.Core.Dialogues
             }
 
             IsReadingText = true;
+
         }
         public void GoToEnd()
         {
@@ -90,8 +130,14 @@ namespace TCG.Core.Dialogues
             foreach (TextCommand command in _commands) {
                 command.OnReadEnd();
             }
+            StartCoroutine(EndCoroutine());
         }
-
+        IEnumerator EndCoroutine()
+        {
+            yield return new WaitForSeconds(3);
+            _panelRect.localScale = Vector3.zero;
+            yield return null;
+        }
         private void Update()
         {
             if (IsReadingText)
