@@ -4,7 +4,6 @@ using UnityEngine;
 public class PhoneManager : MonoBehaviour
 {
     [SerializeField] private StoryAppSetup _setup;
-    [SerializeField] private List<GameObject> _appPrefabs;
     [SerializeField] private GameObject _appButtonPrefabs;
     [SerializeField] private GameObject _appButtonCanvas;
      private List<Application> _apps=new List<Application>();

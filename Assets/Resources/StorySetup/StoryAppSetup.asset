@@ -13,7 +13,12 @@ MonoBehaviour:
   m_Name: StoryAppSetup
   m_EditorClassIdentifier: Assembly-CSharp::StoryAppSetup
   _name: TestSetup
-  _applications: []
+  _applications:
+  - {fileID: 7991513738419085291, guid: 1699363c4bee2a9438541c194156c950, type: 3}
+  - {fileID: 7331036238270016989, guid: c04bc797bdc1ea949acd8b45d27686bc, type: 3}
+  - {fileID: 6712939520116750977, guid: 793e509e335ffba41b32e01d5a542f30, type: 3}
+  - {fileID: 6775899789610250122, guid: 1027d6c83a2b2c14796ecb2a046f8dce, type: 3}
+  - {fileID: 8123866142440240300, guid: a60deef65e0ce0b45bb9b32796eae084, type: 3}
   _characters:
   - {fileID: 11400000, guid: 4568a7c5844589e4fa6a8d726392a2a5, type: 2}
   - {fileID: 11400000, guid: 7c059581a45e5404db6932ee8be5f6c2, type: 2}

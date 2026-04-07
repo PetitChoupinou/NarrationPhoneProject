@@ -26,6 +26,7 @@ public class ClockApp : Application
             GameObject newAlarm = Instantiate(_alarmPrefab, _alarmContent.transform);
             newAlarm.GetComponent<Alarm>().SetUp(alarm.hours, alarm.minutes, alarm.repetition, alarm.isActive, alarm.tag);
         }
+        _baseClock.SetUp();
         foreach(ClocksData clock in clocks)
         {
             GameObject newClock = Instantiate(_clockPrefab, _clockContent.transform);
