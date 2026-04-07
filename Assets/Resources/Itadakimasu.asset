@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5ef08a29b60933941822e91151f6e732, type: 3}
-  m_Name: New Dialogue
+  m_Name: Itadakimasu
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   nodes:
-  - rid: 5760394270185357405
-  - rid: 5760394270185357406
-  - rid: 5760394270185357407
+  - rid: 5760394270185357440
+  - rid: 5760394270185357441
+  - rid: 5760394270185357442
   properties:
-  - rid: 5760394270185357408
+  - rid: 5760394270185357443
   entryPointNodeGuid: ce851e31-1c34-4b36-b578-a85b29501c1b
-  isLocked: 1
-  _isLocked: 1
+  isLocked: 0
+  _isLocked: 0
   references:
     version: 2
     RefIds:
-    - rid: 5760394270185357405
+    - rid: 5760394270185357440
       type: {class: NodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: ce851e31-1c34-4b36-b578-a85b29501c1b
@@ -32,31 +32,34 @@ MonoBehaviour:
         position: {x: 100, y: 200}
         outputs:
         - portValue: Next
-          targetNodeGuid: 12b143d4-e38b-4b24-9985-9baec2ee618a
+          targetNodeGuid: 1d28b282-0391-4695-b274-307a8a794547
         isSentCurrent: 0
-    - rid: 5760394270185357406
-      type: {class: AffinityNodeData, ns: , asm: Assembly-CSharp}
+    - rid: 5760394270185357441
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
-        nodeGUID: 790366df-4a7e-4031-b99d-535c2f1e0cd6
-        nodeType: 3
-        position: {x: 684, y: 216}
+        nodeGUID: 1d28b282-0391-4695-b274-307a8a794547
+        nodeType: 1
+        position: {x: 258.4, y: 226.40001}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 2954afca-3227-4b1a-9215-0c94b6c6fb03
+        isSentCurrent: 0
+        dialogueText: MIAM
+        isNPC: 0
+        timerSending: 0
+    - rid: 5760394270185357442
+      type: {class: UnlockNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 2954afca-3227-4b1a-9215-0c94b6c6fb03
+        nodeType: 6
+        position: {x: 788.8, y: 224}
         outputs:
         - portValue: Next
           targetNodeGuid: 
         isSentCurrent: 0
-        affinityGain: -8
-    - rid: 5760394270185357407
-      type: {class: AffinityNodeData, ns: , asm: Assembly-CSharp}
-      data:
-        nodeGUID: 12b143d4-e38b-4b24-9985-9baec2ee618a
-        nodeType: 3
-        position: {x: 342.4, y: 69.6}
-        outputs:
-        - portValue: Next
-          targetNodeGuid: 790366df-4a7e-4031-b99d-535c2f1e0cd6
-        isSentCurrent: 0
-        affinityGain: 5
-    - rid: 5760394270185357408
+        characterID: Sasha
+        dialogueID: New Dialogue
+    - rid: 5760394270185357443
       type: {class: 'ExposedProperty`1[[System.Single, mscorlib]]', ns: , asm: Assembly-CSharp}
       data:
         Name: Affinity

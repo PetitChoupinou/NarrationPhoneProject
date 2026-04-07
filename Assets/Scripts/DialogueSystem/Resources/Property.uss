@@ -1,0 +1,17 @@
+
+.pill-boolean #node-border {
+    background-color: rgb(150, 5, 5);
+}
+
+.pill-int32 #node-border {
+    background-color: rgb(13, 148, 107);
+}
+
+.pill-single #node-border {
+    background-color: rgb(2, 150, 16);
+}
+
+.pill-string #node-border {
+    background-color: rgb(184, 0, 171);
+}
+

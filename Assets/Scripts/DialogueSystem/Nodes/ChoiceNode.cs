@@ -37,6 +37,10 @@ public class ChoiceNode : DialogueNode
             var deleteButton = new Button(() => RemovePort(generatedPort))
             {
                 text = "X",
+                style =
+                {
+                    backgroundColor = new Color(0.5f, 0, 0)
+                }
             };
             generatedPort.contentContainer.Add(deleteButton);
         }

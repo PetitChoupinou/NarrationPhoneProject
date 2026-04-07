@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -15,6 +16,7 @@ public enum NodeType
     Affinity,
     Condition,
     Set,
+    Unlock,
 }
 
 public enum Talker
@@ -227,13 +229,13 @@ public class DialogueGraphView : GraphView
 
                 break;
             case NodeType.Condition:
-                node = new ConditionNode
+                node = new ConditionPropertyNode
                 {
                     GUID = Guid.NewGuid().ToString(),
                     title = type.ToString(),
                     nodeType = NodeType.Condition
                 };
-                ConditionNode conditionNode = node as ConditionNode;
+                ConditionPropertyNode conditionNode = node as ConditionPropertyNode;
                 inputPort = node.GeneratePort(Direction.Input, Port.Capacity.Multi);
                 inputPort.portName = "Input";
                 node.inputContainer.Add(inputPort);
@@ -327,6 +329,89 @@ public class DialogueGraphView : GraphView
                 node.SetPosition(new Rect(position, BaseNode.defaultNodeSize));
 
                 break;
+            case NodeType.Unlock:
+                node = new UnlockNode
+                {
+                    GUID = Guid.NewGuid().ToString(),
+                    title = type.ToString(),
+                    nodeType = NodeType.Unlock
+                };
+                UnlockNode unlockNode = node as UnlockNode;
+                inputPort = node.GeneratePort(Direction.Input, Port.Capacity.Multi);
+                inputPort.portName = "Input";
+                node.inputContainer.Add(inputPort);
+                CharacterSheet character = null;
+                
+                ObjectField characterUnlockField = new ObjectField
+                {
+                    label = "Character",
+                    objectType = typeof(CharacterSheet)
+                };
+                unlockNode.characterField = characterUnlockField;
+                DropdownField dialogueUnlockField = new DropdownField
+                {
+                    label = "Dialogue",
+                    choices = new List<string> {},
+                    value = ""
+                };
+                unlockNode.dialogueField = dialogueUnlockField;
+                dialogueUnlockField.RegisterValueChangedCallback(evt =>
+                {
+                    if(character != null && evt.newValue != "")
+                    {
+                        unlockNode.IDDialogue = character.Dialogues.FirstOrDefault(d => d.name == evt.newValue).name;
+
+                    }
+                });
+                characterUnlockField.RegisterValueChangedCallback(evt =>
+                {
+                    character = evt.newValue as CharacterSheet;
+                    if (unlockNode.IDCharacter != character.Name && unlockNode.IDCharacter != "")
+                    {
+                        unlockNode.IDDialogue = "";
+                    }
+                    unlockNode.IDCharacter = character.Name;
+                    
+                    if (node.mainContainer.Contains(dialogueUnlockField)) node.mainContainer.Remove(dialogueUnlockField);
+                    dialogueUnlockField.choices.Clear();
+                    foreach (var dialogue in character.Dialogues)
+                    {
+                        if (dialogue == null) continue;
+                        dialogueUnlockField.choices.Add(dialogue.name);
+                    }
+                    if (string.IsNullOrEmpty(unlockNode.IDDialogue) || unlockNode.IDDialogue == "Dialogue")
+                    {
+                        if (character.Dialogues.Count() > 0)
+                        {
+                            unlockNode.IDDialogue = dialogueUnlockField.choices[0];
+                            dialogueUnlockField.value = dialogueUnlockField.choices[0];
+                        }
+                        else
+                        {
+                            dialogueUnlockField.value = "Dialogue";
+                        }
+                        
+                    }
+                    else
+                    {
+                        var dialogue = character.Dialogues.FirstOrDefault(x => x.name == unlockNode.IDDialogue);
+                        dialogueUnlockField.value = dialogue != null ? dialogue.name : "Dialogue";
+                    }
+                    node.mainContainer.Add(dialogueUnlockField);
+                });
+                node.mainContainer.Add(characterUnlockField);
+                node.mainContainer.Add(dialogueUnlockField);
+
+
+                outputPort = node.GeneratePort(Direction.Output);
+                outputPort.portName = "Next";
+                node.outputContainer.Add(outputPort);
+
+                node.RefreshExpandedState();
+                node.RefreshPorts();
+                node.SetPosition(new Rect(position, BaseNode.defaultNodeSize));
+
+                break;
         }
         if(type != NodeType.Start)
         {
@@ -349,7 +434,7 @@ public class DialogueGraphView : GraphView
 
     }
 
-    private void AddCondition(Condition data, VisualElement mainContainer, ConditionNode conditionNode)
+    private void AddCondition(Condition data, VisualElement mainContainer, ConditionPropertyNode conditionNode)
     {
         Condition newCondition = new Condition
         {
@@ -394,8 +479,14 @@ public class DialogueGraphView : GraphView
         var conditionField = new DropdownField
         {
             choices = GetChoiceConditionsFromType(data.typeCondition),
-            value = data.property != null ? data.GetConditionText(data.condition) : "="
+            value = data.property != null ? data.GetConditionText(data.condition) : "=",
+            style = {
+                fontSize = 30
+            }
         };
+        var dropdownFieldStyle = conditionField.Q(className: "unity-base-popup-field__input").style;
+        conditionField.Q(className: "unity-base-popup-field__text").style.fontSize = 20;
+        dropdownFieldStyle.backgroundColor = Color.clear;
         conditionField.RegisterValueChangedCallback(evt =>
         {
             newCondition.condition = newCondition.GetConditionType(evt.newValue);
@@ -405,10 +496,11 @@ public class DialogueGraphView : GraphView
         {
             ExposedProperty selectedProperty = exposedProperties.FirstOrDefault(p => p.Name == evt.newValue);
             Type type = selectedProperty.type;
+            if(row.Contains(conditionField)) row.Remove(conditionField);
             conditionField.value = "=";
             conditionField.choices = GetChoiceConditionsFromType(selectedProperty.type);
             newCondition.property = selectedProperty;
-
+            row.Add(conditionField);
             row.Remove(valueField);
             valueField = CreateFieldForType(type, GetDefaultValue(selectedProperty.type), value =>
             {
@@ -422,13 +514,18 @@ public class DialogueGraphView : GraphView
             conditionNode.conditions.Remove(newCondition);
             mainContainer.Remove(row);
         })
-        { text = "X", };
+        { 
+            text = "X",
+            style = {
+                backgroundColor = new Color(0.5f, 0, 0),
+            }
+        };
 
 
         conditionNode.conditions.Add(newCondition);
         row.Add(deleteButton);
         row.Add(propertyConditionField);
-        row.Add(conditionField);
+        
         row.Add(valueField);
         
         mainContainer.Add(row);
@@ -500,8 +597,8 @@ public class DialogueGraphView : GraphView
                 nodeAffinity.UpdateAffinityField();
                 break;
             case NodeType.Condition:
-                var nodeCondition = node as ConditionNode;
-                var nodeConditionData = nodeData as ConditionNodeData;
+                var nodeCondition = node as ConditionPropertyNode;
+                var nodeConditionData = nodeData as ConditionPropertyNodeData;
                 foreach (var conditionData in nodeConditionData.conditions)
                 {
                     AddCondition(conditionData, nodeCondition.mainContainer, nodeCondition);
@@ -520,8 +617,16 @@ public class DialogueGraphView : GraphView
                    
                 }
                 break;
+            case NodeType.Unlock:
+                var nodeUnlock = node as UnlockNode;
+                var nodeUnlockData = nodeData as UnlockNodeData;
+                nodeUnlock.IDCharacter = nodeUnlockData.characterID;
+                nodeUnlock.IDDialogue = nodeUnlockData.dialogueID;
+                nodeUnlock.UpdateCharacterField();
+                nodeUnlock.UpdateDialogueField();
+                break;
         }
-        node.isSentToggle.value = nodeData.isSent;
+        node.isSentToggle.value = nodeData.IsSentBase;
 
         AddElement(node);
         return node;
@@ -609,6 +714,7 @@ public class DialogueGraphView : GraphView
 
     public void AddPropertyToBlackboard<T>(ExposedProperty exposedProperty)
     {
+        styleSheets.Add(Resources.Load<StyleSheet>("Property"));
         if (exposedProperty == null) return;
         var localPropertyName = exposedProperty.Name;
         var localPropertyValue = exposedProperty.GetValue();
@@ -623,10 +729,23 @@ public class DialogueGraphView : GraphView
         exposedProperties.Add(property);
 
         var container = new VisualElement();
+        
         string typeName = typeof(T).Name;
         //var blackboardField = new BlackboardField { text = $"New {typeName}" , typeText = typeName };
         var blackboardField = new BlackboardField { text = localPropertyName, typeText = typeName, capabilities = Capabilities.Selectable | Capabilities.Renamable};
-        
+        /*Color fieldColor = typeof(T) switch
+        {
+            Type t when t == typeof(bool) => Color.red,
+            Type t when t == typeof(int) => new Color(0.2f, 0.6f, 1f),
+            Type t when t == typeof(float) => new Color(0.4f, 0.9f, 0.4f),
+            Type t when t == typeof(string) => new Color(1f, 0.8f, 0.2f),
+            _ => Color.white
+        };
+        */
+        blackboardField.Q(name: "node-border").style.backgroundImage = null;
+        blackboardField.AddToClassList($"pill-{typeName.ToLower()}");
+
+        //blackboardField.Q(className: "node-border").style.backgroundColor = fieldColor;
         container.Add(blackboardField);
         if (property.Name == "Affinity")
         {
@@ -639,7 +758,12 @@ public class DialogueGraphView : GraphView
                 exposedProperties.Remove(property);
                 blackboard.Remove(container);
             })
-            { text = "X", };
+            { 
+                text = "X",
+                style = {
+                    backgroundColor = new Color(0.5f, 0, 0),
+                }
+            };
             blackboardField.Add(deleteButton);
             var propertyField = CreateFieldForType(typeof(T), (T)localPropertyValue, value => {
 
@@ -649,12 +773,8 @@ public class DialogueGraphView : GraphView
             var row = new BlackboardRow(blackboardField, propertyField);
             container.Add(row);
         }
-        
-        
-        
-        
         blackboard.Add(container);
-       
+        
     }
 
 

@@ -2,6 +2,11 @@ DialogueNode #title{
 	background-color: rgb(15, 90, 15);
 }
 
+#deleteButton{
+	background-color: rgb(0, 0, 0);
+	color: rgb(255, 255, 255);
+}
+
 ChoiceNode #title{
 	background-color: rgb(15, 15, 90);
 
@@ -12,7 +17,7 @@ AffinityNode #title{
 
 }
 
-ConditionNode #title{
+ConditionPropertyNode #title{
 	background-color: rgb(90, 15, 15);
 
 }
@@ -21,3 +26,11 @@ SetPropertyNode #title{
 	background-color: rgb(120, 100, 15);
 
 }
+.unity-base-popup-field__input{
+	border-radius: 10px;
+}
+
+.unity-base-popup-field__text {
+    -unity-text-align: middle-center;
+}
+

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using UnityEngine.TextCore.Text;
+using System.Linq;
 
 public class MessageApp : Application
 {
@@ -35,12 +37,8 @@ public class MessageApp : Application
             gameObjectsToDeactivate.Add(discussion);
             _discussions.Add(discussion.GetComponent<Discussion>());
             DialogueDataReader dialogueDataReader = discussion.GetComponent<DialogueDataReader>();
-            if (dialogueDataReader != null)
-            {
-                dialogueDataReader.dialogueData = character.currentDialogue;
-                //if(dialogueDataReader.dialogueData != null) dialogueDataReader.StartConversation();
-
-            }
+            //dialogueDataReader._currentDialogueData = character.currentDialogue;
+            dialogueDataReader.dialogueDatas.AddRange(character.Dialogues);
         }
 
         StartCoroutine(StartGame());
@@ -74,13 +72,26 @@ public class MessageApp : Application
         {
             gameObjectsToDeactivate[i].GetComponent<RectTransform>().localScale=Vector3.zero;
         }
+        foreach(var discussion in _discussions)
+        {
+            DialogueDataReader dialogueDataReader = discussion.GetComponent<DialogueDataReader>();
+            if (dialogueDataReader != null && dialogueDataReader.dialogueDatas.Count > 0)
+            {
+                var availableData = dialogueDataReader.dialogueDatas.FirstOrDefault(x => x.isLocked == false);
+                if(availableData != null) dialogueDataReader.StartConversation(availableData.name);
+            }
+        }
         yield return null;
     }
 
-    public void GainAffinity(float value, string targetID)
+
+    void StartConversation(string characterID)
     {
-        //Get the character with the targetID and increase their affinity by value
-        Debug.Log($"You gain {value} affinity with {targetID}!");
+        _discussions.Find(x => x.ID == characterID).Enable();
     }
 
+    public void UnlockDialogue(string characterID, string dialogueID)
+    {
+        _discussions.Find(x => x.ID == characterID).DialogueDataReader.UnlockDialogue(dialogueID);
+    }
 }

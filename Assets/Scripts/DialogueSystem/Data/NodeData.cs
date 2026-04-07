@@ -12,8 +12,18 @@ public class NodeData
     public NodeType nodeType;
     public Vector2 position;
     public List<OutputData> outputs = new List<OutputData>();
-    public bool isSent;
+    private bool _isSentBase;
+    public bool isSentCurrent;
 
+    public bool IsSentBase
+    {
+        get => _isSentBase;
+        set
+        {
+            _isSentBase = value;
+            isSentCurrent = value;
+        }
+    }
 }
 [Serializable]
 public class DialogueNodeData : NodeData
@@ -39,6 +49,8 @@ public class ChoiceNodeData : DialogueNodeData
         position = data.position;
         outputs = data.outputs;
     }
+
+    public int chosenChoiceID = -1;
 }
 [Serializable]
 public class AffinityNodeData : NodeData
@@ -54,9 +66,9 @@ public class AffinityNodeData : NodeData
 }
 
 [Serializable]
-public class ConditionNodeData : NodeData
+public class ConditionPropertyNodeData : NodeData
 {
-    public ConditionNodeData(NodeData data)
+    public ConditionPropertyNodeData(NodeData data)
     {
         nodeGUID = data.nodeGUID;
         nodeType = data.nodeType;
@@ -78,6 +90,19 @@ public class SetPropertyNodeData : NodeData
     [SerializeReference]
     public ExposedProperty property;
     public string valueString;
+}
+[Serializable]
+public class UnlockNodeData : NodeData
+{
+    public UnlockNodeData(NodeData data)
+    {
+        nodeGUID = data.nodeGUID;
+        nodeType = data.nodeType;
+        position = data.position;
+        outputs = data.outputs;
+    }
+    public string characterID;
+    public string dialogueID;
 }
 [Serializable]
 public class OutputData

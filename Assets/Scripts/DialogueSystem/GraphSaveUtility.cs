@@ -51,6 +51,7 @@ public class GraphSaveUtility
             AssetDatabase.CreateFolder("Assets", "Resources");
         }
 
+
         AssetDatabase.CreateAsset(dialogueData, $"Assets/Resources/{fileName}.asset");
         AssetDatabase.SaveAssets();
 
@@ -113,8 +114,8 @@ public class GraphSaveUtility
                 data = affinityNodeData;
                 break;
             case NodeType.Condition:
-                var conditionNode = node as ConditionNode;
-                ConditionNodeData conditionNodeData = new ConditionNodeData(data);
+                var conditionNode = node as ConditionPropertyNode;
+                ConditionPropertyNodeData conditionNodeData = new ConditionPropertyNodeData(data);
                 conditionNodeData.outputs.Add(CreateOutputData(connectedPorts, node, "True"));
                 conditionNodeData.outputs.Add(CreateOutputData(connectedPorts, node, "False"));
                 conditionNodeData.conditions = conditionNode.conditions;
@@ -128,10 +129,18 @@ public class GraphSaveUtility
                 setPropertyNodeData.outputs.Add(CreateOutputData(connectedPorts, node, "Next"));
                 data = setPropertyNodeData;
                 break;
+            case NodeType.Unlock:
+                var unlockNode = node as UnlockNode;
+                UnlockNodeData unlockNodeData = new UnlockNodeData(data);
+                unlockNodeData.characterID = unlockNode.IDCharacter;
+                unlockNodeData.dialogueID = unlockNode.IDDialogue;
+                unlockNodeData.outputs.Add(CreateOutputData(connectedPorts, node, "Next"));
+                data = unlockNodeData;
+                break;
             default:
                 break;
         }
-        data.isSent = node.isSent;
+        data.IsSentBase = node.isSent;
         return data;
     }
 
@@ -177,48 +186,6 @@ public class GraphSaveUtility
 
     private void ConnectNodes()
     {
-        /*for (int i = 0; i < _nodes.Count; i++)
-        {
-            var connections = _dataCache.nodeLinks.Where(x => x.baseNodeGuid == _nodes[i].GUID).ToList();
-            if (_nodes[i].isEntryPoint)
-            {
-                var targetNodeGuid = connections.First(x => x.baseNodeGuid == _dataCache.entryPointNodeGuid).targetNodeGuid;
-                var targetNode = _nodes.First(x => x.GUID == targetNodeGuid);
-                LinkNodes(_nodes[i].outputContainer[0].Q<Port>(), (Port)targetNode.inputContainer[0]);
-            }
-            else
-            {
-                var nodeData = _dataCache.nodes.First(x => x.nodeGUID == _nodes[i].GUID);
-                int j = 0;
-                int connectionID = 0;
-                foreach (var outputElementData in nodeData.outputContainer.Children())
-                {
-
-                    Port portData = outputElementData.Q<Port>();
-                    var connectionsData = portData.connections.ToList();
-                    if (portData == null)
-                    {
-
-                        continue;
-                    }
-                    if (portData.connections.Count() > 0)
-                    {
-                        var targetNodeGuid = connections[connectionID].targetNodeGuid;
-                        var targetNode = _nodes.First(x => x.GUID == targetNodeGuid);
-                        LinkNodes(_nodes[i].outputContainer[j].Q<Port>(), (Port)targetNode.inputContainer[0]);
-                        j++;
-                        connectionID++;
-                    }
-                    else
-                    {
-                        j++;
-                    }
-
-
-                }
-            }
-
-        }*/
         
         for (int i = 0; i < _nodes.Count; i++)
         {
