@@ -11,5 +11,17 @@ public class DialogueData : ScriptableObject
     [SerializeReference]
     public List<ExposedProperty> properties = new List<ExposedProperty>();
     public string entryPointNodeGuid = "";
-    public string characterID = "Sasha";
+    [HideInInspector] public bool isLocked;
+    [SerializeField] private bool _isLocked;
+
+    private void OnValidate()
+    {
+        isLocked = _isLocked;
+    }
+
+    public bool GetBaseIsLocked()
+    {
+        return _isLocked;
+    }
+
 }

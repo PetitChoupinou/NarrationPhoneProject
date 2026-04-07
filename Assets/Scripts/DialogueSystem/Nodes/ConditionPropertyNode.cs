@@ -14,7 +14,7 @@ public enum ConditionType
     GreaterThanOrEqual,
     LessThanOrEqual
 }
-public class ConditionNode : BaseNode
+public class ConditionPropertyNode : BaseNode
 {
     public List<Condition> conditions = new List<Condition>();
 

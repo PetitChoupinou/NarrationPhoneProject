@@ -27,6 +27,6 @@ MonoBehaviour:
   telNum: 
   profilePic: {fileID: 0}
   dialogues:
-  - {fileID: 11400000, guid: c71547385c045b2488ef8f73c0e6f758, type: 2}
-  - {fileID: 11400000, guid: d11d07275fbac2646a376ac45751183e, type: 2}
+  - {fileID: 11400000, guid: aef4c1b8e157f6a4c9b5de660b90917e, type: 2}
+  - {fileID: 11400000, guid: 25e59629402745e4ba9705e92096d4da, type: 2}
   dialogueIndex: 1
