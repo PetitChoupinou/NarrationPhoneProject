@@ -78,7 +78,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
   _isNPCMsg: 0
-  _textTyper: {fileID: 0}
+  _textTyper: {fileID: 4244329274477848879}
   _maxMsgWidth: 15
 --- !u!114 &4244329274477848879
 MonoBehaviour:
@@ -94,7 +94,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TCG.Core.Dialogues.UITextTypeMsgr
   _textField: {fileID: 6479493552214892198}
   _charactersPerSecond: 1000
-  _maxMsgWidth: 15
   _clip: {fileID: 0}
   _source: {fileID: 0}
   currentCharactersPerSeconds: 0

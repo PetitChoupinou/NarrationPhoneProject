@@ -40,10 +40,6 @@ namespace TCG.Core.Dialogues
         {
             currentCharactersPerSeconds = _charactersPerSecond;
         }
-        private void Start()
-        {
-            ReadText("My name is <name=> ?");
-        }
         public void ReadText(string text )
         {
             CurrentText= text;
