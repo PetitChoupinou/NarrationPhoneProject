@@ -46,7 +46,7 @@ namespace TCG.Core.Dialogues
         private void Start()
         {
             _panelRect=_panel.GetComponent<RectTransform>();
-            ReadText("My name is <name> ?");
+            ReadText("My name is <name=> ?");
         }
         public string AddLineReturn(string text)
         {

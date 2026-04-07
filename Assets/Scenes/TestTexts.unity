@@ -1853,7 +1853,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TCG.Core.Dialogues.UITextTyper
   _textField: {fileID: 2021758681}
-  _charactersPerSecond: 1000
+  _charactersPerSecond: 5
   _maxMsgWidth: 15
   _clip: {fileID: 0}
   _source: {fileID: 0}
