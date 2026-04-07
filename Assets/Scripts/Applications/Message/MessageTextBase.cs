@@ -1,12 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using TCG.Core.Dialogues;
 
 public class MessageTextBase : MonoBehaviour
 {
     private HorizontalLayoutGroup _layoutGroup;
     private TMP_Text _message;
     [SerializeField] private bool _isNPCMsg;
+    [SerializeField] private UITextTyperMsg _textTyper;
     [SerializeField] int _maxMsgWidth=15;
 
     public TMP_Text Message { get => _message;}
@@ -14,7 +16,6 @@ public class MessageTextBase : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
-        _message = GetComponentInChildren<TMP_Text>();
         _layoutGroup = GetComponent<HorizontalLayoutGroup>();
 
     }
@@ -37,7 +38,7 @@ public class MessageTextBase : MonoBehaviour
         {
            msg= AddLineReturn(msg);
         }
-        Message.text = msg;
+        _textTyper.ReadText(msg);
     }
     public string AddLineReturn(string text)
     {

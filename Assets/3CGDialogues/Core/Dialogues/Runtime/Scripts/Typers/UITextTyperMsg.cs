@@ -6,23 +6,14 @@ using UnityEngine;
 
 namespace TCG.Core.Dialogues
 {
-    public class UITextTyperLV1 : MonoBehaviour, IUITextTyper
+    public class UITextTyperMsg : MonoBehaviour, IUITextTyper
     {
         [SerializeField] private TextMeshProUGUI _textField;
         [SerializeField] private int _charactersPerSecond = 5;
         [SerializeField]private AudioClip _clip;
         [SerializeField]private AudioSource _source;
-        [SerializeField] GameObject _panel;
         private int _clipIndex = 0;
         public int currentCharactersPerSeconds;
-        private void Awake()
-        {
-            currentCharactersPerSeconds = _charactersPerSecond;
-        }
-        private void Start()
-        {
-            
-        }
         public bool IsReadingText { get; private set; } = false;
 
 #pragma warning disable 0414
@@ -41,24 +32,27 @@ namespace TCG.Core.Dialogues
 
         public TextMeshProUGUI TextField => _textField;
 
-        public string CurrentText { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string CurrentText { get; set; }
 
         public TMP_Text _text;
 
+        private void Awake()
+        {
+            currentCharactersPerSeconds = _charactersPerSecond;
+        }
+        private void Start()
+        {
+            ReadText("My name is <name=> ?");
+        }
         public void ReadText(string text )
         {
-            StartCoroutine(ReadingText(text));
+            CurrentText= text;
+            _text.text = "";
+            StartCoroutine(ReadingText());
         }
-        IEnumerator ReadingText(string text)
+        IEnumerator ReadingText()
         {
             yield return null;
-            float timer = 0;
-            while (timer < 1)
-            {
-                _panel.transform.position =new Vector3(_panel.transform.position.x,Mathf.Lerp( _panel.transform.position.y,150,timer),_panel.transform.position.z);
-                yield return new WaitForSeconds(Time.deltaTime);
-                timer += Time.deltaTime;
-            }
             _clipIndex = 0;
             if (_commands != null)
             {
@@ -68,16 +62,10 @@ namespace TCG.Core.Dialogues
                 }
             }
 
-            _commands = _GenerateCommands(text);
-            foreach (TextCommand command in _commands)
-            {
-                command.Init(this);
-            }
+            _commands = _GenerateCommands(CurrentText);
 
-            //TODO: Use TextCommandUtils.FindAlwaysUpdatedCommands to store always updated commands
-
-            text = _RemoveCustomTags(text);
-            TextField.text = text;
+            CurrentText = _RemoveCustomTags(CurrentText);
+            TextField.text = CurrentText;
             TextField.ForceMeshUpdate();
             _readCharacterOffset = 0f;
             _readMaxCharacters = TextField.GetParsedText().Length;
@@ -90,6 +78,7 @@ namespace TCG.Core.Dialogues
             }
 
             IsReadingText = true;
+
         }
         public void GoToEnd()
         {
@@ -99,22 +88,12 @@ namespace TCG.Core.Dialogues
             foreach (TextCommand command in _commands) {
                 command.OnReadEnd();
             }
+            StartCoroutine(EndCoroutine());
         }
-        public void RemoveWindow()
+        IEnumerator EndCoroutine()
         {
-            StartCoroutine(RemoveDialog());
-        }
-        IEnumerator RemoveDialog()
-        {
-            float timer = 0;
-            while (timer < 1)
-            {
-                Debug.Log(timer);
-                _panel.transform.position = new Vector3(_panel.transform.position.x, Mathf.Lerp(_panel.transform.position.y, -150, timer), _panel.transform.position.z);
-                yield return new WaitForSeconds(Time.deltaTime);
-                timer += Time.deltaTime;
-            }
-            _textField.text = "";
+            yield return new WaitForSeconds(3);
+            yield return null;
         }
         private void Update()
         {
@@ -123,7 +102,7 @@ namespace TCG.Core.Dialogues
                 _UpdateReadText();
                 _UpdateAlwaysUpdatedCommands();
             }
-
+            
         }
 
         private void _UpdateAlwaysUpdatedCommands()
@@ -204,7 +183,7 @@ namespace TCG.Core.Dialogues
             TextField.maxVisibleCharacters = Mathf.FloorToInt(_readCharacterOffset);
         }
 
-        private static TextCommand[] _GenerateCommands(string text)
+        private  TextCommand[] _GenerateCommands(string text)
         {
             int startIndex = 1;
             int offset = 0;
@@ -230,10 +209,10 @@ namespace TCG.Core.Dialogues
                             if (tagArg != "")
                             {
                                 TextCommand command = factory.CreateCommand(tagName);
-                                command.SetupData(tagArg);
+                                command.Init(this);                               
                                 command.TagName = tagName;
                                 command.EnterIndex = startIndex - offset;
-
+                                command.SetupData(tagArg);
                                 commands.Add(command);
                             }
                             else
@@ -244,9 +223,10 @@ namespace TCG.Core.Dialogues
                         else
                         {
                             TextCommand command = factory.CreateCommand(tagName);
-                            command.SetupData(tagArg);
+                            command.Init(this);
                             command.EnterIndex = startIndex - offset;
                             command.TagName = tagName;
+                            command.SetupData(tagArg);
                             commands.Add(command);
                         }
                     }

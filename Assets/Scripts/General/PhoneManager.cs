@@ -12,7 +12,6 @@ public class PhoneManager : MonoBehaviour
     private static PhoneManager instance = null;
     public static PhoneManager Instance => instance;
 
-    public List<CharacterSheet> Characters { get => _characters; set => _characters = value; }
 
     private void Awake()
     {
