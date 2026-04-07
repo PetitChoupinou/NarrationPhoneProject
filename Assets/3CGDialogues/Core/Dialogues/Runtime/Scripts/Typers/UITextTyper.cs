@@ -17,6 +17,28 @@ namespace TCG.Core.Dialogues
         RectTransform _panelRect;
         private int _clipIndex = 0;
         public int currentCharactersPerSeconds;
+        public bool IsReadingText { get; private set; } = false;
+
+#pragma warning disable 0414
+        public bool IsWaitingForCommand { get; private set; } = false;
+        private TextCommand _pendingCommand = null;
+#pragma warning restore 0414
+
+#pragma warning disable 0414
+        private TextCommand[] _alwaysUpdatedCommand;
+#pragma warning restore 0414
+
+        private float _readCharacterOffset = 0;
+        private int _readMaxCharacters = 0;
+
+        private TextCommand[] _commands;
+
+        public TextMeshProUGUI TextField => _textField;
+
+        public string CurrentText { get; set; }
+
+        public TMP_Text _text;
+
         private void Awake()
         {
             currentCharactersPerSeconds = _charactersPerSecond;
@@ -24,7 +46,7 @@ namespace TCG.Core.Dialogues
         private void Start()
         {
             _panelRect=_panel.GetComponent<RectTransform>();
-            ReadText("ahahahahahahahahahahahahaahahahahahahahahahahahahahahahahahahahhaha");
+            ReadText("My name is <name> ?");
         }
         public string AddLineReturn(string text)
         {
@@ -61,34 +83,17 @@ namespace TCG.Core.Dialogues
             }
             return returnText;
         }
-        public bool IsReadingText { get; private set; } = false;
-
-#pragma warning disable 0414
-        public bool IsWaitingForCommand { get; private set; } = false;
-        private TextCommand _pendingCommand = null;
-#pragma warning restore 0414
-
-#pragma warning disable 0414
-        private TextCommand[] _alwaysUpdatedCommand;
-#pragma warning restore 0414
-
-        private float _readCharacterOffset = 0;
-        private int _readMaxCharacters = 0;
-
-        private TextCommand[] _commands;
-
-        public TextMeshProUGUI TextField => _textField;
-
-        public TMP_Text _text;
+     
 
         public void ReadText(string text )
         {
+            CurrentText= text;
             _panelRect.localScale = Vector3.one;
             _text.text = "";
-            string txt = AddLineReturn(text);
-            StartCoroutine(ReadingText(txt));
+            CurrentText = AddLineReturn(CurrentText);
+            StartCoroutine(ReadingText());
         }
-        IEnumerator ReadingText(string text)
+        IEnumerator ReadingText()
         {
             yield return null;
             _clipIndex = 0;
@@ -100,14 +105,10 @@ namespace TCG.Core.Dialogues
                 }
             }
 
-            _commands = _GenerateCommands(text);
-            foreach (TextCommand command in _commands)
-            {
-                command.Init(this);
-            }
+            _commands = _GenerateCommands(CurrentText);
 
-            text = _RemoveCustomTags(text);
-            TextField.text = text;
+            CurrentText = _RemoveCustomTags(CurrentText);
+            TextField.text = CurrentText;
             TextField.ForceMeshUpdate();
             _readCharacterOffset = 0f;
             _readMaxCharacters = TextField.GetParsedText().Length;
@@ -226,7 +227,7 @@ namespace TCG.Core.Dialogues
             TextField.maxVisibleCharacters = Mathf.FloorToInt(_readCharacterOffset);
         }
 
-        private static TextCommand[] _GenerateCommands(string text)
+        private  TextCommand[] _GenerateCommands(string text)
         {
             int startIndex = 1;
             int offset = 0;
@@ -252,10 +253,10 @@ namespace TCG.Core.Dialogues
                             if (tagArg != "")
                             {
                                 TextCommand command = factory.CreateCommand(tagName);
-                                command.SetupData(tagArg);
+                                command.Init(this);                               
                                 command.TagName = tagName;
                                 command.EnterIndex = startIndex - offset;
-
+                                command.SetupData(tagArg);
                                 commands.Add(command);
                             }
                             else
@@ -266,9 +267,10 @@ namespace TCG.Core.Dialogues
                         else
                         {
                             TextCommand command = factory.CreateCommand(tagName);
-                            command.SetupData(tagArg);
+                            command.Init(this);
                             command.EnterIndex = startIndex - offset;
                             command.TagName = tagName;
+                            command.SetupData(tagArg);
                             commands.Add(command);
                         }
                     }

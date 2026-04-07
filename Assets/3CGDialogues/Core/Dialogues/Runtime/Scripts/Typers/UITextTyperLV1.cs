@@ -41,6 +41,8 @@ namespace TCG.Core.Dialogues
 
         public TextMeshProUGUI TextField => _textField;
 
+        public string CurrentText { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
         public TMP_Text _text;
 
         public void ReadText(string text )

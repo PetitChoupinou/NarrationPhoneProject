@@ -12,5 +12,7 @@ namespace TCG.Core.Dialogues
         bool IsReadingText { get; }
         
         void ReadText(string text);
+        string CurrentText { get; set; }
+
     }
 }

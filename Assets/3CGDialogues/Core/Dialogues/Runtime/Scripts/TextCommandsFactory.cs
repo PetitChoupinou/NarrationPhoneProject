@@ -20,6 +20,7 @@ namespace TCG.Core.Dialogues
                //case "fadein": return new TextCommandTextAppear();
                 case "mirage": return new TextCommandMirage();
                 case "ptsd": return new TextCommandTextPTSD();
+                case "name": return new TextCommandAddName();
             }
 
             return null;

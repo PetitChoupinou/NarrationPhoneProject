@@ -1102,12 +1102,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterManager
   _setup: {fileID: 11400000, guid: 03585ea8afc96ef49a64f511cd395e0d, type: 2}
-  _appPrefabs:
-  - {fileID: 7991513738419085291, guid: 1699363c4bee2a9438541c194156c950, type: 3}
-  - {fileID: 7331036238270016989, guid: c04bc797bdc1ea949acd8b45d27686bc, type: 3}
-  - {fileID: 6712939520116750977, guid: 793e509e335ffba41b32e01d5a542f30, type: 3}
-  - {fileID: 6775899789610250122, guid: 1027d6c83a2b2c14796ecb2a046f8dce, type: 3}
-  - {fileID: 8123866142440240300, guid: a60deef65e0ce0b45bb9b32796eae084, type: 3}
   _appButtonPrefabs: {fileID: 5699618625647100262, guid: 3bd891322c9c61141bee94eede4fc1e4, type: 3}
   _appButtonCanvas: {fileID: 325279069}
 --- !u!114 &991798627
@@ -1843,7 +1837,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 103.45001, y: -15}
+  m_AnchoredPosition: {x: 103.45001, y: -35.11}
   m_SizeDelta: {x: 146.90002, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2021758680
@@ -1859,7 +1853,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TCG.Core.Dialogues.UITextTyper
   _textField: {fileID: 2021758681}
-  _charactersPerSecond: 5
+  _charactersPerSecond: 1000
   _maxMsgWidth: 15
   _clip: {fileID: 0}
   _source: {fileID: 0}
