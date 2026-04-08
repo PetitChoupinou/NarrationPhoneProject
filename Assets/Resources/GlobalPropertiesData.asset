@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9204b2fb13b6b048af718cc4141cc5a, type: 3}
+  m_Name: GlobalPropertiesData
+  m_EditorClassIdentifier: Assembly-CSharp::GlobalPropertiesData
+  globalProperties:
+  - rid: 5760394360504189019
+  - rid: 5760394360504189020
+  references:
+    version: 2
+    RefIds:
+    - rid: 5760394360504189019
+      type: {class: 'ExposedProperty`1[[System.String, mscorlib]]', ns: , asm: Assembly-CSharp}
+      data:
+        Name: mamacita
+        isGlobal: 1
+        PropertyValue: pooo
+    - rid: 5760394360504189020
+      type: {class: 'ExposedProperty`1[[System.Int32, mscorlib]]', ns: , asm: Assembly-CSharp}
+      data:
+        Name: aaaaa
+        isGlobal: 1
+        PropertyValue: 4577

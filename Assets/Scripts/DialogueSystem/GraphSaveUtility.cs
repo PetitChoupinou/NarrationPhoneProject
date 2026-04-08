@@ -1,14 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting.FullSerializer;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.UIElements;
-using UnityEngine.Windows;
-using static UnityEditor.Rendering.CameraUI;
+
 
 public class GraphSaveUtility
 {
@@ -47,19 +43,28 @@ public class GraphSaveUtility
             }
             dialogueData.nodes.Add(CreateNodeData(graphNode, connectedPorts));
         }
-        if (!AssetDatabase.IsValidFolder("Assets/Resources")){
-            AssetDatabase.CreateFolder("Assets", "Resources");
+        if (!AssetDatabase.IsValidFolder("Assets/Resources/Dialogues")){
+            AssetDatabase.CreateFolder("Assets/Resources", "Dialogues");
         }
+        
 
-
-        AssetDatabase.CreateAsset(dialogueData, $"Assets/Resources/{fileName}.asset");
+        AssetDatabase.CreateAsset(dialogueData, $"Assets/Resources/Dialogues/{fileName}.asset");
         AssetDatabase.SaveAssets();
 
     }
 
-    public void SaveBlackboard(DialogueData data)
+   
+
+    public void SaveBlackboard(DialogueData dialogueData)
     {
-        data.properties.AddRange(_targetGraphView.exposedProperties);
+        /*foreach (var property in _targetGraphView.globalPropertiesData.globalProperties)
+        {
+            dialogueData.properties.Add(property);
+            
+        }
+*/
+
+
     }
 
     public NodeData CreateNodeData(BaseNode node, Edge[] connectedPorts)
@@ -244,9 +249,8 @@ public class GraphSaveUtility
 
     private void LoadBlackboard()
     {
-        _targetGraphView.ClearBlackboard();
-        Debug.Log("Properties count = " + _dataCache.properties.Count);
-        foreach (var property in _dataCache.properties)
+        //_targetGraphView.ClearBlackboard();
+        /*foreach (var property in _dataCache.properties)
         {
             if(property.Name == "Affinity")
             {
@@ -254,21 +258,11 @@ public class GraphSaveUtility
 
             }
             _targetGraphView.AddPropertyToBlackboard(property);
-        }
+        }*/
     }
     private void ClearGraph()
     {
-        /*if(_dataCache.nodeLinks.Count > 0 && _dataCache.nodeLinks[0].baseNodeGuid == _dataCache.entryPointNodeGuid) 
-        {
-            _nodes.Find(x => x.isEntryPoint).GUID = _dataCache.nodeLinks[0].baseNodeGuid;
-        }
-        foreach (var node in _nodes)
-        {
-            if (node.isEntryPoint) continue;
-            _edges.Where(x => x.input.node == node).ToList().ForEach(edge => _targetGraphView.RemoveElement(edge));
-
-            _targetGraphView.RemoveElement(node);
-        }*/
+        
        
         _nodes.Find(x => x.isEntryPoint).GUID = _dataCache.entryPointNodeGuid;
         foreach (var node in _nodes)

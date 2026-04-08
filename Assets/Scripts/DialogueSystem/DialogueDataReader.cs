@@ -24,12 +24,16 @@ public class DialogueDataReader : MonoBehaviour
     private EventTrigger.Entry _entry;
     private EventTrigger _eventTrigger;
 
+    private GlobalPropertiesData _globalPropertiesData;
+
     public string CharacterID { get => _characterID; set => _characterID = value; }
 
     private void OnEnable()
     {
         _messageApp = AppManager.Instance.GetApplication(ApplicationType.Messages) as MessageApp;
         _eventTrigger = gameObject.GetComponent<EventTrigger>();
+        _globalPropertiesData = Resources.Load<GlobalPropertiesData>("GlobalPropertiesData");
+
         //Get dialogueData from contact app
         /*var contactApp = AppManager.Instance.GetApplication(ApplicationType.Contacts) as ContactApp;
         dialogueData = contactApp.*/
@@ -42,7 +46,7 @@ public class DialogueDataReader : MonoBehaviour
         if(dialogueDatas.Count == 0) { return; }
         _currentDialogueData = dialogueDatas.FirstOrDefault(data => data.name == conversationID);
         List<NodeData> nodes = _currentDialogueData.nodes;
-        var affinityProperty = _currentDialogueData.properties.FirstOrDefault(x => x.Name == "Affinity");
+        //var affinityProperty = _currentDialogueData.properties.FirstOrDefault(x => x.Name == "Affinity");
         ReadNodeData(GetNextNodeData(_currentDialogueData.nodes.FirstOrDefault(node => node.nodeGUID == _currentDialogueData.entryPointNodeGuid))).Invoke();
         
     }
@@ -143,8 +147,8 @@ public class DialogueDataReader : MonoBehaviour
                 SetPropertyNodeData setNodeData = nodeData as SetPropertyNodeData;
                 return () =>
                 {
-                    ExposedProperty property = _currentDialogueData.properties.FirstOrDefault(prop => prop.Name == setNodeData.property.Name);
-                    if(property != null)
+                    ExposedProperty property = _globalPropertiesData.globalProperties.FirstOrDefault(prop => prop.Name == setNodeData.property.Name);
+                    if (property != null)
                     {
                         property.SetValue(ExposedProperty.GetValueFromString(property.type, setNodeData.valueString));
                     }
@@ -227,10 +231,10 @@ public class DialogueDataReader : MonoBehaviour
 
     public bool GetFinalConditionValue(List<Condition> conditions)
     {
-        
+
         foreach (var condition in conditions)
         {
-            if(!condition.Evaluate(_currentDialogueData.properties)) return false;
+            if (!condition.Evaluate(_globalPropertiesData.globalProperties)) return false;
         }
         return true;
     }
