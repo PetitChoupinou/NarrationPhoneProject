@@ -10,8 +10,8 @@ namespace TCG.Core.Dialogues
     {
         [SerializeField] private TextMeshProUGUI _textField;
         [SerializeField] private int _charactersPerSecond = 5;
-        [SerializeField]private AudioClip _clip;
-        [SerializeField]private AudioSource _source;
+        [SerializeField] private AudioClip _clip;
+        [SerializeField] private AudioSource _source;
         private int _clipIndex = 0;
         public int currentCharactersPerSeconds;
         public bool IsReadingText { get; private set; } = false;
@@ -30,7 +30,7 @@ namespace TCG.Core.Dialogues
 
         private TextCommand[] _commands;
 
-        public TextMeshProUGUI TextField => _textField;
+        public TextMeshProUGUI TextField { get; set; }
 
         public string CurrentText { get; set; }
 
@@ -40,9 +40,10 @@ namespace TCG.Core.Dialogues
         {
             currentCharactersPerSeconds = _charactersPerSecond;
         }
-        public void ReadText(string text )
+        public void ReadText(string text)
         {
-            CurrentText= text;
+            _readMaxCharacters = text.Length;
+            CurrentText = text;
             _text.text = "";
             StartCoroutine(ReadingText());
         }
@@ -64,8 +65,6 @@ namespace TCG.Core.Dialogues
             TextField.text = CurrentText;
             TextField.ForceMeshUpdate();
             _readCharacterOffset = 0f;
-            _readMaxCharacters = TextField.GetParsedText().Length;
-            TextField.maxVisibleCharacters = 0;
 
             foreach (TextCommand command in _commands)
             {
@@ -80,17 +79,12 @@ namespace TCG.Core.Dialogues
         {
             if (!IsReadingText) return;
             IsReadingText = false;
-            TextField.maxVisibleCharacters = _readMaxCharacters;
-            foreach (TextCommand command in _commands) {
+            foreach (TextCommand command in _commands)
+            {
                 command.OnReadEnd();
             }
-            StartCoroutine(EndCoroutine());
         }
-        IEnumerator EndCoroutine()
-        {
-            yield return new WaitForSeconds(3);
-            yield return null;
-        }
+
         private void Update()
         {
             if (IsReadingText)
@@ -98,12 +92,12 @@ namespace TCG.Core.Dialogues
                 _UpdateReadText();
                 _UpdateAlwaysUpdatedCommands();
             }
-            
+
         }
 
         private void _UpdateAlwaysUpdatedCommands()
         {
-            foreach(TextCommand command in _commands)
+            foreach (TextCommand command in _commands)
             {
                 if (command.AlwaysUpdated)
                     command.OnUpdate();
@@ -136,8 +130,8 @@ namespace TCG.Core.Dialogues
 
             int startIndex = Mathf.FloorToInt(startOffset);
             int endIndex = Mathf.FloorToInt(endOffset);
-            
-            if (endIndex > _clipIndex+1)
+
+            if (endIndex > _clipIndex + 1)
             {
                 if (_clip != null)
                 {
@@ -176,10 +170,11 @@ namespace TCG.Core.Dialogues
         private void _GoToCharacter(float characterOffset)
         {
             _readCharacterOffset = characterOffset;
-            TextField.maxVisibleCharacters = Mathf.FloorToInt(_readCharacterOffset);
+            if (_readCharacterOffset > CurrentText.Length) _readCharacterOffset = CurrentText.Length;
+            _text.text = CurrentText.Substring(0, (int)_readCharacterOffset);
         }
 
-        private  TextCommand[] _GenerateCommands(string text)
+        private TextCommand[] _GenerateCommands(string text)
         {
             int startIndex = 1;
             int offset = 0;
@@ -205,7 +200,7 @@ namespace TCG.Core.Dialogues
                             if (tagArg != "")
                             {
                                 TextCommand command = factory.CreateCommand(tagName);
-                                command.Init(this);                               
+                                command.Init(this);
                                 command.TagName = tagName;
                                 command.EnterIndex = startIndex - offset;
                                 command.SetupData(tagArg);

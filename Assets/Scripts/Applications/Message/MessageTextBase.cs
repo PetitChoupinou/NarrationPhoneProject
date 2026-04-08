@@ -8,7 +8,8 @@ public class MessageTextBase : MonoBehaviour
     private HorizontalLayoutGroup _layoutGroup;
     private TMP_Text _message;
     [SerializeField] private bool _isNPCMsg;
-    [SerializeField] private UITextTyperMsg _textTyper;
+    [SerializeField] private GameObject _messagePrefab;
+   [SerializeField]private UITextTyperMsg _textTyper;
     [SerializeField] int _maxMsgWidth=15;
 
     public TMP_Text Message { get => _message;}
@@ -34,6 +35,10 @@ public class MessageTextBase : MonoBehaviour
 
     public void SetTextMsg(string msg)
     {
+        GameObject message=GameObject.Instantiate(_messagePrefab,transform.GetChild(0));
+        _message = message.GetComponent<TMP_Text>();
+        _textTyper.TextField =_message.GetComponent<TextMeshProUGUI>();
+        _textTyper._text=_message;
         if (msg.Length > _maxMsgWidth)
         {
            msg= AddLineReturn(msg);

@@ -13,21 +13,21 @@ MonoBehaviour:
   m_Name: time desu
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   nodes:
-  - rid: 5760394383218442337
-  - rid: 5760394383218442338
-  - rid: 5760394383218442339
-  - rid: 5760394383218442340
-  - rid: 5760394383218442341
-  - rid: 5760394383218442342
-  - rid: 5760394383218442343
-  - rid: 5760394383218442344
+  - rid: 1165125175435067475
+  - rid: 1165125175435067476
+  - rid: 1165125175435067477
+  - rid: 1165125175435067478
+  - rid: 1165125175435067479
+  - rid: 1165125175435067480
+  - rid: 1165125175435067481
+  - rid: 1165125175435067482
   entryPointNodeGuid: 0a533947-b796-4e67-a50a-0f2c21964395
   isLocked: 0
   _isLocked: 0
   references:
     version: 2
     RefIds:
-    - rid: 5760394383218442337
+    - rid: 1165125175435067475
       type: {class: NodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 0a533947-b796-4e67-a50a-0f2c21964395
@@ -37,64 +37,38 @@ MonoBehaviour:
         - portValue: Next
           targetNodeGuid: c07647a2-244e-40f5-85e5-6e69b685a080
         isSentCurrent: 0
-    - rid: 5760394383218442338
+    - rid: 1165125175435067476
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: c07647a2-244e-40f5-85e5-6e69b685a080
         nodeType: 1
-        position: {x: 363.2, y: 195.20001}
-        outputs:
-        - portValue: Next
-          targetNodeGuid: 6d2112ee-da68-4d98-8722-05e1c6c87f85
-        isSentCurrent: 0
-        dialogueText: Timing desu
-        isNPC: 1
-        timerSending: 5
-    - rid: 5760394383218442339
-      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
-      data:
-        nodeGUID: 6d2112ee-da68-4d98-8722-05e1c6c87f85
-        nodeType: 1
-        position: {x: 670.4, y: 195.20001}
-        outputs:
-        - portValue: Next
-          targetNodeGuid: 41333938-ea35-49e1-99b7-263250929abd
-        isSentCurrent: 0
-        dialogueText: tic tac
-        isNPC: 0
-        timerSending: 0
-    - rid: 5760394383218442340
-      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
-      data:
-        nodeGUID: 41333938-ea35-49e1-99b7-263250929abd
-        nodeType: 1
-        position: {x: 1004.8, y: 195.20001}
+        position: {x: 363, y: 195}
         outputs:
         - portValue: Next
           targetNodeGuid: 143175ea-6a97-487d-a3ff-a4cddc8080fe
         isSentCurrent: 0
-        dialogueText: vroum
+        dialogueText: Timing desu
         isNPC: 1
-        timerSending: 3
-    - rid: 5760394383218442341
+        timerSending: 5
+    - rid: 1165125175435067477
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 5fb30e77-03bc-477f-a247-7cdb9a14d4df
         nodeType: 1
-        position: {x: 1629.6, y: 100.799995}
+        position: {x: 1630, y: 101}
         outputs:
         - portValue: Next
-          targetNodeGuid: 
+          targetNodeGuid: 6d2112ee-da68-4d98-8722-05e1c6c87f85
         isSentCurrent: 0
         dialogueText: aaa
         isNPC: 1
         timerSending: 0
-    - rid: 5760394383218442342
+    - rid: 1165125175435067478
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 78d11dcb-4379-429b-abed-736bcd4c9043
         nodeType: 1
-        position: {x: 1629.6, y: 225.6}
+        position: {x: 1630, y: 226}
         outputs:
         - portValue: Next
           targetNodeGuid: 
@@ -102,12 +76,12 @@ MonoBehaviour:
         dialogueText: qqq
         isNPC: 1
         timerSending: 0
-    - rid: 5760394383218442343
+    - rid: 1165125175435067479
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 5cc10059-d6c3-4645-96e0-c7bf10d30011
         nodeType: 1
-        position: {x: 1636.8, y: 404}
+        position: {x: 1637, y: 404}
         outputs:
         - portValue: Next
           targetNodeGuid: 
@@ -115,12 +89,12 @@ MonoBehaviour:
         dialogueText: dd
         isNPC: 1
         timerSending: 0
-    - rid: 5760394383218442344
+    - rid: 1165125175435067480
       type: {class: ChoiceNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 143175ea-6a97-487d-a3ff-a4cddc8080fe
         nodeType: 2
-        position: {x: 1334.4, y: 212.8}
+        position: {x: 1334, y: 213}
         outputs:
         - portValue: aaa
           targetNodeGuid: 5fb30e77-03bc-477f-a247-7cdb9a14d4df
@@ -133,3 +107,29 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         chosenChoiceID: -1
+    - rid: 1165125175435067481
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 6d2112ee-da68-4d98-8722-05e1c6c87f85
+        nodeType: 1
+        position: {x: 703, y: -51}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 41333938-ea35-49e1-99b7-263250929abd
+        isSentCurrent: 0
+        dialogueText: tic tac
+        isNPC: 0
+        timerSending: 0
+    - rid: 1165125175435067482
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 41333938-ea35-49e1-99b7-263250929abd
+        nodeType: 1
+        position: {x: 1005, y: 101}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 143175ea-6a97-487d-a3ff-a4cddc8080fe
+        isSentCurrent: 0
+        dialogueText: vroum
+        isNPC: 1
+        timerSending: 3
