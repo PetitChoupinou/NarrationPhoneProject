@@ -112,7 +112,6 @@ namespace TCG.Core.Dialogues
             TextField.ForceMeshUpdate();
             _readCharacterOffset = 0f;
             _readMaxCharacters = TextField.GetParsedText().Length;
-            TextField.maxVisibleCharacters = 0;
 
             foreach (TextCommand command in _commands)
             {
@@ -224,7 +223,7 @@ namespace TCG.Core.Dialogues
         private void _GoToCharacter(float characterOffset)
         {
             _readCharacterOffset = characterOffset;
-            TextField.maxVisibleCharacters = Mathf.FloorToInt(_readCharacterOffset);
+            _text.text = CurrentText.Substring(0, (int)_readCharacterOffset);
         }
 
         private  TextCommand[] _GenerateCommands(string text)
