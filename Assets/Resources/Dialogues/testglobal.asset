@@ -10,42 +10,38 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5ef08a29b60933941822e91151f6e732, type: 3}
-  m_Name: blabla
+  m_Name: testglobal
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   nodes:
-  - rid: 5760394270185357424
-  - rid: 5760394270185357425
+  - rid: 5760394274235482185
   properties:
-  - rid: 5760394270185357426
-  entryPointNodeGuid: bcb36f16-f40e-4ebb-9155-46da8bb3634b
+  - rid: 5760394274235482186
+  - rid: 5760394274235482187
+  entryPointNodeGuid: 62c9f1b4-7a21-4d80-98d7-c8beb452b53f
   isLocked: 0
+  _isLocked: 0
   references:
     version: 2
     RefIds:
-    - rid: 5760394270185357424
+    - rid: 5760394274235482185
       type: {class: NodeData, ns: , asm: Assembly-CSharp}
       data:
-        nodeGUID: bcb36f16-f40e-4ebb-9155-46da8bb3634b
+        nodeGUID: 62c9f1b4-7a21-4d80-98d7-c8beb452b53f
         nodeType: 0
         position: {x: 100, y: 200}
         outputs:
         - portValue: Next
-          targetNodeGuid: ecd1d8e1-5d78-4ce8-a16c-5106fb68ffab
-        isSent: 0
-    - rid: 5760394270185357425
-      type: {class: UnlockNodeData, ns: , asm: Assembly-CSharp}
-      data:
-        nodeGUID: ecd1d8e1-5d78-4ce8-a16c-5106fb68ffab
-        nodeType: 6
-        position: {x: 307.2, y: 192.8}
-        outputs:
-        - portValue: Next
           targetNodeGuid: 
-        isSent: 0
-        characterID: Sasha
-        dialogueID: New Dialogue
-    - rid: 5760394270185357426
+        isSentCurrent: 0
+    - rid: 5760394274235482186
       type: {class: 'ExposedProperty`1[[System.Single, mscorlib]]', ns: , asm: Assembly-CSharp}
       data:
         Name: Affinity
+        isGlobal: 0
         PropertyValue: 0
+    - rid: 5760394274235482187
+      type: {class: 'ExposedProperty`1[[System.String, mscorlib]]', ns: , asm: Assembly-CSharp}
+      data:
+        Name: New String
+        isGlobal: 0
+        PropertyValue: 

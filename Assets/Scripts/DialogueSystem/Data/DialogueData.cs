@@ -8,8 +8,6 @@ public class DialogueData : ScriptableObject
 {
     [SerializeReference]
     public List<NodeData> nodes = new List<NodeData>();
-    [SerializeReference]
-    public List<ExposedProperty> properties = new List<ExposedProperty>();
     public string entryPointNodeGuid = "";
     [HideInInspector] public bool isLocked;
     [SerializeField] private bool _isLocked;

@@ -30,8 +30,8 @@ public class DialogueGraphView : GraphView
     public Blackboard blackboard;
     private GraphSearchWindow _searchWindow;
     private PropertyTypeWindow _propertyTypeWindow;
-    public List<ExposedProperty> exposedProperties = new List<ExposedProperty>();
-
+    public GlobalPropertiesData globalPropertiesData;
+    private List<ExposedProperty> blackBoardProperty = new List<ExposedProperty>();
     public DialogueGraphView(EditorWindow window)
     {
         styleSheets.Add(Resources.Load<StyleSheet>("DialogueGraph"));
@@ -48,6 +48,14 @@ public class DialogueGraphView : GraphView
         CreateNode(NodeType.Start, new Vector2(100, 200));
         AddSearchWindow(window);
         AddBlackboardTypeWindow(window);
+
+        globalPropertiesData = Resources.Load<GlobalPropertiesData>("GlobalPropertiesData");
+        if (globalPropertiesData == null)
+        {
+            globalPropertiesData = ScriptableObject.CreateInstance<GlobalPropertiesData>();
+            AssetDatabase.CreateAsset(globalPropertiesData, $"Assets/Resources/GlobalPropertiesData.asset");
+        }
+        
     }
 
     private void AddSearchWindow(EditorWindow window)
@@ -296,7 +304,7 @@ public class DialogueGraphView : GraphView
                 
                 propertyDropdown.RegisterValueChangedCallback(evt =>
                 {
-                    ExposedProperty selectedProperty = exposedProperties.FirstOrDefault(p => p.Name == evt.newValue);
+                    ExposedProperty selectedProperty = FindPropertyByName(evt.newValue);
                     if (selectedProperty != null)
                     {
                         setPropertyNode.property = selectedProperty;
@@ -381,8 +389,9 @@ public class DialogueGraphView : GraphView
                     }
                     if (string.IsNullOrEmpty(unlockNode.IDDialogue) || unlockNode.IDDialogue == "Dialogue")
                     {
-                        if (character.Dialogues.Count() > 0)
+                        if (character.Dialogues.Count() > 0 && character.Dialogues[0] != null)
                         {
+                            
                             unlockNode.IDDialogue = dialogueUnlockField.choices[0];
                             dialogueUnlockField.value = dialogueUnlockField.choices[0];
                         }
@@ -494,7 +503,7 @@ public class DialogueGraphView : GraphView
         
         propertyConditionField.RegisterValueChangedCallback(evt =>
         {
-            ExposedProperty selectedProperty = exposedProperties.FirstOrDefault(p => p.Name == evt.newValue);
+            ExposedProperty selectedProperty = FindPropertyByName(evt.newValue);
             Type type = selectedProperty.type;
             if(row.Contains(conditionField)) row.Remove(conditionField);
             conditionField.value = "=";
@@ -607,7 +616,7 @@ public class DialogueGraphView : GraphView
             case NodeType.Set:
                 var nodeSetProperty = node as SetPropertyNode;
                 var nodeSetPropertyData = nodeData as SetPropertyNodeData;
-                ExposedProperty property = exposedProperties.FirstOrDefault(p => p.Name == nodeSetPropertyData.property.Name);
+                ExposedProperty property = FindPropertyByName(nodeSetPropertyData.property.Name);
                 nodeSetProperty.valueString = nodeSetPropertyData.valueString;
                 if (property != null)
                 {
@@ -655,10 +664,8 @@ public class DialogueGraphView : GraphView
     }
     public void ClearBlackboard()
     {
-        exposedProperties.Clear();
         blackboard.Clear();
         blackboard.Add(new BlackboardSection { title = "Exposed Properties" });
-        AddPropertyToBlackboard(typeof(float), "Affinity");
     }
     public void AddPropertyToBlackboard(Type type, string propertyName = "")
     {
@@ -716,65 +723,67 @@ public class DialogueGraphView : GraphView
     {
         styleSheets.Add(Resources.Load<StyleSheet>("Property"));
         if (exposedProperty == null) return;
-        var localPropertyName = exposedProperty.Name;
-        var localPropertyValue = exposedProperty.GetValue();
-        string newName = localPropertyName;
+        var propertyName = exposedProperty.Name;
+        var propertyValue = exposedProperty.GetValue();
+        string newName = propertyName;
         int index = 0;
-        while (exposedProperties.Any(p => p.Name == newName)){
-            index++;
-            newName = $"{localPropertyName}_{index}";
-        }
-        localPropertyName = newName;
-        ExposedProperty property = new ExposedProperty<T>(localPropertyName, (T)localPropertyValue);
-        exposedProperties.Add(property);
+        
 
+        while (blackBoardProperty.Any(p => p.Name == newName))
+        {
+            index++;
+            newName = $"{propertyName}_{index}";
+        }
+        propertyName = newName;
+        ExposedProperty property = new ExposedProperty<T>(propertyName, (T)propertyValue);
+        
+        if (!globalPropertiesData.globalProperties.Contains(exposedProperty))
+        {
+            globalPropertiesData.globalProperties.Add(exposedProperty);
+        }
         var container = new VisualElement();
         
         string typeName = typeof(T).Name;
-        //var blackboardField = new BlackboardField { text = $"New {typeName}" , typeText = typeName };
-        var blackboardField = new BlackboardField { text = localPropertyName, typeText = typeName, capabilities = Capabilities.Selectable | Capabilities.Renamable};
-        /*Color fieldColor = typeof(T) switch
-        {
-            Type t when t == typeof(bool) => Color.red,
-            Type t when t == typeof(int) => new Color(0.2f, 0.6f, 1f),
-            Type t when t == typeof(float) => new Color(0.4f, 0.9f, 0.4f),
-            Type t when t == typeof(string) => new Color(1f, 0.8f, 0.2f),
-            _ => Color.white
-        };
-        */
+        var blackboardField = new BlackboardField { text = propertyName, typeText = typeName, capabilities = Capabilities.Selectable | Capabilities.Renamable};
+        
         blackboardField.Q(name: "node-border").style.backgroundImage = null;
         blackboardField.AddToClassList($"pill-{typeName.ToLower()}");
 
-        //blackboardField.Q(className: "node-border").style.backgroundColor = fieldColor;
         container.Add(blackboardField);
-        if (property.Name == "Affinity")
+
+        var deleteButton = new Button(() =>
         {
-            container.enabledSelf = false;
-        }
-        else 
-        { 
-            var deleteButton = new Button(() =>
+            var foundProperty = globalPropertiesData.globalProperties.FirstOrDefault(x => x.Name == exposedProperty.Name);
+            if(foundProperty != null)
             {
-                exposedProperties.Remove(property);
-                blackboard.Remove(container);
-            })
-            { 
-                text = "X",
-                style = {
+                globalPropertiesData.globalProperties.Remove(foundProperty);
+            }
+            
+            blackboard.Remove(container);
+        })
+        {
+            text = "X",
+            style = {
                     backgroundColor = new Color(0.5f, 0, 0),
                 }
-            };
-            blackboardField.Add(deleteButton);
-            var propertyField = CreateFieldForType(typeof(T), (T)localPropertyValue, value => {
+        };
+        blackboardField.Add(deleteButton);
+        VisualElement containerValue = new VisualElement();
+        var propertyField = CreateFieldForType(typeof(T), (T)propertyValue, value => {
+            {
+                var foundProperty = FindPropertyByName(exposedProperty.Name);
+                foundProperty.SetValue(value);
+            }
 
-                var propertyIndex = exposedProperties.FindIndex(p => p.Name == property.Name);
-                exposedProperties[propertyIndex].SetValue(value);
-            });
-            var row = new BlackboardRow(blackboardField, propertyField);
-            container.Add(row);
-        }
+        });
+        containerValue.Add(propertyField);
+
+        var row = new BlackboardRow(blackboardField, containerValue);
+
+        container.Add(row);
         blackboard.Add(container);
-        
+        blackBoardProperty.Add(property);
+
     }
 
 
@@ -829,7 +838,7 @@ public class DialogueGraphView : GraphView
     private List<string> GetProperties()
     {
         List<string> properties = new List<string>();
-        foreach(var property in exposedProperties)
+        foreach (var property in globalPropertiesData.globalProperties)
         {
             properties.Add(property.Name);
         }
@@ -851,6 +860,23 @@ public class DialogueGraphView : GraphView
             default:
                 return null;
         }
+    }
+
+    public void UpdateGlobalVariables()
+    {
+        List<ExposedProperty> properties = new List<ExposedProperty>();
+        properties.AddRange(globalPropertiesData.globalProperties);
+        foreach (var property in properties)
+        {
+            AddPropertyToBlackboard(property);
+        }
+    }
+
+    public ExposedProperty FindPropertyByName(string propertyName)
+    {
+        ExposedProperty property = null;
+        property = globalPropertiesData.FindProperty(propertyName);
+        return property;
     }
 }
 

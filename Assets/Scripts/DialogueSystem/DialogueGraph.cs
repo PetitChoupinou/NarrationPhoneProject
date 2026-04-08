@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.PackageManager.UI;
@@ -50,7 +51,7 @@ public class DialogueGraph : EditorWindow
 
     private void Load()
     {
-        string path = EditorUtility.OpenFilePanel("Open a file", "Assets/Resources", "asset");
+        string path = EditorUtility.OpenFilePanel("Open a file", "Assets/Resources/Dialogues", "asset");
         if(string.IsNullOrEmpty(path))
         {
             EditorUtility.DisplayDialog("Invalid file name!", "File name cannot be empty.", "OK");
@@ -68,7 +69,7 @@ public class DialogueGraph : EditorWindow
 
         if (isNew)
         {
-            string path = EditorUtility.SaveFilePanel("Save a file", "Assets/Resources", "New Dialogue", "asset");
+            string path = EditorUtility.SaveFilePanel("Save a file", "Assets/Resources/Dialogues", "New Dialogue", "asset");
             if (string.IsNullOrEmpty(path))
             {
                 EditorUtility.DisplayDialog("Invalid file name!", "File name cannot be empty.", "OK");
@@ -79,7 +80,7 @@ public class DialogueGraph : EditorWindow
         }
         else
         {
-            var existingAsset = Resources.Load(_fileName);
+            var existingAsset = Resources.Load($"Dialogues/{_fileName}");
             if (string.IsNullOrEmpty(_fileName) || existingAsset == null)
             {
                 EditorUtility.DisplayDialog("Invalid file!", $"The file '{_fileName}' does no exist.", "OK");
@@ -108,6 +109,7 @@ public class DialogueGraph : EditorWindow
         blackboard.Add(new BlackboardSection { title = "Exposed Properties" });
         blackboard.addItemRequested = blackboard =>
         {
+            
             Vector2 screenPos = blackboard.LocalToWorld(new Vector2(blackboard.layout.width, 0));
             screenPos = GUIUtility.GUIToScreenPoint(screenPos);
             _graphView.OpenBlackboardTypeWindow(screenPos);
@@ -115,20 +117,22 @@ public class DialogueGraph : EditorWindow
         blackboard.editTextRequested = (blackboard, element, newValue) =>
         {
             var oldPropertyName = ((BlackboardField)element).text;
-            if(_graphView.exposedProperties.Exists(p => p.Name == newValue))
+            if(_graphView.globalPropertiesData.globalProperties.Exists(p => p.Name == newValue))
             {
                 EditorUtility.DisplayDialog("Duplicate property name!", $"A property with the name '{newValue}' already exists. Please choose a different name.", "OK");
                 return;
             }
-            var propertyIndex = _graphView.exposedProperties.FindIndex(p => p.Name == oldPropertyName);
-            _graphView.exposedProperties[propertyIndex].Name = newValue;
+            var property = _graphView.FindPropertyByName(oldPropertyName);
+            property.Name = newValue;
             ((BlackboardField)element).text = newValue;
         };
         blackboard.SetPosition(new Rect(10, 30, 215, 300));
         _graphView.Add(blackboard);
         _graphView.blackboard = blackboard;
-        _graphView.AddPropertyToBlackboard(typeof(float), "Affinity");
+        _graphView.UpdateGlobalVariables();
     }
+
+    
 
     private void OnDisable()
     {
