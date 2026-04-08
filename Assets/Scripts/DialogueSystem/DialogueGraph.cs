@@ -80,7 +80,7 @@ public class DialogueGraph : EditorWindow
         }
         else
         {
-            var existingAsset = Resources.Load(_fileName);
+            var existingAsset = Resources.Load($"Dialogues/{_fileName}");
             if (string.IsNullOrEmpty(_fileName) || existingAsset == null)
             {
                 EditorUtility.DisplayDialog("Invalid file!", $"The file '{_fileName}' does no exist.", "OK");

@@ -13,16 +13,15 @@ MonoBehaviour:
   m_Name: blabla
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   nodes:
-  - rid: 5760394270185357424
-  - rid: 5760394270185357425
-  properties:
-  - rid: 5760394270185357426
+  - rid: 5760394383218442371
+  - rid: 5760394383218442372
   entryPointNodeGuid: bcb36f16-f40e-4ebb-9155-46da8bb3634b
   isLocked: 0
+  _isLocked: 0
   references:
     version: 2
     RefIds:
-    - rid: 5760394270185357424
+    - rid: 5760394383218442371
       type: {class: NodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: bcb36f16-f40e-4ebb-9155-46da8bb3634b
@@ -31,21 +30,16 @@ MonoBehaviour:
         outputs:
         - portValue: Next
           targetNodeGuid: ecd1d8e1-5d78-4ce8-a16c-5106fb68ffab
-        isSent: 0
-    - rid: 5760394270185357425
+        isSentCurrent: 0
+    - rid: 5760394383218442372
       type: {class: UnlockNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: ecd1d8e1-5d78-4ce8-a16c-5106fb68ffab
         nodeType: 6
-        position: {x: 307.2, y: 192.8}
+        position: {x: 254.4, y: 389.6}
         outputs:
         - portValue: Next
           targetNodeGuid: 
-        isSent: 0
+        isSentCurrent: 0
         characterID: Sasha
-        dialogueID: New Dialogue
-    - rid: 5760394270185357426
-      type: {class: 'ExposedProperty`1[[System.Single, mscorlib]]', ns: , asm: Assembly-CSharp}
-      data:
-        Name: Affinity
-        PropertyValue: 0
+        dialogueID: blabla

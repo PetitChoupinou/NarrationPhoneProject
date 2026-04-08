@@ -46,9 +46,20 @@ public class GraphSaveUtility
         if (!AssetDatabase.IsValidFolder("Assets/Resources/Dialogues")){
             AssetDatabase.CreateFolder("Assets/Resources", "Dialogues");
         }
-        
 
-        AssetDatabase.CreateAsset(dialogueData, $"Assets/Resources/Dialogues/{fileName}.asset");
+        if (AssetDatabase.AssetPathExists($"Assets/Resources/Dialogues/{fileName}.asset"))
+        {
+            var asset = AssetDatabase.LoadAssetAtPath<DialogueData>($"Assets/Resources/Dialogues/{fileName}.asset");
+            EditorUtility.CopySerializedIfDifferent(dialogueData, asset);
+            asset.name = fileName;
+            EditorUtility.SetDirty(asset);
+        }
+        else
+        {
+            dialogueData.name = fileName;
+            AssetDatabase.CreateAsset(dialogueData, $"Assets/Resources/Dialogues/{fileName}.asset");
+        }
+        
         AssetDatabase.SaveAssets();
 
     }
@@ -172,7 +183,7 @@ public class GraphSaveUtility
 
     public void LoadGraph(string fileName)
     {
-        _dataCache = Resources.Load<DialogueData>(fileName);
+        _dataCache = Resources.Load<DialogueData>($"Dialogues/{fileName}");
         if (_dataCache == null)
         {
             EditorUtility.DisplayDialog("File not found", $"No dialogue container found at path: {fileName}", "OK");

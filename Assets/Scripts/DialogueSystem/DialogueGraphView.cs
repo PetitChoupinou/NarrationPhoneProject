@@ -389,8 +389,9 @@ public class DialogueGraphView : GraphView
                     }
                     if (string.IsNullOrEmpty(unlockNode.IDDialogue) || unlockNode.IDDialogue == "Dialogue")
                     {
-                        if (character.Dialogues.Count() > 0)
+                        if (character.Dialogues.Count() > 0 && character.Dialogues[0] != null)
                         {
+                            
                             unlockNode.IDDialogue = dialogueUnlockField.choices[0];
                             dialogueUnlockField.value = dialogueUnlockField.choices[0];
                         }
