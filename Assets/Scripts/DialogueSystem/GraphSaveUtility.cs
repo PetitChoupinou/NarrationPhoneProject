@@ -153,6 +153,13 @@ public class GraphSaveUtility
                 unlockNodeData.outputs.Add(CreateOutputData(connectedPorts, node, "Next"));
                 data = unlockNodeData;
                 break;
+            case NodeType.Thinking:
+                var thinkingNode = node as ThinkingNode;
+                ThinkingNodeData thinkingNodeData = new ThinkingNodeData(data);
+                thinkingNodeData.text = thinkingNode.text;
+                thinkingNodeData.outputs.Add(CreateOutputData(connectedPorts, node, "Next"));
+                data = thinkingNodeData;
+                break;
             default:
                 break;
         }

@@ -17,6 +17,7 @@ public enum NodeType
     Condition,
     Set,
     Unlock,
+    Thinking
 }
 
 public enum Talker
@@ -421,6 +422,37 @@ public class DialogueGraphView : GraphView
                 node.SetPosition(new Rect(position, BaseNode.defaultNodeSize));
 
                 break;
+            case NodeType.Thinking:
+                node = new ThinkingNode
+                {
+                    GUID = Guid.NewGuid().ToString(),
+                    title = type.ToString(),
+                    text = "New Thought",
+                    nodeType = NodeType.Thinking
+                };
+                ThinkingNode thinkingNode = node as ThinkingNode;
+
+                inputPort = node.GeneratePort(Direction.Input, Port.Capacity.Multi);
+                inputPort.portName = "Input";
+                node.inputContainer.Add(inputPort);
+
+                var textFieldThink = new TextField
+                {
+                    value = "New Thought",
+                    multiline = true
+                };
+                textFieldThink.RegisterValueChangedCallback(evt => thinkingNode.text = evt.newValue);
+                node.mainContainer.Add(textFieldThink);
+                thinkingNode.textField = textFieldThink;
+                outputPort = node.GeneratePort(Direction.Output);
+                outputPort.portName = "Next";
+                node.outputContainer.Add(outputPort);
+
+                node.RefreshExpandedState();
+                node.RefreshPorts();
+                node.SetPosition(new Rect(position, BaseNode.defaultNodeSize));
+                break;
+
         }
         if(type != NodeType.Start)
         {
@@ -633,6 +665,12 @@ public class DialogueGraphView : GraphView
                 nodeUnlock.IDDialogue = nodeUnlockData.dialogueID;
                 nodeUnlock.UpdateCharacterField();
                 nodeUnlock.UpdateDialogueField();
+                break;
+            case NodeType.Thinking:
+                var nodeThinking = node as ThinkingNode;
+                var nodeThinkingData = nodeData as ThinkingNodeData;
+                nodeThinking.text = nodeThinkingData.text;
+                nodeThinking.UpdateTextFieldValue();
                 break;
         }
         node.isSentToggle.value = nodeData.IsSentBase;

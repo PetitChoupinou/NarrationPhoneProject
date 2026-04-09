@@ -104,6 +104,20 @@ public class UnlockNodeData : NodeData
     public string characterID;
     public string dialogueID;
 }
+
+[Serializable]
+public class ThinkingNodeData: NodeData
+{
+    public string text;
+    public ThinkingNodeData(NodeData data)
+    {
+        nodeGUID = data.nodeGUID;
+        nodeType = data.nodeType;
+        position = data.position;
+        outputs = data.outputs;
+    }
+}
+
 [Serializable]
 public class OutputData
 {
