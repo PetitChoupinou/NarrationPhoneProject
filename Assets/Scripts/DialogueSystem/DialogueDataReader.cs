@@ -161,6 +161,13 @@ public class DialogueDataReader : MonoBehaviour
                     _messageApp.UnlockDialogue(unlockNodeData.characterID, unlockNodeData.dialogueID);
                     ReadNextNode(nodeData, 0);
                 };
+            case NodeType.Thinking:
+                ThinkingNodeData thinkingNodeData = nodeData as ThinkingNodeData;
+                return () =>
+                {
+                    _messageApp.CreateThought(thinkingNodeData.text, _characterID);
+                    ReadNextNode(nodeData, 0);
+                };
             default:
                 return () => { };
         }

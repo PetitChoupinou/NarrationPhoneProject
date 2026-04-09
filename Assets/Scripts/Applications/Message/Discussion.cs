@@ -115,4 +115,9 @@ public class Discussion : MonoBehaviour
         _dialogueDataReader.MakeChoice(msg);
 
     }
+
+    public void CreateThought(string thought)
+    {
+        PhoneManager.Instance.CreateThought(thought);
+    }
 }

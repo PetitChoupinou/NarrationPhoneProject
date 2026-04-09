@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: Miaou
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   nodes:
-  - rid: 5760394407332282435
-  - rid: 5760394407332282436
+  - rid: 5760394410881712195
+  - rid: 5760394410881712196
   entryPointNodeGuid: f09047d4-4b42-4cba-8545-29ce6ace80e8
   isLocked: 0
   _isLocked: 0
   references:
     version: 2
     RefIds:
-    - rid: 5760394407332282435
+    - rid: 5760394410881712195
       type: {class: NodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: f09047d4-4b42-4cba-8545-29ce6ace80e8
@@ -31,12 +31,12 @@ MonoBehaviour:
         - portValue: Next
           targetNodeGuid: e9577bca-2b6b-4c06-a524-281849a9c484
         isSentCurrent: 0
-    - rid: 5760394407332282436
+    - rid: 5760394410881712196
       type: {class: ThinkingNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: e9577bca-2b6b-4c06-a524-281849a9c484
         nodeType: 7
-        position: {x: 432.8, y: 163.20001}
+        position: {x: 218.4, y: 199.20001}
         outputs:
         - portValue: Next
           targetNodeGuid: 
