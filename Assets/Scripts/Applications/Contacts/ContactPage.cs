@@ -10,6 +10,9 @@ public class ContactPage : MonoBehaviour
     private GameObject _noteButton;
     private float _relation;
     private string _tel;
+
+    private ContactApp _contactApp;
+    private MessageApp _messageApp;
    
     private TMP_Text _preview;
     private TMP_Text _headerText;
@@ -27,7 +30,7 @@ public class ContactPage : MonoBehaviour
             _relationBackground.color = Color.Lerp(_relationshipBadColor, _relationshipGoodColor, (value + 10.0f) / 20.0f);
             _relation = value;
         }}
-
+   
     private void OnEnable()
     {
         FindAnyObjectByType<ContactApp>().CurrentContact = gameObject;
@@ -35,7 +38,7 @@ public class ContactPage : MonoBehaviour
             _headerText.text = _iD;
         PhoneManager.Instance.ChangeDepth(PhoneManager.AppDepth.inApp);
     }
-    public void SetUp(string title, string num,int relation, GameObject button, TMP_Text headerText)
+    public void SetUp(string title, string num,int relation, GameObject button, TMP_Text headerText,Sprite profilePic)
     {
         _iD = title;
         _noteButton = button;
@@ -43,11 +46,25 @@ public class ContactPage : MonoBehaviour
         _headerText = headerText;
         _preview = _noteButton.GetComponent<ContactAppButton>().Preview;
         _content.text = num;
+        _profilPic.sprite = profilePic;
+        _profilPic.color=Color.white;
         ChangePreview(num);
         print(FindAnyObjectByType<ContactApp>().GetComponent<ContactApp>().isActiveAndEnabled);
+       _contactApp= (ContactApp)AppManager.Instance.GetApplication(ApplicationType.Contacts);
+       _messageApp= (MessageApp)AppManager.Instance.GetApplication(ApplicationType.Messages);
+
     }
     public void ChangePreview(string text)
     {
         _preview.text = text;
     }
+
+    public void MessageButton()
+    {
+        _contactApp.CloseCurrent();
+        _contactApp.CloseApp();
+        _messageApp.GetComponent<Canvas>().enabled=true;
+        Discussion discussion = _messageApp.GetDiscussion(_iD);
+        discussion.MessageButton.GetComponent<InAppButton>().OnButtonClicked();
+    } 
 }

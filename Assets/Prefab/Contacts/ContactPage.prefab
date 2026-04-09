@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 7782794381751257255}
   - component: {fileID: 3231497715458962350}
   m_Layer: 5
-  m_Name: Fake for now
+  m_Name: ToMessageButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -196,7 +196,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7782794381751257255}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2852949683961939529}
+        m_TargetAssemblyTypeName: ContactPage, Assembly-CSharp
+        m_MethodName: MessageButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1952949064439750489
 GameObject:
   m_ObjectHideFlags: 0

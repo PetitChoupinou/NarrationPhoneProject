@@ -94,4 +94,9 @@ public class MessageApp : Application
     {
         _discussions.Find(x => x.ID == characterID).DialogueDataReader.UnlockDialogue(dialogueID);
     }
+
+    public Discussion  GetDiscussion(string ID)
+    {
+        return _discussions.Find(x => x.ID == ID);
+    }
 }

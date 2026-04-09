@@ -22,6 +22,7 @@ public class Discussion : MonoBehaviour
     public string ID { get => _iD;}
     public bool CanChoose { get => _canChoose; set => _canChoose = value; }
     public DialogueDataReader DialogueDataReader { get => _dialogueDataReader; set => _dialogueDataReader = value; }
+    public GameObject MessageButton { get => _messageButton;}
 
     public void Enable()
     {
