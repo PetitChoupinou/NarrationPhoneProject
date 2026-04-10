@@ -17,8 +17,13 @@ ConditionPropertyNode #title{
 
 }
 
+NoteNode #title{
+	background-color: rgb(150, 125, 15);
+
+}
+
 SetPropertyNode #title{
-	background-color: rgb(120, 100, 15);
+	background-color: rgb(15, 120, 100);
 
 }
 
@@ -36,6 +41,7 @@ AffinityNode #title-label,
 ChoiceNode #title-label,
 ConditionPropertyNode #title-label,
 DialogueNode #title-label,
+NoteNode #title-label,
 SetPropertyNode #title-label {
 	-unity-font-style: bold;
 }

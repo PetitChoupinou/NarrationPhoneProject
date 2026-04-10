@@ -17,9 +17,9 @@ public class DialogueDataReader : MonoBehaviour
 
     private MessageApp _messageApp;
     private ContactApp _contactApp;
+    private NoteApp _noteApp;
 
     private string _characterID;
-    private bool _isWaitingForInput = false;
 
     private EventTrigger.Entry _entry;
     private EventTrigger _eventTrigger;
@@ -43,6 +43,7 @@ public class DialogueDataReader : MonoBehaviour
     public void StartConversation(string conversationID)
     {
         _contactApp = AppManager.Instance.GetApplication(ApplicationType.Contacts) as ContactApp;
+        _noteApp = AppManager.Instance.GetApplication(ApplicationType.Notes) as NoteApp;
         if(dialogueDatas.Count == 0) { return; }
         _currentDialogueData = dialogueDatas.FirstOrDefault(data => data.name == conversationID);
         List<NodeData> nodes = _currentDialogueData.nodes;
@@ -156,6 +157,7 @@ public class DialogueDataReader : MonoBehaviour
                 };
             case NodeType.Unlock:
                 UnlockNodeData unlockNodeData = nodeData as UnlockNodeData;
+                Debug.Log(_currentNodeData);
                 return () =>
                 {
                     _messageApp.UnlockDialogue(unlockNodeData.characterID, unlockNodeData.dialogueID);
@@ -168,6 +170,17 @@ public class DialogueDataReader : MonoBehaviour
                     _messageApp.CreateThought(thinkingNodeData.text, _characterID);
                     ReadNextNode(nodeData, 0);
                 };
+            case NodeType.Note:
+                NoteNodeData noteNodeData = nodeData as NoteNodeData;
+                return () =>
+                {
+                    foreach(NoteData note in noteNodeData.notesData)
+                    {
+                        _noteApp.AddNote(note.data.title, note.data.content);
+                    }
+                    
+                    ReadNextNode(nodeData, 0);
+                };
             default:
                 return () => { };
         }
@@ -176,8 +189,7 @@ public class DialogueDataReader : MonoBehaviour
 
     private void WaitForMouseClick()
     {
-        _isWaitingForInput = true;
-        _entry = new EventTrigger.Entry();
+        _entry = new Entry();
         _entry.eventID = EventTriggerType.PointerClick;
         _entry.callback.AddListener(OnClick);
 

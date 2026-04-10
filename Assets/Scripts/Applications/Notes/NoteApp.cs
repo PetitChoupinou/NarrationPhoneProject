@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -46,17 +47,22 @@ public class NoteApp : Application
     }
     public void AddNote(string name,string content)
     {
-        GameObject button = Instantiate(_buttonPrefab, _buttonCanvas.transform);
-        GameObject note = Instantiate(_notePrefab, transform);
-        button.GetComponent<InAppButton>().SetUp(name, note, _headerButton);
-        note.GetComponent<Note>().SetUp(name, content, button, _headerText);
-        note.SetActive(false);
-        _notes.Add(note.GetComponent<Note>());
-    }
-    public void AddToNote(string name,string content)
-    {
-        Note note = _notes.Find(x => x.ID == name);
-        note.AddNote(content);
-
+        Note note = _notes.FirstOrDefault(x => x.ID == name);
+        if(note != null)
+        {
+            note.AddNote(content);
+            Debug.Log($"Note {name} modified");
+        }
+        else
+        {
+            GameObject button = Instantiate(_buttonPrefab, _buttonCanvas.transform);
+            GameObject newNote = Instantiate(_notePrefab, transform);
+            button.GetComponent<InAppButton>().SetUp(name, newNote, _headerButton);
+            newNote.GetComponent<Note>().SetUp(name, content, button, _headerText);
+            newNote.SetActive(false);
+            _notes.Add(newNote.GetComponent<Note>());
+            Debug.Log("New note created!");
+        }
+        
     }
 }

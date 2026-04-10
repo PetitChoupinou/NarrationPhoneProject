@@ -96,6 +96,8 @@ public class MessageApp : Application
 
     public void UnlockDialogue(string characterID, string dialogueID)
     {
-        _discussions.Find(x => x.ID == characterID).DialogueDataReader.UnlockDialogue(dialogueID);
+        var foundDialogue = _discussions.Find(x => x.ID == characterID);
+        if(foundDialogue != null) foundDialogue.DialogueDataReader.UnlockDialogue(dialogueID);
+        else Debug.LogError($"No dialogue '{dialogueID}' found for character ID: {characterID}");
     }
 }

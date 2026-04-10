@@ -160,6 +160,16 @@ public class GraphSaveUtility
                 thinkingNodeData.outputs.Add(CreateOutputData(connectedPorts, node, "Next"));
                 data = thinkingNodeData;
                 break;
+            case NodeType.Note:
+                var noteNode = node as NoteNode;
+                NoteNodeData noteNodeData = new NoteNodeData(data);
+                foreach(var noteData in noteNode.noteDatas)
+                {
+                    noteNodeData.notesData.Add(noteData);
+                }
+                noteNodeData.outputs.Add(CreateOutputData(connectedPorts, node, "Next"));
+                data = noteNodeData;
+                break;
             default:
                 break;
         }

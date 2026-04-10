@@ -119,6 +119,20 @@ public class ThinkingNodeData: NodeData
 }
 
 [Serializable]
+public class NoteNodeData : NodeData
+{
+
+    public List<NoteData> notesData = new List<NoteData>();
+    public NoteNodeData(NodeData data)
+    {
+        nodeGUID = data.nodeGUID;
+        nodeType = data.nodeType;
+        position = data.position;
+        outputs = data.outputs;
+    }
+}
+
+[Serializable]
 public class OutputData
 {
     public string portValue;

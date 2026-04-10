@@ -10,35 +10,47 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5ef08a29b60933941822e91151f6e732, type: 3}
-  m_Name: Miaou
+  m_Name: miou
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   nodes:
-  - rid: 5760394410881712195
-  - rid: 5760394410881712196
-  entryPointNodeGuid: f09047d4-4b42-4cba-8545-29ce6ace80e8
+  - rid: 5760394428560965727
+  - rid: 5760394428560965728
+  entryPointNodeGuid: 41c84bdd-a211-4ccd-ab20-cb9ce40b96b0
   isLocked: 0
   _isLocked: 0
   references:
     version: 2
     RefIds:
-    - rid: 5760394410881712195
+    - rid: 5760394428560965727
       type: {class: NodeData, ns: , asm: Assembly-CSharp}
       data:
-        nodeGUID: f09047d4-4b42-4cba-8545-29ce6ace80e8
+        nodeGUID: 41c84bdd-a211-4ccd-ab20-cb9ce40b96b0
         nodeType: 0
         position: {x: 100, y: 200}
         outputs:
         - portValue: Next
-          targetNodeGuid: e9577bca-2b6b-4c06-a524-281849a9c484
+          targetNodeGuid: 3ec48f42-36ce-4588-b1bf-c25a6890a47a
         isSentCurrent: 0
-    - rid: 5760394410881712196
-      type: {class: ThinkingNodeData, ns: , asm: Assembly-CSharp}
+    - rid: 5760394428560965728
+      type: {class: NoteNodeData, ns: , asm: Assembly-CSharp}
       data:
-        nodeGUID: e9577bca-2b6b-4c06-a524-281849a9c484
-        nodeType: 8
-        position: {x: 218.4, y: 199.20001}
+        nodeGUID: 3ec48f42-36ce-4588-b1bf-c25a6890a47a
+        nodeType: 5
+        position: {x: 360.8, y: 156}
         outputs:
         - portValue: Next
           targetNodeGuid: 
         isSentCurrent: 0
-        text: Pipi
+        notesData:
+        - data:
+            title: abc
+            content: Mimimi
+        - data:
+            title: def
+            content: momomo
+        - data:
+            title: A
+            content: bdzanbzanceaghvjea
+        - data:
+            title: abc
+            content: Miaou
