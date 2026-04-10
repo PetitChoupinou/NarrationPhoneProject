@@ -58,8 +58,8 @@ public class Discussion : MonoBehaviour
     {
         GameObject newMessage = Instantiate(_messagePrefab, _content.transform);
         MessageTextBase message = newMessage.GetComponent<MessageTextBase>();
-        message.SetTextMsg(text);
         message.SetIsNPC(isNPC);
+        message.SetTextMsg(text);
         _lastMessage = message.Message;
         ChangePreview(text);
         StartCoroutine(MessageApplyResize(newMessage));
@@ -72,7 +72,7 @@ public class Discussion : MonoBehaviour
         _choicePanel.SetActive(true);
         for (int i=0;i<choices.Count; i++)
         {
-            GameObject choice=Instantiate(_choicePrefab, _choicePanel.transform);
+            GameObject choice=Instantiate(_choicePrefab, _choicePanel.transform.GetChild(0));
             choice.GetComponentInChildren<TMP_Text>().text = choices[i];
             //GameObject choice=Instantiate(_choicePrefab, transform);
             _choicePrefab.GetComponent<RectTransform>().localPosition += new Vector3(0,40,0);
@@ -98,6 +98,9 @@ public class Discussion : MonoBehaviour
         yield return new WaitForSeconds(.01f);
         newMessage.GetComponent<HorizontalLayoutGroup>().childControlHeight = true;
         newMessage.GetComponent<HorizontalLayoutGroup>().CalculateLayoutInputHorizontal();
+        newMessage.SetActive(false);
+        yield return new WaitForSeconds(.001f);
+        newMessage.SetActive(true);
         yield return null;
     }
     public void StartChoice()

@@ -10,6 +10,8 @@ public class NoteApp : Application
     [SerializeField] private GameObject _buttonCanvas;
     [SerializeField] private GameObject _headerButton;
     [SerializeField] private TMP_Text _headerText;
+    private List<Note> _notes = new List<Note>();
+
     private GameObject _currentNote;
 
     public GameObject CurrentNote { get => _currentNote; set => _currentNote = value; }
@@ -49,5 +51,12 @@ public class NoteApp : Application
         button.GetComponent<InAppButton>().SetUp(name, note, _headerButton);
         note.GetComponent<Note>().SetUp(name, content, button, _headerText);
         note.SetActive(false);
+        _notes.Add(note.GetComponent<Note>());
+    }
+    public void AddToNote(string name,string content)
+    {
+        Note note = _notes.Find(x => x.ID == name);
+        note.AddNote(content);
+
     }
 }
