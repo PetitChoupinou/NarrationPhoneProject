@@ -100,4 +100,5 @@ public class MessageApp : Application
         if(foundDialogue != null) foundDialogue.DialogueDataReader.UnlockDialogue(dialogueID);
         else Debug.LogError($"No dialogue '{dialogueID}' found for character ID: {characterID}");
     }
+
 }

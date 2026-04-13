@@ -11,6 +11,7 @@ public class DialogueData : ScriptableObject
     public string entryPointNodeGuid = "";
     [HideInInspector] public bool isLocked;
     [SerializeField] private bool _isLocked;
+    [HideInInspector] public bool hasStarted;
 
     private void OnValidate()
     {

@@ -46,6 +46,10 @@ public class DialogueDataReader : MonoBehaviour
         _noteApp = AppManager.Instance.GetApplication(ApplicationType.Notes) as NoteApp;
         if(dialogueDatas.Count == 0) { return; }
         _currentDialogueData = dialogueDatas.FirstOrDefault(data => data.name == conversationID);
+        if (!_currentDialogueData.hasStarted)
+        {
+            _currentDialogueData.hasStarted = true;
+        }
         List<NodeData> nodes = _currentDialogueData.nodes;
         //var affinityProperty = _currentDialogueData.properties.FirstOrDefault(x => x.Name == "Affinity");
         ReadNodeData(GetNextNodeData(_currentDialogueData.nodes.FirstOrDefault(node => node.nodeGUID == _currentDialogueData.entryPointNodeGuid))).Invoke();
@@ -185,7 +189,7 @@ public class DialogueDataReader : MonoBehaviour
                 BlockNodeData blockNodeData = nodeData as BlockNodeData;
                 return () =>
                 {
-                    //Bloque la conversation
+                    _currentDialogueData.isLocked = true;
                 };
             default:
                 return () => { };
