@@ -37,7 +37,12 @@ UnlockNode #title{
 	color: rgb(0, 0, 0);
 }
 
+BlockNode #title{
+	background-color: rgb(180, 10, 10);
+}
+
 AffinityNode #title-label,
+BlockNode #title-label,
 ChoiceNode #title-label,
 ConditionPropertyNode #title-label,
 DialogueNode #title-label,

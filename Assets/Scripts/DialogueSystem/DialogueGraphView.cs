@@ -18,7 +18,8 @@ public enum NodeType
     Note,
     Set,
     Unlock,
-    Thinking
+    Thinking,
+    Block
 }
 
 public enum Talker
@@ -479,6 +480,21 @@ public class DialogueGraphView : GraphView
                 node.RefreshPorts();
                 node.SetPosition(new Rect(position, BaseNode.defaultNodeSize));
                 break;
+            case NodeType.Block:
+                node = new BlockNode
+                {
+                    GUID = Guid.NewGuid().ToString(),
+                    title = type.ToString(),
+                    nodeType = NodeType.Block
+                };
+                inputPort = node.GeneratePort(Direction.Input, Port.Capacity.Multi);
+                inputPort.portName = "Input";
+                node.inputContainer.Add(inputPort);
+
+                node.RefreshExpandedState();
+                node.RefreshPorts();
+                node.SetPosition(new Rect(position, BaseNode.defaultNodeSize));
+                break;
 
         }
         if(type != NodeType.Start)
@@ -650,6 +666,7 @@ public class DialogueGraphView : GraphView
             {
                 newCondition.Value = value;
             });
+            
             row.Add(valueField);
         });
 
@@ -669,7 +686,7 @@ public class DialogueGraphView : GraphView
         conditionNode.conditions.Add(newCondition);
         row.Add(deleteButton);
         row.Add(propertyConditionField);
-        
+        row.Add(conditionField);
         row.Add(valueField);
         
         mainContainer.Add(row);
@@ -782,6 +799,10 @@ public class DialogueGraphView : GraphView
                 {
                     AddNoteUpdate(nodeNote, noteData.data.title, noteData.data.content);
                 }
+                break;
+            case NodeType.Block:
+                var nodeBlock = node as BlockNode;
+                var blockNodeData = nodeData as BlockNodeData;
                 break;
         }
         node.isSentToggle.value = nodeData.IsSentBase;
@@ -941,12 +962,12 @@ public class DialogueGraphView : GraphView
         {
             case Type t when t == typeof(bool):
                 var toggle = new Toggle(){
-                    
-                    value = baseValue != null ? (bool)baseValue : (bool)value,
-                    
+
+                    value = baseValue != null ? (bool)baseValue : (bool)value
                 };
                 if(doesNeedLabel) toggle.label = "Value";
                 toggle.RegisterValueChangedCallback(e => onValueChanged(e.newValue));
+                onValueChanged(toggle.value);
                 return toggle;
 
             case Type t when t == typeof(int):
@@ -956,16 +977,17 @@ public class DialogueGraphView : GraphView
                 };
                 if (doesNeedLabel) intField.label = "Value";
                 intField.RegisterValueChangedCallback(e => onValueChanged(e.newValue));
+                onValueChanged(intField.value);
                 return intField;
 
             case Type t when t == typeof(float):
                 var floatField = new FloatField()
                 {
-                    value = baseValue != null ? (float)baseValue : (float)value,
-                   
+                    value = baseValue != null ? (float)baseValue : (float)value
                 };
                 if (doesNeedLabel) floatField.label = "Value";
                 floatField.RegisterValueChangedCallback(e => onValueChanged(e.newValue));
+                onValueChanged(floatField.value);
                 return floatField;
 
             case Type t when t == typeof(string):
@@ -975,6 +997,7 @@ public class DialogueGraphView : GraphView
                 };
                 if (doesNeedLabel) textField.label = "Value";
                 textField.RegisterValueChangedCallback(e => onValueChanged(e.newValue));
+                onValueChanged(textField.value);
                 return textField;
 
             default:

@@ -181,6 +181,12 @@ public class DialogueDataReader : MonoBehaviour
                     
                     ReadNextNode(nodeData, 0);
                 };
+            case NodeType.Block:
+                BlockNodeData blockNodeData = nodeData as BlockNodeData;
+                return () =>
+                {
+                    //Bloque la conversation
+                };
             default:
                 return () => { };
         }
@@ -280,5 +286,18 @@ public class DialogueDataReader : MonoBehaviour
         data.isLocked = false;
         StartConversation(dialogueID);  
         Debug.Log($"Dialogue avec {CharacterID} est maintenant débloqué");
+    }
+
+    public bool IsChoicePossible(string choiceValue)
+    {
+        OutputData choice = GetChoiceFromText(choiceValue);
+        NodeData nextNode = GetNextNodeData(_currentNodeData, _currentNodeData.outputs.IndexOf(choice));
+        if(nextNode.nodeType == NodeType.Condition)
+        {
+            ConditionPropertyNodeData conditionNodeData = nextNode as ConditionPropertyNodeData;
+            bool conditionValue = GetFinalConditionValue(conditionNodeData.conditions);
+            return conditionValue;
+        }
+        return true;
     }
 }

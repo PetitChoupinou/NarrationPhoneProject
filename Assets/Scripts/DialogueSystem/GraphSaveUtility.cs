@@ -170,6 +170,11 @@ public class GraphSaveUtility
                 noteNodeData.outputs.Add(CreateOutputData(connectedPorts, node, "Next"));
                 data = noteNodeData;
                 break;
+            case NodeType.Block:
+                var blockNode = node as BlockNode;
+                BlockNodeData blockNodeData = new BlockNodeData(data);
+                data = blockNodeData;
+                break;
             default:
                 break;
         }
