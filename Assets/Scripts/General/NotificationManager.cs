@@ -24,9 +24,10 @@ public class NotificationManager : MonoBehaviour
         }
         DontDestroyOnLoad(this.gameObject);
     }
-     public void SendNotifText(string message,string ID)
+    public void SendNotifText(string message, string ID)
     {
-
+        GameObject newMsgNotif = Instantiate(notifMsgPrefab, notifPanel.transform);
+        newMsgNotif.GetComponent<NotificationMsg>().SetUp(ID, message);
     }
     public void SendNotifAlarme(string message, string ID)
     {

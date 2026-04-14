@@ -9,7 +9,9 @@ public class AppManager : MonoBehaviour
 
     private static AppManager instance = null;
     public static AppManager Instance => instance;
-    
+
+    public List<Application> Apps { get => _apps;}
+
     private void Awake()
     {
         if (instance != null && instance != this)

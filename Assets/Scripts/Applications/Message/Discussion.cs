@@ -10,6 +10,7 @@ public class Discussion : MonoBehaviour
     private TMP_Text _preview;
     private TMP_Text _headerText;
     private GameObject _messageButton;
+    private MessageApp _messageApp;
     [SerializeField] private GameObject _content;
     [SerializeField] private GameObject _messagePrefab;
     [SerializeField] private GameObject _choicePrefab;
@@ -23,10 +24,13 @@ public class Discussion : MonoBehaviour
     public bool CanChoose { get => _canChoose; set => _canChoose = value; }
     public DialogueDataReader DialogueDataReader { get => _dialogueDataReader; set => _dialogueDataReader = value; }
     public GameObject MessageButton { get => _messageButton;}
-
+    private void Awake()
+    {
+        _messageApp= FindAnyObjectByType<MessageApp>() as MessageApp;
+    }
     public void Enable()
     {
-        FindAnyObjectByType<MessageApp>().CurrentConv = gameObject;
+        _messageApp.CurrentConv = gameObject;
         if(_headerText)
         _headerText.text = _iD;
         PhoneManager.Instance.ChangeDepth(PhoneManager.AppDepth.inApp);
@@ -64,6 +68,10 @@ public class Discussion : MonoBehaviour
         _lastMessage = message.Message;
         ChangePreview(text);
         StartCoroutine(MessageApplyResize(newMessage));
+        if(_messageApp.CurrentConv != this)
+        {
+            NotificationManager.Instance.SendNotifText(_preview.text, _iD);
+        }
     }
     public void TriggerChoice(List<string> choices)
     {

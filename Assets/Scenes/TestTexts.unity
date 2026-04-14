@@ -600,9 +600,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62eed8e2452b2394a9dc2b16bb85cb49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NotificationManager
-  notifMsgPrefab: {fileID: 0}
+  notifMsgPrefab: {fileID: 9068958278505269030, guid: 268de85ea892a5748b12044a09dd412b, type: 3}
   notifAlarmPrefab: {fileID: 0}
-  notifPanel: {fileID: 0}
+  notifPanel: {fileID: 1056708364}
 --- !u!1 &698531934
 GameObject:
   m_ObjectHideFlags: 0
@@ -1454,7 +1454,7 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 2
+  m_ChildAlignment: 4
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
