@@ -19,14 +19,20 @@ public class NotificationMsg : Notification
             app.CloseApp();
         }
         _messageApp.GetComponent<Canvas>().enabled = true;
-        Discussion discussion = _messageApp.GetDiscussion(Titre.text);
+        Discussion discussion = _messageApp.GetDiscussion(_titre.text);
         discussion.MessageButton.GetComponent<InAppButton>().OnButtonClicked();
         Destroy(gameObject);
     }
 
-    public override void SetUp(string title, string content)
+    public override void SetUp(string title, string content,RectTransform scrollview)
     {
-       Titre.text = title;
-        Content.text = content;
+        _scrollview = scrollview;
+        if (_scrollview.localScale == Vector3.zero)
+        {
+            _scrollview.localScale = Vector3.one;
+        }
+        _titre.text = title;
+        _content.text = content;
+
     }
 }

@@ -68,7 +68,7 @@ public class Discussion : MonoBehaviour
         _lastMessage = message.Message;
         ChangePreview(text);
         StartCoroutine(MessageApplyResize(newMessage));
-        if(_messageApp.CurrentConv != this)
+        if(_messageApp.CurrentConv != this.gameObject )
         {
             NotificationManager.Instance.SendNotifText(_preview.text, _iD);
         }

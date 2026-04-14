@@ -8,6 +8,7 @@ public class NotificationManager : MonoBehaviour
     [SerializeField] private GameObject notifMsgPrefab;
     [SerializeField] private GameObject notifAlarmPrefab;
     [SerializeField] private GameObject notifPanel;
+    [SerializeField] private RectTransform notifScrollview;
     public static NotificationManager Instance => instance;
    
 
@@ -27,7 +28,7 @@ public class NotificationManager : MonoBehaviour
     public void SendNotifText(string message, string ID)
     {
         GameObject newMsgNotif = Instantiate(notifMsgPrefab, notifPanel.transform);
-        newMsgNotif.GetComponent<NotificationMsg>().SetUp(ID, message);
+        newMsgNotif.GetComponent<NotificationMsg>().SetUp(ID, message, notifScrollview);
     }
     public void SendNotifAlarme(string message, string ID)
     {

@@ -603,6 +603,7 @@ MonoBehaviour:
   notifMsgPrefab: {fileID: 9068958278505269030, guid: 268de85ea892a5748b12044a09dd412b, type: 3}
   notifAlarmPrefab: {fileID: 0}
   notifPanel: {fileID: 1056708364}
+  notifScrollview: {fileID: 731036178}
 --- !u!1 &698531934
 GameObject:
   m_ObjectHideFlags: 0
@@ -764,8 +765,8 @@ RectTransform:
   m_GameObject: {fileID: 731036177}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 980051630}
   m_Father: {fileID: 1093804357}
@@ -1434,7 +1435,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -68571.52, y: 42021.477}
   m_SizeDelta: {x: 0, y: 217.0715}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1056708366

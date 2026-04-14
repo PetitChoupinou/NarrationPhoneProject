@@ -450,6 +450,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1284699ab75bd5498ceab58730b17cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NotificationMsg
-  Titre: {fileID: 4269382575234380802}
-  Content: {fileID: 5663826432938162322}
-  duration: 5
+  _titre: {fileID: 4269382575234380802}
+  _content: {fileID: 5663826432938162322}
+  _duration: 3
