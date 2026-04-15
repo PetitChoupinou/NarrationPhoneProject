@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting.FullSerializer;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.UIElements;
@@ -105,7 +106,7 @@ public class DialogueGraphView : GraphView
 
                 node.RefreshExpandedState();
                 node.RefreshPorts();
-                node.SetPosition(new Rect(100, 200, 150, 200));
+                node.SetPosition(new Rect(250, 200, 150, 200));
                 break;
             case NodeType.Dialogue:
                 node = new DialogueNode
@@ -616,8 +617,9 @@ public class DialogueGraphView : GraphView
         {
             choices = GetProperties(),
             
-            value = data.property != null ? data.property.Name : "Property"
+            value = newCondition.property != null ? newCondition.property.Name : "Property"
         };
+        
         var valueField = new VisualElement();
 
         //If loading a data
@@ -656,7 +658,7 @@ public class DialogueGraphView : GraphView
         {
             ExposedProperty selectedProperty = FindPropertyByName(evt.newValue);
             Type type = selectedProperty.type;
-            if(row.Contains(conditionField)) row.Remove(conditionField);
+            if (row.Contains(conditionField)) row.Remove(conditionField);
             conditionField.value = "=";
             conditionField.choices = GetChoiceConditionsFromType(selectedProperty.type);
             newCondition.property = selectedProperty;
@@ -666,8 +668,9 @@ public class DialogueGraphView : GraphView
             {
                 newCondition.Value = value;
             });
-            
+
             row.Add(valueField);
+
         });
 
         Button deleteButton = new Button(() =>
