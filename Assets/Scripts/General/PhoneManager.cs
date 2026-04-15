@@ -7,6 +7,7 @@ public class PhoneManager : MonoBehaviour
     [SerializeField] private GameObject _appButtonPrefabs;
     [SerializeField] private GameObject _appButtonCanvas;
      private List<Application> _apps=new List<Application>();
+    private NotificationManager _notifManager;
     private AppDepth _currentDepth;
 
     private static PhoneManager instance = null;
@@ -34,6 +35,7 @@ public class PhoneManager : MonoBehaviour
     };
     void Start()
     {
+        _notifManager = NotificationManager.Instance;
         for(int i = 0; i < _setup.Applications.Count; i++)
         {
             GameObject app = Instantiate(_setup.Applications[i]);
@@ -42,6 +44,7 @@ public class PhoneManager : MonoBehaviour
             _apps[i].SetUp(_setup);
             GameObject button = Instantiate(_appButtonPrefabs, _appButtonCanvas.transform);
             button.GetComponent<AppButton>().Type = app.GetComponent<Application>()._appType;
+            _notifManager.Buttons.Add(button.GetComponent<AppButton>());
         }
     }
     public void CloseApps()
