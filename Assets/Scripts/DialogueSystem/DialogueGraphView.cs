@@ -613,6 +613,7 @@ public class DialogueGraphView : GraphView
                     marginBottom = 5
                 }
         };
+        
         var propertyConditionField = new DropdownField
         {
             choices = GetProperties(),
@@ -620,11 +621,17 @@ public class DialogueGraphView : GraphView
             value = newCondition.property != null ? newCondition.property.Name : "Property"
         };
         
+
         var valueField = new VisualElement();
 
         //If loading a data
         if (data.property != null)
         {
+            if (globalPropertiesData.globalProperties.FirstOrDefault(p => p.Name == newCondition.property?.Name) == null)
+            {
+                propertyConditionField.style.backgroundColor = new Color(0.5f, 0, 0, 1);
+                propertyConditionField.value = "Invalid Property";
+            }
             ExposedProperty property = data.property;
             valueField = CreateFieldForType(property.type, property.GetValue(), value =>
             {
@@ -656,6 +663,7 @@ public class DialogueGraphView : GraphView
         
         propertyConditionField.RegisterValueChangedCallback(evt =>
         {
+            propertyConditionField.style.backgroundColor = new Color(0.5f, 0, 0, 0);
             ExposedProperty selectedProperty = FindPropertyByName(evt.newValue);
             Type type = selectedProperty.type;
             if (row.Contains(conditionField)) row.Remove(conditionField);
@@ -929,8 +937,10 @@ public class DialogueGraphView : GraphView
             if(foundProperty != null)
             {
                 globalPropertiesData.globalProperties.Remove(foundProperty);
+
             }
-            
+
+            blackBoardProperty.Remove(property);
             blackboard.Remove(container);
         })
         {
