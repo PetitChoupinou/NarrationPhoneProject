@@ -101,4 +101,8 @@ public class MessageApp : Application
         else Debug.LogError($"No dialogue '{dialogueID}' found for character ID: {characterID}");
     }
 
+    public Discussion  GetDiscussion(string ID)
+    {
+        return _discussions.Find(x => x.ID == ID);
+    }
 }

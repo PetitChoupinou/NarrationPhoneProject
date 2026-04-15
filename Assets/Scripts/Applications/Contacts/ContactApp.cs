@@ -50,7 +50,7 @@ public class ContactApp : Application
             print(name);
             button.GetComponent<ContactAppButton>().SetUp(name, profilePic,contact, _headerButton);
             var contactPage = contact.GetComponent<ContactPage>();
-            contactPage.SetUp(name, num, relation, button, _headerText);
+            contactPage.SetUp(name, num, relation, button, _headerText,profilePic);
             _contacts.Add(contactPage);
             contact.SetActive(false);
         }

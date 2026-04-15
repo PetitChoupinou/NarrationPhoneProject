@@ -21,6 +21,7 @@ public class ContactAppButton : MonoBehaviour
         _discussion = discussion;
         _returnButton = returnButton;
         _image.sprite = image;
+        _image.color = Color.white;
     }
     public void OnButtonClicked()
     {
