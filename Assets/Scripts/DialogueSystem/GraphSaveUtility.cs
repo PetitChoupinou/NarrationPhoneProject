@@ -153,6 +153,28 @@ public class GraphSaveUtility
                 unlockNodeData.outputs.Add(CreateOutputData(connectedPorts, node, "Next"));
                 data = unlockNodeData;
                 break;
+            case NodeType.Thinking:
+                var thinkingNode = node as ThinkingNode;
+                ThinkingNodeData thinkingNodeData = new ThinkingNodeData(data);
+                thinkingNodeData.text = thinkingNode.text;
+                thinkingNodeData.outputs.Add(CreateOutputData(connectedPorts, node, "Next"));
+                data = thinkingNodeData;
+                break;
+            case NodeType.Note:
+                var noteNode = node as NoteNode;
+                NoteNodeData noteNodeData = new NoteNodeData(data);
+                foreach(var noteData in noteNode.noteDatas)
+                {
+                    noteNodeData.notesData.Add(noteData);
+                }
+                noteNodeData.outputs.Add(CreateOutputData(connectedPorts, node, "Next"));
+                data = noteNodeData;
+                break;
+            case NodeType.Block:
+                var blockNode = node as BlockNode;
+                BlockNodeData blockNodeData = new BlockNodeData(data);
+                data = blockNodeData;
+                break;
             default:
                 break;
         }

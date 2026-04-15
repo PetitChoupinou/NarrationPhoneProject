@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using TCG.Core.Dialogues;
 using UnityEngine;
 
 public class PhoneManager : MonoBehaviour
@@ -6,6 +8,7 @@ public class PhoneManager : MonoBehaviour
     [SerializeField] private StoryAppSetup _setup;
     [SerializeField] private GameObject _appButtonPrefabs;
     [SerializeField] private GameObject _appButtonCanvas;
+    [SerializeField] private GameObject _thoughtSystem;
      private List<Application> _apps=new List<Application>();
     private NotificationManager _notifManager;
     private AppDepth _currentDepth;
@@ -88,6 +91,18 @@ public class PhoneManager : MonoBehaviour
                 break;
              default:
                 break;
+        }
+    }
+
+    public void CreateThought(string thought)
+    {
+        if(_thoughtSystem != null)
+        {
+            _thoughtSystem.GetComponent<UITextTyper>().ReadText(thought);
+        }
+        else
+        {
+            Debug.LogError("Thought system is not assigned in PhoneManager.");
         }
     }
 }

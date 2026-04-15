@@ -82,9 +82,15 @@ public class Discussion : MonoBehaviour
         for (int i=0;i<choices.Count; i++)
         {
             GameObject choice=Instantiate(_choicePrefab, _choicePanel.transform.GetChild(0));
+            
             choice.GetComponentInChildren<TMP_Text>().text = choices[i];
             //GameObject choice=Instantiate(_choicePrefab, transform);
             _choicePrefab.GetComponent<RectTransform>().localPosition += new Vector3(0,40,0);
+            if (!DialogueDataReader.IsChoicePossible(choices[i]))
+            {
+                choice.GetComponent<Image>().color = Color.red;
+                choice.GetComponent<Button>().interactable = false;
+            }
         }
 
     }
@@ -126,5 +132,10 @@ public class Discussion : MonoBehaviour
         _choices.Clear();
         _dialogueDataReader.MakeChoice(msg);
 
+    }
+
+    public void CreateThought(string thought)
+    {
+        PhoneManager.Instance.CreateThought(thought);
     }
 }

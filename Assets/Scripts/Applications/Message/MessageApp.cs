@@ -56,7 +56,6 @@ public class MessageApp : Application
     public void AddMessage(string text, bool isNPC,string ID)
     {
         var discussion = _discussions.Find(x => x.ID == ID);
-        //Debug.Log(_discussions.Count + " " + this.name);
         discussion.AddMessage(text, isNPC);
     }
     public void SendChoice(List<string> choices,string ID)
@@ -65,6 +64,11 @@ public class MessageApp : Application
 
 
     }
+    public void CreateThought(string thought, string ID)
+    {
+        _discussions.Find(x => x.ID == ID).CreateThought(thought);
+    }
+
     IEnumerator StartGame()
     {
         yield return new WaitForSeconds(.02f);
@@ -92,7 +96,9 @@ public class MessageApp : Application
 
     public void UnlockDialogue(string characterID, string dialogueID)
     {
-        _discussions.Find(x => x.ID == characterID).DialogueDataReader.UnlockDialogue(dialogueID);
+        var foundDialogue = _discussions.Find(x => x.ID == characterID);
+        if(foundDialogue != null) foundDialogue.DialogueDataReader.UnlockDialogue(dialogueID);
+        else Debug.LogError($"No dialogue '{dialogueID}' found for character ID: {characterID}");
     }
 
     public Discussion  GetDiscussion(string ID)

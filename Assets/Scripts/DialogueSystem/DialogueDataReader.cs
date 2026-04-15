@@ -17,9 +17,9 @@ public class DialogueDataReader : MonoBehaviour
 
     private MessageApp _messageApp;
     private ContactApp _contactApp;
+    private NoteApp _noteApp;
 
     private string _characterID;
-    private bool _isWaitingForInput = false;
 
     private EventTrigger.Entry _entry;
     private EventTrigger _eventTrigger;
@@ -43,8 +43,13 @@ public class DialogueDataReader : MonoBehaviour
     public void StartConversation(string conversationID)
     {
         _contactApp = AppManager.Instance.GetApplication(ApplicationType.Contacts) as ContactApp;
+        _noteApp = AppManager.Instance.GetApplication(ApplicationType.Notes) as NoteApp;
         if(dialogueDatas.Count == 0) { return; }
         _currentDialogueData = dialogueDatas.FirstOrDefault(data => data.name == conversationID);
+        if (!_currentDialogueData.hasStarted)
+        {
+            _currentDialogueData.hasStarted = true;
+        }
         List<NodeData> nodes = _currentDialogueData.nodes;
         //var affinityProperty = _currentDialogueData.properties.FirstOrDefault(x => x.Name == "Affinity");
         ReadNodeData(GetNextNodeData(_currentDialogueData.nodes.FirstOrDefault(node => node.nodeGUID == _currentDialogueData.entryPointNodeGuid))).Invoke();
@@ -156,10 +161,35 @@ public class DialogueDataReader : MonoBehaviour
                 };
             case NodeType.Unlock:
                 UnlockNodeData unlockNodeData = nodeData as UnlockNodeData;
+                Debug.Log(_currentNodeData);
                 return () =>
                 {
                     _messageApp.UnlockDialogue(unlockNodeData.characterID, unlockNodeData.dialogueID);
                     ReadNextNode(nodeData, 0);
+                };
+            case NodeType.Thinking:
+                ThinkingNodeData thinkingNodeData = nodeData as ThinkingNodeData;
+                return () =>
+                {
+                    _messageApp.CreateThought(thinkingNodeData.text, _characterID);
+                    ReadNextNode(nodeData, 0);
+                };
+            case NodeType.Note:
+                NoteNodeData noteNodeData = nodeData as NoteNodeData;
+                return () =>
+                {
+                    foreach(NoteData note in noteNodeData.notesData)
+                    {
+                        _noteApp.AddNote(note.data.title, note.data.content);
+                    }
+                    
+                    ReadNextNode(nodeData, 0);
+                };
+            case NodeType.Block:
+                BlockNodeData blockNodeData = nodeData as BlockNodeData;
+                return () =>
+                {
+                    _currentDialogueData.isLocked = true;
                 };
             default:
                 return () => { };
@@ -169,8 +199,7 @@ public class DialogueDataReader : MonoBehaviour
 
     private void WaitForMouseClick()
     {
-        _isWaitingForInput = true;
-        _entry = new EventTrigger.Entry();
+        _entry = new Entry();
         _entry.eventID = EventTriggerType.PointerClick;
         _entry.callback.AddListener(OnClick);
 
@@ -261,5 +290,18 @@ public class DialogueDataReader : MonoBehaviour
         data.isLocked = false;
         StartConversation(dialogueID);  
         Debug.Log($"Dialogue avec {CharacterID} est maintenant débloqué");
+    }
+
+    public bool IsChoicePossible(string choiceValue)
+    {
+        OutputData choice = GetChoiceFromText(choiceValue);
+        NodeData nextNode = GetNextNodeData(_currentNodeData, _currentNodeData.outputs.IndexOf(choice));
+        if(nextNode.nodeType == NodeType.Condition)
+        {
+            ConditionPropertyNodeData conditionNodeData = nextNode as ConditionPropertyNodeData;
+            bool conditionValue = GetFinalConditionValue(conditionNodeData.conditions);
+            return conditionValue;
+        }
+        return true;
     }
 }

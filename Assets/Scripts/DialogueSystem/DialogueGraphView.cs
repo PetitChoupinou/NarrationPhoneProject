@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting.FullSerializer;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.UIElements;
@@ -15,8 +16,11 @@ public enum NodeType
     Choice,
     Affinity,
     Condition,
+    Note,
     Set,
     Unlock,
+    Thinking,
+    Block
 }
 
 public enum Talker
@@ -102,7 +106,7 @@ public class DialogueGraphView : GraphView
 
                 node.RefreshExpandedState();
                 node.RefreshPorts();
-                node.SetPosition(new Rect(100, 200, 150, 200));
+                node.SetPosition(new Rect(250, 200, 150, 200));
                 break;
             case NodeType.Dialogue:
                 node = new DialogueNode
@@ -421,6 +425,78 @@ public class DialogueGraphView : GraphView
                 node.SetPosition(new Rect(position, BaseNode.defaultNodeSize));
 
                 break;
+            case NodeType.Thinking:
+                node = new ThinkingNode
+                {
+                    GUID = Guid.NewGuid().ToString(),
+                    title = type.ToString(),
+                    text = "New Thought",
+                    nodeType = NodeType.Thinking
+                };
+                ThinkingNode thinkingNode = node as ThinkingNode;
+
+                inputPort = node.GeneratePort(Direction.Input, Port.Capacity.Multi);
+                inputPort.portName = "Input";
+                node.inputContainer.Add(inputPort);
+
+                var textFieldThink = new TextField
+                {
+                    value = "New Thought",
+                    multiline = true
+                };
+                textFieldThink.RegisterValueChangedCallback(evt => thinkingNode.text = evt.newValue);
+                node.mainContainer.Add(textFieldThink);
+                thinkingNode.textField = textFieldThink;
+                outputPort = node.GeneratePort(Direction.Output);
+                outputPort.portName = "Next";
+                node.outputContainer.Add(outputPort);
+
+                node.RefreshExpandedState();
+                node.RefreshPorts();
+                node.SetPosition(new Rect(position, BaseNode.defaultNodeSize));
+                break;
+            case NodeType.Note:
+                node = new NoteNode
+                {
+                    GUID = Guid.NewGuid().ToString(),
+                    title = type.ToString(),
+                    nodeType = NodeType.Note
+                };
+                NoteNode noteNode = node as NoteNode;
+
+                inputPort = node.GeneratePort(Direction.Input, Port.Capacity.Multi);
+                inputPort.portName = "Input";
+                node.inputContainer.Add(inputPort);
+
+                var buttonNote = new Button(() => AddNoteUpdate(noteNode))
+                {
+                    text = "Create/Update Note"
+                };
+                node.mainContainer.Add(buttonNote);
+                outputPort = node.GeneratePort(Direction.Output);
+                outputPort.portName = "Next";
+                node.outputContainer.Add(outputPort);
+
+                node.RefreshExpandedState();
+                node.RefreshPorts();
+                node.SetPosition(new Rect(position, BaseNode.defaultNodeSize));
+                break;
+            case NodeType.Block:
+                node = new BlockNode
+                {
+                    GUID = Guid.NewGuid().ToString(),
+                    title = type.ToString(),
+                    nodeType = NodeType.Block
+                };
+                inputPort = node.GeneratePort(Direction.Input, Port.Capacity.Multi);
+                inputPort.portName = "Input";
+                node.inputContainer.Add(inputPort);
+
+                node.RefreshExpandedState();
+                node.RefreshPorts();
+                node.SetPosition(new Rect(position, BaseNode.defaultNodeSize));
+                break;
+
         }
         if(type != NodeType.Start)
         {
@@ -441,6 +517,82 @@ public class DialogueGraphView : GraphView
         return node;
 
 
+    }
+
+    private void AddNoteUpdate(NoteNode node, string name = "Name", string text = "Text")
+    {
+        NoteData noteData = new NoteData(name, text);
+        VisualElement container = new VisualElement()
+        {
+            style = {
+                    flexDirection = FlexDirection.Row,
+                    backgroundColor = new Color(0.3f, 0.3f, 0.3f, 0.5f),
+                    marginBottom = 3,
+                    marginLeft = 3,
+                    marginRight = 3,
+                    marginTop = 3,
+                },
+            
+            
+        };
+
+        VisualElement valueContainer = new VisualElement()
+        {
+            style = {
+                    flexDirection = FlexDirection.Column,
+                    flexGrow = 1,
+                }
+        };
+        TextElement nameElement = new TextElement
+        {
+            text = "Name:",
+            style = { fontSize = 10}
+        };
+        TextField nameField = new TextField
+        {
+            value = name
+        };
+        nameField.RegisterValueChangedCallback(evt =>
+        {
+            noteData.data.title = evt.newValue;
+        });
+        TextElement textElement = new TextElement
+        {
+            text = "Content:",
+            style = { fontSize = 10}
+        };
+        TextField textField = new TextField
+        {
+            multiline = true,
+            
+            value = text
+        };
+        textField.RegisterValueChangedCallback(evt => {
+            noteData.data.content = evt.newValue;
+        });
+
+        Button deleteButton = new Button(() =>
+        {
+            if (node.noteDatas.Contains(noteData)) node.noteDatas.Remove(noteData);
+            node.mainContainer.Remove(container);
+        })
+        {
+            text = "X",
+            style = {
+                backgroundColor = new Color(0.5f, 0, 0),
+                maxHeight = 20,
+                maxWidth = 20,
+                alignSelf = Align.Center
+            }
+        };
+        valueContainer.Add(nameElement);
+        valueContainer.Add(nameField);
+        valueContainer.Add(textElement);
+        valueContainer.Add(textField);
+        container.Add(valueContainer);
+        container.Add(deleteButton);
+        node.mainContainer.Add(container);
+        node.noteDatas.Add(noteData);
     }
 
     private void AddCondition(Condition data, VisualElement mainContainer, ConditionPropertyNode conditionNode)
@@ -465,8 +617,9 @@ public class DialogueGraphView : GraphView
         {
             choices = GetProperties(),
             
-            value = data.property != null ? data.property.Name : "Property"
+            value = newCondition.property != null ? newCondition.property.Name : "Property"
         };
+        
         var valueField = new VisualElement();
 
         //If loading a data
@@ -505,7 +658,7 @@ public class DialogueGraphView : GraphView
         {
             ExposedProperty selectedProperty = FindPropertyByName(evt.newValue);
             Type type = selectedProperty.type;
-            if(row.Contains(conditionField)) row.Remove(conditionField);
+            if (row.Contains(conditionField)) row.Remove(conditionField);
             conditionField.value = "=";
             conditionField.choices = GetChoiceConditionsFromType(selectedProperty.type);
             newCondition.property = selectedProperty;
@@ -515,7 +668,9 @@ public class DialogueGraphView : GraphView
             {
                 newCondition.Value = value;
             });
+
             row.Add(valueField);
+
         });
 
         Button deleteButton = new Button(() =>
@@ -534,7 +689,7 @@ public class DialogueGraphView : GraphView
         conditionNode.conditions.Add(newCondition);
         row.Add(deleteButton);
         row.Add(propertyConditionField);
-        
+        row.Add(conditionField);
         row.Add(valueField);
         
         mainContainer.Add(row);
@@ -634,9 +789,26 @@ public class DialogueGraphView : GraphView
                 nodeUnlock.UpdateCharacterField();
                 nodeUnlock.UpdateDialogueField();
                 break;
+            case NodeType.Thinking:
+                var nodeThinking = node as ThinkingNode;
+                var nodeThinkingData = nodeData as ThinkingNodeData;
+                nodeThinking.text = nodeThinkingData.text;
+                nodeThinking.UpdateTextFieldValue();
+                break;
+            case NodeType.Note:
+                var nodeNote = node as NoteNode;
+                var nodeNoteData = nodeData as NoteNodeData;
+                foreach (var noteData in nodeNoteData.notesData)
+                {
+                    AddNoteUpdate(nodeNote, noteData.data.title, noteData.data.content);
+                }
+                break;
+            case NodeType.Block:
+                var nodeBlock = node as BlockNode;
+                var blockNodeData = nodeData as BlockNodeData;
+                break;
         }
         node.isSentToggle.value = nodeData.IsSentBase;
-
         AddElement(node);
         return node;
 
@@ -793,12 +965,12 @@ public class DialogueGraphView : GraphView
         {
             case Type t when t == typeof(bool):
                 var toggle = new Toggle(){
-                    
-                    value = baseValue != null ? (bool)baseValue : (bool)value,
-                    
+
+                    value = baseValue != null ? (bool)baseValue : (bool)value
                 };
                 if(doesNeedLabel) toggle.label = "Value";
                 toggle.RegisterValueChangedCallback(e => onValueChanged(e.newValue));
+                onValueChanged(toggle.value);
                 return toggle;
 
             case Type t when t == typeof(int):
@@ -808,16 +980,17 @@ public class DialogueGraphView : GraphView
                 };
                 if (doesNeedLabel) intField.label = "Value";
                 intField.RegisterValueChangedCallback(e => onValueChanged(e.newValue));
+                onValueChanged(intField.value);
                 return intField;
 
             case Type t when t == typeof(float):
                 var floatField = new FloatField()
                 {
-                    value = baseValue != null ? (float)baseValue : (float)value,
-                   
+                    value = baseValue != null ? (float)baseValue : (float)value
                 };
                 if (doesNeedLabel) floatField.label = "Value";
                 floatField.RegisterValueChangedCallback(e => onValueChanged(e.newValue));
+                onValueChanged(floatField.value);
                 return floatField;
 
             case Type t when t == typeof(string):
@@ -827,6 +1000,7 @@ public class DialogueGraphView : GraphView
                 };
                 if (doesNeedLabel) textField.label = "Value";
                 textField.RegisterValueChangedCallback(e => onValueChanged(e.newValue));
+                onValueChanged(textField.value);
                 return textField;
 
             default:

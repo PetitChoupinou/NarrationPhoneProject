@@ -24,11 +24,14 @@ public class GraphSearchWindow : ScriptableObject, ISearchWindowProvider
         var tree = new List<SearchTreeEntry>()
         {
             new SearchTreeGroupEntry(new GUIContent("Create Node"), 0),
-            new SearchTreeEntry(new GUIContent("Dialogue Node", _indentationIcon)) { level = 1, userData = NodeType.Dialogue },
-            new SearchTreeEntry(new GUIContent("Choice Node", _indentationIcon)) { level = 1, userData = NodeType.Choice },
             new SearchTreeEntry(new GUIContent("Affinity Node", _indentationIcon)) { level = 1, userData = NodeType.Affinity },
+            new SearchTreeEntry(new GUIContent("Block Node", _indentationIcon)) { level = 1, userData = NodeType.Block },
+            new SearchTreeEntry(new GUIContent("Choice Node", _indentationIcon)) { level = 1, userData = NodeType.Choice },
             new SearchTreeEntry(new GUIContent("Conditional Node", _indentationIcon)) { level = 1, userData = NodeType.Condition },
+            new SearchTreeEntry(new GUIContent("Dialogue Node", _indentationIcon)) { level = 1, userData = NodeType.Dialogue },
+            new SearchTreeEntry(new GUIContent("Note Node", _indentationIcon)) { level = 1, userData = NodeType.Note },
             new SearchTreeEntry(new GUIContent("Set Property Node", _indentationIcon)) { level = 1, userData = NodeType.Set },
+            new SearchTreeEntry(new GUIContent("Thinking Node", _indentationIcon)) { level = 1, userData = NodeType.Thinking },
             new SearchTreeEntry(new GUIContent("Unlock Node", _indentationIcon)) { level = 1, userData = NodeType.Unlock },
         };
         return tree;
@@ -40,19 +43,5 @@ public class GraphSearchWindow : ScriptableObject, ISearchWindowProvider
         var localMousePosition = _graphView.contentViewContainer.WorldToLocal(worldMousePosition);
         _graphView.CreateNode((NodeType)SearchTreeEntry.userData, localMousePosition);
         return true;
-        /*switch (SearchTreeEntry.userData)
-        {
-            case NodeType.Dialogue:
-                _graphView.CreateNode(NodeType.Dialogue, localMousePosition);
-                return true;
-            case NodeType.Choice:
-                _graphView.CreateNode(NodeType.Choice, localMousePosition);
-                return true;
-            case NodeType.Affinity:
-                _graphView.CreateNode(NodeType.Affinity, localMousePosition);
-                return true;
-            default:
-                return false;
-        }*/
     }
 }

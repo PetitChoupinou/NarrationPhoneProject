@@ -6,6 +6,5 @@ using UnityEngine;
 
 public class BlockNode : BaseNode
 {
-    
 
 }
