@@ -16,6 +16,7 @@ public class PhoneManager : MonoBehaviour
     private static PhoneManager instance = null;
     public static PhoneManager Instance => instance;
 
+    public AppDepth CurrentDepth { get => _currentDepth; }
 
     private void Awake()
     {
@@ -34,7 +35,8 @@ public class PhoneManager : MonoBehaviour
     {
         phone,
         app,
-        inApp
+        inApp,
+        deep
     };
     void Start()
     {
@@ -89,7 +91,10 @@ public class PhoneManager : MonoBehaviour
             case AppDepth.inApp:
                 ReturnApps();
                 break;
-             default:
+            case AppDepth.deep:
+                ReturnApps();
+                break;
+            default:
                 break;
         }
     }

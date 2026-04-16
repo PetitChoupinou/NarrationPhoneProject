@@ -8,7 +8,7 @@ public class StoryAppSetup : ScriptableObject
     [SerializeField] private string _name;
     [SerializeField] List<GameObject> _applications = new List<GameObject>();
     [SerializeField] List<CharacterSheet> _characters = new List<CharacterSheet>();
-    [SerializeField] List<PhotoData> _photos = new List<PhotoData>();
+    [SerializeField] List<PhotoPreviews> _photos = new List<PhotoPreviews>();
     [SerializeField] List<NotesData> _notes = new List<NotesData>();
     [SerializeField] List<ClocksData> _clocks = new List<ClocksData>();
     [SerializeField] List<AlarmsData> _alarms = new List<AlarmsData>();
@@ -18,7 +18,7 @@ public class StoryAppSetup : ScriptableObject
     public List<GameObject> Applications { get => _applications; }
 
     public List<CharacterSheet> Characters { get => _characters;}
-    public List<PhotoData> Photos { get => _photos;}
+    public List<PhotoPreviews> Photos { get => _photos;}
     public List<NotesData> Notes { get => _notes;}
     public List<ClocksData> Clocks { get => _clocks; }
     public List<AlarmsData> Alarms { get => _alarms;}
@@ -44,4 +44,22 @@ public struct ClocksData
 {
     public string Town;
     public int timeDiff;
+}
+[Serializable]
+public struct PhotoData
+{
+    public Sprite image;
+    public int year;
+    [Range(1, 12)] public int month;
+    [Range(1, 31)] public int day;
+    [Range(0, 23)] public int hour;
+    [Range(0, 59)] public int minute;
+}
+
+[Serializable]
+public struct PhotoPreviews
+{
+   public string title;
+   public bool locked;
+    public List<PhotoData> photoDatas;
 }
