@@ -23,6 +23,7 @@ public class ContactAppButton : MonoBehaviour
         _image.sprite = image;
         _image.color = Color.white;
     }
+
     public void OnButtonClicked()
     {
         _discussion.SetActive(true);

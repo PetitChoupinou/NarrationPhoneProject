@@ -16,7 +16,11 @@ public class PhotoPreview : MonoBehaviour
     private GameObject _photoPanel;
     [SerializeField] private GameObject _photoPrefab;
     private GameObject _returnButton;
+    private Sprite _latestPhoto;
      private TMP_Text _headerTxt;
+
+    public string Title { get => _title;}
+
     public  void SetUp(PhotoPreviews setup,Image photo, TMP_Text headerTxt, GameObject returnButton,GameObject photoPanel)
     {
         _title = setup.title;
@@ -35,6 +39,7 @@ public class PhotoPreview : MonoBehaviour
             Transform parent = _chronologicalStorage[date].GetComponent<PhotoStorage>().PanelPhoto.transform;
             GameObject newImage = Instantiate(_photoPrefab, parent);
             newImage.GetComponent<Photo>().Setup(data, _headerTxt, _photoPanel, _storagePanel, photo, _returnButton);
+            _latestPhoto = data.image;
         }
         SortStorage();
     }
