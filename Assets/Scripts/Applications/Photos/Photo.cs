@@ -32,7 +32,7 @@ public class Photo : MonoBehaviour
     }
     public void Pressed()
     {
-        PhoneManager.Instance.ChangeDepth(PhoneManager.AppDepth.inApp);
+        PhoneManager.Instance.ChangeDepth(PhoneManager.AppDepth.deep);
         string monthString = _date.ToString("MMMM");
         string minutes = "";
         string hours = "";

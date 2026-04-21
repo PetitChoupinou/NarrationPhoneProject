@@ -61,5 +61,6 @@ public struct PhotoPreviews
 {
    public string title;
    public bool locked;
+   public string password;
     public List<PhotoData> photoDatas;
 }

@@ -14,10 +14,13 @@ public class PhotoApp : Application
     [SerializeField] private GameObject _returnButton;
     [SerializeField] private GameObject _buttonPanel;
     [SerializeField] private GameObject _buttonPrefab;
-    private GameObject _curentStoragePanel;
+    private GameObject _currentStoragePanel;
     [SerializeField] private TMP_Text _headerTxt;
     [SerializeField] private Image _photo;
     PhoneManager _phoneManager;
+
+    public GameObject CurrentStoragePanel { get => _currentStoragePanel; set => _currentStoragePanel = value; }
+
     private void Start()
     {
         _phoneManager = PhoneManager.Instance;
@@ -28,17 +31,18 @@ public class PhotoApp : Application
         { 
             _phoneManager.ChangeDepth(PhoneManager.AppDepth.inApp);
         _photoPanel.SetActive(false);
-        _curentStoragePanel.SetActive(true);
-        _headerTxt.text = _curentStoragePanel.GetComponent<PhotoPreview>().Title;
+        _currentStoragePanel.SetActive(true);
+            _currentStoragePanel.GetComponent<PhotoPreview>().StoragePanel.SetActive(true);
+        _headerTxt.text = _currentStoragePanel.GetComponent<PhotoPreview>().Title;
         }
         else if (_phoneManager.CurrentDepth == PhoneManager.AppDepth.inApp)
         {
             _phoneManager.ChangeDepth(PhoneManager.AppDepth.app);
-            _curentStoragePanel.SetActive(false);
+            _currentStoragePanel.SetActive(false);
             _returnButton.SetActive(false);
             _buttonPanel.SetActive(true);
             _headerTxt.text = "photo";
-            _curentStoragePanel=null;
+            _currentStoragePanel=null;
         }
     }
     public override void SetUp(StoryAppSetup setup)

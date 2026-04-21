@@ -859,7 +859,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ScrollRect
   m_Content: {fileID: 3765634392084926784}
-  m_Horizontal: 1
+  m_Horizontal: 0
   m_Vertical: 1
   m_MovementType: 1
   m_Elasticity: 0.1
@@ -1139,7 +1139,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8123866142440240300}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -1209,7 +1209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PhotoApp
   _appType: 6
   _photoPanel: {fileID: 3326560044710939687}
-  _photoPrefab: {fileID: 5987758341083110789, guid: b9093e13c20cc714f951d6728706f7e2, type: 3}
+  _photoPrefab: {fileID: 4940197130168312644, guid: 7a9a45f5e3ebac84b9e0c973ab719c97, type: 3}
   _returnButton: {fileID: 5076262753839434015}
   _buttonPanel: {fileID: 2608849702530429368}
   _buttonPrefab: {fileID: 7150489154785128932, guid: 4cac5e692bb7f8a418fb1ef0859f4bae, type: 3}

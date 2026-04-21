@@ -15,11 +15,38 @@ public class PhotoPreview : MonoBehaviour
     [SerializeField] private GameObject _storagePanel;
     private GameObject _photoPanel;
     [SerializeField] private GameObject _photoPrefab;
+    [SerializeField] private GameObject _lockedScreen;
+    [SerializeField] private TMP_Text _passwordInput;
     private GameObject _returnButton;
     private Sprite _latestPhoto;
      private TMP_Text _headerTxt;
-
+    private string _password;
+    private PhotoApp app;
     public string Title { get => _title;}
+    public GameObject StoragePanel { get => _storagePanel;}
+
+    private void Awake()
+    {
+      app= AppManager.Instance.GetApplication(ApplicationType.Photos).GetComponent<PhotoApp>();
+
+    }
+
+    private void OnEnable()
+    {
+        if(_headerTxt)  _headerTxt.text = _title;
+        app.CurrentStoragePanel = gameObject;
+        PhoneManager.Instance.ChangeDepth(PhoneManager.AppDepth.inApp);
+        if (_isLocked)
+        {
+            _storagePanel.SetActive(false);
+            _lockedScreen.SetActive(true);
+        }
+        else
+        {
+            _storagePanel.SetActive(true);
+            _lockedScreen.SetActive(false);
+        }
+    }
 
     public  void SetUp(PhotoPreviews setup,Image photo, TMP_Text headerTxt, GameObject returnButton,GameObject photoPanel)
     {
@@ -28,6 +55,7 @@ public class PhotoPreview : MonoBehaviour
         _photoPanel = photoPanel;
         _headerTxt = headerTxt;
         _returnButton = returnButton;
+        _password = setup.password;
         List<PhotoData> photos = setup.photoDatas;
         foreach (PhotoData data in photos)
         {
@@ -72,6 +100,17 @@ public class PhotoPreview : MonoBehaviour
         {
             child.SetParent(_storagePanel.transform);
             child.GetComponent<RectTransform>().localScale = Vector3.one;
+        }
+    }
+    public void Unlock()
+    {
+        string value = _passwordInput.text.TrimEnd(new char[] { '\r', ' ' , (char)8203 });
+        print(value.Length+" : " + _password.Length);
+        if (value  == _password)
+        {
+            _isLocked = false;
+            _storagePanel.SetActive(true);
+            _lockedScreen.SetActive(false);
         }
     }
 }
