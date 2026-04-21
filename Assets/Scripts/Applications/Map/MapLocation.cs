@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class MapLocation : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] GameObject _infos;
+    bool _isInfosActive;
+
+    public void ToggleInfos()
     {
-        
+        Debug.Log("ToggleInfos");
+        _isInfosActive = !_isInfosActive;
+        _infos.SetActive(_isInfosActive);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }
