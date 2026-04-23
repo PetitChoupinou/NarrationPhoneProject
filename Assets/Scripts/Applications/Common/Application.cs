@@ -8,7 +8,8 @@ public enum ApplicationType
     Notes,
     Clock,
     Settings,
-    Photos
+    Photos,
+    Map
 }
 abstract public class Application : MonoBehaviour
 {

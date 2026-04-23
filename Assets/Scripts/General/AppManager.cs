@@ -51,6 +51,9 @@ public class AppManager : MonoBehaviour
             case ApplicationType.Clock:
                 GetApplication(apps).GetComponent<ClockApp>().OnActivated();
                 break;
+            case ApplicationType.Map:
+                GetApplication(apps).GetComponent<MapApp>().OnActivated();
+                break;
         }
         }
 }
