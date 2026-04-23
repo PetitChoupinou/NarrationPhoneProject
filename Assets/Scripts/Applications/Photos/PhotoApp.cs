@@ -21,10 +21,6 @@ public class PhotoApp : Application
 
     public GameObject CurrentStoragePanel { get => _currentStoragePanel; set => _currentStoragePanel = value; }
 
-    private void Start()
-    {
-        _phoneManager = PhoneManager.Instance;
-    }
     public override void CloseCurrent()
     {
         if (_phoneManager.CurrentDepth == PhoneManager.AppDepth.deep) 
@@ -37,7 +33,7 @@ public class PhotoApp : Application
         }
         else if (_phoneManager.CurrentDepth == PhoneManager.AppDepth.inApp)
         {
-            _phoneManager.ChangeDepth(PhoneManager.AppDepth.app);
+            _phoneManager.ChangeDepth(PhoneManager.AppDepth.inApp);
             _currentStoragePanel.SetActive(false);
             _returnButton.SetActive(false);
             _buttonPanel.SetActive(true);
@@ -47,6 +43,7 @@ public class PhotoApp : Application
     }
     public override void SetUp(StoryAppSetup setup)
     {
+        _phoneManager = PhoneManager.Instance;
         List<PhotoPreviews> photos = setup.Photos;
         foreach (PhotoPreviews photo in photos) 
         {
