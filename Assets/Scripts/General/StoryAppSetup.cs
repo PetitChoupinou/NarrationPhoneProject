@@ -12,6 +12,7 @@ public class StoryAppSetup : ScriptableObject
     [SerializeField] List<NotesData> _notes = new List<NotesData>();
     [SerializeField] List<ClocksData> _clocks = new List<ClocksData>();
     [SerializeField] List<AlarmsData> _alarms = new List<AlarmsData>();
+    List<LocationData> _locations = new List<LocationData>();
 
 
     public string Name { get => _name;}
@@ -22,6 +23,8 @@ public class StoryAppSetup : ScriptableObject
     public List<NotesData> Notes { get => _notes;}
     public List<ClocksData> Clocks { get => _clocks; }
     public List<AlarmsData> Alarms { get => _alarms;}
+
+    public List<LocationData> Locations { get => _locations; }
 }
 
 [Serializable]
@@ -63,4 +66,13 @@ public struct PhotoPreviews
    public bool locked;
    public string password;
     public List<PhotoData> photoDatas;
+}
+
+[Serializable]
+
+public struct LocationData
+{
+    public string locationName;
+    public Sprite image;
+    public Vector2 coordinates;
 }
