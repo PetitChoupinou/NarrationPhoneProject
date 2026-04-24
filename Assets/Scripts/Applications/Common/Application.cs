@@ -9,7 +9,8 @@ public enum ApplicationType
     Clock,
     Settings,
     Photos,
-    Map
+    Map,
+    Telephone
 }
 abstract public class Application : MonoBehaviour
 {
