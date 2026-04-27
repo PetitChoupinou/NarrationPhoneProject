@@ -76,7 +76,9 @@ public struct LocationData
     public string locationName;
     public Sprite image;
     public Vector2 coordinates;
+    public Sprite photo;
 }
+
 
 [Serializable]
 public struct PhoneNumbers

@@ -22,6 +22,7 @@ public class Photo : MonoBehaviour
     }
     public void Setup(PhotoData data,TMP_Text preview,GameObject fullImagePanel,GameObject previewImagePanel,Image imageFull,GameObject returnButton)
     {
+        if(_image == null) _image = GetComponent<Image>();
         _image.sprite = data.image;
         _previewText = preview;
         _date = new DateTime(data.year, data.month, data.day,data.hour,data.minute,0);

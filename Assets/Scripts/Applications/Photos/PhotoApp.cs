@@ -65,5 +65,6 @@ public class PhotoApp : Application
         PhotoPreview searchedPreview = photoPreviews.Find(x => x.Title == _baseFolder);
         searchedPreview.AddPhoto(photo, _photo);
     }
+
 }
 

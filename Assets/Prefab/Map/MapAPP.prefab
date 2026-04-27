@@ -465,6 +465,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3276794820545527556, guid: ca93e44b8e2b3fe4f92d01f8857d0f33, type: 3}
+      propertyPath: _data.image
+      value: 
+      objectReference: {fileID: 2343584826158338666, guid: 45611bbae59f5f847ae2324ebc528ab6, type: 3}
+    - target: {fileID: 3276794820545527556, guid: ca93e44b8e2b3fe4f92d01f8857d0f33, type: 3}
+      propertyPath: _data.photo
+      value: 
+      objectReference: {fileID: 6748820506961262863, guid: 521044b30c7abdd4f90a60edc5fcedde, type: 3}
+    - target: {fileID: 3276794820545527556, guid: ca93e44b8e2b3fe4f92d01f8857d0f33, type: 3}
+      propertyPath: _data.locationName
+      value: Endroit de type vraiment cool!
+      objectReference: {fileID: 0}
     - target: {fileID: 3446047979925059502, guid: ca93e44b8e2b3fe4f92d01f8857d0f33, type: 3}
       propertyPath: m_Sprite
       value: 

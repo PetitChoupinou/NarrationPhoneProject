@@ -10,7 +10,8 @@ public enum ApplicationType
     Settings,
     Photos,
     Map,
-    Telephone
+    Telephone,
+    Camera
 }
 abstract public class Application : MonoBehaviour
 {

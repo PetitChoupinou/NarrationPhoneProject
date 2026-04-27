@@ -22,10 +22,7 @@ public class MapApp : Application
     public override void SetUp(StoryAppSetup setup)
     {
         locations.Clear();
-        
         locations.AddRange(_mapUI.GetExistingLocations());
-        
-
         foreach (LocationData location in setup.Locations)
         {
             MapLocation newLocation = _mapUI.CreateLocation(location);

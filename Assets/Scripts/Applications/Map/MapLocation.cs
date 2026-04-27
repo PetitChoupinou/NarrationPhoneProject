@@ -15,26 +15,21 @@ public class MapLocation : MonoBehaviour
 
     public void Setup()
     {
-        _data = GetData();
+        
+        _infos.SetupInfos(_data);
     }
     
 
     public LocationData GetData()
     {
-
         return _infos.GetData();
     }
 
 
     public void GoToLocation()
     {
-        
-        Debug.Log($"Go to {_data.locationName}");
-        PhoneManager.Instance.CurrentLocation =_data;
+        PhoneManager.Instance.ChangeLocation(_data);
     }
-
-
-
 }
 
 

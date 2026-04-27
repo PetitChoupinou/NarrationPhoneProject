@@ -114,4 +114,11 @@ public class PhoneManager : MonoBehaviour
             Debug.LogError("Thought system is not assigned in PhoneManager.");
         }
     }
+
+    public void ChangeLocation(LocationData location)
+    {
+        _currentLocation = location;
+        Debug.Log($"Go to {location.locationName}");
+        //Play location VFX
+    }
 }

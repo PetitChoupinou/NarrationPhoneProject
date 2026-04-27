@@ -21,6 +21,7 @@ MonoBehaviour:
   - {fileID: 8123866142440240300, guid: a60deef65e0ce0b45bb9b32796eae084, type: 3}
   - {fileID: 2250242251753996431, guid: 8c7873ef089222d48b008521f06136c0, type: 3}
   - {fileID: 6181967884565453760, guid: 6b8ad8eb37dae484b8944ed12517cb51, type: 3}
+  - {fileID: 8123866142440240300, guid: 0c0a5083cf932d94ca165c2f2eb25048, type: 3}
   _characters:
   - {fileID: 11400000, guid: 4568a7c5844589e4fa6a8d726392a2a5, type: 2}
   - {fileID: 11400000, guid: 7c059581a45e5404db6932ee8be5f6c2, type: 2}
