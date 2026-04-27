@@ -61,7 +61,7 @@ public class PhotoPreview : MonoBehaviour
         {
             AddPhoto(data, photo);
         }
-        SortStorage();
+        
     }
     public void ChronoStorageCreation(int day, int month, int year)
     {
@@ -116,5 +116,6 @@ public class PhotoPreview : MonoBehaviour
         GameObject newImage = Instantiate(_photoPrefab, parent);
         newImage.GetComponent<Photo>().Setup(data, _headerTxt, _photoPanel, _storagePanel, photo, _returnButton);
         _latestPhoto = data.image;
+        SortStorage();
     }
 }
