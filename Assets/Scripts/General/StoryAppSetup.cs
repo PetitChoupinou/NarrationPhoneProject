@@ -13,6 +13,7 @@ public class StoryAppSetup : ScriptableObject
     [SerializeField] List<ClocksData> _clocks = new List<ClocksData>();
     [SerializeField] List<AlarmsData> _alarms = new List<AlarmsData>();
     [SerializeField] List<PhoneNumbers> _phoneNumbers = new List<PhoneNumbers>();
+    List<LocationData> _locations = new List<LocationData>();
 
 
     public string Name { get => _name;}
@@ -24,6 +25,8 @@ public class StoryAppSetup : ScriptableObject
     public List<ClocksData> Clocks { get => _clocks; }
     public List<AlarmsData> Alarms { get => _alarms;}
     public List<PhoneNumbers> PhoneNumbers { get => _phoneNumbers;}
+
+    public List<LocationData> Locations { get => _locations; }
 }
 
 [Serializable]
@@ -66,6 +69,15 @@ public struct PhotoPreviews
    public string password;
     public List<PhotoData> photoDatas;
 }
+
+[Serializable]
+public struct LocationData
+{
+    public string locationName;
+    public Sprite image;
+    public Vector2 coordinates;
+}
+
 [Serializable]
 public struct PhoneNumbers
 {

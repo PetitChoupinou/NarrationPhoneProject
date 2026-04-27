@@ -10,14 +10,16 @@ public class PhoneManager : MonoBehaviour
     [SerializeField] private GameObject _appButtonCanvas;
     [SerializeField] private GameObject _thoughtSystem;
     [SerializeField] private Clock _baseClock;
-     private List<Application> _apps=new List<Application>();
+    private List<Application> _apps=new List<Application>();
     private NotificationManager _notifManager;
     private AppDepth _currentDepth;
+    private LocationData _currentLocation;
 
     private static PhoneManager instance = null;
     public static PhoneManager Instance => instance;
 
     public AppDepth CurrentDepth { get => _currentDepth; }
+    public LocationData CurrentLocation { get => _currentLocation; set => _currentLocation = value; }
 
     private void Awake()
     {

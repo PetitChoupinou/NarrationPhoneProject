@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -12,13 +14,14 @@ public class MapUI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHan
     private Vector2 _basePosition;
 
     [SerializeField] Image _mapTexture;
+    [SerializeField] GameObject _locationPrefab;
     [SerializeField] RectTransform _centerScreen;
     [SerializeField] GameObject _debugPoint;
 
     GameObject pointMin;
     GameObject pointMax;
     GameObject pointPos;
-    
+
     private void OnEnable()
     {
 
@@ -31,7 +34,7 @@ public class MapUI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHan
         _rectTransform = GetComponent<RectTransform>();
         _basePosition = _rectTransform.anchoredPosition;
     }
-    
+
     public void OnBeginDrag(PointerEventData eventData)
     {
         _originPointerPosition = eventData.position;
@@ -56,14 +59,30 @@ public class MapUI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHan
 
     }
 
+    public MapLocation CreateLocation(LocationData data)
+    {
+        GameObject newLocation = Instantiate(_locationPrefab, transform);
+        newLocation.GetComponent<RectTransform>().anchoredPosition = new Vector2(data.coordinates.x, data.coordinates.y);
+        var mapLocation = newLocation.GetComponent<MapLocation>();
+        mapLocation.SetupInstantiate(data);
+        return mapLocation;
+    }
 
-
+    public MapLocation[] GetExistingLocations()
+    {
+        var locations = GetComponentsInChildren<MapLocation>(true);
+        foreach (MapLocation location in locations)
+        {
+            location.Setup();
+        }
+        return locations;
+    }
 
     public void GetBounds(Canvas parentCanvas)
     {
         _rectTransform.anchoredPosition = _basePosition;
         Vector3 factorScale = parentCanvas.GetComponent<RectTransform>().localScale;
-        if(factorScale.x == 0 || factorScale.y == 0)
+        if (factorScale.x == 0 || factorScale.y == 0)
         {
             factorScale = Vector3.one;
         }
@@ -74,8 +93,8 @@ public class MapUI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHan
             new Vector2(_centerScreen.anchoredPosition.x - screenWidth / 2, _centerScreen.anchoredPosition.y - screenHeight / 2),
             new Vector2(_centerScreen.anchoredPosition.x + screenWidth / 2, _centerScreen.anchoredPosition.y + screenHeight / 2)
         };
-/*        pointMin.GetComponent<RectTransform>().anchoredPosition = _screenBounds[0];
-        pointMax.GetComponent<RectTransform>().anchoredPosition = _screenBounds[1];*/
+        /*        pointMin.GetComponent<RectTransform>().anchoredPosition = _screenBounds[0];
+                pointMax.GetComponent<RectTransform>().anchoredPosition = _screenBounds[1];*/
         RectTransform rect = GetComponent<RectTransform>();
         Vector2 centerTexture = new Vector2(rect.position.x, rect.position.y);
         var width = _mapTexture.rectTransform.rect.width / factorScale.x;
@@ -86,13 +105,21 @@ public class MapUI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHan
             new Vector2(_screenBounds[1].x - width / 2, _screenBounds[1].y - height / 2),
             new Vector2(_screenBounds[0].x + width / 2, _screenBounds[0].y + height / 2),
         };
-/*        pointMin.GetComponent<RectTransform>().anchoredPosition = _boundsMap[0];
-        pointMax.GetComponent<RectTransform>().anchoredPosition = _boundsMap[1];*/
+        /*        pointMin.GetComponent<RectTransform>().anchoredPosition = _boundsMap[0];
+                pointMax.GetComponent<RectTransform>().anchoredPosition = _boundsMap[1];*/
 
 
     }
 
-   
+    /*public LocationData[] GetLocationsData()
+    {
+        var locations = GetExistingLocations();
+        LocationData[] datas = new LocationData[locations.Length];
 
-    
+        for (int i = 0; i < locations.Length; i++)
+        {
+            datas[i] = locations[i].GetData();
+        }
+        return datas;
+    }*/
 }
