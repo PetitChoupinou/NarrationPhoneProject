@@ -1,7 +1,13 @@
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PhoneApp : Application
 {
+    List<PhoneNumbers> _numbers=new List<PhoneNumbers>();
+    [SerializeField] private TMP_Text _numDisplay;
+    private string _currentNum="";
+
     public override void CloseCurrent()
     {
         throw new System.NotImplementedException();
@@ -9,18 +15,37 @@ public class PhoneApp : Application
 
     public override void SetUp(StoryAppSetup setup)
     {
-        throw new System.NotImplementedException();
+        foreach(CharacterSheet c in setup.Characters)
+        {
+            _numbers.Add(c.TelNum);
+        }
+        foreach(PhoneNumbers n in setup.PhoneNumbers)
+        {
+            _numbers.Add(n);
+        }
     }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void AddToCurrentNbr(string x)
     {
-        
+        _currentNum += x;
+        UpdateDisplay();
     }
-
-    // Update is called once per frame
-    void Update()
+    public void DelLastDigit()
     {
-        
+        _currentNum.Remove(_currentNum.Length - 1);
+        UpdateDisplay();
+    }
+    private void UpdateDisplay()
+    {
+        _numDisplay.text = _currentNum;
+    }
+    public void Call()
+    {
+        if (_numbers.Exists(x=>x.numbers==_currentNum))
+        {
+            //do stuff
+            print("oui");
+        }
+        _currentNum = "";
+        UpdateDisplay() ;
     }
 }

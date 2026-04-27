@@ -17,6 +17,8 @@ public class PhotoApp : Application
     private GameObject _currentStoragePanel;
     [SerializeField] private TMP_Text _headerTxt;
     [SerializeField] private Image _photo;
+    private string _baseFolder;
+    private List<PhotoPreview> photoPreviews=new List<PhotoPreview>();
     PhoneManager _phoneManager;
 
     public GameObject CurrentStoragePanel { get => _currentStoragePanel; set => _currentStoragePanel = value; }
@@ -45,6 +47,7 @@ public class PhotoApp : Application
     {
         _phoneManager = PhoneManager.Instance;
         List<PhotoPreviews> photos = setup.Photos;
+        _baseFolder = photos[0].title;
         foreach (PhotoPreviews photo in photos) 
         {
         
@@ -54,7 +57,13 @@ public class PhotoApp : Application
             var photoPreview = photoPrev.GetComponent<PhotoPreview>();
             photoPreview.SetUp(photo, _photo,_headerTxt,_returnButton,_photoPanel);
                 photoPrev.SetActive(false);
+            photoPreviews.Add(photoPreview);
         }
+    }
+    public void AddPhoto(PhotoData photo)
+    {
+        PhotoPreview searchedPreview = photoPreviews.Find(x => x.Title == _baseFolder);
+        searchedPreview.AddPhoto(photo, _photo);
     }
 }
 

@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AppButton : MonoBehaviour
 {
     private ApplicationType _type;
+    [SerializeField]private Image _logo;
     private string ID;
     [SerializeField] private GameObject notif;
 
@@ -20,5 +22,9 @@ public class AppButton : MonoBehaviour
     public void SetNotifUp()
     {
         notif.SetActive(true);
+    }
+    private void Start()
+    {
+        _logo.sprite = AppManager.Instance.GetApplication(_type).Logo;
     }
 }

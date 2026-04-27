@@ -59,15 +59,7 @@ public class PhotoPreview : MonoBehaviour
         List<PhotoData> photos = setup.photoDatas;
         foreach (PhotoData data in photos)
         {
-            int date = data.day + data.month * 100 + data.year * 10000;
-            if (!_chronologicalStorage.ContainsKey(date))
-            {
-                ChronoStorageCreation(data.day, data.month, data.year);
-            }
-            Transform parent = _chronologicalStorage[date].GetComponent<PhotoStorage>().PanelPhoto.transform;
-            GameObject newImage = Instantiate(_photoPrefab, parent);
-            newImage.GetComponent<Photo>().Setup(data, _headerTxt, _photoPanel, _storagePanel, photo, _returnButton);
-            _latestPhoto = data.image;
+            AddPhoto(data, photo);
         }
         SortStorage();
     }
@@ -112,5 +104,17 @@ public class PhotoPreview : MonoBehaviour
             _storagePanel.SetActive(true);
             _lockedScreen.SetActive(false);
         }
+    }
+    public void AddPhoto(PhotoData data,Image photo)
+    {
+        int date = data.day + data.month * 100 + data.year * 10000;
+        if (!_chronologicalStorage.ContainsKey(date))
+        {
+            ChronoStorageCreation(data.day, data.month, data.year);
+        }
+        Transform parent = _chronologicalStorage[date].GetComponent<PhotoStorage>().PanelPhoto.transform;
+        GameObject newImage = Instantiate(_photoPrefab, parent);
+        newImage.GetComponent<Photo>().Setup(data, _headerTxt, _photoPanel, _storagePanel, photo, _returnButton);
+        _latestPhoto = data.image;
     }
 }

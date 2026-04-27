@@ -17,6 +17,10 @@ abstract public class Application : MonoBehaviour
     protected Canvas _canvas;
     Canvas _phoneCanvas;
     public ApplicationType _appType;
+    [SerializeField] private Sprite _logo;
+
+    public Sprite Logo { get => _logo;}
+
     private void Awake()
     {
         _canvas = GetComponent<Canvas>();

@@ -1530,6 +1530,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClockApp
   _appType: 4
+  _logo: {fileID: -2638747829411776789, guid: 1e247a1663f9a7942b059f0101c47534, type: 3}
   _alarmPanel: {fileID: 2754254748797259887}
   _alarmContent: {fileID: 4135384471939077109}
   _clockContent: {fileID: 1273748203426230583}

@@ -39,7 +39,7 @@ public class ContactApp : Application
         {
             string name = characters[i].Name;
             int relation = characters[i].BaseAffinity;
-            string num = characters[i].TelNum;
+            string num = characters[i].TelNum.numbers;
             Sprite profilePic =characters[i].ProfilePic;
             if (!alphabeticalStorage.ContainsKey(name[0]))
             {
