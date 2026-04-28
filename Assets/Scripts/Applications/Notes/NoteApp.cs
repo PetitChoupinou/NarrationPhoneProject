@@ -51,7 +51,6 @@ public class NoteApp : Application
         if(note != null)
         {
             note.AddNote(content);
-            Debug.Log($"Note {name} modified");
         }
         else
         {
@@ -61,7 +60,6 @@ public class NoteApp : Application
             newNote.GetComponent<Note>().SetUp(name, content, button, _headerText);
             newNote.SetActive(false);
             _notes.Add(newNote.GetComponent<Note>());
-            Debug.Log("New note created!");
         }
         
     }

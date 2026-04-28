@@ -43,7 +43,7 @@ public class PhoneApp : Application
         if (_numbers.Exists(x=>x.numbers==_currentNum))
         {
             //do stuff
-            print("oui");
+            print("calling " + _numbers.Find(x => x.numbers == _currentNum).title);
         }
         _currentNum = "";
         UpdateDisplay() ;
