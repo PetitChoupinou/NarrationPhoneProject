@@ -47,7 +47,6 @@ public class ContactPage : MonoBehaviour
         _profilPic.sprite = profilePic;
         _profilPic.color=Color.white;
         ChangePreview(num);
-        print(FindAnyObjectByType<ContactApp>().GetComponent<ContactApp>().isActiveAndEnabled);
        _contactApp= (ContactApp)AppManager.Instance.GetApplication(ApplicationType.Contacts);
     }
     public void ChangePreview(string text)

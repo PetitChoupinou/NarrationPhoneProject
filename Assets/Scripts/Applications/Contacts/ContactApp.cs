@@ -47,7 +47,6 @@ public class ContactApp : Application
             }
             GameObject button = Instantiate(_buttonPrefab, alphabeticalStorage[name[0]].transform);
             GameObject contact = Instantiate(_contactPagePrefab, transform);
-            print(name);
             button.GetComponent<ContactAppButton>().SetUp(name, profilePic,contact, _headerButton);
             var contactPage = contact.GetComponent<ContactPage>();
             contactPage.SetUp(name, num, relation, button, _headerText,profilePic);
