@@ -7,6 +7,7 @@ public class Clock : MonoBehaviour
     [SerializeField] private TMP_Text _clock;
     [SerializeField] private TMP_Text _date;
     [SerializeField] private TMP_Text _place;
+    [SerializeField] private bool displaySeconds;
     private string _hours = "";
     private string _minute = "";
     private string _second = "";
@@ -52,7 +53,14 @@ public class Clock : MonoBehaviour
             _month = "0" + thisClock.Month;
         }
         else _month = "" + thisClock.Month;
-        _clock.text = _hours + " : " + _minute + " : " + _second;
-        _date.text = _day+"/"+_month+"/"+thisClock.Year;
+        _clock.text = _hours + " : " + _minute;
+        if (displaySeconds)
+        {
+            _clock.text += " : " + _second;
+        }
+        if (_date != null)
+        {
+            _date.text = _day + "/" + _month + "/" + thisClock.Year;
+        }
     }
 }
