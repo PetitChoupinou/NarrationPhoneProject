@@ -54,6 +54,9 @@ public class AppManager : MonoBehaviour
             case ApplicationType.Map:
                 GetApplication(apps).GetComponent<MapApp>().OnActivated();
                 break;
+            case ApplicationType.Camera:
+                GetApplication(apps).GetComponent<CameraApp>().OnActivated();
+                break;
         }
-        }
+    }
 }

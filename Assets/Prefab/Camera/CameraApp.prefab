@@ -1188,6 +1188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CameraApp
   _appType: 9
   _logo: {fileID: 6748820506961262863, guid: 521044b30c7abdd4f90a60edc5fcedde, type: 3}
+  _thumbnail: {fileID: 364146072636950245}
 --- !u!1 &8172390370344571556
 GameObject:
   m_ObjectHideFlags: 0
@@ -1307,7 +1308,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 364146072636950245}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1768345355650851822}
+        m_TargetAssemblyTypeName: CameraApp, Assembly-CSharp
+        m_MethodName: OpenGallery
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8832326172976620940
 GameObject:
   m_ObjectHideFlags: 0

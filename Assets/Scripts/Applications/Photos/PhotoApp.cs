@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEngine.LowLevelPhysics2D.PhysicsShape;
@@ -18,20 +19,21 @@ public class PhotoApp : Application
     [SerializeField] private TMP_Text _headerTxt;
     [SerializeField] private Image _photo;
     private string _baseFolder;
-    private List<PhotoPreview> photoPreviews=new List<PhotoPreview>();
+    private List<PhotoPreview> photoPreviews = new List<PhotoPreview>();
     PhoneManager _phoneManager;
+    List<InAppButton> _previewButtons = new List<InAppButton>();
 
     public GameObject CurrentStoragePanel { get => _currentStoragePanel; set => _currentStoragePanel = value; }
 
     public override void CloseCurrent()
     {
-        if (_phoneManager.CurrentDepth == PhoneManager.AppDepth.deep) 
-        { 
+        if (_phoneManager.CurrentDepth == PhoneManager.AppDepth.deep)
+        {
             _phoneManager.ChangeDepth(PhoneManager.AppDepth.inApp);
-        _photoPanel.SetActive(false);
-        _currentStoragePanel.SetActive(true);
+            _photoPanel.SetActive(false);
+            _currentStoragePanel.SetActive(true);
             _currentStoragePanel.GetComponent<PhotoPreview>().StoragePanel.SetActive(true);
-        _headerTxt.text = _currentStoragePanel.GetComponent<PhotoPreview>().Title;
+            _headerTxt.text = _currentStoragePanel.GetComponent<PhotoPreview>().Title;
         }
         else if (_phoneManager.CurrentDepth == PhoneManager.AppDepth.inApp)
         {
@@ -40,7 +42,7 @@ public class PhotoApp : Application
             _returnButton.SetActive(false);
             _buttonPanel.SetActive(true);
             _headerTxt.text = "photo";
-            _currentStoragePanel=null;
+            _currentStoragePanel = null;
         }
     }
     public override void SetUp(StoryAppSetup setup)
@@ -48,17 +50,20 @@ public class PhotoApp : Application
         _phoneManager = PhoneManager.Instance;
         List<PhotoPreviews> photos = setup.Photos;
         _baseFolder = photos[0].title;
-        foreach (PhotoPreviews photo in photos) 
+        foreach (PhotoPreviews photo in photos)
         {
-        
+
             GameObject button = Instantiate(_buttonPrefab, _buttonPanel.transform);
             GameObject photoPrev = Instantiate(_photoPrefab, transform);
+            InAppButton previewButton = button.GetComponent<InAppButton>();
+            _previewButtons.Add(previewButton);
             button.GetComponent<InAppButton>().SetUp(photo.title, photoPrev, _returnButton);
             var photoPreview = photoPrev.GetComponent<PhotoPreview>();
-            photoPreview.SetUp(photo, _photo,_headerTxt,_returnButton,_photoPanel);
-                photoPrev.SetActive(false);
+            photoPreview.SetUp(photo, _photo, _headerTxt, _returnButton, _photoPanel);
+            photoPrev.SetActive(false);
             photoPreviews.Add(photoPreview);
         }
+        
     }
     public void AddPhoto(PhotoData photo)
     {
@@ -66,5 +71,49 @@ public class PhotoApp : Application
         searchedPreview.AddPhoto(photo, _photo);
     }
 
+    public Image GetLatestPhoto()
+    {
+        int latestDate = -1;
+        GameObject lastPhoto = null;
+        foreach (PhotoPreview preview in photoPreviews)
+        {
+            var latestPhotoData = preview.GetLatestPhoto();
+            if(latestPhotoData.Item2 > latestDate)
+            {
+                latestDate = latestPhotoData.Item2;
+                lastPhoto = latestPhotoData.Item1;
+            }
+        }
+        return lastPhoto.GetComponent<Image>();
+    }
+
+    public void OpenLatestPhoto()
+    {
+        int latestDate = -1;
+        PhotoPreview latestPreview = null;
+
+        foreach (InAppButton previewButton in _previewButtons)
+        {
+            PhotoPreview preview = previewButton.Discussion.GetComponent<PhotoPreview>();
+            
+            var latestPhotoData = preview.GetLatestPhoto();
+            if(preview.GetPhoto(latestPhotoData.Item2, latestPhotoData.Item1.GetComponent<Image>()) != null)
+            {
+                previewButton.OnButtonClicked();
+                preview.OpenPhoto(latestPhotoData.Item2, latestPhotoData.Item1.GetComponent<Image>());
+                break;
+            }
+
+        }
+        /*foreach (PhotoPreview preview in photoPreviews)
+        {
+            var latestPhotoData = preview.GetLatestPhoto();
+            if (latestPhotoData.Item2 > latestDate)
+            {
+                latestDate = latestPhotoData.Item2;
+                latestPreview = preview;
+            }
+        }*/
+    }
 }
 

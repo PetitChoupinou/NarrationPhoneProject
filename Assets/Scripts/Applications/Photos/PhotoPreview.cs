@@ -24,6 +24,7 @@ public class PhotoPreview : MonoBehaviour
     private PhotoApp app;
     public string Title { get => _title;}
     public GameObject StoragePanel { get => _storagePanel;}
+    public bool IsLocked { get => _isLocked; set => _isLocked = value; }
 
     private void Awake()
     {
@@ -117,5 +118,33 @@ public class PhotoPreview : MonoBehaviour
         newImage.GetComponent<Photo>().Setup(data, _headerTxt, _photoPanel, _storagePanel, photo, _returnButton);
         _latestPhoto = data.image;
         SortStorage();
+    }
+
+    public (GameObject, int) GetLatestPhoto()
+    {
+        int latestDate = -1;
+        GameObject _latestPhoto = null;
+        foreach (var data in _chronologicalStorage)
+        {
+            if(data.Key > latestDate)
+            {
+                latestDate = data.Key;
+                _latestPhoto = data.Value.GetComponent<PhotoStorage>().PanelPhoto.transform.GetChild(0).gameObject;
+            }
+        }
+        return (_latestPhoto, latestDate);
+    }
+
+    public void OpenPhoto(int date, Image photo)
+    {
+        GetPhoto(date, photo).Pressed();
+    }
+
+    public Photo GetPhoto(int date, Image photo)
+    {
+        var rightStorage = _chronologicalStorage.First(x => x.Key == date);
+        var photos = rightStorage.Value.GetComponent<PhotoStorage>().PanelPhoto.GetComponentsInChildren<Photo>();
+        Photo rightPhoto = photos.First(x => x.GetComponent<Image>().sprite == photo.sprite);
+        return rightPhoto;
     }
 }
