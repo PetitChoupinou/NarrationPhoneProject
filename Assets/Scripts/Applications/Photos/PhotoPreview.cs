@@ -67,8 +67,6 @@ public class PhotoPreview : MonoBehaviour
     public void ChronoStorageCreation(int day, int month, int year)
     {
         DateTime storageDate = new DateTime(year, month, day);
-        print(storageDate.ToString("MMMM"));
-        print(CultureInfo.CurrentCulture.ToString());
         string monthStr = storageDate.ToString("MMMM");
         GameObject newStorage = Instantiate(_chronoStoragePrefab, _storagePanel.transform);
         PhotoStorage newStorageData = newStorage.GetComponent<PhotoStorage>();

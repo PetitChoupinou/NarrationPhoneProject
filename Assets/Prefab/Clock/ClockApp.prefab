@@ -655,6 +655,7 @@ MonoBehaviour:
   _clock: {fileID: 1532171169811903157}
   _date: {fileID: 4830269311547553632}
   _place: {fileID: 0}
+  displaySeconds: 0
 --- !u!1 &3899465559980834258
 GameObject:
   m_ObjectHideFlags: 0

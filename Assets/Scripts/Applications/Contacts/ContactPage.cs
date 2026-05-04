@@ -9,10 +9,10 @@ public class ContactPage : MonoBehaviour
     private string _iD;
     private GameObject _noteButton;
     private float _relation;
-    private string _tel;
 
     private ContactApp _contactApp;
     private MessageApp _messageApp;
+    private PhoneApp _phoneApp;
    
     private TMP_Text _preview;
     private TMP_Text _headerText;
@@ -21,12 +21,10 @@ public class ContactPage : MonoBehaviour
     [SerializeField] private Image _profilPic;
     [SerializeField] private Color _relationshipGoodColor;
     [SerializeField] private Color _relationshipBadColor;
-    [SerializeField] private Image _relationSlider;
     [SerializeField] private Image _relationBackground;
     public string ID { get => _iD; }
     public float Relation { get => _relation;
         set {
-            _relationSlider.rectTransform.anchoredPosition = new Vector3(Mathf.Lerp(-400,400,(value+10.0f)/20.0f),0,0);
             _relationBackground.color = Color.Lerp(_relationshipBadColor, _relationshipGoodColor, (value + 10.0f) / 20.0f);
             _relation = value;
         }}
@@ -49,10 +47,7 @@ public class ContactPage : MonoBehaviour
         _profilPic.sprite = profilePic;
         _profilPic.color=Color.white;
         ChangePreview(num);
-        print(FindAnyObjectByType<ContactApp>().GetComponent<ContactApp>().isActiveAndEnabled);
        _contactApp= (ContactApp)AppManager.Instance.GetApplication(ApplicationType.Contacts);
-       _messageApp= (MessageApp)AppManager.Instance.GetApplication(ApplicationType.Messages);
-
     }
     public void ChangePreview(string text)
     {
@@ -61,10 +56,27 @@ public class ContactPage : MonoBehaviour
 
     public void MessageButton()
     {
+        if (_messageApp == null)
+        {
+            _messageApp = (MessageApp)AppManager.Instance.GetApplication(ApplicationType.Messages);
+        }
         _contactApp.CloseCurrent();
         _contactApp.CloseApp();
         _messageApp.GetComponent<Canvas>().enabled=true;
         Discussion discussion = _messageApp.GetDiscussion(_iD);
         discussion.MessageButton.GetComponent<InAppButton>().OnButtonClicked();
-    } 
+    }
+
+    public void CallButton()
+    {
+        if (_phoneApp == null)
+        {
+            _phoneApp = (PhoneApp)AppManager.Instance.GetApplication(ApplicationType.Telephone);
+        }
+        _contactApp.CloseCurrent();
+        _contactApp.CloseApp();
+        _phoneApp.GetComponent<Canvas>().enabled = true;
+        _phoneApp.AddToCurrentNbr(_content.text);
+        _phoneApp.Call();
+    }
 }

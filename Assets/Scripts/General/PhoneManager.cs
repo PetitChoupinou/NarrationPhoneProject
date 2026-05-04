@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using TCG.Core.Dialogues;
+using Unity.Android.Gradle;
 using UnityEngine;
 
 public class PhoneManager : MonoBehaviour
@@ -9,7 +10,7 @@ public class PhoneManager : MonoBehaviour
     [SerializeField] private GameObject _appButtonPrefabs;
     [SerializeField] private GameObject _appButtonCanvas;
     [SerializeField] private GameObject _thoughtSystem;
-    [SerializeField] private Clock _baseClock;
+    [SerializeField] private List<Clock> _baseClocks = new List<Clock>();
     private List<Application> _apps=new List<Application>();
     private NotificationManager _notifManager;
     private AppDepth _currentDepth;
@@ -44,7 +45,10 @@ public class PhoneManager : MonoBehaviour
     void Start()
     {
         _notifManager = NotificationManager.Instance;
-        _baseClock.SetUp();
+        foreach (Clock clock in _baseClocks)
+        {
+            clock.SetUp();
+        }
         for (int i = 0; i < _setup.Applications.Count; i++)
         {
             GameObject app = Instantiate(_setup.Applications[i]);
