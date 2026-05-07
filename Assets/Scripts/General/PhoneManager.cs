@@ -11,16 +11,27 @@ public class PhoneManager : MonoBehaviour
     [SerializeField] private GameObject _appButtonCanvas;
     [SerializeField] private GameObject _thoughtSystem;
     [SerializeField] private List<Clock> _baseClocks = new List<Clock>();
+    [SerializeField] private Network _network;
     private List<Application> _apps=new List<Application>();
     private NotificationManager _notifManager;
     private AppDepth _currentDepth;
     private LocationData _currentLocation;
+    
 
     private static PhoneManager instance = null;
     public static PhoneManager Instance => instance;
 
     public AppDepth CurrentDepth { get => _currentDepth; }
-    public LocationData CurrentLocation { get => _currentLocation; set => _currentLocation = value; }
+    public LocationData CurrentLocation { get => _currentLocation;
+        set {
+            _network.ChangeReception(value.networkState);
+            if (value.networkState != NetworkState.Bad && _currentLocation.networkState == NetworkState.Bad)
+            {
+                AppManager.Instance.GetApplication(ApplicationType.Messages).GetComponent<MessageApp>().NetworkIsGood();
+            }
+            _currentLocation = value;
+        }
+    }
 
     private void Awake()
     {

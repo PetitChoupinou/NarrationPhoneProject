@@ -77,6 +77,7 @@ public struct LocationData
     public Sprite image;
     public Vector2 coordinates;
     public Sprite photo;
+    public NetworkState networkState;
 }
 
 
@@ -87,3 +88,9 @@ public struct PhoneNumbers
     public string numbers;
     //whatever it is supposed to be
 }
+public enum NetworkState
+{
+    Bad,
+    Mid,
+    Good
+};

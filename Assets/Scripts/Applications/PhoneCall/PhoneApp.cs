@@ -40,10 +40,18 @@ public class PhoneApp : Application
     }
     public void Call()
     {
-        if (_numbers.Exists(x=>x.numbers==_currentNum))
+        if (PhoneManager.Instance.CurrentLocation.networkState != NetworkState.Good)
         {
-            //do stuff
-            print("calling " + _numbers.Find(x => x.numbers == _currentNum).title);
+            //do smthing
+
+        }
+        else
+        {
+            if (_numbers.Exists(x => x.numbers == _currentNum))
+            {
+                //do stuff
+                print("calling " + _numbers.Find(x => x.numbers == _currentNum).title);
+            }
         }
         _currentNum = "";
         UpdateDisplay() ;
