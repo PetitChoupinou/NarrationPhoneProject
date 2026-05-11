@@ -18,6 +18,7 @@ abstract public class Application : MonoBehaviour
     protected Canvas _canvas;
     Canvas _phoneCanvas;
     public ApplicationType _appType;
+    private Header _header;
     [SerializeField] private Sprite _logo;
 
     public Sprite Logo { get => _logo;}
@@ -29,6 +30,8 @@ abstract public class Application : MonoBehaviour
     private void Start()
     {
         _phoneCanvas = PhoneManager.Instance.gameObject.GetComponent<Canvas>();
+        _header = FindFirstObjectByType<Header>();
+
     }
     abstract public void SetUp(StoryAppSetup setup);
     abstract public void CloseCurrent();
@@ -39,6 +42,7 @@ abstract public class Application : MonoBehaviour
     {
         if (_canvas.isActiveAndEnabled)
         {
+            _header.AppChangedUpdate(true,false);
             _canvas.enabled = false;
             _phoneCanvas.enabled = true;
             PhoneManager.Instance.ChangeDepth(PhoneManager.AppDepth.phone);

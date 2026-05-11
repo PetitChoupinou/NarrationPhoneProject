@@ -752,6 +752,7 @@ GameObject:
   - component: {fileID: 692412077}
   - component: {fileID: 692412079}
   - component: {fileID: 692412078}
+  - component: {fileID: 692412080}
   m_Layer: 5
   m_Name: Header
   m_TagString: Untagged
@@ -794,7 +795,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -819,6 +820,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 692412076}
   m_CullTransparentMesh: 1
+--- !u!114 &692412080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 692412076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80102dfb72fe70543adf99b80ea76b30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Header
+  _time: {fileID: 981459798}
+  _network: {fileID: 930388919}
+  battery: {fileID: 901439486}
+  _bgColor: {r: 0.4433962, g: 0.42875576, b: 0.42875576, a: 0.59607846}
 --- !u!1 &698531934
 GameObject:
   m_ObjectHideFlags: 0
@@ -1509,6 +1526,7 @@ GameObject:
   - component: {fileID: 930388916}
   - component: {fileID: 930388918}
   - component: {fileID: 930388917}
+  - component: {fileID: 930388919}
   m_Layer: 5
   m_Name: reception
   m_TagString: Untagged
@@ -1573,6 +1591,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 930388915}
   m_CullTransparentMesh: 1
+--- !u!114 &930388919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930388915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3c070c89ecb21c4086df8d986b86662, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Network
+  _fullReception: {fileID: -3489480024768375172, guid: 977392dbc586bc145a9d539dcb695a64, type: 3}
+  _midReception: {fileID: -7713684878125597319, guid: 7fb328501e4645b439e92603fa9de78a, type: 3}
+  _badReception: {fileID: 4875404568758535411, guid: 2319caa043bdb1149a1fc49d13fa3570, type: 3}
 --- !u!1 &967834230
 GameObject:
   m_ObjectHideFlags: 0
@@ -1883,8 +1916,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1991,6 +2024,7 @@ MonoBehaviour:
   _appButtonCanvas: {fileID: 325279069}
   _thoughtSystem: {fileID: 2021758678}
   _baseClocks: []
+  _network: {fileID: 930388919}
 --- !u!114 &991798627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2109,7 +2143,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -6313463.5, y: 3869646.2}
+  m_AnchoredPosition: {x: -8763146, y: 5370203}
   m_SizeDelta: {x: 0, y: 217.0715}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1056708366

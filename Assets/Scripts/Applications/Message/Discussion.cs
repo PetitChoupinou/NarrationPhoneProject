@@ -16,7 +16,7 @@ public class Discussion : MonoBehaviour
     [SerializeField] private GameObject _messagePrefab;
     [SerializeField] private GameObject _choicePrefab;
     [SerializeField] private GameObject _choicePanel;
-    private Queue<PendingMsg> _pendingMsgs;
+    private Queue<PendingMsg> _pendingMsgs=new Queue<PendingMsg>();
     private bool _canChoose=false;
     private List<string> _choices = new List<string>();
 
