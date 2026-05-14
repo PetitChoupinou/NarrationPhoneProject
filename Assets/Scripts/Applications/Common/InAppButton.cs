@@ -11,6 +11,7 @@ public class InAppButton : MonoBehaviour
      private GameObject _returnButton;
 
     public GameObject Parent { get => _parent;}
+    public GameObject Discussion { get => _discussion; set => _discussion = value; }
 
     public void SetUp(string name,GameObject discussion,GameObject returnButton)
     {
@@ -32,4 +33,6 @@ public class InAppButton : MonoBehaviour
         _parent.SetActive(false);
         _returnButton.SetActive(true);
     }
+
+    
 }

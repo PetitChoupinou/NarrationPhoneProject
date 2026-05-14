@@ -38,7 +38,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 180}
+  m_SizeDelta: {x: 0, y: 250}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &2346589144943355146
 CanvasRenderer:
@@ -94,8 +94,8 @@ MonoBehaviour:
     m_Left: 0
     m_Right: 0
     m_Top: 0
-    m_Bottom: 0
-  m_ChildAlignment: 3
+    m_Bottom: 50
+  m_ChildAlignment: 6
   m_Spacing: 50
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 1
@@ -215,9 +215,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -180}
+  m_AnchoredPosition: {x: 0, y: -250}
   m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &1423175373751191500
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -686,6 +686,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ContactApp
   _appType: 1
+  _logo: {fileID: -8329447868056420380, guid: 7914eebc89c90ec49b19a91fb8cb9fa8, type: 3}
   _buttonPrefab: {fileID: 8993750035258260197, guid: 4fd9f05865e3942438e5b45b79e6a9aa, type: 3}
   _contactPagePrefab: {fileID: 3944856552290277509, guid: 6a7416e6b91f8ff43bee1b2e08177214, type: 3}
   _storagePrefab: {fileID: 6917142741193607416, guid: 5c6c7b9d4b576174eb0c5b203ce7d617, type: 3}

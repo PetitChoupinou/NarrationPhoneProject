@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using TCG.Core.Dialogues;
+using Unity.Android.Gradle;
 using UnityEngine;
 
 public class PhoneManager : MonoBehaviour
@@ -9,12 +10,28 @@ public class PhoneManager : MonoBehaviour
     [SerializeField] private GameObject _appButtonPrefabs;
     [SerializeField] private GameObject _appButtonCanvas;
     [SerializeField] private GameObject _thoughtSystem;
-     private List<Application> _apps=new List<Application>();
+    [SerializeField] private List<Clock> _baseClocks = new List<Clock>();
+    [SerializeField] private Network _network;
+    private List<Application> _apps=new List<Application>();
+    private NotificationManager _notifManager;
     private AppDepth _currentDepth;
+    private LocationData _currentLocation;
+    
 
     private static PhoneManager instance = null;
     public static PhoneManager Instance => instance;
 
+    public AppDepth CurrentDepth { get => _currentDepth; }
+    public LocationData CurrentLocation { get => _currentLocation;
+        set {
+            _network.ChangeReception(value.networkState);
+            if (value.networkState != NetworkState.Bad && _currentLocation.networkState == NetworkState.Bad)
+            {
+                AppManager.Instance.GetApplication(ApplicationType.Messages).GetComponent<MessageApp>().NetworkIsGood();
+            }
+            _currentLocation = value;
+        }
+    }
 
     private void Awake()
     {
@@ -33,11 +50,17 @@ public class PhoneManager : MonoBehaviour
     {
         phone,
         app,
-        inApp
+        inApp,
+        deep
     };
     void Start()
     {
-        for(int i = 0; i < _setup.Applications.Count; i++)
+        _notifManager = NotificationManager.Instance;
+        foreach (Clock clock in _baseClocks)
+        {
+            clock.SetUp();
+        }
+        for (int i = 0; i < _setup.Applications.Count; i++)
         {
             GameObject app = Instantiate(_setup.Applications[i]);
             _apps.Add(app.GetComponent<Application>());
@@ -45,6 +68,7 @@ public class PhoneManager : MonoBehaviour
             _apps[i].SetUp(_setup);
             GameObject button = Instantiate(_appButtonPrefabs, _appButtonCanvas.transform);
             button.GetComponent<AppButton>().Type = app.GetComponent<Application>()._appType;
+            _notifManager.Buttons.Add(button.GetComponent<AppButton>());
         }
     }
     public void CloseApps()
@@ -86,7 +110,10 @@ public class PhoneManager : MonoBehaviour
             case AppDepth.inApp:
                 ReturnApps();
                 break;
-             default:
+            case AppDepth.deep:
+                ReturnApps();
+                break;
+            default:
                 break;
         }
     }
@@ -101,5 +128,12 @@ public class PhoneManager : MonoBehaviour
         {
             Debug.LogError("Thought system is not assigned in PhoneManager.");
         }
+    }
+
+    public void ChangeLocation(LocationData location)
+    {
+        _currentLocation = location;
+        Debug.Log($"Go to {location.locationName}");
+        //Play location VFX
     }
 }

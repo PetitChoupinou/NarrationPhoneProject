@@ -100,6 +100,13 @@ public class MessageApp : Application
         if(foundDialogue != null) foundDialogue.DialogueDataReader.UnlockDialogue(dialogueID);
         else Debug.LogError($"No dialogue '{dialogueID}' found for character ID: {characterID}");
     }
+    public void NetworkIsGood()
+    {
+        foreach(Discussion d in _discussions)
+        {
+            d.DequeuPendingMessages();
+        }
+    }
 
     public Discussion  GetDiscussion(string ID)
     {

@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 public class Discussion : MonoBehaviour
 {
     private TMP_Text _lastMessage;
@@ -15,6 +16,7 @@ public class Discussion : MonoBehaviour
     [SerializeField] private GameObject _messagePrefab;
     [SerializeField] private GameObject _choicePrefab;
     [SerializeField] private GameObject _choicePanel;
+    private Queue<PendingMsg> _pendingMsgs=new Queue<PendingMsg>();
     private bool _canChoose=false;
     private List<string> _choices = new List<string>();
 
@@ -61,6 +63,12 @@ public class Discussion : MonoBehaviour
 
     public void AddMessage(string text,bool isNPC)
     {
+        if (PhoneManager.Instance.CurrentLocation.networkState == NetworkState.Bad)
+        {
+
+            _pendingMsgs.Enqueue(new PendingMsg(isNPC, text));
+            return;
+        }
         GameObject newMessage = Instantiate(_messagePrefab, _content.transform);
         MessageTextBase message = newMessage.GetComponent<MessageTextBase>();
         message.SetIsNPC(isNPC);
@@ -128,14 +136,37 @@ public class Discussion : MonoBehaviour
     public void Choose(string msg)
     {
         _choicePanel.SetActive(false);
-        _canChoose = false;
-        _choices.Clear();
-        _dialogueDataReader.MakeChoice(msg);
-
+        if (PhoneManager.Instance.CurrentLocation.networkState != NetworkState.Bad)
+        {
+            _canChoose = false;
+            _choices.Clear();
+            _dialogueDataReader.MakeChoice(msg);
+        }
+        //faire un truc quand le réseaux est mauvais type penser du gars ou autre.
     }
 
     public void CreateThought(string thought)
     {
         PhoneManager.Instance.CreateThought(thought);
+    }
+    public void DequeuPendingMessages()
+    {
+        while (_pendingMsgs.Count > 0)
+        {
+            PendingMsg current = _pendingMsgs.Dequeue();
+            AddMessage(current.msg, current.isNPC);
+        }
+    }
+}
+public class PendingMsg
+{
+    public bool isNPC;
+    public string msg;
+    private string text;
+
+    public PendingMsg(bool isNPC, string text)
+    {
+        this.isNPC = isNPC;
+        this.text = text;
     }
 }

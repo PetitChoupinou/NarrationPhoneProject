@@ -24,8 +24,10 @@ MonoBehaviour:
     isNPC: 0
   baseNotes: vraiment trop conne comme personne
   baseAffinity: -5
-  telNum: 
   profilePic: {fileID: 0}
   dialogues:
   - {fileID: 11400000, guid: 4009751a5c1e1dd4fb7c012b2c11a127, type: 2}
+  telNum:
+    title: Sasha
+    numbers: 0707070707
   dialogueIndex: 0

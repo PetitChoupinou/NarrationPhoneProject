@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,8 +10,10 @@ public class NotificationManager : MonoBehaviour
     [SerializeField] private GameObject notifAlarmPrefab;
     [SerializeField] private GameObject notifPanel;
     [SerializeField] private RectTransform notifScrollview;
+     private List<AppButton> buttons=new List<AppButton>();
     public static NotificationManager Instance => instance;
-   
+
+    public List<AppButton> Buttons { get => buttons; set => buttons = value; }
 
     private void Awake()
     {
@@ -29,10 +32,16 @@ public class NotificationManager : MonoBehaviour
     {
         GameObject newMsgNotif = Instantiate(notifMsgPrefab, notifPanel.transform);
         newMsgNotif.GetComponent<NotificationMsg>().SetUp(ID, message, notifScrollview);
+        AppButton button = FindButton(ApplicationType.Messages);
+        button.SetNotifUp();
     }
     public void SendNotifAlarme(string message, string ID)
     {
 
+    }
+    private AppButton FindButton(ApplicationType type)
+    {
+        return Buttons.Find(x=>x.Type == type);
     }
 }
 
