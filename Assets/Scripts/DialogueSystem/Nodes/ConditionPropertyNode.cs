@@ -17,7 +17,6 @@ public enum ConditionType
 public class ConditionPropertyNode : BaseNode
 {
     public List<Condition> conditions = new List<Condition>();
-
 }
 
 [Serializable]

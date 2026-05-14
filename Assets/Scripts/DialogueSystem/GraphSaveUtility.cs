@@ -175,6 +175,13 @@ public class GraphSaveUtility
                 BlockNodeData blockNodeData = new BlockNodeData(data);
                 data = blockNodeData;
                 break;
+            case NodeType.NewApplication:
+                var newAppNode = node as NewApplicationNode;
+                NewApplicationNodeData newAppNodeData = new NewApplicationNodeData(data);
+                newAppNodeData.applicationType = newAppNode.applicationType.ToString();
+                newAppNodeData.outputs.Add(CreateOutputData(connectedPorts, node, "Next"));
+                data = newAppNodeData;
+                break;
             default:
                 break;
         }

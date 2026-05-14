@@ -20,7 +20,8 @@ public enum NodeType
     Set,
     Unlock,
     Thinking,
-    Block
+    Block,
+    NewApplication
 }
 
 public enum Talker
@@ -496,6 +497,41 @@ public class DialogueGraphView : GraphView
                 node.RefreshPorts();
                 node.SetPosition(new Rect(position, BaseNode.defaultNodeSize));
                 break;
+            case NodeType.NewApplication:
+                node = new NewApplicationNode
+                {
+                    GUID = Guid.NewGuid().ToString(),
+                    title = "New Application",
+                    nodeType = NodeType.NewApplication
+                };
+
+                NewApplicationNode applicationNode = node as NewApplicationNode;
+                inputPort = node.GeneratePort(Direction.Input, Port.Capacity.Multi);
+                inputPort.portName = "Input";
+                node.inputContainer.Add(inputPort);
+
+                List<string> applicationChoices = Enum.GetNames(typeof(ApplicationType)).ToList();
+                DropdownField applicationChoice = new DropdownField
+                {
+                    label = "Application",
+                    choices = applicationChoices,
+                    value = applicationChoices[0]
+                };
+                applicationNode.applicationTypeField = applicationChoice;
+                applicationChoice.RegisterValueChangedCallback(evt =>
+                {
+                    applicationNode.UpdateApplicationChoice(evt.newValue);
+                });
+                node.mainContainer.Add(applicationChoice);
+                
+                outputPort = node.GeneratePort(Direction.Output);
+                outputPort.portName = "Next";
+                node.outputContainer.Add(outputPort);
+
+                node.RefreshExpandedState();
+                node.RefreshPorts();
+                node.SetPosition(new Rect(position, BaseNode.defaultNodeSize));
+                break;
 
         }
         if(type != NodeType.Start)
@@ -814,6 +850,11 @@ public class DialogueGraphView : GraphView
             case NodeType.Block:
                 var nodeBlock = node as BlockNode;
                 var blockNodeData = nodeData as BlockNodeData;
+                break;
+            case NodeType.NewApplication:
+                var nodeNewApplication = node as NewApplicationNode;
+                var newApplicationNodeData = nodeData as NewApplicationNodeData;
+                nodeNewApplication.UpdateApplicationChoice(newApplicationNodeData.applicationType);
                 break;
         }
         node.isSentToggle.value = nodeData.IsSentBase;

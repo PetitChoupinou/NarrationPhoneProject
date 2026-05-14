@@ -41,13 +41,18 @@ BlockNode #title{
 	background-color: rgb(180, 10, 10);
 }
 
+NewApplicationNode #title{
+	background-color: rgb(118, 118, 153);
+}
+
 AffinityNode #title-label,
 BlockNode #title-label,
 ChoiceNode #title-label,
 ConditionPropertyNode #title-label,
 DialogueNode #title-label,
 NoteNode #title-label,
-SetPropertyNode #title-label {
+SetPropertyNode #title-label,
+NewApplicationNode #title-label {
 	-unity-font-style: bold;
 }
 
