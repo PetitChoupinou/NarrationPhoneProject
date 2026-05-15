@@ -229,6 +229,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MapApp
   _appType: 7
   _logo: {fileID: 2343584826158338666, guid: 45611bbae59f5f847ae2324ebc528ab6, type: 3}
+  _isUnlocked: 1
   _mapContent: {fileID: 2304810459169663278}
   _mapUI: {fileID: 7999445922203236203}
   locations: []

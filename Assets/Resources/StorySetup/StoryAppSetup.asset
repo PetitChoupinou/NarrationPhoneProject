@@ -22,6 +22,7 @@ MonoBehaviour:
   - {fileID: 2250242251753996431, guid: 8c7873ef089222d48b008521f06136c0, type: 3}
   - {fileID: 6181967884565453760, guid: 6b8ad8eb37dae484b8944ed12517cb51, type: 3}
   - {fileID: 8123866142440240300, guid: 0c0a5083cf932d94ca165c2f2eb25048, type: 3}
+  - {fileID: 2372866346507516327, guid: 496976407bf37244ab1db600c2eb5e20, type: 3}
   _characters:
   - {fileID: 11400000, guid: 4568a7c5844589e4fa6a8d726392a2a5, type: 2}
   - {fileID: 11400000, guid: 7c059581a45e5404db6932ee8be5f6c2, type: 2}
@@ -102,3 +103,10 @@ MonoBehaviour:
   _phoneNumbers:
   - title: Police
     numbers: 17
+  _internetSearches:
+  - search: Feur?
+    text: coubeh
+  - search: "faut il jouer \xE0 DbD?"
+    text: ' non c''est de la merde :)!!!'
+  - search: pourquoi 42?
+    text: "c'est la r\xE9ponse \xE0 la vie."

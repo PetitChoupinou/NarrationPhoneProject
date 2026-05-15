@@ -1188,6 +1188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CameraApp
   _appType: 9
   _logo: {fileID: 6748820506961262863, guid: 521044b30c7abdd4f90a60edc5fcedde, type: 3}
+  _isUnlocked: 1
   _thumbnail: {fileID: 364146072636950245}
 --- !u!1 &8172390370344571556
 GameObject:

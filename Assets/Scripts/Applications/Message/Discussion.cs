@@ -14,6 +14,7 @@ public class Discussion : MonoBehaviour
     private MessageApp _messageApp;
     [SerializeField] private GameObject _content;
     [SerializeField] private GameObject _messagePrefab;
+    [SerializeField] private GameObject _linkPrefab;
     [SerializeField] private GameObject _choicePrefab;
     [SerializeField] private GameObject _choicePanel;
     private Queue<PendingMsg> _pendingMsgs=new Queue<PendingMsg>();
@@ -80,6 +81,10 @@ public class Discussion : MonoBehaviour
         {
             NotificationManager.Instance.SendNotifText(_preview.text, _iD);
         }
+    }
+    public void AddLinkTo(ApplicationType type)
+    {
+
     }
     public void TriggerChoice(List<string> choices)
     {

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using TCG.Core.Dialogues;
 using Unity.Android.Gradle;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PhoneManager : MonoBehaviour
@@ -62,13 +63,12 @@ public class PhoneManager : MonoBehaviour
         }
         for (int i = 0; i < _setup.Applications.Count; i++)
         {
-            GameObject app = Instantiate(_setup.Applications[i]);
-            _apps.Add(app.GetComponent<Application>());
-            AppManager.Instance.addToApps(_apps[i]);
-            _apps[i].SetUp(_setup);
-            GameObject button = Instantiate(_appButtonPrefabs, _appButtonCanvas.transform);
-            button.GetComponent<AppButton>().Type = app.GetComponent<Application>()._appType;
-            _notifManager.Buttons.Add(button.GetComponent<AppButton>());
+           Application app= Instantiate(_setup.Applications[i]).GetComponent<Application>();
+            if (app.IsUnlocked)
+            {
+                Destroy(app.gameObject);
+               AddApplication(_setup.Applications[i]);
+            }
         }
     }
     public void CloseApps()
@@ -135,5 +135,21 @@ public class PhoneManager : MonoBehaviour
         _currentLocation = location;
         Debug.Log($"Go to {location.locationName}");
         //Play location VFX
+    }
+    public void AddApplication(GameObject appli)
+    {
+        GameObject app = Instantiate(appli);
+        Application application = app.GetComponent<Application>();
+        if (_apps.Find(x => x._appType == application._appType))
+        {
+            Destroy(app);
+            return;
+        }
+        _apps.Add(application);
+        AppManager.Instance.addToApps(application);
+        application.SetUp(_setup);
+        GameObject button = Instantiate(_appButtonPrefabs, _appButtonCanvas.transform);
+        button.GetComponent<AppButton>().Type = app.GetComponent<Application>()._appType;
+        _notifManager.Buttons.Add(button.GetComponent<AppButton>());
     }
 }

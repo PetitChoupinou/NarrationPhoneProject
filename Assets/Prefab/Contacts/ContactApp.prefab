@@ -687,6 +687,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ContactApp
   _appType: 1
   _logo: {fileID: -8329447868056420380, guid: 7914eebc89c90ec49b19a91fb8cb9fa8, type: 3}
+  _isUnlocked: 1
   _buttonPrefab: {fileID: 8993750035258260197, guid: 4fd9f05865e3942438e5b45b79e6a9aa, type: 3}
   _contactPagePrefab: {fileID: 3944856552290277509, guid: 6a7416e6b91f8ff43bee1b2e08177214, type: 3}
   _storagePrefab: {fileID: 6917142741193607416, guid: 5c6c7b9d4b576174eb0c5b203ce7d617, type: 3}

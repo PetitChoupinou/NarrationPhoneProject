@@ -384,7 +384,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.0007407353}
+  m_AnchoredPosition: {x: 0, y: -14522.733}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &8388143821443625329
@@ -1532,6 +1532,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ClockApp
   _appType: 4
   _logo: {fileID: -2638747829411776789, guid: 1e247a1663f9a7942b059f0101c47534, type: 3}
+  _isUnlocked: 1
   _alarmPanel: {fileID: 2754254748797259887}
   _alarmContent: {fileID: 4135384471939077109}
   _clockContent: {fileID: 1273748203426230583}

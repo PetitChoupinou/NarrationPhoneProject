@@ -3170,6 +3170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PhoneApp
   _appType: 8
   _logo: {fileID: -1968075404261898512, guid: c2c4338e1c8eb144aabd0351da3a0343, type: 3}
+  _isUnlocked: 1
   _numDisplay: {fileID: 5029077849507468397}
 --- !u!1 &6711060589473825983
 GameObject:

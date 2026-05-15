@@ -13,6 +13,7 @@ public class StoryAppSetup : ScriptableObject
     [SerializeField] List<ClocksData> _clocks = new List<ClocksData>();
     [SerializeField] List<AlarmsData> _alarms = new List<AlarmsData>();
     [SerializeField] List<PhoneNumbers> _phoneNumbers = new List<PhoneNumbers>();
+    [SerializeField] List<InternetSerach> _internetSearches = new List<InternetSerach>();
     List<LocationData> _locations = new List<LocationData>();
 
 
@@ -26,7 +27,9 @@ public class StoryAppSetup : ScriptableObject
     public List<AlarmsData> Alarms { get => _alarms;}
     public List<PhoneNumbers> PhoneNumbers { get => _phoneNumbers;}
 
+    public List<InternetSerach> InternetSeraches { get => _internetSearches; }
     public List<LocationData> Locations { get => _locations; }
+
 }
 
 [Serializable]
@@ -87,6 +90,13 @@ public struct PhoneNumbers
     public string title;
     public string numbers;
     //whatever it is supposed to be
+}
+
+[Serializable]
+public struct InternetSerach
+{
+    public string search;
+    public string text;
 }
 public enum NetworkState
 {
