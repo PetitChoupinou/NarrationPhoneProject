@@ -13,6 +13,7 @@ public class PhoneManager : MonoBehaviour
     [SerializeField] private GameObject _thoughtSystem;
     [SerializeField] private List<Clock> _baseClocks = new List<Clock>();
     [SerializeField] private Network _network;
+    public Dictionary<ApplicationType, GameObject> lockedApps=new Dictionary<ApplicationType, GameObject>();
     private List<Application> _apps=new List<Application>();
     private NotificationManager _notifManager;
     private AppDepth _currentDepth;
@@ -66,9 +67,14 @@ public class PhoneManager : MonoBehaviour
            Application app= Instantiate(_setup.Applications[i]).GetComponent<Application>();
             if (app.IsUnlocked)
             {
-                Destroy(app.gameObject);
                AddApplication(_setup.Applications[i]);
             }
+            else
+            {
+                lockedApps.Add(app._appType, _setup.Applications[i]);
+            }
+            Destroy(app.gameObject);
+
         }
     }
     public void CloseApps()

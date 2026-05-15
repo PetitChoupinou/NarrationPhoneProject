@@ -75,6 +75,10 @@ public class AppManager : MonoBehaviour
             case ApplicationType.Telephone:
                 isLight = false;
                 break;
+            case ApplicationType.Internet:
+                GetApplication(apps).GetComponent<InternetApp>().OnActivated();
+                isLight = false;
+                break;
         }
         _header.AppChangedUpdate(isLight,needBg);
     }
