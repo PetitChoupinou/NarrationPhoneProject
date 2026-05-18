@@ -1,9 +1,9 @@
-using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.UI;
 public class Discussion : MonoBehaviour
 {
     private TMP_Text _lastMessage;
@@ -84,6 +84,21 @@ public class Discussion : MonoBehaviour
     }
     public void AddLinkTo(ApplicationType type)
     {
+        if (PhoneManager.Instance.CurrentLocation.networkState == NetworkState.Bad)
+        {
+
+            _pendingMsgs.Enqueue(new PendingMsg(type));
+            return;
+        }
+        GameObject newMessage = Instantiate(_messagePrefab, _content.transform);
+        MessageLink message = newMessage.GetComponent<MessageLink>();
+        message.SetLinkMsg(type);
+        ChangePreview("", true);
+        StartCoroutine(MessageApplyResize(newMessage));
+        if (_messageApp.CurrentConv != this.gameObject)
+        {
+            NotificationManager.Instance.SendNotifText(_preview.text, _iD);
+        }
 
     }
     public void TriggerChoice(List<string> choices)
@@ -107,8 +122,13 @@ public class Discussion : MonoBehaviour
         }
 
     }
-    public void ChangePreview(string text)
+    public void ChangePreview(string text,bool isDl=false)
     {
+        if (isDl)
+        {
+            _preview.text = "download";
+            return;
+        }
         string previewText = "";
         if (text.Length > 15)
         {
@@ -158,20 +178,36 @@ public class Discussion : MonoBehaviour
     {
         while (_pendingMsgs.Count > 0)
         {
+            
             PendingMsg current = _pendingMsgs.Dequeue();
-            AddMessage(current.msg, current.isNPC);
+            if (current.isDownload)
+            {
+                AddLinkTo(current.app);
+            }
+            else
+            {
+                AddMessage(current.text, current.isNPC);
+            }
         }
     }
 }
 public class PendingMsg
 {
     public bool isNPC;
-    public string msg;
-    private string text;
+    public bool isDownload;
+    public ApplicationType app;
+    public string text;
 
     public PendingMsg(bool isNPC, string text)
     {
         this.isNPC = isNPC;
         this.text = text;
+        this.isDownload = false;
     }
+    public PendingMsg(ApplicationType type)
+    {
+        this.isDownload=true;
+        this.app = type;
+    }
+
 }
