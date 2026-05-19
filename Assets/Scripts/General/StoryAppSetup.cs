@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "StoryAppSetup", menuName = "Scriptable Objects/StoryAppSetup")]
@@ -13,6 +14,8 @@ public class StoryAppSetup : ScriptableObject
     [SerializeField] List<ClocksData> _clocks = new List<ClocksData>();
     [SerializeField] List<AlarmsData> _alarms = new List<AlarmsData>();
     [SerializeField] List<PhoneNumbers> _phoneNumbers = new List<PhoneNumbers>();
+    [SerializeField] List<InternetSerach> _internetSearches = new List<InternetSerach>();
+    [SerializeField] SpecialSetup _specialAppSetup;
     List<LocationData> _locations = new List<LocationData>();
 
 
@@ -26,7 +29,9 @@ public class StoryAppSetup : ScriptableObject
     public List<AlarmsData> Alarms { get => _alarms;}
     public List<PhoneNumbers> PhoneNumbers { get => _phoneNumbers;}
 
+    public List<InternetSerach> InternetSeraches { get => _internetSearches; }
     public List<LocationData> Locations { get => _locations; }
+
 }
 
 [Serializable]
@@ -34,6 +39,13 @@ public struct NotesData
 {
     public string title;
     public string content;
+    [Header("for specialApp notes")]
+    public int year;
+    [Range(1, 12)] public int month;
+    [Range(1, 31)] public int day;
+    [Range(0, 23)] public int hour;
+    [Range(0, 59)] public int minute;
+    
 }
 [Serializable]
 public struct AlarmsData
@@ -87,6 +99,28 @@ public struct PhoneNumbers
     public string title;
     public string numbers;
     //whatever it is supposed to be
+}
+
+[Serializable]
+public struct InternetSerach
+{
+    public string search;
+    public string text;
+}
+[Serializable]
+public class SpecialSetup
+{
+    public string title;
+    public List<SpecialFolder> folders=new List<SpecialFolder>();
+}
+
+
+[Serializable]
+public class SpecialFolder
+{
+    public string title;
+    public List<PhotoData> spPhoto=new List<PhotoData>();
+    public List<NotesData> spNotes = new List<NotesData>();
 }
 public enum NetworkState
 {

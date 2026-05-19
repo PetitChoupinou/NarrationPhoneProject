@@ -11,7 +11,9 @@ public enum ApplicationType
     Photos,
     Map,
     Telephone,
-    Camera
+    Camera,
+    Internet,
+    Special
 }
 abstract public class Application : MonoBehaviour
 {
@@ -20,8 +22,10 @@ abstract public class Application : MonoBehaviour
     public ApplicationType _appType;
     private Header _header;
     [SerializeField] private Sprite _logo;
+    [SerializeField] bool _isUnlocked=true;
 
     public Sprite Logo { get => _logo;}
+    public bool IsUnlocked { get => _isUnlocked; }
 
     private void Awake()
     {

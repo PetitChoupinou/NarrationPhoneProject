@@ -1209,6 +1209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PhotoApp
   _appType: 6
   _logo: {fileID: 2016603360213844496, guid: e9d6b96dd71ff4945b7f6e85073b1d48, type: 3}
+  _isUnlocked: 1
   _photoPanel: {fileID: 3326560044710939687}
   _photoPrefab: {fileID: 4940197130168312644, guid: 7a9a45f5e3ebac84b9e0c973ab719c97, type: 3}
   _returnButton: {fileID: 5076262753839434015}
