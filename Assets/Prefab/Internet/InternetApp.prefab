@@ -396,7 +396,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2372866346507516327}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -467,7 +467,7 @@ MonoBehaviour:
   _appType: 10
   _logo: {fileID: 5468614384645153258, guid: ed394a9d5236c2745836842420ec7d75, type: 3}
   _isUnlocked: 1
-  _headerTxt: {fileID: 0}
+  _headerTxt: {fileID: 228137444105074166}
   _basePage: {fileID: 2050822154551275459}
   _basePageContent: {fileID: 3265252883724255181}
   _searchPrefab: {fileID: 5310214115059371141, guid: b014e433293f9c547a7f2442015ac825, type: 3}

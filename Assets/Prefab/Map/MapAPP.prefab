@@ -482,6 +482,10 @@ PrefabInstance:
       propertyPath: _data.locationName
       value: Endroit de type vraiment cool!
       objectReference: {fileID: 0}
+    - target: {fileID: 3276794820545527556, guid: ca93e44b8e2b3fe4f92d01f8857d0f33, type: 3}
+      propertyPath: _data.networkState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3446047979925059502, guid: ca93e44b8e2b3fe4f92d01f8857d0f33, type: 3}
       propertyPath: m_Sprite
       value: 
