@@ -12,7 +12,8 @@ public enum ApplicationType
     Map,
     Telephone,
     Camera,
-    Internet
+    Internet,
+    Special
 }
 abstract public class Application : MonoBehaviour
 {

@@ -62,8 +62,18 @@ MonoBehaviour:
   _notes:
   - title: A
     content: ah
+    year: 0
+    month: 0
+    day: 0
+    hour: 0
+    minute: 0
   - title: B
     content: beh
+    year: 0
+    month: 0
+    day: 0
+    hour: 0
+    minute: 0
   _clocks:
   - Town: Tokyo
     timeDiff: 7
@@ -110,3 +120,22 @@ MonoBehaviour:
     text: ' non c''est de la merde :)!!!'
   - search: pourquoi 42?
     text: "c'est la r\xE9ponse \xE0 la vie."
+  _specialAppSetup:
+    title: "L'appT\xE9l\xE9chag\xE9L\xE0"
+    folders:
+    - title: aled
+      spPhoto:
+      - image: {fileID: 4875404568758535411, guid: 2319caa043bdb1149a1fc49d13fa3570, type: 3}
+        year: 1280
+        month: 9
+        day: 6
+        hour: 11
+        minute: 46
+      spNotes:
+      - title: '&&&&&&'
+        content: ~~~~~~~~~~~~
+        year: 1280
+        month: 8
+        day: 12
+        hour: 13
+        minute: 53
