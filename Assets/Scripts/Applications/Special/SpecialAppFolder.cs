@@ -2,15 +2,8 @@ using UnityEngine;
 
 public class SpecialAppFolder : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void Setup(SpecialFolder folder)
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
