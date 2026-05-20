@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class SpecialApp : Application
 {
+    GameObject currentFolder;
     public override void CloseCurrent()
     {
         

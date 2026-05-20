@@ -38,14 +38,7 @@ public class StoryAppSetup : ScriptableObject
 public struct NotesData
 {
     public string title;
-    public string content;
-    [Header("for specialApp notes")]
-    public int year;
-    [Range(1, 12)] public int month;
-    [Range(1, 31)] public int day;
-    [Range(0, 23)] public int hour;
-    [Range(0, 59)] public int minute;
-    
+    public string content; 
 }
 [Serializable]
 public struct AlarmsData

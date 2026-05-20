@@ -20,14 +20,18 @@ public class Note : MonoBehaviour
             _headerText.text = _iD;
         PhoneManager.Instance.ChangeDepth(PhoneManager.AppDepth.inApp);
     }
-    public void SetUp(string title,string content,GameObject button,TMP_Text headerText)
+    public void SetUp(string title,string content,GameObject button,TMP_Text headerText,bool hasPreview = true)
     {
          _iD = title;
         _noteButton = button;
         _headerText = headerText;
-        _preview = _noteButton.GetComponent<InAppButton>().Preview;
+       
         _content.text = content;
-        ChangePreview(content);
+        if (hasPreview)
+        {
+            _preview = _noteButton.GetComponent<InAppButton>().Preview;
+            ChangePreview(content);
+        }
     }
 
     public void AddNote(string content)
