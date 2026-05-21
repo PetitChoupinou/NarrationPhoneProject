@@ -57,7 +57,7 @@ public class NoteApp : Application
             GameObject button = Instantiate(_buttonPrefab, _buttonCanvas.transform);
             GameObject newNote = Instantiate(_notePrefab, transform);
             button.GetComponent<InAppButton>().SetUp(name, newNote, _headerButton);
-            newNote.GetComponent<Note>().SetUp(name, content, button, _headerText);
+            newNote.GetComponent<Note>().SetUp(name, content, button, _headerText,gameObject);
             newNote.SetActive(false);
             _notes.Add(newNote.GetComponent<Note>());
         }

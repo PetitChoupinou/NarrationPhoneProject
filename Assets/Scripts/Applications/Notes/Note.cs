@@ -9,29 +9,41 @@ public class Note : MonoBehaviour
     private GameObject _noteButton;
     private TMP_Text _preview;
     private TMP_Text _headerText;
+    private GameObject _parent;
     [SerializeField] private TMP_Text _content;
     public string ID { get => _iD; }
 
  
     private void OnEnable()
     {
-        FindAnyObjectByType<NoteApp>().CurrentNote = gameObject;
+        bool isNote = _parent.TryGetComponent<NoteApp>(out NoteApp n);
+       if (isNote)
+        {
+            n.CurrentNote = gameObject;
+            PhoneManager.Instance.ChangeDepth(PhoneManager.AppDepth.inApp);
+        }
+        else
+        {
+            _parent.GetComponent<SpecialAppFolder>().CurrentFile = gameObject;
+            PhoneManager.Instance.ChangeDepth(PhoneManager.AppDepth.deep);
+        }
         if (_headerText)
             _headerText.text = _iD;
-        PhoneManager.Instance.ChangeDepth(PhoneManager.AppDepth.inApp);
+      
     }
-    public void SetUp(string title,string content,GameObject button,TMP_Text headerText,bool hasPreview = true)
+    public void SetUp(string title, string content, GameObject button, TMP_Text headerText, GameObject parent, bool previewTitle = false)
     {
          _iD = title;
         _noteButton = button;
         _headerText = headerText;
-       
+       _parent=parent;
         _content.text = content;
-        if (hasPreview)
+        _preview = _noteButton.GetComponent<InAppButton>().Preview;
+        if (previewTitle)
         {
-            _preview = _noteButton.GetComponent<InAppButton>().Preview;
-            ChangePreview(content);
+            ChangePreview(title);
         }
+        else ChangePreview(content);
     }
 
     public void AddNote(string content)
@@ -41,6 +53,7 @@ public class Note : MonoBehaviour
     public void ChangePreview(string text)
     {
         string previewText = "";
+
         if (text.Length > 30)
         {
             for (int i = 0; i < 27; i++)

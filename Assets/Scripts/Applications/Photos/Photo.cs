@@ -13,6 +13,7 @@ public class Photo : MonoBehaviour
     private GameObject _fullImagePanel;
     private GameObject _previewImagePanel;
     private GameObject _returnButton;
+    private GameObject _parent;
     private DateTime _date;
 
 
@@ -20,8 +21,9 @@ public class Photo : MonoBehaviour
     {
         _image = GetComponent<Image>();
     }
-    public void Setup(PhotoData data,TMP_Text preview,GameObject fullImagePanel,GameObject previewImagePanel,Image imageFull,GameObject returnButton)
+    public void Setup(PhotoData data,TMP_Text preview,GameObject fullImagePanel,GameObject previewImagePanel,Image imageFull,GameObject returnButton,GameObject parent=null)
     {
+        if(parent!=null) _parent=parent;
         if(_image == null) _image = GetComponent<Image>();
         _image.sprite = data.image;
         _previewText = preview;
@@ -34,6 +36,7 @@ public class Photo : MonoBehaviour
     public void Pressed()
     {
         PhoneManager.Instance.ChangeDepth(PhoneManager.AppDepth.deep);
+        if (_parent != null) _parent.GetComponent<SpecialAppFolder>().CurrentFile = gameObject;
         string monthString = _date.ToString("MMMM");
         string minutes = "";
         string hours = "";

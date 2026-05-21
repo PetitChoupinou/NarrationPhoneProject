@@ -11,7 +11,7 @@ public class InAppButton : MonoBehaviour
      private GameObject _returnButton;
 
     public GameObject Parent { get => _parent;}
-    public GameObject Discussion { get => _discussion; set => _discussion = value; }
+    public GameObject Discussion { get => _discussion; set => _discussion = value; }// should probably not be named discussion and more like content or smthing
 
     public void SetUp(string name,GameObject discussion,GameObject returnButton)
     {
