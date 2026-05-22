@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 1514448770489581715}
   - component: {fileID: 5789571072370069142}
   m_Layer: 5
-  m_Name: SpecialApp
+  m_Name: HackApp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -125,7 +125,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 357291307713472603}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -194,8 +194,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpecialApp
   _appType: 11
-  _logo: {fileID: 0}
-  _isUnlocked: 0
+  _logo: {fileID: -7713684878125597319, guid: 7fb328501e4645b439e92603fa9de78a, type: 3}
+  _isUnlocked: 1
+  _content: {fileID: 613720164382788723}
+  _returnButton: {fileID: 3285876406555764792}
+  _image: {fileID: 524333597517657798}
+  _headerTxt: {fileID: 7840794927283290736}
+  _folderButtonPrefab: {fileID: 7917979737190859742, guid: a21d7a5bb7d4e8149a4095fe554fa4a0, type: 3}
+  _folderPrefab: {fileID: 7164720494736135024, guid: 1ea752de8e6656b43a7f838d7f9abed4, type: 3}
 --- !u!1 &613720164382788723
 GameObject:
   m_ObjectHideFlags: 0
@@ -406,7 +412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

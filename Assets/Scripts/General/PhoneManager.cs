@@ -79,6 +79,10 @@ public class PhoneManager : MonoBehaviour
     }
     public void CloseApps()
     {
+        if(_currentDepth == AppDepth.deep)
+        {
+            ReturnApps();
+        }
         if (_currentDepth == AppDepth.inApp)
         {
             ReturnApps();

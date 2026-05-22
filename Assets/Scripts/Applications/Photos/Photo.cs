@@ -36,7 +36,7 @@ public class Photo : MonoBehaviour
     public void Pressed()
     {
         PhoneManager.Instance.ChangeDepth(PhoneManager.AppDepth.deep);
-        if (_parent != null) _parent.GetComponent<SpecialAppFolder>().CurrentFile = gameObject;
+        if (_parent != null) _parent.GetComponent<HackFolder>().CurrentFile = gameObject;
         string monthString = _date.ToString("MMMM");
         string minutes = "";
         string hours = "";

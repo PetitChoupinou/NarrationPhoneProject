@@ -15,7 +15,7 @@ public class StoryAppSetup : ScriptableObject
     [SerializeField] List<AlarmsData> _alarms = new List<AlarmsData>();
     [SerializeField] List<PhoneNumbers> _phoneNumbers = new List<PhoneNumbers>();
     [SerializeField] List<InternetSerach> _internetSearches = new List<InternetSerach>();
-    [SerializeField] SpecialSetup _specialAppSetup;
+    [SerializeField] HackSetup _hackAppSetup;
     List<LocationData> _locations = new List<LocationData>();
 
 
@@ -31,7 +31,7 @@ public class StoryAppSetup : ScriptableObject
 
     public List<InternetSerach> InternetSeraches { get => _internetSearches; }
     public List<LocationData> Locations { get => _locations; }
-
+    public HackSetup HackAppSetup { get => _hackAppSetup;  }
 }
 
 [Serializable]
@@ -101,17 +101,18 @@ public struct InternetSerach
     public string text;
 }
 [Serializable]
-public class SpecialSetup
+public class HackSetup
 {
     public string title;
-    public List<SpecialFolder> folders=new List<SpecialFolder>();
+    public List<HackFolderSetup> folders=new List<HackFolderSetup>();
 }
 
 
 [Serializable]
-public class SpecialFolder
+public class HackFolderSetup
 {
     public string title;
+    public bool isHackedFromStart;//pour de futures histoires possibles?
     public List<PhotoData> spPhoto=new List<PhotoData>();
     public List<NotesData> spNotes = new List<NotesData>();
 }

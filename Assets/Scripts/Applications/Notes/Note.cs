@@ -12,19 +12,19 @@ public class Note : MonoBehaviour
     private GameObject _parent;
     [SerializeField] private TMP_Text _content;
     public string ID { get => _iD; }
+    public TMP_Text Content { get => _content; }
 
- 
     private void OnEnable()
     {
-        bool isNote = _parent.TryGetComponent<NoteApp>(out NoteApp n);
-       if (isNote)
+        if (_parent == null) return;
+       if (_parent.TryGetComponent<NoteApp>(out NoteApp n))
         {
             n.CurrentNote = gameObject;
             PhoneManager.Instance.ChangeDepth(PhoneManager.AppDepth.inApp);
         }
         else
         {
-            _parent.GetComponent<SpecialAppFolder>().CurrentFile = gameObject;
+            _parent.GetComponent<HackFolder>().CurrentFile = gameObject;
             PhoneManager.Instance.ChangeDepth(PhoneManager.AppDepth.deep);
         }
         if (_headerText)

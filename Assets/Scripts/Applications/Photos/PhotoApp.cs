@@ -37,7 +37,7 @@ public class PhotoApp : Application
         }
         else if (_phoneManager.CurrentDepth == PhoneManager.AppDepth.inApp)
         {
-            _phoneManager.ChangeDepth(PhoneManager.AppDepth.inApp);
+            _phoneManager.ChangeDepth(PhoneManager.AppDepth.app);
             _currentStoragePanel.SetActive(false);
             _returnButton.SetActive(false);
             _buttonPanel.SetActive(true);
