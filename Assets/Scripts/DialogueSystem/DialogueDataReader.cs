@@ -191,6 +191,14 @@ public class DialogueDataReader : MonoBehaviour
                 {
                     _currentDialogueData.isLocked = true;
                 };
+            case NodeType.NewApplication:
+                NewApplicationNodeData newAppNodeData = nodeData as NewApplicationNodeData;
+                return () =>
+                {
+                    ApplicationType type = Enum.Parse<ApplicationType>(newAppNodeData.applicationType);
+                    _messageApp.AddLinkTo(type, _characterID);
+                    ReadNextNode(nodeData, 0);
+                };
             default:
                 return () => { };
         }

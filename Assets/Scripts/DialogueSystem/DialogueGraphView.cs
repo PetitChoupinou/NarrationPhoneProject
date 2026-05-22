@@ -20,7 +20,8 @@ public enum NodeType
     Set,
     Unlock,
     Thinking,
-    Block
+    Block,
+    NewApplication
 }
 
 public enum Talker
@@ -496,6 +497,41 @@ public class DialogueGraphView : GraphView
                 node.RefreshPorts();
                 node.SetPosition(new Rect(position, BaseNode.defaultNodeSize));
                 break;
+            case NodeType.NewApplication:
+                node = new NewApplicationNode
+                {
+                    GUID = Guid.NewGuid().ToString(),
+                    title = "New Application",
+                    nodeType = NodeType.NewApplication
+                };
+
+                NewApplicationNode applicationNode = node as NewApplicationNode;
+                inputPort = node.GeneratePort(Direction.Input, Port.Capacity.Multi);
+                inputPort.portName = "Input";
+                node.inputContainer.Add(inputPort);
+
+                List<string> applicationChoices = Enum.GetNames(typeof(ApplicationType)).ToList();
+                DropdownField applicationChoice = new DropdownField
+                {
+                    label = "Application",
+                    choices = applicationChoices,
+                    value = applicationChoices[0]
+                };
+                applicationNode.applicationTypeField = applicationChoice;
+                applicationChoice.RegisterValueChangedCallback(evt =>
+                {
+                    applicationNode.UpdateApplicationChoice(evt.newValue);
+                });
+                node.mainContainer.Add(applicationChoice);
+                
+                outputPort = node.GeneratePort(Direction.Output);
+                outputPort.portName = "Next";
+                node.outputContainer.Add(outputPort);
+
+                node.RefreshExpandedState();
+                node.RefreshPorts();
+                node.SetPosition(new Rect(position, BaseNode.defaultNodeSize));
+                break;
 
         }
         if(type != NodeType.Start)
@@ -613,6 +649,7 @@ public class DialogueGraphView : GraphView
                     marginBottom = 5
                 }
         };
+        
         var propertyConditionField = new DropdownField
         {
             choices = GetProperties(),
@@ -620,11 +657,17 @@ public class DialogueGraphView : GraphView
             value = newCondition.property != null ? newCondition.property.Name : "Property"
         };
         
+
         var valueField = new VisualElement();
 
         //If loading a data
         if (data.property != null)
         {
+            if (globalPropertiesData.globalProperties.FirstOrDefault(p => p.Name == newCondition.property?.Name) == null)
+            {
+                propertyConditionField.style.backgroundColor = new Color(0.5f, 0, 0, 1);
+                propertyConditionField.value = "Invalid Property";
+            }
             ExposedProperty property = data.property;
             valueField = CreateFieldForType(property.type, property.GetValue(), value =>
             {
@@ -656,6 +699,7 @@ public class DialogueGraphView : GraphView
         
         propertyConditionField.RegisterValueChangedCallback(evt =>
         {
+            propertyConditionField.style.backgroundColor = new Color(0.5f, 0, 0, 0);
             ExposedProperty selectedProperty = FindPropertyByName(evt.newValue);
             Type type = selectedProperty.type;
             if (row.Contains(conditionField)) row.Remove(conditionField);
@@ -807,6 +851,11 @@ public class DialogueGraphView : GraphView
                 var nodeBlock = node as BlockNode;
                 var blockNodeData = nodeData as BlockNodeData;
                 break;
+            case NodeType.NewApplication:
+                var nodeNewApplication = node as NewApplicationNode;
+                var newApplicationNodeData = nodeData as NewApplicationNodeData;
+                nodeNewApplication.UpdateApplicationChoice(newApplicationNodeData.applicationType);
+                break;
         }
         node.isSentToggle.value = nodeData.IsSentBase;
         AddElement(node);
@@ -929,8 +978,10 @@ public class DialogueGraphView : GraphView
             if(foundProperty != null)
             {
                 globalPropertiesData.globalProperties.Remove(foundProperty);
+
             }
-            
+
+            blackBoardProperty.Remove(property);
             blackboard.Remove(container);
         })
         {

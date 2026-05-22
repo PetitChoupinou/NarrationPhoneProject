@@ -58,6 +58,12 @@ public class MessageApp : Application
         var discussion = _discussions.Find(x => x.ID == ID);
         discussion.AddMessage(text, isNPC);
     }
+
+    public void AddLinkTo(ApplicationType applicationType, string ID)
+    {
+        var discussion = _discussions.Find(x => x.ID == ID);
+        discussion.AddLinkTo(applicationType);
+    }
     public void SendChoice(List<string> choices,string ID)
     {
         _discussions.Find(x => x.ID == ID).TriggerChoice(choices);

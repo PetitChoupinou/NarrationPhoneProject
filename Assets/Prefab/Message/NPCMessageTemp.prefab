@@ -414,6 +414,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Discussion
   _content: {fileID: 4037987187262635901}
   _messagePrefab: {fileID: 2163111562131114609, guid: 249623f267699a24a8206a31fd72c8db, type: 3}
+  _linkPrefab: {fileID: 2163111562131114609, guid: ab620c1efd06a4e49b9faa1242b6b7ae, type: 3}
   _choicePrefab: {fileID: 8295458853211037205, guid: 4474b3d02dafc9643a81ea51fa757c9e, type: 3}
   _choicePanel: {fileID: 9027472711351475690}
 --- !u!114 &7855167073092259729

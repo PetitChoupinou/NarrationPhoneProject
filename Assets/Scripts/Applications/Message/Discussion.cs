@@ -90,7 +90,7 @@ public class Discussion : MonoBehaviour
             _pendingMsgs.Enqueue(new PendingMsg(type));
             return;
         }
-        GameObject newMessage = Instantiate(_messagePrefab, _content.transform);
+        GameObject newMessage = Instantiate(_linkPrefab, _content.transform);
         MessageLink message = newMessage.GetComponent<MessageLink>();
         message.SetLinkMsg(type);
         ChangePreview("", true);

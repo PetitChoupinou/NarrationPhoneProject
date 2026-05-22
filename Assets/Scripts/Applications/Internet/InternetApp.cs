@@ -39,6 +39,9 @@ public class InternetApp : Application
         if (_isDlPage)
         {
             _isDlPage = false;
+        }
+        else
+        {
             _basePage.SetActive(true);
             _DlPage.SetActive(false);
         }

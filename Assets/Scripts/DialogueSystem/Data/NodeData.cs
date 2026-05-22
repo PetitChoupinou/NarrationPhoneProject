@@ -145,6 +145,20 @@ public class NoteNodeData : NodeData
 }
 
 [Serializable]
+public class NewApplicationNodeData : NodeData
+{
+
+    public string applicationType;
+    public NewApplicationNodeData(NodeData data)
+    {
+        nodeGUID = data.nodeGUID;
+        nodeType = data.nodeType;
+        position = data.position;
+        outputs = data.outputs;
+    }
+}
+
+[Serializable]
 public class OutputData
 {
     public string portValue;

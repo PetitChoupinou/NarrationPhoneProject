@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ef08a29b60933941822e91151f6e732, type: 3}
+  m_Name: pitchhhh
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  nodes:
+  - rid: 5760394546360614982
+  - rid: 5760394546360614983
+  entryPointNodeGuid: 869ccbcd-771b-4b23-9957-a3232d77bbae
+  isLocked: 0
+  _isLocked: 0
+  hasStarted: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 5760394546360614982
+      type: {class: NodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 869ccbcd-771b-4b23-9957-a3232d77bbae
+        nodeType: 0
+        position: {x: 250.4, y: 200}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 
+        isSentCurrent: 0
+    - rid: 5760394546360614983
+      type: {class: ConditionPropertyNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: bd45bc93-8bfa-43df-991b-dd798da5714e
+        nodeType: 4
+        position: {x: 371.2, y: 190.40001}
+        outputs:
+        - portValue: True
+          targetNodeGuid: 
+        - portValue: False
+          targetNodeGuid: 
+        isSentCurrent: 0
+        conditions:
+        - property:
+            rid: 5760394546360614984
+          condition: 0
+          valueString: 0
+    - rid: 5760394546360614984
+      type: {class: 'ExposedProperty`1[[System.Single, mscorlib]]', ns: , asm: Assembly-CSharp}
+      data:
+        Name: New Single
+        PropertyValue: 0
