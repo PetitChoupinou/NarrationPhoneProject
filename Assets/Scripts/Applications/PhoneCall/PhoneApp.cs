@@ -10,7 +10,7 @@ public class PhoneApp : Application
 
     public override void CloseCurrent()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public override void SetUp(StoryAppSetup setup)

@@ -14,7 +14,12 @@ public class InternetApp : Application
     StoryAppSetup _setup;
     public override void CloseCurrent()
     {
-
+        if (_isDlPage)
+        {
+            _basePage.SetActive(true);
+            _DlPage.SetActive(false);
+            _isDlPage=false;
+        }
     }
 
     public override void SetUp(StoryAppSetup setup)
@@ -29,8 +34,6 @@ public class InternetApp : Application
     public void setDlPage(string url,ApplicationType type)
     {
         _isDlPage = true;
-        _basePage.SetActive(false);
-        _DlPage.SetActive(true);
         _DlPage.GetComponent<DlPage>().Setup(_headerTxt, url, type, _setup);
     }
 
@@ -38,10 +41,13 @@ public class InternetApp : Application
     {
         if (_isDlPage)
         {
-            _isDlPage = false;
+            PhoneManager.Instance.ChangeDepth(PhoneManager.AppDepth.inApp);
+            _basePage.SetActive(false);
+            _DlPage.SetActive(true);
         }
         else
         {
+            PhoneManager.Instance.ChangeDepth(PhoneManager.AppDepth.app);
             _basePage.SetActive(true);
             _DlPage.SetActive(false);
         }

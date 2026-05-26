@@ -16,10 +16,7 @@ public class HackApp : Application
     [SerializeField] private GameObject _folderPrefab;
 
     public GameObject CurrentFolder { get => _currentFolder; set => _currentFolder = value; }
-    private void Awake()
-    {
-        _phoneManager = PhoneManager.Instance;
-    }
+
     public override void CloseCurrent()
     {
         if (CurrentFolder == null) return;
@@ -39,6 +36,7 @@ public class HackApp : Application
 
     public override void SetUp(StoryAppSetup setup)
     {
+        _phoneManager = PhoneManager.Instance;
         _hackSetup = setup.HackAppSetup;
         _name = _hackSetup.title;
         foreach (HackFolderSetup folderSetup in _hackSetup.folders) 

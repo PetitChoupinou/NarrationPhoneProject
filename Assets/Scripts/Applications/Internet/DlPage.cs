@@ -17,6 +17,7 @@ public class DlPage : MonoBehaviour
 
     public void OnDL()
     {
+        if (!_phone.lockedApps.ContainsKey(_type)) return;
         _phone.AddApplication(_phone.lockedApps[_type]);
         _phone.lockedApps.Remove(_type);
     }
