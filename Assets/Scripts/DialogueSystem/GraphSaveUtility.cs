@@ -182,6 +182,13 @@ public class GraphSaveUtility
                 newAppNodeData.outputs.Add(CreateOutputData(connectedPorts, node, "Next"));
                 data = newAppNodeData;
                 break;
+            case NodeType.NewFile:
+                var newFileNode = node as NewFileNode;
+                NewFileNodeData newFileNodeData = new NewFileNodeData(data);
+                newFileNodeData.fileName = newFileNode.fileName;
+                newFileNodeData.outputs.Add(CreateOutputData(connectedPorts, node, "Next"));
+                data = newFileNodeData;
+                break;
             default:
                 break;
         }

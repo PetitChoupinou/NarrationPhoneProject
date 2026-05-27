@@ -48,6 +48,7 @@ public class HackApp : BaseApplication
 
     public void AddFolder(string name)
     {
+        Debug.Log("Miaou");
         HackFolderSetup folderSetup = _hackSetup.folders.Find(x => x.title == name);
         if (folderSetup == null) return;
         GameObject button = Instantiate(_folderButtonPrefab, _content.transform);
