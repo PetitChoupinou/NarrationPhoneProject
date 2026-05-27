@@ -18,6 +18,7 @@ public class DialogueDataReader : MonoBehaviour
     private MessageApp _messageApp;
     private ContactApp _contactApp;
     private NoteApp _noteApp;
+    private HackApp _hackApp;
 
     private string _characterID;
 
@@ -44,7 +45,8 @@ public class DialogueDataReader : MonoBehaviour
     {
         _contactApp = AppManager.Instance.GetApplication(ApplicationType.Contacts) as ContactApp;
         _noteApp = AppManager.Instance.GetApplication(ApplicationType.Notes) as NoteApp;
-        if(dialogueDatas.Count == 0) { return; }
+        _hackApp = AppManager.Instance.GetApplication(ApplicationType.Hack) as HackApp;
+        if (dialogueDatas.Count == 0) { return; }
         _currentDialogueData = dialogueDatas.FirstOrDefault(data => data.name == conversationID);
         if (!_currentDialogueData.hasStarted)
         {
@@ -197,6 +199,13 @@ public class DialogueDataReader : MonoBehaviour
                 {
                     ApplicationType type = Enum.Parse<ApplicationType>(newAppNodeData.applicationType);
                     _messageApp.AddLinkTo(type, _characterID);
+                    ReadNextNode(nodeData, 0);
+                };
+            case NodeType.NewFile:
+                NewFileNodeData newFileNodeData = nodeData as NewFileNodeData;
+                return () =>
+                {
+                    _hackApp.AddFolder(newFileNodeData.fileName);
                     ReadNextNode(nodeData, 0);
                 };
             default:

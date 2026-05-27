@@ -157,6 +157,20 @@ public class NewApplicationNodeData : NodeData
         outputs = data.outputs;
     }
 }
+[Serializable]
+
+public class NewFileNodeData : NodeData
+{
+
+    public string fileName;
+    public NewFileNodeData(NodeData data)
+    {
+        nodeGUID = data.nodeGUID;
+        nodeType = data.nodeType;
+        position = data.position;
+        outputs = data.outputs;
+    }
+}
 
 [Serializable]
 public class OutputData

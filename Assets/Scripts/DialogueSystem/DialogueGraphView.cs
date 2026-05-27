@@ -21,7 +21,8 @@ public enum NodeType
     Unlock,
     Thinking,
     Block,
-    NewApplication
+    NewApplication,
+    NewFile
 }
 
 public enum Talker
@@ -532,6 +533,38 @@ public class DialogueGraphView : GraphView
                 node.RefreshPorts();
                 node.SetPosition(new Rect(position, BaseNode.defaultNodeSize));
                 break;
+            case NodeType.NewFile:
+                node = new NewFileNode
+                {
+                    GUID = Guid.NewGuid().ToString(),
+                    title = "New File",
+                    nodeType = NodeType.NewFile
+                };
+                NewFileNode fileNode = node as NewFileNode;
+                inputPort = node.GeneratePort(Direction.Input, Port.Capacity.Multi);
+                inputPort.portName = "Input";
+                node.inputContainer.Add(inputPort);
+
+                TextField fileNameField = new TextField
+                {
+                    label = "File Name",
+                    value = ""
+                };
+                fileNode.fileNameField = fileNameField;
+                fileNameField.RegisterValueChangedCallback(evt =>
+                {
+                    fileNode.fileName = evt.newValue;
+                });
+                node.mainContainer.Add(fileNameField);
+
+                outputPort = node.GeneratePort(Direction.Output);
+                outputPort.portName = "Next";
+                node.outputContainer.Add(outputPort);
+
+                node.RefreshExpandedState();
+                node.RefreshPorts();
+                node.SetPosition(new Rect(position, BaseNode.defaultNodeSize));
+                break;
 
         }
         if(type != NodeType.Start)
@@ -855,6 +888,11 @@ public class DialogueGraphView : GraphView
                 var nodeNewApplication = node as NewApplicationNode;
                 var newApplicationNodeData = nodeData as NewApplicationNodeData;
                 nodeNewApplication.UpdateApplicationChoice(newApplicationNodeData.applicationType);
+                break;
+            case NodeType.NewFile:
+                var nodeNewFile = node as NewFileNode;
+                var newFileNodeData = nodeData as NewFileNodeData;
+                nodeNewFile.UpdateFileName(newFileNodeData.fileName);
                 break;
         }
         node.isSentToggle.value = nodeData.IsSentBase;
