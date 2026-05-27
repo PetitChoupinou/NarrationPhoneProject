@@ -2,6 +2,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI;
 
 public class ContactPage : MonoBehaviour
 {
@@ -16,16 +17,44 @@ public class ContactPage : MonoBehaviour
    
     private TMP_Text _preview;
     private TMP_Text _headerText;
+    private Material _materialInstance;
     
     [SerializeField] private TMP_Text _content;
     [SerializeField] private Image _profilPic;
+    [SerializeField] private Image _relationBackground;
+    
     [SerializeField] private Color _relationshipGoodColor;
     [SerializeField] private Color _relationshipBadColor;
-    [SerializeField] private Image _relationBackground;
+    [SerializeField] private Color _outlineColor;
+    [SerializeField,Range(.51f,.70f)] private float _outlineWidth;
     public string ID { get => _iD; }
     public float Relation { get => _relation;
         set {
-           //_relationBackground.color = Color.Lerp(_relationshipBadColor, _relationshipGoodColor, (value + 10.0f) / 20.0f);
+            if (value < 0) value = 0;
+            if (value >20) value = 20;
+            float visibleValue=0;
+            switch (value)
+            {
+                case 0:
+                    visibleValue = 0;
+                    break;
+                case <5:
+                    visibleValue = .20f;
+                    break;
+                case < 10:
+                    visibleValue = .40f;
+                    break;
+                case < 15:
+                    visibleValue = .60f;
+                    break;
+                case < 20:
+                    visibleValue = .80f;
+                    break;
+                case 20:
+                    visibleValue = 1;
+                    break;
+            }
+            _materialInstance.SetFloat("_RelValue", visibleValue);
             _relation = value;
         }}
    
@@ -40,7 +69,14 @@ public class ContactPage : MonoBehaviour
     {
         _iD = title;
         _noteButton = button;
-        Relation=relation;
+        _materialInstance = new Material(_relationBackground.material); ;
+        _relationBackground.material = _materialInstance;
+        _materialInstance.SetColor("_ColorGood", _relationshipGoodColor);
+        _materialInstance.SetColor("_ColorBad", _relationshipBadColor);
+        _materialInstance.SetColor("_OutlineColor", _outlineColor);
+        _materialInstance.SetFloat("_RelValue", Relation / 20.0f);
+        _materialInstance.SetFloat("_OutlineWidth", _outlineWidth);
+        Relation =relation;
         _headerText = headerText;
         _preview = _noteButton.GetComponent<ContactAppButton>().Preview;
         _content.text = num;
@@ -48,6 +84,7 @@ public class ContactPage : MonoBehaviour
         _profilPic.color=Color.white;
         ChangePreview(num);
        _contactApp= (ContactApp)AppManager.Instance.GetApplication(ApplicationType.Contacts);
+       
     }
     public void ChangePreview(string text)
     {

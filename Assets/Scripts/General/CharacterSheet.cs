@@ -8,7 +8,7 @@ public class CharacterSheet : ScriptableObject
     [SerializeField] private string name;
     [SerializeField] private SentText[] baseText;
     [SerializeField] private string  baseNotes;
-    [SerializeField,Range(-10,10)] private int  baseAffinity;
+    [SerializeField,Range(0,20)] private int  baseAffinity;
     [SerializeField] private Sprite profilePic;
     [SerializeField] private DialogueData[] dialogues;
     [SerializeField] private PhoneNumbers telNum;

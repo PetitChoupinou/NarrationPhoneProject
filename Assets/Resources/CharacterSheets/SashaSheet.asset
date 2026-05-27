@@ -23,9 +23,10 @@ MonoBehaviour:
   - Text: pour feur!!!
     isNPC: 0
   baseNotes: vraiment trop conne comme personne
-  baseAffinity: -5
+  baseAffinity: 3
   profilePic: {fileID: 0}
   dialogues:
+  - {fileID: 11400000, guid: 4009751a5c1e1dd4fb7c012b2c11a127, type: 2}
   - {fileID: 11400000, guid: 4009751a5c1e1dd4fb7c012b2c11a127, type: 2}
   telNum:
     title: Sasha
