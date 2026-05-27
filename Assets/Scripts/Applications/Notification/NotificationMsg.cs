@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NotificationMsg : Notification
 {
-    private List<Application> _apps = new List<Application>();
+    private List<BaseApplication> _apps = new List<BaseApplication>();
     private MessageApp _messageApp;
     private void Awake()
     {

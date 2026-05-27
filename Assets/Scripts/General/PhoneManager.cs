@@ -14,7 +14,7 @@ public class PhoneManager : MonoBehaviour
     [SerializeField] private List<Clock> _baseClocks = new List<Clock>();
     [SerializeField] private Network _network;
     public Dictionary<ApplicationType, GameObject> lockedApps=new Dictionary<ApplicationType, GameObject>();
-    private List<Application> _apps=new List<Application>();
+    private List<BaseApplication> _apps=new List<BaseApplication>();
     private NotificationManager _notifManager;
     private AppDepth _currentDepth;
     private LocationData _currentLocation;
@@ -64,7 +64,7 @@ public class PhoneManager : MonoBehaviour
         }
         for (int i = 0; i < _setup.Applications.Count; i++)
         {
-           Application app= Instantiate(_setup.Applications[i]).GetComponent<Application>();
+           BaseApplication app= Instantiate(_setup.Applications[i]).GetComponent<BaseApplication>();
             if (app.IsUnlocked)
             {
                AddApplication(_setup.Applications[i]);
@@ -149,7 +149,7 @@ public class PhoneManager : MonoBehaviour
     public void AddApplication(GameObject appli)
     {
         GameObject app = Instantiate(appli);
-        Application application = app.GetComponent<Application>();
+        BaseApplication application = app.GetComponent<BaseApplication>();
         if (_apps.Find(x => x._appType == application._appType))
         {
             Destroy(app);
@@ -159,7 +159,7 @@ public class PhoneManager : MonoBehaviour
         AppManager.Instance.addToApps(application);
         application.SetUp(_setup);
         GameObject button = Instantiate(_appButtonPrefabs, _appButtonCanvas.transform);
-        button.GetComponent<AppButton>().Type = app.GetComponent<Application>()._appType;
+        button.GetComponent<AppButton>().Type = app.GetComponent<BaseApplication>()._appType;
         _notifManager.Buttons.Add(button.GetComponent<AppButton>());
     }
 }

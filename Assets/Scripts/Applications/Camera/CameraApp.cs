@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CameraApp : Application
+public class CameraApp : BaseApplication
 {
     [SerializeField] private Image _thumbnail;
     private PhotoApp _photoApp;

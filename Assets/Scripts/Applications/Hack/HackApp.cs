@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HackApp : Application
+public class HackApp : BaseApplication
 {
     private GameObject _currentFolder;
     private PhoneManager _phoneManager;

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class PhoneApp : Application
+public class PhoneApp : BaseApplication
 {
     List<PhoneNumbers> _numbers=new List<PhoneNumbers>();
     [SerializeField] private TMP_Text _numDisplay;

@@ -4,7 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class NoteApp : Application
+public class NoteApp : BaseApplication
 {
     [SerializeField] private GameObject _buttonPrefab;
     [SerializeField] private GameObject _notePrefab;

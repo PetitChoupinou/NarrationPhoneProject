@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class ClockApp : Application
+public class ClockApp : BaseApplication
 {
     [SerializeField] private GameObject _alarmPanel;
     [SerializeField] private GameObject _alarmContent;

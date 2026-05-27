@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class MapApp : Application
+public class MapApp : BaseApplication
 {
     [SerializeField] private GameObject _mapContent;
     [SerializeField] private MapUI _mapUI;

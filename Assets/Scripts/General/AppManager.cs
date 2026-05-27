@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class AppManager : MonoBehaviour
 {
-    private List<Application> _apps=new List<Application>();
+    private List<BaseApplication> _apps=new List<BaseApplication>();
     private Header _header;
     private static AppManager instance = null;
     public static AppManager Instance => instance;
 
-    public List<Application> Apps { get => _apps;}
+    public List<BaseApplication> Apps { get => _apps;}
     
 
     private void Awake()
@@ -27,7 +27,7 @@ public class AppManager : MonoBehaviour
 
         DontDestroyOnLoad(this.gameObject);
     }
-    public void addToApps(Application app)
+    public void addToApps(BaseApplication app)
     {
         _apps.Add(app);
     }
@@ -35,7 +35,7 @@ public class AppManager : MonoBehaviour
     {
         _header = FindFirstObjectByType<Header>();
     }
-    public Application GetApplication(ApplicationType type)
+    public BaseApplication GetApplication(ApplicationType type)
     {
         return _apps.Find(app => app._appType == type);
     }

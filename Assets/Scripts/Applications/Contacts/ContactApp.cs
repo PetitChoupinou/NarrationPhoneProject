@@ -6,7 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ContactApp : Application
+public class ContactApp : BaseApplication
 {
     [SerializeField] private GameObject _buttonPrefab;
     [SerializeField] private GameObject _contactPagePrefab;

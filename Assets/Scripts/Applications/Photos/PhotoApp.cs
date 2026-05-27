@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using static UnityEngine.LowLevelPhysics2D.PhysicsShape;
 
-public class PhotoApp : Application
+public class PhotoApp : BaseApplication
 {
     [SerializeField] private GameObject _photoPanel;
     [SerializeField] private GameObject _photoPrefab;

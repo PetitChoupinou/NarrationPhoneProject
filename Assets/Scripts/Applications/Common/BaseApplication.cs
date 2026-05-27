@@ -15,7 +15,7 @@ public enum ApplicationType
     Internet,
     Hack
 }
-abstract public class Application : MonoBehaviour
+abstract public class BaseApplication : MonoBehaviour
 {
     protected Canvas _canvas;
     Canvas _phoneCanvas;

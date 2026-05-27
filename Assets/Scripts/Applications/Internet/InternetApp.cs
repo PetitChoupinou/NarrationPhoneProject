@@ -3,7 +3,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class InternetApp : Application
+public class InternetApp : BaseApplication
 {
     [SerializeField] TMP_Text _headerTxt;
     [SerializeField] GameObject _basePage;

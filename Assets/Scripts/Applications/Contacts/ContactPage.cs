@@ -25,7 +25,7 @@ public class ContactPage : MonoBehaviour
     public string ID { get => _iD; }
     public float Relation { get => _relation;
         set {
-            _relationBackground.color = Color.Lerp(_relationshipBadColor, _relationshipGoodColor, (value + 10.0f) / 20.0f);
+           //_relationBackground.color = Color.Lerp(_relationshipBadColor, _relationshipGoodColor, (value + 10.0f) / 20.0f);
             _relation = value;
         }}
    

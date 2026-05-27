@@ -6,7 +6,7 @@ using TMPro;
 using UnityEngine.TextCore.Text;
 using System.Linq;
 
-public class MessageApp : Application
+public class MessageApp : BaseApplication
 {
     private List<GameObject> gameObjectsToDeactivate=new List<GameObject>();
     [SerializeField] private GameObject _buttonPrefab;
