@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ef08a29b60933941822e91151f6e732, type: 3}
+  m_Name: tictac
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  nodes:
+  - rid: 6822857347286171747
+  - rid: 6822857347286171748
+  entryPointNodeGuid: a3a8f3ea-f543-4860-a652-3a861814ef60
+  isLocked: 0
+  _isLocked: 0
+  hasStarted: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 6822857347286171747
+      type: {class: NodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: a3a8f3ea-f543-4860-a652-3a861814ef60
+        nodeType: 0
+        position: {x: 250.4, y: 200}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 7bb7acd0-a62f-494e-8b5b-615602996e04
+        isSentCurrent: 0
+    - rid: 6822857347286171748
+      type: {class: TimeNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 7bb7acd0-a62f-494e-8b5b-615602996e04
+        nodeType: 12
+        position: {x: 378.4, y: 187.20001}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 
+        isSentCurrent: 0
+        year: 5
+        month: 4
+        day: 3
+        hour: 1
+        minute: 2

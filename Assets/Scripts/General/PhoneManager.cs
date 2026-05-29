@@ -11,13 +11,13 @@ public class PhoneManager : MonoBehaviour
     [SerializeField] private GameObject _appButtonPrefabs;
     [SerializeField] private GameObject _appButtonCanvas;
     [SerializeField] private GameObject _thoughtSystem;
-    [SerializeField] private List<Clock> _baseClocks = new List<Clock>();
     [SerializeField] private Network _network;
     public Dictionary<ApplicationType, GameObject> lockedApps=new Dictionary<ApplicationType, GameObject>();
     private List<BaseApplication> _apps=new List<BaseApplication>();
     private NotificationManager _notifManager;
     private AppDepth _currentDepth;
     private LocationData _currentLocation;
+    [SerializeField] private ClockSystem _clockSystem;
     
 
     private static PhoneManager instance = null;
@@ -34,6 +34,8 @@ public class PhoneManager : MonoBehaviour
             _currentLocation = value;
         }
     }
+
+    public ClockSystem ClockSystem { get => _clockSystem; set => _clockSystem = value; }
 
     private void Awake()
     {
@@ -58,10 +60,7 @@ public class PhoneManager : MonoBehaviour
     void Start()
     {
         _notifManager = NotificationManager.Instance;
-        foreach (Clock clock in _baseClocks)
-        {
-            clock.SetUp();
-        }
+        
         for (int i = 0; i < _setup.Applications.Count; i++)
         {
            BaseApplication app= Instantiate(_setup.Applications[i]).GetComponent<BaseApplication>();
@@ -76,6 +75,7 @@ public class PhoneManager : MonoBehaviour
             Destroy(app.gameObject);
 
         }
+        ClockSystem.SetUp(_setup);
     }
     public void CloseApps()
     {

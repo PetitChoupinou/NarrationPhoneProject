@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 
@@ -6,61 +5,52 @@ public class Clock : MonoBehaviour
 {
     [SerializeField] private TMP_Text _clock;
     [SerializeField] private TMP_Text _date;
-    [SerializeField] private TMP_Text _place;
-    [SerializeField] private bool displaySeconds;
-    private string _hours = "";
-    private string _minute = "";
-    private string _second = "";
-    private string _day = "";
-    private string _month = "";
-    private int _lag;
-    public void SetUp()
+
+    private void OnEnable()
     {
-        TimeSpan timeZone = DateTime.UtcNow.Subtract(DateTime.Now);
-        _lag = -timeZone.Hours;
+        if(PhoneManager.Instance != null && PhoneManager.Instance.ClockSystem.CurrentTimeData != null)
+        {
+            UpdateTimeText(PhoneManager.Instance.ClockSystem.CurrentTimeData);
+        }
+        
+        ClockSystem.OnTimeChanged += UpdateTimeText;
     }
-    public void SetUp(int lag,string town)
+
+    private void OnDisable()
     {
-        TimeSpan timeZone = DateTime.UtcNow.Subtract(DateTime.Now.AddHours(lag));
-        _lag = -timeZone.Hours;
-        _place.text=town;
+        ClockSystem.OnTimeChanged -= UpdateTimeText;
     }
-    private void Update()
+
+    private void UpdateTimeText(TimeData currentTimeData)
     {
-        DateTime thisClock = DateTime.UtcNow.AddHours(_lag);
-        if (thisClock.Hour < 10)
+        string hoursText = "";
+        string minutesText = "";
+        string dayText = "";
+        string monthText = "";
+
+        if (currentTimeData.CurrentTime.Hour < 10)
         {
-            _hours = "0" + thisClock.Hour;
+            hoursText = "0" + currentTimeData.CurrentTime.Hour;
         }
-        else _hours =""+ thisClock.Hour;
-        if (thisClock.Minute < 10)
+        else hoursText = "" + currentTimeData.CurrentTime.Hour;
+        if (currentTimeData.CurrentTime.Minute < 10)
         {
-            _minute = "0" + thisClock.Minute;
+            minutesText = "0" + currentTimeData.CurrentTime.Minute;
         }
-        else _minute = "" + thisClock.Minute;
-        if (thisClock.Second < 10)
+        else minutesText = "" + currentTimeData.CurrentTime.Minute;
+        if (currentTimeData.CurrentTime.Day < 10)
         {
-            _second = "0" + thisClock.Second;
+            dayText = "0" + currentTimeData.CurrentTime.Day;
         }
-        else _second = "" + thisClock.Second;
-        if (thisClock.Day < 10)
+        else dayText = "" + currentTimeData.CurrentTime.Day;
+        if (currentTimeData.CurrentTime.Month < 10)
         {
-            _day = "0" + thisClock.Day;
+            monthText = "0" + currentTimeData.CurrentTime.Month;
         }
-        else _day = "" + thisClock.Day;
-        if (thisClock.Month < 10)
-        {
-            _month = "0" + thisClock.Month;
-        }
-        else _month = "" + thisClock.Month;
-        _clock.text = _hours + " : " + _minute;
-        if (displaySeconds)
-        {
-            _clock.text += " : " + _second;
-        }
+        else monthText = "" + currentTimeData.CurrentTime.Month;
+        _clock.text = hoursText + " : " +  minutesText;
+        ;
         if (_date != null)
-        {
-            _date.text = _day + "/" + _month + "/" + thisClock.Year;
-        }
+            _date.text = dayText + "/" + monthText + "/" + currentTimeData.CurrentTime.Year;
     }
 }

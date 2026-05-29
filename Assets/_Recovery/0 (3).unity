@@ -1980,9 +1980,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 981459795}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 411ac97b4ea747f458d4584d49953ed3, type: 3}
+  m_Script: {fileID: 11500000, guid: 1dbc2697d3f21174c83b48f0912500ca, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Clock
+  m_EditorClassIdentifier: Assembly-CSharp::ClockSystem
   _clock: {fileID: 981459798}
   _date: {fileID: 0}
 --- !u!1 &991798625
@@ -2022,7 +2022,6 @@ MonoBehaviour:
   _appButtonCanvas: {fileID: 325279069}
   _thoughtSystem: {fileID: 2021758678}
   _network: {fileID: 930388919}
-  _clockSystem: {fileID: 2050120086}
 --- !u!114 &991798627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2141,7 +2140,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -10977628, y: 6726394.5}
+  m_AnchoredPosition: {x: -10870011, y: 6660481.5}
   m_SizeDelta: {x: 0, y: 217.0715}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1056708366
@@ -3107,7 +3106,6 @@ GameObject:
   - component: {fileID: 2050120085}
   - component: {fileID: 2050120084}
   - component: {fileID: 2050120086}
-  - component: {fileID: 2050120087}
   m_Layer: 5
   m_Name: Clock
   m_TagString: Untagged
@@ -3186,24 +3184,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dbc2697d3f21174c83b48f0912500ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClockSystem
-  CurrentTimeData:
-    _day: 1
-    _month: 1
-    _year: 0
-    _hour: 0
-    _minute: 0
---- !u!114 &2050120087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2050120081}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 411ac97b4ea747f458d4584d49953ed3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Clock
   _clock: {fileID: 332904378}
   _date: {fileID: 1310047009}
 --- !u!1660057539 &9223372036854775807

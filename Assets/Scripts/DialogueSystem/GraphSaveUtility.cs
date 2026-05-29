@@ -189,6 +189,17 @@ public class GraphSaveUtility
                 newFileNodeData.outputs.Add(CreateOutputData(connectedPorts, node, "Next"));
                 data = newFileNodeData;
                 break;
+            case NodeType.Time:
+                var timeNode = node as TimeNode;
+                TimeNodeData timeNodeData = new TimeNodeData(data);
+                timeNodeData.year = timeNode.years;
+                timeNodeData.month = timeNode.months;
+                timeNodeData.day = timeNode.days;
+                timeNodeData.hour = timeNode.hours;
+                timeNodeData.minute = timeNode.minutes;
+                timeNodeData.outputs.Add(CreateOutputData(connectedPorts, node, "Next"));
+                data = timeNodeData;
+                break;
             default:
                 break;
         }

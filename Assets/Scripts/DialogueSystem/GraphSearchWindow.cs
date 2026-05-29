@@ -34,6 +34,7 @@ public class GraphSearchWindow : ScriptableObject, ISearchWindowProvider
             new SearchTreeEntry(new GUIContent("Note Node", _indentationIcon)) { level = 1, userData = NodeType.Note },
             new SearchTreeEntry(new GUIContent("Set Property Node", _indentationIcon)) { level = 1, userData = NodeType.Set },
             new SearchTreeEntry(new GUIContent("Thinking Node", _indentationIcon)) { level = 1, userData = NodeType.Thinking },
+            new SearchTreeEntry(new GUIContent("Time Node", _indentationIcon)) { level = 1, userData = NodeType.Time },
             new SearchTreeEntry(new GUIContent("Unlock Node", _indentationIcon)) { level = 1, userData = NodeType.Unlock },
         };
         return tree;

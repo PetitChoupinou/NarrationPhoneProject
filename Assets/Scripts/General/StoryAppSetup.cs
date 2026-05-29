@@ -17,6 +17,7 @@ public class StoryAppSetup : ScriptableObject
     [SerializeField] List<InternetSerach> _internetSearches = new List<InternetSerach>();
     [SerializeField] HackSetup _hackAppSetup;
     List<LocationData> _locations = new List<LocationData>();
+    [SerializeField] TimeData _timeData = new TimeData();
 
 
     public string Name { get => _name;}
@@ -32,6 +33,7 @@ public class StoryAppSetup : ScriptableObject
     public List<InternetSerach> InternetSeraches { get => _internetSearches; }
     public List<LocationData> Locations { get => _locations; }
     public HackSetup HackAppSetup { get => _hackAppSetup;  }
+    public TimeData TimeData { get => _timeData; set => _timeData = value; }
 }
 
 [Serializable]

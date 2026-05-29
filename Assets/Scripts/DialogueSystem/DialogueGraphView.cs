@@ -22,7 +22,8 @@ public enum NodeType
     Thinking,
     Block,
     NewApplication,
-    NewFile
+    NewFile,
+    Time
 }
 
 public enum Talker
@@ -565,6 +566,102 @@ public class DialogueGraphView : GraphView
                 node.RefreshPorts();
                 node.SetPosition(new Rect(position, BaseNode.defaultNodeSize));
                 break;
+            case NodeType.Time:
+                node = new TimeNode
+                {
+                    GUID = Guid.NewGuid().ToString(),
+                    title = type.ToString(),
+                    nodeType = NodeType.Time
+                };
+                TimeNode timeNode = node as TimeNode;
+
+                inputPort = node.GeneratePort(Direction.Input, Port.Capacity.Multi);
+                inputPort.portName = "Input";
+                node.inputContainer.Add(inputPort);
+
+                IntegerField minuteField = new IntegerField
+                {
+                    value = 0
+                };
+                timeNode.minutesField = minuteField;
+                minuteField.RegisterValueChangedCallback(evt =>
+                {
+                    timeNode.minutes = evt.newValue;
+                });
+                IntegerField hourField = new IntegerField
+                {
+                    label = "Hour: ",
+                    value = 0
+                };
+                timeNode.hoursField = hourField;
+                hourField.RegisterValueChangedCallback(evt =>
+                {
+                    timeNode.hours = evt.newValue;
+                });
+                IntegerField dayField = new IntegerField
+                {
+                    label = "Date: ",
+                    value = 0
+                };
+                timeNode.daysField = dayField;
+                dayField.RegisterValueChangedCallback(evt =>
+                {
+                    timeNode.days = evt.newValue;
+                });
+                IntegerField monthField = new IntegerField
+                {
+                    value = 0
+                };
+                timeNode.monthsField = monthField;
+                monthField.RegisterValueChangedCallback(evt =>
+                {
+                    timeNode.months = evt.newValue;
+                });
+                IntegerField yearField = new IntegerField
+                {
+                    value = 0
+                };
+                timeNode.yearsField = yearField;
+                yearField.RegisterValueChangedCallback(evt =>
+                {
+                    timeNode.years = evt.newValue;
+                });
+                VisualElement timeContainer = new VisualElement
+                {
+                    
+                    style = {
+                        flexDirection = FlexDirection.Row,
+                        justifyContent = Justify.FlexStart
+                    }
+                };
+                VisualElement dateContainer = new VisualElement
+                {
+                    style = {
+                        flexDirection = FlexDirection.Row,
+                        justifyContent = Justify.FlexStart
+                    }
+                };
+                timeContainer.Add(hourField);
+                timeContainer.Add(new TextElement { text = ":", style = { fontSize = 15 } });
+                timeContainer.Add(minuteField);
+
+                dateContainer.Add(dayField);
+                dateContainer.Add(new TextElement { text = "/", style = { fontSize = 15 } });
+                dateContainer.Add(monthField);
+                dateContainer.Add(new TextElement { text = "/", style = { fontSize = 15 } });
+                dateContainer.Add(yearField);
+
+                node.mainContainer.Add(timeContainer);
+                node.mainContainer.Add(dateContainer);
+
+                outputPort = node.GeneratePort(Direction.Output);
+                outputPort.portName = "Next";
+                node.outputContainer.Add(outputPort);
+
+                node.RefreshExpandedState();
+                node.RefreshPorts();
+                node.SetPosition(new Rect(position, BaseNode.defaultNodeSize));
+                break;
 
         }
         if(type != NodeType.Start)
@@ -893,6 +990,11 @@ public class DialogueGraphView : GraphView
                 var nodeNewFile = node as NewFileNode;
                 var newFileNodeData = nodeData as NewFileNodeData;
                 nodeNewFile.UpdateFileName(newFileNodeData.fileName);
+                break;
+            case NodeType.Time:
+                var nodeTime = node as TimeNode;
+                var nodeTimeData = nodeData as TimeNodeData;
+                nodeTime.UpdateTime(nodeTimeData.year, nodeTimeData.month, nodeTimeData.day, nodeTimeData.hour, nodeTimeData.minute);
                 break;
         }
         node.isSentToggle.value = nodeData.IsSentBase;

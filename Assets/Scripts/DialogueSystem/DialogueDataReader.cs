@@ -208,6 +208,13 @@ public class DialogueDataReader : MonoBehaviour
                     _hackApp.AddFolder(newFileNodeData.fileName);
                     ReadNextNode(nodeData, 0);
                 };
+            case NodeType.Time:
+                TimeNodeData timeNodeData = nodeData as TimeNodeData;
+                return () =>
+                {
+                    PhoneManager.Instance.ClockSystem.AddTime(timeNodeData.year, timeNodeData.month, timeNodeData.day, timeNodeData.hour, timeNodeData.minute);
+                    ReadNextNode(nodeData, 0);
+                };
             default:
                 return () => { };
         }
