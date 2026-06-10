@@ -2021,10 +2021,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 742ccc96efaa0424ea9ca25dcc4bf719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneLoader
-  _sceneToLoad: Test
+  _sceneToLoad: TestTexts
   _splashScreen: {fileID: 1780348641}
   _loadingTime: 1.2
-  _story: []
+  _story:
+  - {fileID: 11400000, guid: 03585ea8afc96ef49a64f511cd395e0d, type: 2}
 --- !u!4 &1780348640
 Transform:
   m_ObjectHideFlags: 0
@@ -2051,7 +2052,7 @@ CanvasGroup:
   m_Enabled: 1
   m_Alpha: 0
   m_Interactable: 0
-  m_BlocksRaycasts: 1
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!1001 &1888411986
 PrefabInstance:
