@@ -7,7 +7,7 @@ public class SceneLoader : MonoBehaviour
 {
     #region Fields
 
-    [SerializeField] private string _sceneToLoad = "Test";
+    [SerializeField] private string _sceneToLoad = "TestTexts";
     [SerializeField] private CanvasGroup _splashScreen;
     [SerializeField] private float _loadingTime=1.2f;
     [SerializeField] public List<StoryAppSetup> _story=new List<StoryAppSetup>();

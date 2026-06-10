@@ -10,9 +10,9 @@ public class StorySelectionButton : MonoBehaviour
         _loader = FindFirstObjectByType<SceneLoader>();
         _setup = setup;
     }
-    private void ChooseStory()
+    public void ChooseStory()
     {
         _loader.ChosenStory = _setup;
-        //_loader.LoadGameScene();
+        _loader.LoadGameScene();
     }
 }
