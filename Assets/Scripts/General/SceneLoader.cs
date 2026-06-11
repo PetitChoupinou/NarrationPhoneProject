@@ -28,7 +28,12 @@ public class SceneLoader : MonoBehaviour
     {
         StartCoroutine(LoadGameSceneAsync());
     }
-
+    public void LoadLastGameScene()
+    {
+        /*_chosenStory= null;
+        StartCoroutine(LoadGameSceneAsync());*/ // faire un truc qui save la dernière story joué.
+        print("rien pour l'instant");
+    }
     IEnumerator LoadGameSceneAsync()
     {
         AsyncOperation operation= SceneManager.LoadSceneAsync(_sceneToLoad);
@@ -36,7 +41,7 @@ public class SceneLoader : MonoBehaviour
         while( _timer<_loadingTime)
         {
             _timer += Time.deltaTime;
-            _splashScreen.alpha = Mathf.Lerp(0.0f, 0.9f, _timer / _loadingTime);
+            _splashScreen.alpha = Mathf.Lerp(0.0f, 1.0f, _timer / (_loadingTime-.2f));
                 yield return null;
         }
         _timer = 0;
@@ -48,7 +53,7 @@ public class SceneLoader : MonoBehaviour
         while (_timer < _loadingTime) // and then we fade out the splash scrren
         { 
             _timer += Time.deltaTime;
-            _splashScreen.alpha = Mathf.Lerp(0.9f, 0.0f, _timer / _loadingTime);
+            _splashScreen.alpha = Mathf.Lerp(1.0f, 0.0f, _timer / _loadingTime);
             yield return null;
         }
         yield return null;
