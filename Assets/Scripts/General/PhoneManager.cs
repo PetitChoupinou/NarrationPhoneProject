@@ -8,6 +8,7 @@ using UnityEngine;
 public class PhoneManager : MonoBehaviour
 {
     [SerializeField] private StoryAppSetup _setup;
+    [SerializeField] private SceneLoader _loader;
     [SerializeField] private GameObject _appButtonPrefabs;
     [SerializeField] private GameObject _appButtonCanvas;
     [SerializeField] private GameObject _thoughtSystem;
@@ -39,6 +40,11 @@ public class PhoneManager : MonoBehaviour
 
     private void Awake()
     {
+        _loader = FindFirstObjectByType<SceneLoader>();
+        if (_loader != null) 
+        {
+            _setup = _loader.ChosenStory;
+        }
         if (instance != null && instance != this)
         {
             Destroy(this.gameObject);

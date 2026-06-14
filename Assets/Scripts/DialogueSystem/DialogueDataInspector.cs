@@ -11,12 +11,7 @@ public class DialogueDataInspector : Editor
 
         if (GUILayout.Button("Reset"))
         {
-            dialogueData.isLocked = dialogueData.GetBaseIsLocked();
-            foreach (var node in dialogueData.nodes)
-            {
-                node.isSentCurrent = node.IsSentBase;
-
-            }
+            dialogueData.ResetDialogue();
         }
     }
 }

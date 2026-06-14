@@ -136,7 +136,8 @@ public class DialogueGraphView : GraphView
 
                 FloatField timeField = new FloatField
                 {
-                    label = "Time before sending"
+                    label = "Time before sending",
+                    value = 1
                 };
                 dialogueNode.TimeField = timeField;
                 timeField.RegisterValueChangedCallback(evt =>

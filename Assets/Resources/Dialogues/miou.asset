@@ -18,6 +18,7 @@ MonoBehaviour:
   entryPointNodeGuid: 41c84bdd-a211-4ccd-ab20-cb9ce40b96b0
   isLocked: 0
   _isLocked: 0
+  hasStarted: 0
   references:
     version: 2
     RefIds:

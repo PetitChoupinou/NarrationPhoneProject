@@ -23,4 +23,13 @@ public class DialogueData : ScriptableObject
         return _isLocked;
     }
 
+    internal void ResetDialogue()
+    {
+        isLocked = GetBaseIsLocked();
+        foreach (var node in nodes)
+        {
+            node.isSentCurrent = node.IsSentBase;
+
+        }
+    }
 }
