@@ -24,13 +24,13 @@ public class SceneLoader : MonoBehaviour
 
     private void Start()
     {
-       
         DontDestroyOnLoad(this);
     }
 
     public void LoadGameScene()
     {
         _isNewStory = true;
+        ResetAllDialogues();
         StartCoroutine(LoadGameSceneAsync());
     }
     public void LoadLastGameScene()
