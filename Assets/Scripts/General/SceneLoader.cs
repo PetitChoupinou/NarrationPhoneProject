@@ -9,30 +9,35 @@ public class SceneLoader : MonoBehaviour
 
     [SerializeField] private string _sceneToLoad = "TestTexts";
     [SerializeField] private CanvasGroup _splashScreen;
+    [SerializeField] private bool _isNewStory;
     [SerializeField] private float _loadingTime = 1.2f;
     [SerializeField] public List<StoryAppSetup> _story = new List<StoryAppSetup>();
     private StoryAppSetup _chosenStory;
+
     private float _timer = 0;
 
     public StoryAppSetup ChosenStory { get => _chosenStory; set => _chosenStory = value; }
+    public bool IsNewStory { get => _isNewStory; }
     #endregion
 
     #region Methods
 
     private void Start()
     {
+       
         DontDestroyOnLoad(this);
     }
 
     public void LoadGameScene()
     {
+        _isNewStory = true;
         StartCoroutine(LoadGameSceneAsync());
     }
     public void LoadLastGameScene()
     {
-        /*_chosenStory= null;
-        StartCoroutine(LoadGameSceneAsync());*/ // faire un truc qui save la dernière story joué.
-        print("rien pour l'instant");
+        _isNewStory = false;
+        _chosenStory = _story.Find(x => x.Name == SaveManager.instance.Save.storyID);
+        StartCoroutine(LoadGameSceneAsync());
     }
     IEnumerator LoadGameSceneAsync()
     {

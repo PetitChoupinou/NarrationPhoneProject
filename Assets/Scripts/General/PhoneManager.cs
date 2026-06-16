@@ -37,6 +37,7 @@ public class PhoneManager : MonoBehaviour
     }
 
     public ClockSystem ClockSystem { get => _clockSystem; set => _clockSystem = value; }
+    public StoryAppSetup Setup { get => _setup;}
 
     private void Awake()
     {
