@@ -6,6 +6,8 @@ using UnityEngine.Audio;
 
 public class SoundManager : MonoBehaviour
 {
+    private float _sfxVolume=1.0f;
+    private float _musicVolume=1.0f;
     [Serializable]
     public class SFX
     {
@@ -32,6 +34,21 @@ public class SoundManager : MonoBehaviour
     private float _volume = 1.0f;
 
     public static SoundManager instance { get; private set; }
+    public float SfxVolume { get => _sfxVolume; set
+        {
+            if (value > 1.0f) value = 1.0f;
+            else if (value < .0f) value = .0f;
+            _sfxVolume = value;
+        }
+    }
+    public float MusicVolume { get => _musicVolume; set
+        {
+            if(value>1.0f) value=1.0f;
+            else if(value<.0f) value=.0f;
+            _musicVolume = value;
+        }
+    }
+
     private void Awake()
     {
         if (instance != null && instance != this)
