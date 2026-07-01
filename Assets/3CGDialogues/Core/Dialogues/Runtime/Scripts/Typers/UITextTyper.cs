@@ -15,6 +15,7 @@ namespace TCG.Core.Dialogues
         [SerializeField]private AudioSource _source;
         [SerializeField] GameObject _panel;
         RectTransform _panelRect;
+        Coroutine _endCoroutine;
         private int _clipIndex = 0;
         public int currentCharactersPerSeconds;
         public bool IsReadingText { get; private set; } = false;
@@ -47,7 +48,7 @@ namespace TCG.Core.Dialogues
         private void Start()
         {
             _panelRect=_panel.GetComponent<RectTransform>();
-            ReadText("My name is <name=> ?");
+            //ReadText("My name is <name=> ?");
         }
         public string AddLineReturn(string text)
         {
@@ -92,6 +93,11 @@ namespace TCG.Core.Dialogues
             _panelRect.localScale = Vector3.one;
             _text.text = "";
             CurrentText = AddLineReturn(CurrentText);
+            if (_endCoroutine != null)
+            {
+                StopCoroutine(_endCoroutine);
+                _endCoroutine = null;
+            }
             StartCoroutine(ReadingText());
         }
         IEnumerator ReadingText()
@@ -131,11 +137,12 @@ namespace TCG.Core.Dialogues
             foreach (TextCommand command in _commands) {
                 command.OnReadEnd();
             }
-            StartCoroutine(EndCoroutine());
+            _endCoroutine=StartCoroutine(EndCoroutine());
         }
         IEnumerator EndCoroutine()
         {
             yield return new WaitForSeconds(3);
+
             _panelRect.localScale = Vector3.zero;
             yield return null;
         }
@@ -224,6 +231,7 @@ namespace TCG.Core.Dialogues
         private void _GoToCharacter(float characterOffset)
         {
             _readCharacterOffset = characterOffset;
+            print(characterOffset);
             _text.text = CurrentText.Substring(0, (int)_readCharacterOffset);
         }
 

@@ -71,7 +71,7 @@ public class PhoneApp : BaseApplication
         {
             _soundManager.PlaySound(x.callAudio.name);
             _textDisplay.ReadText(x.callText[i]);
-            yield return new WaitForSeconds( x.callText[i].Length/ _textDisplay.CharactersPerSecond + 0.4f);
+            yield return new WaitForSeconds(x.callText[i].Length/ (float)_textDisplay.CharactersPerSecond + 1.0f);
             print("abab");
             _soundManager.StopSound(x.callAudio.name);
             yield return null;
