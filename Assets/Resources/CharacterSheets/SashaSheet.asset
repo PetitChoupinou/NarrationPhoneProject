@@ -31,4 +31,8 @@ MonoBehaviour:
   telNum:
     title: Sasha
     numbers: 0707070707
+    callText:
+    - cool bro
+    - allez salut
+    callAudio: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
   dialogueIndex: 0

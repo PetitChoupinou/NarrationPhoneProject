@@ -27,7 +27,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private Music[] _musics;
     [SerializeField] private int _poolSize = 5;
     private List<AudioSource> _sources = new List<AudioSource>();
-    Queue<AudioSource> _usedSource;
+    Queue<AudioSource> _usedSource=new Queue<AudioSource>();
     AudioSource _musicSource;
     private Dictionary<string, AudioClip> _sfxDictionary = new Dictionary<string, AudioClip>();
     private Dictionary<string, AudioClip> _musicDictionary = new Dictionary<string, AudioClip>();
@@ -109,7 +109,7 @@ public class SoundManager : MonoBehaviour
         }
         AudioSource audioSource = GetAvailableSource();
         if (audioSource == null) return;
-        float soudVolume = 1;
+        float soudVolume = 1*_sfxVolume;
         foreach (SFX sound in _soundEffects) 
         {
             if (sound.name == soundName)
@@ -123,6 +123,18 @@ public class SoundManager : MonoBehaviour
         audioSource.volume = soudVolume;
         audioSource.Play();
     }
+    public void StopSound(string soundName)
+    {
+        foreach(AudioSource source in _usedSource)
+        {
+            if(source.name == soundName)
+            {
+                source.Stop();
+                RemoveSource(source);
+            }
+        }
+    }
+
     public void PlayMusic(string name)
     {
 
@@ -131,7 +143,7 @@ public class SoundManager : MonoBehaviour
             Debug.LogWarning($"pas de  music au nom : '{name} trouvé !");
             return;
         }
-        float soudVolume = 1;
+        float soudVolume = 1*_musicVolume;
         foreach (Music music in _musics)
         {
             if (music.name == name)

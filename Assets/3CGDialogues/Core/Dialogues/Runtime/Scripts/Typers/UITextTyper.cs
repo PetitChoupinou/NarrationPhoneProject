@@ -36,6 +36,7 @@ namespace TCG.Core.Dialogues
         public TextMeshProUGUI TextField => _textField;
 
         public string CurrentText { get; set; }
+        public int CharactersPerSecond { get => _charactersPerSecond;}
 
         public TMP_Text _text;
 

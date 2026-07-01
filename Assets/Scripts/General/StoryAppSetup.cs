@@ -93,7 +93,8 @@ public struct PhoneNumbers
 {
     public string title;
     public string numbers;
-    //whatever it is supposed to be
+    public List<string> callText;
+    public AudioClip callAudio;//mumble
 }
 
 [Serializable]

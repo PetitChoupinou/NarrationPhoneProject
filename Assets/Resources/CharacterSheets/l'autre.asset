@@ -31,4 +31,8 @@ MonoBehaviour:
   telNum:
     title: L'autre
     numbers: 0743874747
+    callText:
+    - Hmmmmmmmmmmmmmmm
+    - Non
+    callAudio: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
   dialogueIndex: 1

@@ -104,6 +104,11 @@ MonoBehaviour:
   _phoneNumbers:
   - title: Police
     numbers: 17
+    callText:
+    - "Merci d'avoir appel\xE9 la police ."
+    - Pour vous remercier nous allons fermer votre application.
+    - Au revoir!
+    callAudio: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
   _internetSearches:
   - search: Feur?
     text: coubeh
