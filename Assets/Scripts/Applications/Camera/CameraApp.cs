@@ -6,14 +6,15 @@ public class CameraApp : BaseApplication
 {
     [SerializeField] private Image _thumbnail;
     private PhotoApp _photoApp;
+    private Sprite _basePhoto;
     public override void CloseCurrent()
     {
-        
+       
     }
 
     public override void SetUp(StoryAppSetup setup)
     {
-        
+        _basePhoto =setup.BaseCameraPhoto;
     }
 
     public void TakePhoto()
@@ -21,9 +22,14 @@ public class CameraApp : BaseApplication
         Debug.Log("*Clic* New photo");
         DateTime now = DateTime.Now;
         DateTime time = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, 0);
+        Sprite photo=_basePhoto;
+        if (AppManager.Instance.GetApplication(ApplicationType.Map))
+        {
+            photo = PhoneManager.Instance.CurrentLocation.photo;
+        }
         PhotoData newPhoto = new PhotoData
         {
-            image = PhoneManager.Instance.CurrentLocation.photo,
+            image = photo,
             year = time.Year,
             month = time.Month,
             day = time.Day,

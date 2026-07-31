@@ -15,6 +15,7 @@ public class StoryAppSetup : ScriptableObject
     [SerializeField] List<AlarmsData> _alarms = new List<AlarmsData>();
     [SerializeField] List<PhoneNumbers> _phoneNumbers = new List<PhoneNumbers>();
     [SerializeField] List<InternetSerach> _internetSearches = new List<InternetSerach>();
+    [SerializeField] Sprite _baseCameraPhoto;
     [SerializeField] HackSetup _hackAppSetup;
     List<LocationData> _locations = new List<LocationData>();
     [SerializeField] TimeData _timeData = new TimeData();
@@ -33,7 +34,8 @@ public class StoryAppSetup : ScriptableObject
     public List<InternetSerach> InternetSeraches { get => _internetSearches; }
     public List<LocationData> Locations { get => _locations; }
     public HackSetup HackAppSetup { get => _hackAppSetup;  }
-    public TimeData TimeData { get => _timeData; set => _timeData = value; }
+    public TimeData TimeData { get => _timeData;}
+    public Sprite BaseCameraPhoto { get => _baseCameraPhoto; }
 }
 
 [Serializable]

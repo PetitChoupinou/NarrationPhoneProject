@@ -11,6 +11,7 @@ public class PhoneApp : BaseApplication
     [SerializeField] private UITextTyper _textDisplay;
     private string _currentNum="";
     private SoundManager _soundManager;
+    private PhoneManager _phoneManager;
 
     public override void CloseCurrent()
     {
@@ -28,7 +29,7 @@ public class PhoneApp : BaseApplication
         {
             _numbers.Add(n);
         }
-
+        _phoneManager = PhoneManager.Instance;
     }
     public void AddToCurrentNbr(string x)
     {
@@ -46,21 +47,19 @@ public class PhoneApp : BaseApplication
     }
     public void Call()
     {
-        if (PhoneManager.Instance.CurrentLocation.networkState != NetworkState.Good)
+        if (AppManager.Instance.GetApplication(ApplicationType.Map)&& _phoneManager.CurrentLocation.networkState != NetworkState.Good)
         {
-            //call thoughts : hmm pas de réseaux
-            
+            _phoneManager.CreateThought("Hmm pas de réseaux.");
+            return;
         }
-        else
+        if (!_numbers.Exists(x => x.numbers == _currentNum))
         {
-            if (_numbers.Exists(x => x.numbers == _currentNum))
-            {
-                PhoneNumbers calledNumber = _numbers.Find(x => x.numbers == _currentNum);
-                print("calling " + calledNumber.title);
-                StartCoroutine(Call(calledNumber));
-            }
+            _phoneManager.CreateThought("Mauvais numéro ...");
+            return;
         }
-       
+        PhoneNumbers calledNumber = _numbers.Find(x => x.numbers == _currentNum);
+        print("calling " + calledNumber.title);
+        StartCoroutine(Call(calledNumber));
     }
 
      IEnumerator Call(PhoneNumbers x) 
@@ -72,11 +71,9 @@ public class PhoneApp : BaseApplication
             _soundManager.PlaySound(x.callAudio.name);
             _textDisplay.ReadText(x.callText[i]);
             yield return new WaitForSeconds(x.callText[i].Length/ (float)_textDisplay.CharactersPerSecond + 1.0f);
-            print("abab");
             _soundManager.StopSound(x.callAudio.name);
             yield return null;
         }
-        print("ahhh");
         _currentNum = "";
         UpdateDisplay();
         yield return null;

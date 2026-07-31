@@ -64,9 +64,8 @@ public class Discussion : MonoBehaviour
 
     public void AddMessage(string text,bool isNPC)
     {
-        if (PhoneManager.Instance.CurrentLocation.networkState == NetworkState.Bad)
+        if (AppManager.Instance.GetApplication(ApplicationType.Map)&&PhoneManager.Instance.CurrentLocation.networkState == NetworkState.Bad)
         {
-
             _pendingMsgs.Enqueue(new PendingMsg(isNPC, text));
             return;
         }
@@ -84,7 +83,7 @@ public class Discussion : MonoBehaviour
     }
     public void AddLinkTo(ApplicationType type)
     {
-        if (PhoneManager.Instance.CurrentLocation.networkState == NetworkState.Bad)
+        if (AppManager.Instance.GetApplication(ApplicationType.Map) && PhoneManager.Instance.CurrentLocation.networkState == NetworkState.Bad)
         {
 
             _pendingMsgs.Enqueue(new PendingMsg(type));
@@ -161,13 +160,14 @@ public class Discussion : MonoBehaviour
     public void Choose(string msg)
     {
         _choicePanel.SetActive(false);
-        if (PhoneManager.Instance.CurrentLocation.networkState != NetworkState.Bad)
+        if (AppManager.Instance.GetApplication(ApplicationType.Map)&&PhoneManager.Instance.CurrentLocation.networkState == NetworkState.Bad)
         {
-            _canChoose = false;
-            _choices.Clear();
-            _dialogueDataReader.MakeChoice(msg);
+            PhoneManager.Instance.CreateThought("Hmm pas de réseaux.");
+            return;
         }
-        //faire un truc quand le réseaux est mauvais type penser du gars ou autre.
+        _canChoose = false;
+        _choices.Clear();
+        _dialogueDataReader.MakeChoice(msg);
     }
 
     public void CreateThought(string thought)
