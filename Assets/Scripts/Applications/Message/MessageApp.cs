@@ -64,6 +64,7 @@ public class MessageApp : BaseApplication
     public void AddMessage(string text, bool isNPC,string ID)
     {
         var discussion = _discussions.Find(x => x.ID == ID);
+        
         discussion.AddMessage(text, isNPC);
     }
 

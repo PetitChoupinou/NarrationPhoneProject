@@ -178,6 +178,16 @@ public class Discussion : MonoBehaviour
         _dialogueDataReader.MakeChoice(msg);
     }
 
+    void ClearChoices()
+    {
+        var choiceButtons = _choicePanel.GetComponentsInChildren<MessageChoice>();
+        foreach(var choice in choiceButtons)
+        {
+            Destroy(choice.gameObject);
+        }
+        _choices.Clear();
+    }
+
     public void CreateThought(string thought)
     {
         PhoneManager.Instance.CreateThought(thought);
