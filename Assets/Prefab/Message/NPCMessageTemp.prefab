@@ -417,6 +417,7 @@ MonoBehaviour:
   _linkPrefab: {fileID: 2163111562131114609, guid: ab620c1efd06a4e49b9faa1242b6b7ae, type: 3}
   _choicePrefab: {fileID: 8295458853211037205, guid: 4474b3d02dafc9643a81ea51fa757c9e, type: 3}
   _choicePanel: {fileID: 9027472711351475690}
+  _sendingButton: {fileID: 8115283599972540218}
 --- !u!114 &7855167073092259729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -455,8 +456,9 @@ GameObject:
   - component: {fileID: 732141892337486461}
   - component: {fileID: 6634835806073239700}
   - component: {fileID: 396685136267869927}
+  - component: {fileID: 8115283599972540218}
   m_Layer: 5
-  m_Name: Image
+  m_Name: SendingButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -502,7 +504,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.36, g: 0.36, b: 0.36, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -562,19 +564,23 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6634835806073239700}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6167251702224095738}
-        m_TargetAssemblyTypeName: Discussion, Assembly-CSharp
-        m_MethodName: Choose
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+--- !u!114 &8115283599972540218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6071565029164395271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6735a780fdaa7440ae2448aac6dbe5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SendingButton
+  _button: {fileID: 396685136267869927}
+  _sprite: {fileID: 6634835806073239700}
+  _enableColor: {r: 1, g: 1, b: 1, a: 1}
+  _disableColor: {r: 0.36400002, g: 0.36400002, b: 0.36400002, a: 1}
 --- !u!1 &6707078961667266260
 GameObject:
   m_ObjectHideFlags: 0

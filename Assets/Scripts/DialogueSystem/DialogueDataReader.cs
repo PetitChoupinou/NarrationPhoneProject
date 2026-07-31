@@ -101,7 +101,10 @@ public class DialogueDataReader : MonoBehaviour
                         else
                         {
 
-                            WaitForMouseClick();
+                            WaitForMouseClick(() => {
+                                _messageApp.AddMessage(dialogueNodeData.dialogueText, dialogueNodeData.isNPC, _characterID);
+                                ReadNextNode(nodeData, 0);
+                            });
 
                         }
                     }
@@ -113,18 +116,20 @@ public class DialogueDataReader : MonoBehaviour
                 return () =>
                 {
 
-                    if (!string.IsNullOrEmpty(choiceData.dialogueText))
+                    /*if (!string.IsNullOrEmpty(choiceData.dialogueText))
                     {
                         _messageApp.AddMessage(choiceData.dialogueText, false, _characterID);
                     }
+
                     if(choiceData.isSentCurrent && choiceData.chosenChoiceID > -1)
                     {
                         ReadNextNode(nodeData, choiceData.chosenChoiceID);
                     }
                     else
                     {
+                        //Change pour que le bouton le fasse
                         _messageApp.SendChoice(GetChoicesTexts(choiceData.outputs), _characterID);
-                    }
+                    }*/
 
                     /*if (choiceData.isSentCurrent && choiceData.chosenChoiceID > -1)
                     {
@@ -136,9 +141,27 @@ public class DialogueDataReader : MonoBehaviour
                     }
                     else
                     {
-                        WaitForMouseClick();
+                        WaitForMouseClick(() =>
+                        {
+                            _messageApp.SendChoice(GetChoicesTexts(choiceData.outputs), _characterID);
+                        });
                     }*/
+                    if (!string.IsNullOrEmpty(choiceData.dialogueText))
+                    {
+                        _messageApp.AddMessage(choiceData.dialogueText, false, _characterID);
+                    }
 
+                    if (choiceData.isSentCurrent && choiceData.chosenChoiceID > -1)
+                    {
+                        ReadNextNode(nodeData, choiceData.chosenChoiceID);
+                    }
+                    else
+                    {
+                        WaitForMouseClick(() =>
+                        {
+                            _messageApp.SendChoice(GetChoicesTexts(choiceData.outputs), _characterID);
+                        });
+                    }
 
                 };
             case NodeType.Affinity:
@@ -236,13 +259,9 @@ public class DialogueDataReader : MonoBehaviour
         
     }
 
-    private void WaitForMouseClick()
+    private void WaitForMouseClick(Action sendingAction)
     {
-        _entry = new Entry();
-        _entry.eventID = EventTriggerType.PointerClick;
-        _entry.callback.AddListener(OnClick);
-
-        _eventTrigger.triggers.Add(_entry);
+        _messageApp.EnableSendingButton(sendingAction, _characterID);
     }
 
     private void OnClick(BaseEventData data)

@@ -5,6 +5,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.TextCore.Text;
 using System.Linq;
+using System;
 
 public class MessageApp : BaseApplication
 {
@@ -22,6 +23,7 @@ public class MessageApp : BaseApplication
     public void SetCurrentConv(GameObject conv)
     {
         _currentConv = conv;
+        Debug.Log(_currentConv);
     }
     private void Update()
     {
@@ -82,6 +84,18 @@ public class MessageApp : BaseApplication
     public void CreateThought(string thought, string ID)
     {
         _discussions.Find(x => x.ID == ID).CreateThought(thought);
+    }
+
+    public void EnableSendingButton(Action sendingAction, string ID)
+    {
+        var discussion = _discussions.Find(x => x.ID == ID);
+        discussion.EnableSendingButton(sendingAction);
+    }
+
+    public void DisableSendingButton(string ID)
+    {
+        var discussion = _discussions.Find(x => x.ID == ID);
+        discussion.DisableSendingButton();
     }
 
     IEnumerator StartGame()

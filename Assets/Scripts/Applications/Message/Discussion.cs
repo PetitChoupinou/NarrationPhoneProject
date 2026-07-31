@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -17,6 +18,7 @@ public class Discussion : MonoBehaviour
     [SerializeField] private GameObject _linkPrefab;
     [SerializeField] private GameObject _choicePrefab;
     [SerializeField] private GameObject _choicePanel;
+    [SerializeField] private SendingButton _sendingButton;
     private Queue<PendingMsg> _pendingMsgs=new Queue<PendingMsg>();
     private bool _canChoose=false;
     private List<string> _choices = new List<string>();
@@ -102,6 +104,16 @@ public class Discussion : MonoBehaviour
             NotificationManager.Instance.SendNotifText(_preview.text, _iD);
         }
 
+    }
+
+    public void EnableSendingButton(Action sendingAction)
+    {
+        _sendingButton.EnableButton(sendingAction);
+    }
+
+    public void DisableSendingButton()
+    {
+        _sendingButton.DisableButton();
     }
     public void TriggerChoice(List<string> choices)
     {
