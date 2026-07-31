@@ -170,6 +170,16 @@ public class Discussion : MonoBehaviour
         //faire un truc quand le réseaux est mauvais type penser du gars ou autre.
     }
 
+    void ClearChoices()
+    {
+        var choiceButtons = _choicePanel.GetComponentsInChildren<MessageChoice>();
+        foreach(var choice in choiceButtons)
+        {
+            Destroy(choice.gameObject);
+        }
+        _choices.Clear();
+    }
+
     public void CreateThought(string thought)
     {
         PhoneManager.Instance.CreateThought(thought);
