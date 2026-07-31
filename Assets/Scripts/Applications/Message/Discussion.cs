@@ -20,6 +20,7 @@ public class Discussion : MonoBehaviour
     private Queue<PendingMsg> _pendingMsgs=new Queue<PendingMsg>();
     private bool _canChoose=false;
     private List<string> _choices = new List<string>();
+    private List<GameObject> _choiceButtons = new List<GameObject>();
 
     private DialogueDataReader _dialogueDataReader;
 
@@ -33,10 +34,12 @@ public class Discussion : MonoBehaviour
     }
     public void Enable()
     {
-        _messageApp.CurrentConv = gameObject;
+       
         if(_headerText)
         _headerText.text = _iD;
         PhoneManager.Instance.ChangeDepth(PhoneManager.AppDepth.inApp);
+        _messageApp.SetCurrentConv(gameObject);
+
     }
 
     public void SetUp(string name,SentText[] texts,GameObject button, TMP_Text headerText)
@@ -109,7 +112,7 @@ public class Discussion : MonoBehaviour
         for (int i=0;i<choices.Count; i++)
         {
             GameObject choice=Instantiate(_choicePrefab, _choicePanel.transform.GetChild(0));
-            
+            _choiceButtons.Add(choice);
             choice.GetComponentInChildren<TMP_Text>().text = choices[i];
             //GameObject choice=Instantiate(_choicePrefab, transform);
             _choicePrefab.GetComponent<RectTransform>().localPosition += new Vector3(0,40,0);
@@ -166,6 +169,11 @@ public class Discussion : MonoBehaviour
             return;
         }
         _canChoose = false;
+        foreach(GameObject buttton in _choiceButtons)
+        {
+            Destroy(buttton);
+        }
+        _choiceButtons.Clear();
         _choices.Clear();
         _dialogueDataReader.MakeChoice(msg);
     }

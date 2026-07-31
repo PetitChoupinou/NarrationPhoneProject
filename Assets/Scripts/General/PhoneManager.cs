@@ -16,7 +16,7 @@ public class PhoneManager : MonoBehaviour
     public Dictionary<ApplicationType, GameObject> lockedApps=new Dictionary<ApplicationType, GameObject>();
     private List<BaseApplication> _apps=new List<BaseApplication>();
     private NotificationManager _notifManager;
-    private AppDepth _currentDepth;
+    [SerializeField] private AppDepth _currentDepth;
     private LocationData _currentLocation;
     [SerializeField] private ClockSystem _clockSystem;
     

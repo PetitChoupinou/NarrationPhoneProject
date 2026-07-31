@@ -15,10 +15,18 @@ public class MessageApp : BaseApplication
     [SerializeField] private GameObject _headerButton;
     [SerializeField] private TMP_Text _headerText;
     private List<Discussion> _discussions = new List<Discussion>();
-    private GameObject _currentConv;
+    [SerializeField] private GameObject _currentConv;
 
-    public GameObject CurrentConv { get => _currentConv; set => _currentConv = value; }
+    public GameObject CurrentConv { get => _currentConv;}
 
+    public void SetCurrentConv(GameObject conv)
+    {
+        _currentConv = conv;
+    }
+    private void Update()
+    {
+        print(_currentConv);
+    }
     public override void SetUp(StoryAppSetup setup)
     {
         List<CharacterSheet> characters = setup.Characters;
