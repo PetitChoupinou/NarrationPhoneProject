@@ -146,6 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0f8305661d8db7468fa31aed3b9b8c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StorySelectionButton
+  _text: {fileID: 5785732269278679397}
 --- !u!1 &2579560137471192464
 GameObject:
   m_ObjectHideFlags: 0
