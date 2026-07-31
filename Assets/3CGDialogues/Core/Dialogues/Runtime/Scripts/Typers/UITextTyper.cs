@@ -231,7 +231,6 @@ namespace TCG.Core.Dialogues
         private void _GoToCharacter(float characterOffset)
         {
             _readCharacterOffset = characterOffset;
-            print(characterOffset);
             _text.text = CurrentText.Substring(0, (int)_readCharacterOffset);
         }
 
