@@ -65,15 +65,15 @@ public class DialogueDataReader : MonoBehaviour
         return _currentDialogueData.nodes.FirstOrDefault(node => node.nodeGUID == currentNodeData.outputs[outputID].targetNodeGuid);
     }
 
-    private void ReadNextNode(NodeData currentNodeData, int outputID = 0)
+    private void ReadNextNode(NodeData currentNodeData, int outputID = 0, bool isChoice = false)
     {
         currentNodeData.isSentCurrent = true;
         var nextData = GetNextNodeData(currentNodeData, outputID);
         if(nextData == null) { return; } // End of conversation
-        ReadNodeData(nextData).Invoke();
+        ReadNodeData(nextData, isChoice).Invoke();
     }
 
-    public Action ReadNodeData(NodeData nodeData)
+    public Action ReadNodeData(NodeData nodeData, bool isChoice = false)
     {
         _currentNodeData = nodeData;
         
@@ -86,7 +86,7 @@ public class DialogueDataReader : MonoBehaviour
                 DialogueNodeData dialogueNodeData = nodeData as DialogueNodeData;
                 return () =>
                 {
-                    if (dialogueNodeData.isSentCurrent)
+                    if (dialogueNodeData.isSentCurrent || isChoice)
                     {
                         _messageApp.AddMessage(dialogueNodeData.dialogueText, dialogueNodeData.isNPC, _characterID);
                         ReadNextNode(nodeData, 0);
@@ -100,7 +100,9 @@ public class DialogueDataReader : MonoBehaviour
                         }
                         else
                         {
+
                             WaitForMouseClick();
+
                         }
                     }
 
@@ -110,8 +112,21 @@ public class DialogueDataReader : MonoBehaviour
                 ChoiceNodeData choiceData = nodeData as ChoiceNodeData;
                 return () =>
                 {
-                    
-                    if (choiceData.isSentCurrent && choiceData.chosenChoiceID > -1)
+
+                    if (!string.IsNullOrEmpty(choiceData.dialogueText))
+                    {
+                        _messageApp.AddMessage(choiceData.dialogueText, false, _characterID);
+                    }
+                    if(choiceData.isSentCurrent && choiceData.chosenChoiceID > -1)
+                    {
+                        ReadNextNode(nodeData, choiceData.chosenChoiceID);
+                    }
+                    else
+                    {
+                        _messageApp.SendChoice(GetChoicesTexts(choiceData.outputs), _characterID);
+                    }
+
+                    /*if (choiceData.isSentCurrent && choiceData.chosenChoiceID > -1)
                     {
                         if (!string.IsNullOrEmpty(choiceData.dialogueText))
                         {
@@ -122,9 +137,9 @@ public class DialogueDataReader : MonoBehaviour
                     else
                     {
                         WaitForMouseClick();
-                    }
-                    
-                    
+                    }*/
+
+
                 };
             case NodeType.Affinity:
                 AffinityNodeData affinityNodeData = nodeData as AffinityNodeData;
@@ -239,14 +254,14 @@ public class DialogueDataReader : MonoBehaviour
                 _messageApp.AddMessage(dialogueNodeData.dialogueText, dialogueNodeData.isNPC, _characterID);
                 ReadNextNode(dialogueNodeData, 0);
                 break;
-            case NodeType.Choice:
+            /*case NodeType.Choice:
                 ChoiceNodeData choiceData = _currentNodeData as ChoiceNodeData;
                 if (!string.IsNullOrEmpty(choiceData.dialogueText))
                 {
                     _messageApp.AddMessage(choiceData.dialogueText, false, _characterID);
                 }
                 _messageApp.SendChoice(GetChoicesTexts(choiceData.outputs), _characterID);
-                break;
+                break;*/
         }
 
         if (_eventTrigger != null && _entry != null)
@@ -278,7 +293,7 @@ public class DialogueDataReader : MonoBehaviour
         OutputData choice = GetChoiceFromText(choiceText);
         int choiceID = _currentNodeData.outputs.IndexOf(choice);
         choiceNodeData.chosenChoiceID = choiceID;
-        ReadNextNode(_currentNodeData, choiceID);
+        ReadNextNode(_currentNodeData, choiceID, true);
 
     }
 
@@ -320,6 +335,7 @@ public class DialogueDataReader : MonoBehaviour
     {
         OutputData choice = GetChoiceFromText(choiceValue);
         NodeData nextNode = GetNextNodeData(_currentNodeData, _currentNodeData.outputs.IndexOf(choice));
+        if (nextNode == null) return true;
         if(nextNode.nodeType == NodeType.Condition)
         {
             ConditionPropertyNodeData conditionNodeData = nextNode as ConditionPropertyNodeData;
