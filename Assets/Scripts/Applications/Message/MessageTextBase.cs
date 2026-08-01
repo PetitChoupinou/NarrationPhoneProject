@@ -64,16 +64,15 @@ public class MessageTextBase : MonoBehaviour
             }
             if (j == _maxMsgWidth)
             {
-                //print("bitch" + text[i]);
-                if (lastSpace == 0|| lastSpace+ _maxMsgWidth < i)
+                if (lastSpace == 0|| lastSpace+ _maxMsgWidth> i)
                 {
-                    returnText= returnText.Insert(i+offset, "\n");
+                    returnText= returnText.Insert(lastSpace+offset+1, "\n");
                 }
                 else
                 {
-                    returnText = returnText.Insert(lastSpace+offset, "\n");
+                    returnText = returnText.Insert(i+offset+1, "\n");
                 }
-                offset += 2;
+                offset += 1;
                 j = 0;
             }
             j++;
