@@ -7,6 +7,7 @@ using UnityEngine;
 public class StoryAppSetup : ScriptableObject
 {
     [SerializeField] private string _name;
+    [SerializeField] private Sprite _messageBackGround;
     [SerializeField] List<GameObject> _applications = new List<GameObject>();
     [SerializeField] List<CharacterSheet> _characters = new List<CharacterSheet>();
     [SerializeField] List<PhotoPreviews> _photos = new List<PhotoPreviews>();
@@ -36,6 +37,7 @@ public class StoryAppSetup : ScriptableObject
     public HackSetup HackAppSetup { get => _hackAppSetup;  }
     public TimeData TimeData { get => _timeData;}
     public Sprite BaseCameraPhoto { get => _baseCameraPhoto; }
+    public Sprite MessageBackGround { get => _messageBackGround;}
 }
 
 [Serializable]

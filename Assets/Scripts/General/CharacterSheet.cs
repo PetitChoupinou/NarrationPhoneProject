@@ -10,6 +10,7 @@ public class CharacterSheet : ScriptableObject
     [SerializeField] private string  baseNotes;
     [SerializeField,Range(0,20)] private int  baseAffinity;
     [SerializeField] private Sprite profilePic;
+    [SerializeField] private Sprite messageBackground;
     [SerializeField] private DialogueData[] dialogues;
     [SerializeField] private PhoneNumbers telNum;
     public int dialogueIndex;
@@ -30,8 +31,7 @@ public class CharacterSheet : ScriptableObject
     }
 
     public DialogueData[] Dialogues { get => dialogues; set => dialogues = value; }
-
-    
+    public Sprite MessageBackground { get => messageBackground;}
 }
 
 [Serializable]

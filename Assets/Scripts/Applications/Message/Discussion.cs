@@ -13,6 +13,7 @@ public class Discussion : MonoBehaviour
     private TMP_Text _headerText;
     private GameObject _messageButton;
     private MessageApp _messageApp;
+    private Sprite _backgroundImage;
     [SerializeField] private GameObject _content;
     [SerializeField] private GameObject _messagePrefab;
     [SerializeField] private GameObject _linkPrefab;
@@ -40,6 +41,7 @@ public class Discussion : MonoBehaviour
     public void Enable()
     {
         print(_messageApp);
+        _messageApp.SetBackground(_backgroundImage);
         _isEnabled = true;
         if(_headerText)
         _headerText.text = _iD;
@@ -48,7 +50,7 @@ public class Discussion : MonoBehaviour
 
     }
 
-    public void SetUp(string name,SentText[] texts,GameObject button, TMP_Text headerText)
+    public void SetUp(string name,SentText[] texts,GameObject button, TMP_Text headerText,Sprite background)
     {
         DialogueDataReader = GetComponent<DialogueDataReader>();
         _iD = name;
@@ -56,6 +58,7 @@ public class Discussion : MonoBehaviour
         _headerText = headerText;
         _messageButton = button;
         _preview = _messageButton.GetComponent<InAppButton>().Preview;
+        _backgroundImage = background;
         /*if (texts.Length<=0) return;
         for (int i = 0; i < texts.Length; i++)
         {

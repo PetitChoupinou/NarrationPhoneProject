@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine.TextCore.Text;
 using System.Linq;
 using System;
+using UnityEngine.UI;
 
 public class MessageApp : BaseApplication
 {
@@ -17,9 +18,14 @@ public class MessageApp : BaseApplication
     [SerializeField] private TMP_Text _headerText;
     private List<Discussion> _discussions = new List<Discussion>();
     [SerializeField] private GameObject _currentConv;
+    [SerializeField] private Image _BgImage;
+    private Sprite _baseBackground;
 
     public GameObject CurrentConv { get => _currentConv;}
-
+    public void SetBackground(Sprite background)
+    {
+        _BgImage.sprite = background;
+    }
     public void SetCurrentConv(GameObject conv)
     {
         _currentConv = conv;
@@ -27,7 +33,7 @@ public class MessageApp : BaseApplication
     public override void SetUp(StoryAppSetup setup)
     {
         List<CharacterSheet> characters = setup.Characters;
-
+        _baseBackground= setup.MessageBackGround;
         for (int i = 0; i < characters.Count; i++)
         {
             CharacterSheet character = characters[i];
@@ -35,9 +41,10 @@ public class MessageApp : BaseApplication
             SentText[] texts = character.BaseText;
             GameObject button = Instantiate(_buttonPrefab, _buttonCanvas.transform);
             GameObject discussion = Instantiate(_discussionPrefab, transform);
+            Sprite background = character.MessageBackground;
             discussion.name = "message " + name;
             button.GetComponent<InAppButton>().SetUp(name, discussion, _headerButton);
-            discussion.GetComponent<Discussion>().SetUp(name, texts, button, _headerText);
+            discussion.GetComponent<Discussion>().SetUp(name, texts, button, _headerText ,background);
 
             gameObjectsToDeactivate.Add(discussion);
             _discussions.Add(discussion.GetComponent<Discussion>());
@@ -55,6 +62,14 @@ public class MessageApp : BaseApplication
         {
             return;
         }
+        if (_baseBackground == null)
+        {
+            SetBackground(null);
+        }
+        else 
+        {
+            SetBackground(_baseBackground);
+        }    
         _currentConv.GetComponent<RectTransform>().localScale=Vector3.zero;
         _headerText.text = "message";
         PhoneManager.Instance.ChangeDepth(PhoneManager.AppDepth.app);
