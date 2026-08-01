@@ -22,9 +22,6 @@ public class MessageApp : BaseApplication
     public void SetCurrentConv(GameObject conv)
     {
         _currentConv = conv;
-    }
-    private void Update()
-    {
         print(_currentConv);
     }
     public override void SetUp(StoryAppSetup setup)
@@ -53,12 +50,17 @@ public class MessageApp : BaseApplication
     }
     public override void CloseCurrent()
     {
-        if (CurrentConv == null) return;
+        _currentConv = GetCurrentDiscussion().gameObject;
+        if (_currentConv == null) 
+        {
+            return;
+        }
         _currentConv.GetComponent<RectTransform>().localScale=Vector3.zero;
         _headerText.text = "message";
         PhoneManager.Instance.ChangeDepth(PhoneManager.AppDepth.app);
         _buttonCanvas.SetActive(true);
         _headerButton.SetActive(false);
+        _currentConv.GetComponent<Discussion>().IsEnabled = false;
         _currentConv = null;
     }
     public void AddMessage(string text, bool isNPC,string ID)
@@ -126,5 +128,9 @@ public class MessageApp : BaseApplication
     public Discussion  GetDiscussion(string ID)
     {
         return _discussions.Find(x => x.ID == ID);
+    }
+    public Discussion GetCurrentDiscussion()
+    {
+        return _discussions.Find(x => x.IsEnabled==true);
     }
 }

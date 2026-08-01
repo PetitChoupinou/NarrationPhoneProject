@@ -17,6 +17,7 @@ public class Discussion : MonoBehaviour
     [SerializeField] private GameObject _linkPrefab;
     [SerializeField] private GameObject _choicePrefab;
     [SerializeField] private GameObject _choicePanel;
+    [SerializeField] private bool _isEnabled;
     private Queue<PendingMsg> _pendingMsgs=new Queue<PendingMsg>();
     private bool _canChoose=false;
     private List<string> _choices = new List<string>();
@@ -28,17 +29,20 @@ public class Discussion : MonoBehaviour
     public bool CanChoose { get => _canChoose; set => _canChoose = value; }
     public DialogueDataReader DialogueDataReader { get => _dialogueDataReader; set => _dialogueDataReader = value; }
     public GameObject MessageButton { get => _messageButton;}
-    private void Awake()
+    public bool IsEnabled { get => _isEnabled; set => _isEnabled = value; }
+
+    private void Start()
     {
-        _messageApp= FindAnyObjectByType<MessageApp>() as MessageApp;
+        _messageApp= FindAnyObjectByType<MessageApp>();
     }
     public void Enable()
     {
-       
+        print(_messageApp);
+        _isEnabled = true;
         if(_headerText)
         _headerText.text = _iD;
         PhoneManager.Instance.ChangeDepth(PhoneManager.AppDepth.inApp);
-        _messageApp.SetCurrentConv(gameObject);
+        _messageApp.SetCurrentConv(transform.gameObject);
 
     }
 

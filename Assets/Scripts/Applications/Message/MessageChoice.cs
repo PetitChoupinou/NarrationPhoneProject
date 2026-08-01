@@ -7,8 +7,13 @@ public class MessageChoice : MonoBehaviour
     public void OnPressed()
     {
         print(text.text);
-        var currentConv = FindFirstObjectByType<MessageApp>();
-        currentConv.CurrentConv.GetComponent<Discussion>().Choose(text.text);
+        var messageApp = FindFirstObjectByType<MessageApp>();
+        messageApp.SetCurrentConv(messageApp.GetCurrentDiscussion().gameObject);
+        if (messageApp.CurrentConv==null)
+        {
+            return; // il y a un problème si ça passe par là!
+        }
+        messageApp.CurrentConv.GetComponent<Discussion>().Choose(text.text);
     }
     
 }
