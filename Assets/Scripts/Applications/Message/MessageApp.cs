@@ -24,10 +24,6 @@ public class MessageApp : BaseApplication
     {
         _currentConv = conv;
     }
-    private void Update()
-    {
-        print(_currentConv);
-    }
     public override void SetUp(StoryAppSetup setup)
     {
         List<CharacterSheet> characters = setup.Characters;
