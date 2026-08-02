@@ -17,6 +17,7 @@ MonoBehaviour:
   baseNotes: OwO
   baseAffinity: 1
   profilePic: {fileID: 0}
+  messageBackground: {fileID: 8957324059118975939, guid: e7a84a3f83fe6134b871252e612f2597, type: 3}
   dialogues:
   - {fileID: 11400000, guid: f0a0d33a055606a48b98300da1fef860, type: 2}
   telNum:

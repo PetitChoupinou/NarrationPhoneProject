@@ -18,13 +18,17 @@ public class MessageApp : BaseApplication
     [SerializeField] private TMP_Text _headerText;
     private List<Discussion> _discussions = new List<Discussion>();
     [SerializeField] private GameObject _currentConv;
-    [SerializeField] private Image _BgImage;
+    [SerializeField] private Image _bgImage;
     private Sprite _baseBackground;
 
     public GameObject CurrentConv { get => _currentConv;}
     public void SetBackground(Sprite background)
     {
-        _BgImage.sprite = background;
+        if (_bgImage == null)
+        {
+            _bgImage = GetComponentInChildren<Image>();
+        }
+        _bgImage.sprite = background;
     }
     public void SetCurrentConv(GameObject conv)
     {

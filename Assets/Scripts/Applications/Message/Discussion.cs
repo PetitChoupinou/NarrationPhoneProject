@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TCG.Core.Dialogues;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -132,7 +133,7 @@ public class Discussion : MonoBehaviour
         {
             GameObject choice=Instantiate(_choicePrefab, _choicePanel.transform.GetChild(0));
             _choiceButtons.Add(choice);
-            choice.GetComponentInChildren<TMP_Text>().text = choices[i];
+            choice.GetComponentInChildren<UITextTyperMsg>().ReadText(choices[i]);
             //GameObject choice=Instantiate(_choicePrefab, transform);
             _choicePrefab.GetComponent<RectTransform>().localPosition += new Vector3(0,40,0);
             if (!DialogueDataReader.IsChoicePossible(choices[i]))
@@ -165,8 +166,8 @@ public class Discussion : MonoBehaviour
     IEnumerator MessageApplyResize(GameObject newMessage)
     {
         yield return new WaitForSeconds(.01f);
-        newMessage.GetComponent<HorizontalLayoutGroup>().childControlHeight = true;
-        newMessage.GetComponent<HorizontalLayoutGroup>().CalculateLayoutInputHorizontal();
+        newMessage.GetComponentInChildren<HorizontalLayoutGroup>().childControlHeight = true;
+        newMessage.GetComponentInChildren<HorizontalLayoutGroup>().CalculateLayoutInputHorizontal();
         newMessage.SetActive(false);
         yield return new WaitForSeconds(.001f);
         newMessage.SetActive(true);

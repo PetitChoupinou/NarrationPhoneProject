@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: StoryAppSetup
   m_EditorClassIdentifier: Assembly-CSharp::StoryAppSetup
   _name: TestSetup
+  _messageBackGround: {fileID: -9044818322742739572, guid: 6301944f71e1ea74aa1935839bdd0b30, type: 3}
   _applications:
   - {fileID: 7991513738419085291, guid: 1699363c4bee2a9438541c194156c950, type: 3}
   - {fileID: 7331036238270016989, guid: c04bc797bdc1ea949acd8b45d27686bc, type: 3}
@@ -116,6 +117,7 @@ MonoBehaviour:
     text: ' non c''est de la merde :)!!!'
   - search: pourquoi 42?
     text: "c'est la r\xE9ponse \xE0 la vie."
+  _baseCameraPhoto: {fileID: 0}
   _hackAppSetup:
     title: test
     folders:
@@ -142,4 +144,4 @@ MonoBehaviour:
     _month: 9
     _year: 2004
     _hour: 6
-    _minute: 49
+    _minute: 52

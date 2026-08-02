@@ -62,8 +62,8 @@ namespace TCG.Core.Dialogues
             _commands = _GenerateCommands(CurrentText);
 
             CurrentText = _RemoveCustomTags(CurrentText);
-            TextField.text = CurrentText;
-            TextField.ForceMeshUpdate();
+            _text.text = CurrentText;
+            _text.ForceMeshUpdate();
             _readCharacterOffset = 0f;
 
             foreach (TextCommand command in _commands)
