@@ -26,6 +26,7 @@ public class Discussion : MonoBehaviour
     private bool _canChoose=false;
     private List<string> _choices = new List<string>();
     private List<GameObject> _choiceButtons = new List<GameObject>();
+    private ScrollRect _scrollRect;
 
     private DialogueDataReader _dialogueDataReader;
 
@@ -38,6 +39,7 @@ public class Discussion : MonoBehaviour
     private void Start()
     {
         _messageApp= FindAnyObjectByType<MessageApp>();
+        _scrollRect = GetComponentInChildren<ScrollRect>();
     }
     public void Enable()
     {
@@ -173,6 +175,7 @@ public class Discussion : MonoBehaviour
         if (_messageApp.CurrentConv == gameObject) isActive = true;
         newMessage.GetComponentInChildren<HorizontalLayoutGroup>().childControlHeight = true;
         newMessage.GetComponentInChildren<HorizontalLayoutGroup>().CalculateLayoutInputHorizontal();
+        newMessage.GetComponentInChildren<HorizontalLayoutGroup>().CalculateLayoutInputVertical();
         newMessage.SetActive(false);
        
         yield return new WaitForSeconds(.001f);
@@ -180,10 +183,12 @@ public class Discussion : MonoBehaviour
         if (isActive)
         {
             _content.GetComponent<VerticalLayoutGroup>().CalculateLayoutInputVertical();
+            _content.GetComponent<VerticalLayoutGroup>().CalculateLayoutInputHorizontal();
         }
         newMessage.SetActive(true);
         newMessage.transform.localScale = Vector3.one;
-        yield return null;
+        yield return new WaitForEndOfFrameUnit();
+        _scrollRect.verticalNormalizedPosition = 0;
     }
     public void StartChoice()
     {
