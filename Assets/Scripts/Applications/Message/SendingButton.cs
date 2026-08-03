@@ -26,16 +26,4 @@ public class SendingButton : MonoBehaviour
         _sprite.color = _disableColor;
         _button.onClick.RemoveAllListeners();
     }
-
-    void AddToBuffer(Action sendingAction)
-    {
-        _actionsBuffer.Add(sendingAction);
-        foreach(Action action in _actionsBuffer)
-        if(_actionsBuffer.Count > 0)
-        {
-            EnableButton(_actionsBuffer[0]);
-        }
-    }
-    
-
 }
