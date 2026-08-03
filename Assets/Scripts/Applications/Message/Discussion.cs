@@ -136,6 +136,7 @@ public class Discussion : MonoBehaviour
             GameObject choice=Instantiate(_choicePrefab, _choicePanel.transform.GetChild(0));
             _choiceButtons.Add(choice);
             choice.GetComponentInChildren<UITextTyperMsg>().ReadText(choices[i]);
+            choice.GetComponent<MessageChoice>().value = choices[i];
             //GameObject choice=Instantiate(_choicePrefab, transform);
             _choicePrefab.GetComponent<RectTransform>().localPosition += new Vector3(0,40,0);
             if (!DialogueDataReader.IsChoicePossible(choices[i]))

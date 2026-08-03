@@ -6,6 +6,7 @@ public class MessageChoice : MonoBehaviour
 {
     [SerializeField] TMP_Text text;
     [SerializeField] UITextTyperMsg  textTyper;
+    public string value;
     public void OnPressed()
     {
         print(text.text);
@@ -15,7 +16,7 @@ public class MessageChoice : MonoBehaviour
         {
             return; // il y a un problème si ça passe par là!
         }
-        messageApp.CurrentConv.GetComponent<Discussion>().Choose(text.text);
+        messageApp.CurrentConv.GetComponent<Discussion>().Choose(value);
     }
     
 }
