@@ -69,7 +69,8 @@ public class DialogueDataReader : MonoBehaviour
     {
         currentNodeData.isSentCurrent = true;
         var nextData = GetNextNodeData(currentNodeData, outputID);
-        if(nextData == null) { return; } // End of conversation
+        if(nextData == null) { Debug.Log("Fin de conv");  return; } // End of conversation
+        
         ReadNodeData(nextData, isChoice).Invoke();
     }
 
@@ -89,6 +90,7 @@ public class DialogueDataReader : MonoBehaviour
                     if (dialogueNodeData.isSentCurrent || isChoice)
                     {
                         _messageApp.AddMessage(dialogueNodeData.dialogueText, dialogueNodeData.isNPC, _characterID);
+                        //Debug.Log("Message envoyé: " + dialogueNodeData.dialogueText);
                         ReadNextNode(nodeData, 0);
                     }
                     else
@@ -96,11 +98,12 @@ public class DialogueDataReader : MonoBehaviour
                         
                         if (dialogueNodeData.isNPC)
                         {
+                            //Debug.Log("Message NPC: " + dialogueNodeData.dialogueText);
                             StartCoroutine(DelayMessage(dialogueNodeData));
                         }
                         else
                         {
-
+                            //Debug.Log("Message joueur attente de clic: " + dialogueNodeData.dialogueText);
                             WaitForMouseClick(() => {
                                 _messageApp.AddMessage(dialogueNodeData.dialogueText, dialogueNodeData.isNPC, _characterID);
                                 ReadNextNode(nodeData, 0);
