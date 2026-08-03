@@ -26,7 +26,7 @@ public class MessageApp : BaseApplication
     {
         if (_bgImage == null)
         {
-            _bgImage = GetComponentInChildren<Image>();
+            return;
         }
         _bgImage.sprite = background;
     }

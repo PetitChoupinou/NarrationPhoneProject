@@ -88,6 +88,7 @@ public class Discussion : MonoBehaviour
         message.SetTextMsg(text);
         _lastMessage = message.Message;
         ChangePreview(text);
+        newMessage.transform.localScale = Vector3.zero;
         StartCoroutine(MessageApplyResize(newMessage));
         if(_messageApp.CurrentConv != this.gameObject )
         {
@@ -106,6 +107,7 @@ public class Discussion : MonoBehaviour
         MessageLink message = newMessage.GetComponent<MessageLink>();
         message.SetLinkMsg(type);
         ChangePreview("", true);
+        newMessage.transform.localScale = Vector3.zero;
         StartCoroutine(MessageApplyResize(newMessage));
         if (_messageApp.CurrentConv != this.gameObject)
         {
@@ -166,11 +168,21 @@ public class Discussion : MonoBehaviour
     IEnumerator MessageApplyResize(GameObject newMessage)
     {
         yield return new WaitForSeconds(.01f);
+
+        bool isActive=false;
+        if (_messageApp.CurrentConv == gameObject) isActive = true;
         newMessage.GetComponentInChildren<HorizontalLayoutGroup>().childControlHeight = true;
         newMessage.GetComponentInChildren<HorizontalLayoutGroup>().CalculateLayoutInputHorizontal();
         newMessage.SetActive(false);
+       
         yield return new WaitForSeconds(.001f);
+
+        if (isActive)
+        {
+            _content.GetComponent<VerticalLayoutGroup>().CalculateLayoutInputVertical();
+        }
         newMessage.SetActive(true);
+        newMessage.transform.localScale = Vector3.one;
         yield return null;
     }
     public void StartChoice()
