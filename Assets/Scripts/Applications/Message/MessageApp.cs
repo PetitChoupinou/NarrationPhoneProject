@@ -38,6 +38,7 @@ public class MessageApp : BaseApplication
     {
         List<CharacterSheet> characters = setup.Characters;
         _baseBackground= setup.MessageBackGround;
+        SetBackground(_baseBackground);
         for (int i = 0; i < characters.Count; i++)
         {
             CharacterSheet character = characters[i];
