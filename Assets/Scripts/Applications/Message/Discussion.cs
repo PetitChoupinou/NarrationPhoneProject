@@ -170,13 +170,14 @@ public class Discussion : MonoBehaviour
     }
     IEnumerator MessageApplyResize(GameObject newMessage)
     {
-        yield return new WaitForSeconds(.01f);
+        yield return new WaitForSeconds(.1f);
 
         bool isActive=false;
         if (_messageApp.CurrentConv == gameObject) isActive = true;
-        newMessage.GetComponentInChildren<HorizontalLayoutGroup>().childControlHeight = true;
+        newMessage.GetComponentInChildren<HorizontalLayoutGroup>().childControlHeight = false;
         newMessage.GetComponentInChildren<HorizontalLayoutGroup>().CalculateLayoutInputHorizontal();
         newMessage.GetComponentInChildren<HorizontalLayoutGroup>().CalculateLayoutInputVertical();
+       
         newMessage.SetActive(false);
        
         yield return new WaitForSeconds(.001f);
@@ -187,6 +188,9 @@ public class Discussion : MonoBehaviour
             _content.GetComponent<VerticalLayoutGroup>().CalculateLayoutInputHorizontal();
         }
         newMessage.SetActive(true);
+        newMessage.GetComponentInChildren<HorizontalLayoutGroup>().childControlHeight = true;
+        newMessage.GetComponentInChildren<HorizontalLayoutGroup>().CalculateLayoutInputHorizontal();
+        newMessage.GetComponentInChildren<HorizontalLayoutGroup>().CalculateLayoutInputVertical();
         newMessage.transform.localScale = Vector3.one;
         yield return new WaitForEndOfFrameUnit();
         _scrollRect.verticalNormalizedPosition = 0;
