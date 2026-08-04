@@ -41,6 +41,9 @@ public class Discussion : MonoBehaviour
         _messageApp= FindAnyObjectByType<MessageApp>();
         _scrollRect = GetComponentInChildren<ScrollRect>();
     }
+    /// <summary>
+    /// Not OnEnable as it is not disabled when not on it
+    /// </summary>
     public void Enable()
     {
         print(_messageApp);
@@ -52,7 +55,14 @@ public class Discussion : MonoBehaviour
         _messageApp.SetCurrentConv(transform.gameObject);
 
     }
-
+    /// <summary>
+    /// Set the discussions elements up
+    /// </summary>
+    /// <param name="name">Conversation Name</param>
+    /// <param name="texts">deprecated</param>
+    /// <param name="button">button to discussion</param>
+    /// <param name="headerText">Text field</param>
+    /// <param name="background">conversation background image</param>
     public void SetUp(string name,SentText[] texts,GameObject button, TMP_Text headerText,Sprite background)
     {
         DialogueDataReader = GetComponent<DialogueDataReader>();
@@ -76,7 +86,11 @@ public class Discussion : MonoBehaviour
             _preview.text = "";
         }*/
     }
-
+    /// <summary>
+    /// Adds a message to the conversation
+    /// </summary>
+    /// <param name="text">message</param>
+    /// <param name="isNPC">allow to put messages in the right spot</param>
     public void AddMessage(string text,bool isNPC)
     {
         if (AppManager.Instance.GetApplication(ApplicationType.Map)&&PhoneManager.Instance.CurrentLocation.networkState == NetworkState.Bad)
@@ -97,6 +111,10 @@ public class Discussion : MonoBehaviour
             NotificationManager.Instance.SendNotifText(_preview.text, _iD);
         }
     }
+    /// <summary>
+    /// Link to add an app to the phone
+    /// </summary>
+    /// <param name="type">What app is downloadable from the link</param>
     public void AddLinkTo(ApplicationType type)
     {
         if (AppManager.Instance.GetApplication(ApplicationType.Map) && PhoneManager.Instance.CurrentLocation.networkState == NetworkState.Bad)
@@ -127,6 +145,10 @@ public class Discussion : MonoBehaviour
     {
         _sendingButton.DisableButton();
     }
+    /// <summary>
+    /// Add choices to choice panel
+    /// </summary>
+    /// <param name="choices">message previews</param>
     public void TriggerChoice(List<string> choices)
     {
         _canChoose = true;
@@ -149,6 +171,11 @@ public class Discussion : MonoBehaviour
         }
 
     }
+    /// <summary>
+    /// Change preview on the base screen of the message app
+    /// </summary>
+    /// <param name="text">preview</param>
+    /// <param name="isDl">is it a link</param>
     public void ChangePreview(string text,bool isDl=false)
     {
         if (isDl)
@@ -168,9 +195,14 @@ public class Discussion : MonoBehaviour
         else previewText = text;
         _preview.text = previewText;
     }
+    /// <summary>
+    /// resize messages to make sure they fit well.
+    /// </summary>
+    /// <param name="newMessage"></param>
+    /// <returns></returns>
     IEnumerator MessageApplyResize(GameObject newMessage)
     {
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(.1f);// going too low on this will make the resize fail sometimes
 
         bool isActive=false;
         if (_messageApp.CurrentConv == gameObject) isActive = true;
@@ -220,20 +252,13 @@ public class Discussion : MonoBehaviour
         _dialogueDataReader.MakeChoice(msg);
     }
 
-    void ClearChoices()
-    {
-        var choiceButtons = _choicePanel.GetComponentsInChildren<MessageChoice>();
-        foreach(var choice in choiceButtons)
-        {
-            Destroy(choice.gameObject);
-        }
-        _choices.Clear();
-    }
-
     public void CreateThought(string thought)
     {
         PhoneManager.Instance.CreateThought(thought);
     }
+    /// <summary>
+    /// When out of network the incoming messages are stored to be added in order
+    /// </summary>
     public void DequeuPendingMessages()
     {
         while (_pendingMsgs.Count > 0)
