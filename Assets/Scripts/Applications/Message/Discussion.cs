@@ -46,6 +46,7 @@ public class Discussion : MonoBehaviour
     /// </summary>
     public void Enable()
     {
+        if (_messageApp == null) _messageApp = FindAnyObjectByType<MessageApp>();
         print(_messageApp);
         _messageApp.SetBackground(_backgroundImage);
         _isEnabled = true;
@@ -106,7 +107,8 @@ public class Discussion : MonoBehaviour
         ChangePreview(text);
         newMessage.transform.localScale = Vector3.zero;
         StartCoroutine(MessageApplyResize(newMessage));
-        if(_messageApp.CurrentConv != this.gameObject )
+        if(_messageApp==null) _messageApp = FindAnyObjectByType<MessageApp>();
+        if (_messageApp.CurrentConv != gameObject )
         {
             NotificationManager.Instance.SendNotifText(_preview.text, _iD);
         }
@@ -129,7 +131,8 @@ public class Discussion : MonoBehaviour
         ChangePreview("", true);
         newMessage.transform.localScale = Vector3.zero;
         StartCoroutine(MessageApplyResize(newMessage));
-        if (_messageApp.CurrentConv != this.gameObject)
+        if (_messageApp == null) _messageApp = FindAnyObjectByType<MessageApp>();
+        if (_messageApp.CurrentConv != gameObject)
         {
             NotificationManager.Instance.SendNotifText(_preview.text, _iD);
         }
@@ -205,6 +208,7 @@ public class Discussion : MonoBehaviour
         yield return new WaitForSeconds(.1f);// going too low on this will make the resize fail sometimes
 
         bool isActive=false;
+        if (_messageApp == null) _messageApp = FindAnyObjectByType<MessageApp>();
         if (_messageApp.CurrentConv == gameObject) isActive = true;
         newMessage.GetComponentInChildren<HorizontalLayoutGroup>().childControlHeight = false;
         newMessage.GetComponentInChildren<HorizontalLayoutGroup>().CalculateLayoutInputHorizontal();

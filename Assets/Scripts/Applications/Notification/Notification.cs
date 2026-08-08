@@ -17,7 +17,7 @@ abstract public class Notification : MonoBehaviour
        StartCoroutine( AutoRemove());
         _parent = transform.parent;
     }
-    IEnumerator AutoRemove()
+   protected IEnumerator AutoRemove()
     {
         yield return new WaitForSeconds(_duration);
         Destroy(gameObject);
@@ -25,9 +25,7 @@ abstract public class Notification : MonoBehaviour
     }
     private void OnDestroy()
     {
-        if (_parent.childCount == 1)
-        {
-            _scrollview.localScale = Vector3.zero;
-        }
+        NotificationManager.Instance.CheckNotifsOnDestroy(_titre.text);
+        StopAllCoroutines();
     }
 }

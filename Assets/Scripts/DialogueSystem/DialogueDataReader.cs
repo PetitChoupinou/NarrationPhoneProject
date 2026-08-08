@@ -32,6 +32,7 @@ public class DialogueDataReader : MonoBehaviour
     private void OnEnable()
     {
         _messageApp = AppManager.Instance.GetApplication(ApplicationType.Messages) as MessageApp;
+        if (_messageApp == null) _messageApp = FindAnyObjectByType<MessageApp>();
         _eventTrigger = gameObject.GetComponent<EventTrigger>();
         _globalPropertiesData = Resources.Load<GlobalPropertiesData>("GlobalPropertiesData");
 

@@ -23,14 +23,16 @@ public class NotificationMsg : Notification
         discussion.MessageButton.GetComponent<InAppButton>().OnButtonClicked();
         Destroy(gameObject);
     }
+    public void ChangeContent(string content)
+    {
+        _content.text = content;
+        StopAllCoroutines();
+        StartCoroutine(AutoRemove());
+    }
 
     public override void SetUp(string title, string content,RectTransform scrollview)
     {
         _scrollview = scrollview;
-        if (_scrollview.localScale == Vector3.zero)
-        {
-            _scrollview.localScale = Vector3.one;
-        }
         _titre.text = title;
         _content.text = content;
 
