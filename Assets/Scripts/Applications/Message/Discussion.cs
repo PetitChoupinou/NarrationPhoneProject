@@ -22,6 +22,7 @@ public class Discussion : MonoBehaviour
     [SerializeField] private GameObject _choicePanel;
     [SerializeField] private SendingButton _sendingButton;
     [SerializeField] private bool _isEnabled;
+  
     private Queue<PendingMsg> _pendingMsgs=new Queue<PendingMsg>();
     private bool _canChoose=false;
     private List<string> _choices = new List<string>();
@@ -30,6 +31,12 @@ public class Discussion : MonoBehaviour
 
     private DialogueDataReader _dialogueDataReader;
 
+    #region Relationship Feedback
+    [SerializeField] private Image _relationFeedback;
+    [SerializeField] private Material _positifRel;
+    [SerializeField] private Material _negatiifRel;
+    [SerializeField] private float  _feedbackDuration;
+    #endregion
     public string ID { get => _iD;}
     public bool CanChoose { get => _canChoose; set => _canChoose = value; }
     public DialogueDataReader DialogueDataReader { get => _dialogueDataReader; set => _dialogueDataReader = value; }
@@ -254,6 +261,7 @@ public class Discussion : MonoBehaviour
         _choiceButtons.Clear();
         _choices.Clear();
         _dialogueDataReader.MakeChoice(msg);
+        StartCoroutine(RelationshipFeedback(true));
     }
 
     public void CreateThought(string thought)
@@ -278,6 +286,38 @@ public class Discussion : MonoBehaviour
                 AddMessage(current.text, current.isNPC);
             }
         }
+    }
+    IEnumerator RelationshipFeedback(bool isGood)
+    {
+        if (isGood)
+        {
+            _relationFeedback.material = _positifRel;
+            yield return null;
+        }
+        else
+        {
+            _relationFeedback.material = _negatiifRel;
+            yield return null;
+
+        }
+        _relationFeedback.gameObject.SetActive(true);
+        float duration=0;
+        Color color = _relationFeedback.color;
+        while (duration < .5f)
+        {
+            _relationFeedback.color = new Color(color.r, color.g, color.b, Mathf.Lerp(0f, 1f, duration * 2));
+            duration += Time.deltaTime;
+            yield return null;
+        }
+        yield return new WaitForSeconds(_feedbackDuration);
+        duration = 0;
+        while (duration < .5f)
+        {
+            _relationFeedback.color = new Color(color.r, color.g, color.b, Mathf.Lerp(1f, 0f, duration * 2));
+            duration += Time.deltaTime;
+            yield return null;
+        }
+        _relationFeedback.gameObject.SetActive(false);
     }
 }
 public class PendingMsg

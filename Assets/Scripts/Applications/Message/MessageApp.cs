@@ -62,6 +62,7 @@ public class MessageApp : BaseApplication
     }
     public override void CloseCurrent()
     {
+        if (!GetComponent<Canvas>().isActiveAndEnabled) return;
         _currentConv = GetCurrentDiscussion().gameObject;
         if (_currentConv == null) 
         {

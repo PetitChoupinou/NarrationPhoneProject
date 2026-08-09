@@ -12,7 +12,7 @@ public class DialogueDataReader : MonoBehaviour
 {
     public List<DialogueData> dialogueDatas = new List<DialogueData>();
     private DialogueData _currentDialogueData;
-
+    
     private NodeData _currentNodeData;
 
     private MessageApp _messageApp;
