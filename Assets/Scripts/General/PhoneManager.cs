@@ -38,7 +38,13 @@ public class PhoneManager : MonoBehaviour
 
     public ClockSystem ClockSystem { get => _clockSystem; set => _clockSystem = value; }
     public StoryAppSetup Setup { get => _setup;}
-
+    public enum AppDepth
+    {
+        phone,
+        app,
+        inApp,
+        deep
+    };
     private void Awake()
     {
         _loader = FindFirstObjectByType<SceneLoader>();
@@ -57,13 +63,7 @@ public class PhoneManager : MonoBehaviour
         }
         DontDestroyOnLoad(this.gameObject);
     }
-    public enum AppDepth
-    {
-        phone,
-        app,
-        inApp,
-        deep
-    };
+  
     void Start()
     {
         _notifManager = NotificationManager.Instance;
