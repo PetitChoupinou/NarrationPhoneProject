@@ -80,7 +80,7 @@ MonoBehaviour:
   _isNPCMsg: 0
   _messagePrefab: {fileID: 4517546831677474601, guid: 561b26c91bc393a4884bf15087367104, type: 3}
   _textTyper: {fileID: 4244329274477848879}
-  _maxMsgWidth: 30
+  _maxMsgWidth: 20
 --- !u!114 &4244329274477848879
 MonoBehaviour:
   m_ObjectHideFlags: 0

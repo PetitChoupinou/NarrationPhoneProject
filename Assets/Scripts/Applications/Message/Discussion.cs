@@ -22,7 +22,10 @@ public class Discussion : MonoBehaviour
     [SerializeField] private GameObject _choicePanel;
     [SerializeField] private SendingButton _sendingButton;
     [SerializeField] private bool _isEnabled;
-  
+    [SerializeField] private Image _charaVisu;
+    private Vector3 _charaVisuBasePosition;
+
+
     private Queue<PendingMsg> _pendingMsgs=new Queue<PendingMsg>();
     private bool _canChoose=false;
     private List<string> _choices = new List<string>();
@@ -47,6 +50,7 @@ public class Discussion : MonoBehaviour
     {
         _messageApp= FindAnyObjectByType<MessageApp>();
         _scrollRect = GetComponentInChildren<ScrollRect>();
+        _charaVisuBasePosition = _charaVisu.transform.localPosition;
     }
     /// <summary>
     /// Not OnEnable as it is not disabled when not on it
@@ -118,6 +122,18 @@ public class Discussion : MonoBehaviour
         if (_messageApp.CurrentConv != gameObject )
         {
             NotificationManager.Instance.SendNotifText(_preview.text, _iD);
+        }
+        Transform visuTransform = _charaVisu.transform;
+        if (isNPC)
+        {
+            //visuTransform.SetAsLastSibling();
+             visuTransform.localScale=new Vector3(1,1,1);
+             _charaVisu.transform.localPosition=new Vector3(_charaVisuBasePosition.x,_charaVisuBasePosition.y,_charaVisuBasePosition.z);
+        }
+        else {
+            //visuTransform.SetAsFirstSibling();
+             visuTransform.localScale=new Vector3(-1,1,1);
+           _charaVisu.transform.localPosition=new Vector3(-_charaVisuBasePosition.x,_charaVisuBasePosition.y,_charaVisuBasePosition.z);
         }
     }
     /// <summary>
