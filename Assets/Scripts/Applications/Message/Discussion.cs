@@ -126,14 +126,14 @@ public class Discussion : MonoBehaviour
         Transform visuTransform = _charaVisu.transform;
         if (isNPC)
         {
-            //visuTransform.SetAsLastSibling();
-             visuTransform.localScale=new Vector3(1,1,1);
-             _charaVisu.transform.localPosition=new Vector3(_charaVisuBasePosition.x,_charaVisuBasePosition.y,_charaVisuBasePosition.z);
+            visuTransform.SetAsLastSibling();
+             /*visuTransform.localScale=new Vector3(1,1,1);
+             _charaVisu.transform.localPosition=new Vector3(_charaVisuBasePosition.x,_charaVisuBasePosition.y,_charaVisuBasePosition.z);*/
         }
         else {
-            //visuTransform.SetAsFirstSibling();
-             visuTransform.localScale=new Vector3(-1,1,1);
-           _charaVisu.transform.localPosition=new Vector3(-_charaVisuBasePosition.x,_charaVisuBasePosition.y,_charaVisuBasePosition.z);
+             visuTransform.SetAsFirstSibling();
+             /*visuTransform.localScale=new Vector3(-1,1,1);
+           _charaVisu.transform.localPosition=new Vector3(-_charaVisuBasePosition.x,_charaVisuBasePosition.y,_charaVisuBasePosition.z);*/
         }
     }
     /// <summary>
