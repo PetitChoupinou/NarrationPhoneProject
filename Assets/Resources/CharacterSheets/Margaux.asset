@@ -16,7 +16,7 @@ MonoBehaviour:
   baseText: []
   baseNotes: OwO
   baseAffinity: 1
-  profilePic: {fileID: 0}
+  profilePic: {fileID: 3180124609191791154, guid: bb11d6d118cbef944acc11b6c210c4d7, type: 3}
   messageBackground: {fileID: 8957324059118975939, guid: e7a84a3f83fe6134b871252e612f2597, type: 3}
   dialogues:
   - {fileID: 11400000, guid: f0a0d33a055606a48b98300da1fef860, type: 2}

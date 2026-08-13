@@ -49,7 +49,7 @@ public class MessageApp : BaseApplication
             Sprite background = character.MessageBackground;
             discussion.name = "message " + name;
             button.GetComponent<InAppButton>().SetUp(name, discussion, _headerButton);
-            discussion.GetComponent<Discussion>().SetUp(name, texts, button, _headerText ,background);
+            discussion.GetComponent<Discussion>().SetUp(name, texts, button, _headerText ,background,character.ProfilePic);
 
             gameObjectsToDeactivate.Add(discussion);
             _discussions.Add(discussion.GetComponent<Discussion>());

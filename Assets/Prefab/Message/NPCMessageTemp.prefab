@@ -201,8 +201,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 250, y: 300}
-  m_SizeDelta: {x: 300, y: 600}
+  m_AnchoredPosition: {x: 200, y: 200}
+  m_SizeDelta: {x: 400, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8370307542807405295
 CanvasRenderer:
@@ -423,9 +423,9 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
+  - {fileID: 3380239144453109057}
   - {fileID: 2390398721992712686}
   - {fileID: 1739593476702796767}
-  - {fileID: 3380239144453109057}
   m_Father: {fileID: 6405247141993330418}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -572,6 +572,7 @@ MonoBehaviour:
   _sendingButton: {fileID: 8115283599972540218}
   _isEnabled: 0
   _charaVisu: {fileID: 2588868831723630141}
+  _charaVisuBasePosition: {x: 0, y: 0, z: 0}
   _relationFeedback: {fileID: 670080410631352928}
   _positifRel: {fileID: 2100000, guid: 14e9fd9072500404c9014ef5c84a858e, type: 2}
   _negatiifRel: {fileID: 2100000, guid: fe7983038c7bf86439ae1bc05ee9a815, type: 2}

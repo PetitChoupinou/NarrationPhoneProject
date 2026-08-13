@@ -5,6 +5,7 @@ using TCG.Core.Dialogues;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 public class Discussion : MonoBehaviour
 {
@@ -23,7 +24,7 @@ public class Discussion : MonoBehaviour
     [SerializeField] private SendingButton _sendingButton;
     [SerializeField] private bool _isEnabled;
     [SerializeField] private Image _charaVisu;
-    private Vector3 _charaVisuBasePosition;
+   [SerializeField] private Vector3 _charaVisuBasePosition;
 
 
     private Queue<PendingMsg> _pendingMsgs=new Queue<PendingMsg>();
@@ -50,8 +51,20 @@ public class Discussion : MonoBehaviour
     {
         _messageApp= FindAnyObjectByType<MessageApp>();
         _scrollRect = GetComponentInChildren<ScrollRect>();
-        _charaVisuBasePosition = _charaVisu.transform.localPosition;
+        _charaVisuBasePosition = _charaVisu.GetComponent<RectTransform>().anchoredPosition;
+        print(_charaVisuBasePosition);
     }
+#if UNITY_EDITOR
+    bool isCharaVisuSideMode=true;
+    private void Update()
+    {
+        if (Keyboard.current.spaceKey.wasReleasedThisFrame)
+        {
+            print("f");
+            isCharaVisuSideMode = !isCharaVisuSideMode;
+        }
+    }
+#endif
     /// <summary>
     /// Not OnEnable as it is not disabled when not on it
     /// </summary>
@@ -75,7 +88,7 @@ public class Discussion : MonoBehaviour
     /// <param name="button">button to discussion</param>
     /// <param name="headerText">Text field</param>
     /// <param name="background">conversation background image</param>
-    public void SetUp(string name,SentText[] texts,GameObject button, TMP_Text headerText,Sprite background)
+    public void SetUp(string name,SentText[] texts,GameObject button, TMP_Text headerText,Sprite background,Sprite chara)
     {
         DialogueDataReader = GetComponent<DialogueDataReader>();
         _iD = name;
@@ -84,6 +97,7 @@ public class Discussion : MonoBehaviour
         _messageButton = button;
         _preview = _messageButton.GetComponent<InAppButton>().Preview;
         _backgroundImage = background;
+        _charaVisu.sprite = chara;
         /*if (texts.Length<=0) return;
         for (int i = 0; i < texts.Length; i++)
         {
@@ -124,17 +138,38 @@ public class Discussion : MonoBehaviour
             NotificationManager.Instance.SendNotifText(_preview.text, _iD);
         }
         Transform visuTransform = _charaVisu.transform;
+#if UNITY_EDITOR
         if (isNPC)
         {
-            visuTransform.SetAsLastSibling();
-             /*visuTransform.localScale=new Vector3(1,1,1);
-             _charaVisu.transform.localPosition=new Vector3(_charaVisuBasePosition.x,_charaVisuBasePosition.y,_charaVisuBasePosition.z);*/
+            if(!isCharaVisuSideMode)
+                visuTransform.SetAsLastSibling();
+            else
+            {
+                visuTransform.localScale=new Vector3(1,1,1);
+                _charaVisu.GetComponent<RectTransform>().anchoredPosition=new Vector3(_charaVisuBasePosition.x,_charaVisuBasePosition.y,_charaVisuBasePosition.z);
+            }
+
         }
         else {
-             visuTransform.SetAsFirstSibling();
-             /*visuTransform.localScale=new Vector3(-1,1,1);
-           _charaVisu.transform.localPosition=new Vector3(-_charaVisuBasePosition.x,_charaVisuBasePosition.y,_charaVisuBasePosition.z);*/
+
+            if(!isCharaVisuSideMode)
+                visuTransform.SetAsFirstSibling();
+            else
+            {
+                visuTransform.localScale=new Vector3(-1,1,1);
+                _charaVisu.GetComponent<RectTransform>().anchoredPosition = new Vector3(-_charaVisuBasePosition.x,_charaVisuBasePosition.y,_charaVisuBasePosition.z);
+            }
         }
+#else
+ if (isNPC)
+        {
+                visuTransform.SetAsLastSibling();
+        }
+        else {
+                visuTransform.SetAsFirstSibling();
+        }
+#endif
+
     }
     /// <summary>
     /// Link to add an app to the phone
