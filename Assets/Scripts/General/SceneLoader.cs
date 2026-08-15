@@ -12,6 +12,7 @@ public class SceneLoader : MonoBehaviour
     [SerializeField] private bool _isNewStory;
     [SerializeField] private float _loadingTime = 1.2f;
     [SerializeField] public List<StoryAppSetup> _story = new List<StoryAppSetup>();
+    [SerializeField] public string _buttonSfx;
     private StoryAppSetup _chosenStory;
 
     private float _timer = 0;
@@ -73,6 +74,10 @@ public class SceneLoader : MonoBehaviour
                 dialogue.ResetDialogue();
             }
         }
+    }
+    public void OnButtonClicked()
+    {
+        SoundManager.instance.PlaySound(_buttonSfx);
     }
     #endregion
 }

@@ -102,6 +102,7 @@ public class SoundManager : MonoBehaviour
     }
     public void  PlaySound(string soundName)
     {
+        print("ah");
         if (!_sfxDictionary.TryGetValue(soundName, out AudioClip clip))
         {
             Debug.LogWarning($"pas de  son au nom : '{soundName} trouvé !");
@@ -118,6 +119,7 @@ public class SoundManager : MonoBehaviour
                 break;
             }
         }
+        print("bh");
         //float finalVolume = soundVolume * global sfx Volume; à faire dans un truc d'option i guess;
         audioSource.clip = clip;
         audioSource.volume = soudVolume;

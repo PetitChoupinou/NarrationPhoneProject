@@ -44,6 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ba191ee4428c964fb9929f0a8e2d774, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoundManager
-  _soundEffects: []
+  _soundEffects:
+  - name: oui
+    clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
+    volume: 0.21
+  - name: Button
+    clip: {fileID: 8300000, guid: 66de0ede4d5773c469eeb07f4af45978, type: 3}
+    volume: 0.187
   _musics: []
   _poolSize: 5
