@@ -48,7 +48,7 @@ abstract public class BaseApplication : MonoBehaviour
         {
             _header.AppChangedUpdate(true,false);
             _canvas.enabled = false;
-            _phoneCanvas.enabled = true;
+            //_phoneCanvas.enabled = true;
             PhoneManager.Instance.ChangeDepth(PhoneManager.AppDepth.phone);
         }
     }

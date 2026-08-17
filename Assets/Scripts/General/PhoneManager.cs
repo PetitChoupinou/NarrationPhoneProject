@@ -112,7 +112,7 @@ public class PhoneManager : MonoBehaviour
     }
     public void GetInApp()
     {
-        GetComponent<Canvas>().enabled = false;
+        //GetComponent<Canvas>().enabled = false;
         ChangeDepth(AppDepth.app);
     }
     public void ReturnButton()

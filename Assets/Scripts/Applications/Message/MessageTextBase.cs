@@ -48,34 +48,30 @@ public class MessageTextBase : MonoBehaviour
     public string AddLineReturn(string text)
     {
         int lastSpace = 0;
-        int offset = 0;
         string returnText=text;
         int j = 1;
-        for (int i = 1; i < text.Length; i++)
+        for (int i = 0; i < text.Length; i++)
         {
-            if(text[i] == '\n')
-            {
-                j = 1;
-                continue;
-            }
             if (text[i]==' ')
             {
                 lastSpace=i;
             }
-            if (j == _maxMsgWidth)
+            if (i == _maxMsgWidth*j-1)
             {
-                if (lastSpace == 0|| lastSpace+ _maxMsgWidth> i)
+                if (i-lastSpace< _maxMsgWidth)
                 {
-                    returnText= returnText.Insert(lastSpace+offset+1, "\n");
+                    print(lastSpace+" retourLigne ls");
+                    returnText= returnText.Insert(lastSpace+1, "\n");
                 }
                 else
                 {
-                    returnText = returnText.Insert(i+offset+1, "\n");
+                    print(i  + " retourLigne b");
+                    returnText = returnText.Insert(i+1, "\n");
                 }
-                offset += 1;
-                j = 0;
+                returnText = returnText.Replace(" \n", "\n");
+
+                j++;
             }
-            j++;
         }
         return returnText;
     }

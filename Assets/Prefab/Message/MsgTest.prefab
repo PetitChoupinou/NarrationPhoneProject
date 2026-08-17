@@ -80,7 +80,7 @@ MonoBehaviour:
   _isNPCMsg: 0
   _messagePrefab: {fileID: 4517546831677474601, guid: 561b26c91bc393a4884bf15087367104, type: 3}
   _textTyper: {fileID: 4244329274477848879}
-  _maxMsgWidth: 20
+  _maxMsgWidth: 15
 --- !u!114 &4244329274477848879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,8 +189,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.HorizontalLayoutGroup
   m_Padding:
-    m_Left: 20
-    m_Right: 20
+    m_Left: 0
+    m_Right: 0
     m_Top: 20
     m_Bottom: 20
   m_ChildAlignment: 3
