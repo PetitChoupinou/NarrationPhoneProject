@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 public enum ApplicationType
 {
@@ -21,7 +23,9 @@ abstract public class BaseApplication : MonoBehaviour
     Canvas _phoneCanvas;
     public ApplicationType _appType;
     private Header _header;
+    private RectTransform _rectTransform;
     [SerializeField] private Sprite _logo;
+    [SerializeField, Range(1f, 1.5f)] private float _closingTime;
     [SerializeField] bool _isUnlocked=true;
 
     public Sprite Logo { get => _logo;}
@@ -30,6 +34,7 @@ abstract public class BaseApplication : MonoBehaviour
     private void Awake()
     {
         _canvas = GetComponent<Canvas>();
+        _rectTransform = GetComponent<RectTransform>();
     }
     private void Start()
     {
@@ -51,5 +56,24 @@ abstract public class BaseApplication : MonoBehaviour
             //_phoneCanvas.enabled = true;
             PhoneManager.Instance.ChangeDepth(PhoneManager.AppDepth.phone);
         }
+    }
+    /// <summary>
+    /// ne marche pas à cuase du mode du canvas donc pas moyyen de faire l'effet correctement.
+    /// </summary>
+    /// <returns></returns>
+     IEnumerator CloseAppEffect()
+    {
+        float timer = 0;
+        while (timer < _closingTime)
+        {
+            _rectTransform.localScale = Vector3.Lerp(Vector3.one, Vector3.zero, timer / _closingTime);
+            print(_rectTransform.localScale);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        _rectTransform.localScale = Vector3.zero;
+        yield return new WaitForEndOfFrame();
+        _rectTransform.localScale = Vector3.one;
+        yield return null;
     }
 }
