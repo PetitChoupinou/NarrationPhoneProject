@@ -95,6 +95,9 @@ public class ContactApp : BaseApplication
         var contact = _contacts.FirstOrDefault(x => x.ID == targetID);
         contact.Relation += value;
         Debug.Log($"You gain {value} affinity with {targetID}!");
+        Discussion _currentDisc = AppManager.Instance.GetApplication(ApplicationType.Messages).GetComponent<MessageApp>().GetCurrentDiscussion();
+        if (_currentDisc == null) return;
+        _currentDisc.UpdateRelationhhip(value);
     }
 
 }

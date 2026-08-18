@@ -312,7 +312,6 @@ public class Discussion : MonoBehaviour
         _choiceButtons.Clear();
         _choices.Clear();
         _dialogueDataReader.MakeChoice(msg);
-        StartCoroutine(RelationshipFeedback(true));
     }
 
     public void CreateThought(string thought)
@@ -337,6 +336,12 @@ public class Discussion : MonoBehaviour
                 AddMessage(current.text, current.isNPC);
             }
         }
+    }
+    public void UpdateRelationhhip(float value)
+    {
+        bool isGood = false;
+        if (value > 0) isGood = true;
+        StartCoroutine(RelationshipFeedback(isGood));
     }
     IEnumerator RelationshipFeedback(bool isGood)
     {
