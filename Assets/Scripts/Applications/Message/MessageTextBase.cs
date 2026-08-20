@@ -60,12 +60,10 @@ public class MessageTextBase : MonoBehaviour
             {
                 if (i-lastSpace< _maxMsgWidth)
                 {
-                    print(lastSpace+" retourLigne ls");
                     returnText= returnText.Insert(lastSpace+1, "\n");
                 }
                 else
                 {
-                    print(i  + " retourLigne b");
                     returnText = returnText.Insert(i+1, "\n");
                 }
                 returnText = returnText.Replace(" \n", "\n");

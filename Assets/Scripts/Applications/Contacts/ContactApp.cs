@@ -40,16 +40,16 @@ public class ContactApp : BaseApplication
             string name = characters[i].Name;
             int relation = characters[i].BaseAffinity;
             string num = characters[i].TelNum.numbers;
-            Sprite profilePic =characters[i].ProfilePic;
+            Dictionary<string,Sprite> profilePics = characters[i].ProfilePics;
             if (!alphabeticalStorage.ContainsKey(name[0]))
             {
                 AlphabeticalStorageCreation(name[0]);
             }
             GameObject button = Instantiate(_buttonPrefab, alphabeticalStorage[name[0]].transform);
             GameObject contact = Instantiate(_contactPagePrefab, transform);
-            button.GetComponent<ContactAppButton>().SetUp(name, profilePic,contact, _headerButton);
+            button.GetComponent<ContactAppButton>().SetUp(name, characters[i].GetBasePicture(),contact, _headerButton);
             var contactPage = contact.GetComponent<ContactPage>();
-            contactPage.SetUp(name, num, relation, button, _headerText,profilePic);
+            contactPage.SetUp(name, num, relation, button, _headerText, profilePics);
             _contacts.Add(contactPage);
             contact.SetActive(false);
         }

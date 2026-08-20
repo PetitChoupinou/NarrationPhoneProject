@@ -16,7 +16,6 @@ MonoBehaviour:
   baseText: []
   baseNotes: UwU
   baseAffinity: 4
-  profilePic: {fileID: -6794848408686732605, guid: e065cf202f1296a4f882df332c727f76, type: 3}
   messageBackground: {fileID: 8957324059118975939, guid: e7a84a3f83fe6134b871252e612f2597, type: 3}
   dialogues:
   - {fileID: 11400000, guid: 0597f89e329c372448eb866c5092a8b8, type: 2}
@@ -27,3 +26,6 @@ MonoBehaviour:
     - Allo
     callAudio: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
   dialogueIndex: 0
+  EmotionPIcs:
+  - Emotion: Base
+    Picture: {fileID: -6794848408686732605, guid: e065cf202f1296a4f882df332c727f76, type: 3}
