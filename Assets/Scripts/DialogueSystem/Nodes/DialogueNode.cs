@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -23,3 +24,4 @@ public class DialogueNode : BaseNode
         talkerField.SetValueWithoutNotify(isNPC ? "NPC" : "Player");
     }
 }
+#endif

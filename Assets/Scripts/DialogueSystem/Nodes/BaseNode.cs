@@ -1,4 +1,4 @@
-using NUnit.Framework;
+#if UNITY_EDITOR
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -22,3 +22,4 @@ public class BaseNode : Node
 
 
 }
+#endif

@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
 [CustomEditor(typeof(DialogueData))]
@@ -15,3 +16,4 @@ public class DialogueDataInspector : Editor
         }
     }
 }
+#endif

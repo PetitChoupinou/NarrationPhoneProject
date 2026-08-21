@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System;
 using UnityEditor;
 using UnityEditor.UIElements;
@@ -17,3 +18,4 @@ public class NewApplicationNode : BaseNode
         applicationTypeField.SetValueWithoutNotify(application);
     }
 }
+#endif

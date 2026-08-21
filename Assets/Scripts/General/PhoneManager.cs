@@ -1,8 +1,5 @@
-using System;
 using System.Collections.Generic;
 using TCG.Core.Dialogues;
-using Unity.Android.Gradle;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PhoneManager : MonoBehaviour

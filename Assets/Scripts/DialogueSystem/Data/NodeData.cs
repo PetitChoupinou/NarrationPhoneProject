@@ -1,7 +1,5 @@
-
 using System;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 
@@ -195,5 +193,3 @@ public class OutputData
     public string portValue;
     public string targetNodeGuid;
 }
-
-

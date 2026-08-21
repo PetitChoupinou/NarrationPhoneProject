@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
@@ -91,3 +92,4 @@ public class ChoiceNode : DialogueNode
         choices[id].choiceText = text;
     }
 }
+#endif

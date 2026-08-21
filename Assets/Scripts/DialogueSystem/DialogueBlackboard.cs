@@ -1,5 +1,5 @@
+#if UNITY_EDITOR
 using UnityEditor.Experimental.GraphView;
-using UnityEditor.PackageManager.UI;
 using UnityEngine;
 
 public class DialogueBlackboard : Blackboard
@@ -9,3 +9,4 @@ public class DialogueBlackboard : Blackboard
 
 
 }
+#endif

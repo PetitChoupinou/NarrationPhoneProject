@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -11,3 +12,4 @@ public class ThinkingNode : BaseNode
         textField.SetValueWithoutNotify(text);
     }
 }
+#endif

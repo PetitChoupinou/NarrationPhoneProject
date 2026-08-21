@@ -1,9 +1,9 @@
 using System;
 using System.IO;
 using System.Linq;
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
-using UnityEditor.PackageManager.UI;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -139,3 +139,4 @@ public class DialogueGraph : EditorWindow
         rootVisualElement.Remove(_graphView);
     }
 }
+#endif

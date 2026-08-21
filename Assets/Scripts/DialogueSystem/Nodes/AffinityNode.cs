@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -11,4 +12,4 @@ public class AffinityNode : BaseNode
         affinityField.SetValueWithoutNotify(affinityGain);
     }
 }
-
+#endif

@@ -1,13 +1,14 @@
+
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
+
+#if UNITY_EDITOR
 public class NoteNode : BaseNode
 {
     public List<NoteData> noteDatas = new List<NoteData>();
 
 }
-
+#endif
 [Serializable]
 public class NoteData
 {

@@ -1,13 +1,14 @@
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting.FullSerializer;
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.UIElements;
+#endif
 using UnityEngine;
 using UnityEngine.UIElements;
-
 
 public enum NodeType
 {
@@ -31,7 +32,7 @@ public enum Talker
     NPC,
     Player,
 }
-
+#if UNITY_EDITOR
 public class DialogueGraphView : GraphView
 {
     public Blackboard blackboard;
@@ -1245,5 +1246,4 @@ public class DialogueGraphView : GraphView
         return property;
     }
 }
-
-
+#endif

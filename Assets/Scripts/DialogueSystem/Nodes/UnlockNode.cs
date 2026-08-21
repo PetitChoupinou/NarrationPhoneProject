@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -37,9 +38,8 @@ public class UnlockNode : BaseNode
             if(_character.Name == ID)
             {
                 break;
-            }
-            
+            }       
         }
     }
-
 }
+#endif

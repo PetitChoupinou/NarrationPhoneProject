@@ -2,8 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.UIElements;
-using static UnityEngine.Rendering.DebugUI;
 
 public enum ConditionType
 {
@@ -14,11 +12,12 @@ public enum ConditionType
     GreaterThanOrEqual,
     LessThanOrEqual
 }
+#if UNITY_EDITOR
 public class ConditionPropertyNode : BaseNode
 {
     public List<Condition> conditions = new List<Condition>();
 }
-
+#endif
 [Serializable]
 public class Condition
 {

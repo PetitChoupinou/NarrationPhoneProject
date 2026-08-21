@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System;
 using UnityEditor;
 using UnityEditor.UIElements;
@@ -16,3 +17,4 @@ public class NewFileNode : BaseNode
         fileNameField.SetValueWithoutNotify(fileName);
     }
 }
+#endif

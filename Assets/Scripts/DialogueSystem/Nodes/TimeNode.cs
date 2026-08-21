@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -25,3 +26,4 @@ public class TimeNode : BaseNode
         minutesField.value = minutes;
     }
 }
+#endif

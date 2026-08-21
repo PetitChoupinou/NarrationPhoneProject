@@ -1,4 +1,5 @@
 using System;
+#if UNITY_EDITOR
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
@@ -10,3 +11,4 @@ public class NodeLinkData
     public string targetNodeGuid;
     public Port originPort;
 }
+#endif
