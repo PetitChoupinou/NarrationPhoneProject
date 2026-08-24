@@ -28,7 +28,7 @@ public class DialogueDataReader : MonoBehaviour
     private GlobalPropertiesData _globalPropertiesData;
 
     public string CharacterID { get => _characterID; set => _characterID = value; }
-
+    
     private void OnEnable()
     {
         _messageApp = AppManager.Instance.GetApplication(ApplicationType.Messages) as MessageApp;
@@ -69,9 +69,10 @@ public class DialogueDataReader : MonoBehaviour
     private void ReadNextNode(NodeData currentNodeData, int outputID = 0, bool isChoice = false)
     {
         currentNodeData.isSentCurrent = true;
+        
         var nextData = GetNextNodeData(currentNodeData, outputID);
         if(nextData == null) { Debug.Log("Fin de conv");  return; } // End of conversation
-        
+        SaveManager.instance.SaveData();
         ReadNodeData(nextData, isChoice).Invoke();
     }
 
