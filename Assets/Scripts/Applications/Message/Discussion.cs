@@ -162,12 +162,15 @@ public class Discussion : MonoBehaviour
             }
         }
 #else
- if (isNPC)
+        if (isNPC)
         {
-                visuTransform.SetAsLastSibling();
+               visuTransform.localScale=new Vector3(1,1,1);
+                _charaVisu.GetComponent<RectTransform>().anchoredPosition=new Vector3(_charaVisuBasePosition.x,_charaVisuBasePosition.y,_charaVisuBasePosition.z);
         }
-        else {
-                visuTransform.SetAsFirstSibling();
+        else 
+        {
+                visuTransform.localScale=new Vector3(-1,1,1);
+                _charaVisu.GetComponent<RectTransform>().anchoredPosition = new Vector3(-_charaVisuBasePosition.x,_charaVisuBasePosition.y,_charaVisuBasePosition.z);  
         }
 #endif
 

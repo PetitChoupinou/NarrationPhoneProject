@@ -23,10 +23,12 @@ public class PhoneApp : BaseApplication
         _soundManager = SoundManager.instance;
         foreach(CharacterSheet c in setup.Characters)
         {
+            print(c);
             _numbers.Add(c.TelNum);
         }
         foreach(PhoneNumbers n in setup.PhoneNumbers)
         {
+            print(n);
             _numbers.Add(n);
         }
         _phoneManager = PhoneManager.Instance;
@@ -50,11 +52,15 @@ public class PhoneApp : BaseApplication
         if (AppManager.Instance.GetApplication(ApplicationType.Map)&& _phoneManager.CurrentLocation.networkState != NetworkState.Good)
         {
             _phoneManager.CreateThought("Hmm pas de réseaux.");
+            _currentNum = "";
+            UpdateDisplay();
             return;
         }
         if (!_numbers.Exists(x => x.numbers == _currentNum))
         {
             _phoneManager.CreateThought("Mauvais numéro ...");
+            _currentNum = "";
+            UpdateDisplay();
             return;
         }
         PhoneNumbers calledNumber = _numbers.Find(x => x.numbers == _currentNum);

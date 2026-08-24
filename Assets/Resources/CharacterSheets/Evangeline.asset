@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6fcc9d44dae16c4ebfccd6530d48821, type: 3}
+  m_Name: Evangeline
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterSheet
+  name: Evangeline
+  baseText: []
+  baseNotes: AHHH
+  baseAffinity: 2
+  messageBackground: {fileID: 8957324059118975939, guid: e7a84a3f83fe6134b871252e612f2597, type: 3}
+  dialogues:
+  - {fileID: 11400000, guid: b4cdad12db89cdd4dbeb52cf92ae36b4, type: 2}
+  telNum:
+    title: Eva
+    numbers: 0101010101
+    callText:
+    - 00000
+    callAudio: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
+  dialogueIndex: 0
+  EmotionPIcs:
+  - Emotion: Base
+    Picture: {fileID: -3518012999459807980, guid: 15ab4f93554a7f2418ffe508a22bc5ef, type: 3}
