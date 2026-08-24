@@ -22,10 +22,11 @@ public class Discussion : MonoBehaviour
     [SerializeField] private GameObject _choicePrefab;
     [SerializeField] private GameObject _choicePanel;
     [SerializeField] private SendingButton _sendingButton;
+
     [SerializeField] private bool _isEnabled;
     [SerializeField] private Image _charaVisu;
     [SerializeField] private Dictionary<string,Sprite> _charaEmotions=new Dictionary<string, Sprite>();
-   [SerializeField] private Vector3 _charaVisuBasePosition;
+     [SerializeField] private Vector3 _charaVisuBasePosition;
 
 
     private Queue<PendingMsg> _pendingMsgs=new Queue<PendingMsg>();
@@ -41,6 +42,8 @@ public class Discussion : MonoBehaviour
     [SerializeField] private Material _positifRel;
     [SerializeField] private Material _negatiifRel;
     [SerializeField] private float  _feedbackDuration;
+    [SerializeField] private string _goodFeedbackTxt;
+    [SerializeField] private string _badFeedbackTxt;
     #endregion
     public string ID { get => _iD;}
     public bool CanChoose { get => _canChoose; set => _canChoose = value; }
@@ -344,7 +347,12 @@ public class Discussion : MonoBehaviour
     public void UpdateRelationhhip(float value)
     {
         bool isGood = false;
-        if (value > 0) isGood = true;
+        if (value > 0)
+        {
+            isGood = true;
+            CreateThought(_goodFeedbackTxt);
+        }
+        else CreateThought(_badFeedbackTxt);
         StartCoroutine(RelationshipFeedback(isGood));
     }
 
