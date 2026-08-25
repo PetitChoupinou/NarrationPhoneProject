@@ -9,7 +9,7 @@ public class CharacterSheet : ScriptableObject
     [SerializeField] private SentText[] baseText;
     [SerializeField] private string  baseNotes;
     [SerializeField,Range(0,20)] private int  baseAffinity;
-    private Dictionary<string, Sprite> profilePics;
+    private Dictionary<CharaEmotion, Sprite> profilePics;
 
     [SerializeField] private Sprite messageBackground;
     [SerializeField] private DialogueData[] dialogues;
@@ -23,13 +23,13 @@ public class CharacterSheet : ScriptableObject
     public string BaseNotes { get => baseNotes;}
     public int BaseAffinity { get => baseAffinity;}
     public PhoneNumbers TelNum { get => telNum; }
-    public Dictionary<string,Sprite > ProfilePics { get
+    public Dictionary<CharaEmotion, Sprite > ProfilePics { get
         {
             if(profilePics != null)
             {
                 return profilePics;
             }
-            profilePics = new Dictionary<string,Sprite>();
+            profilePics = new Dictionary<CharaEmotion,Sprite>();
             for(int i=0;i< EmotionPIcs.Count;i++)
             {
                 profilePics.Add(EmotionPIcs[i].Emotion, EmotionPIcs[i].Picture);
@@ -51,11 +51,11 @@ public class CharacterSheet : ScriptableObject
 
     public Sprite GetBasePicture()
     {
-        foreach (string s in ProfilePics.Keys)
+        foreach (CharaEmotion s in ProfilePics.Keys)
         {
             Debug.Log(s);
         }
-        return profilePics["Base"];
+        return profilePics[CharaEmotion.Base];
     }
 }
 
@@ -68,7 +68,7 @@ public class SentText
 [Serializable]
 public class EmotiionPic
 {
-    public string Emotion;
+    public CharaEmotion Emotion;
     public Sprite Picture;
 }
 

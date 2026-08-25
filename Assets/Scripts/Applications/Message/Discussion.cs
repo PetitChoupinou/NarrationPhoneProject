@@ -25,7 +25,7 @@ public class Discussion : MonoBehaviour
 
     [SerializeField] private bool _isEnabled;
     [SerializeField] private Image _charaVisu;
-    [SerializeField] private Dictionary<string,Sprite> _charaEmotions=new Dictionary<string, Sprite>();
+    [SerializeField] private Dictionary<CharaEmotion, Sprite> _charaEmotions=new Dictionary<CharaEmotion, Sprite>();
      [SerializeField] private Vector3 _charaVisuBasePosition;
 
 
@@ -91,7 +91,7 @@ public class Discussion : MonoBehaviour
     /// <param name="button">button to discussion</param>
     /// <param name="headerText">Text field</param>
     /// <param name="background">conversation background image</param>
-    public void SetUp(string name, SentText[] texts, GameObject button, TMP_Text headerText, Sprite background, Dictionary<string, Sprite> chara)
+    public void SetUp(string name, SentText[] texts, GameObject button, TMP_Text headerText, Sprite background, Dictionary<CharaEmotion, Sprite> chara)
     {
         DialogueDataReader = GetComponent<DialogueDataReader>();
         _iD = name;
@@ -101,7 +101,7 @@ public class Discussion : MonoBehaviour
         _preview = _messageButton.GetComponent<InAppButton>().Preview;
         _backgroundImage = background;
         _charaEmotions = chara;
-        ChangeEmotion("Base");
+        ChangeEmotion(CharaEmotion.Base);
         /*if (texts.Length<=0) return;
         for (int i = 0; i < texts.Length; i++)
         {
@@ -356,7 +356,7 @@ public class Discussion : MonoBehaviour
         StartCoroutine(RelationshipFeedback(isGood));
     }
 
-    public void ChangeEmotion(string Emotion)
+    public void ChangeEmotion(CharaEmotion Emotion)
     {
         if (_charaEmotions.ContainsKey(Emotion))
         {

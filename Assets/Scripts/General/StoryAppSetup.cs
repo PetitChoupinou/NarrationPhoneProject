@@ -129,3 +129,7 @@ public enum NetworkState
     Mid,
     Good
 };
+public enum CharaEmotion
+{
+    Base
+};
