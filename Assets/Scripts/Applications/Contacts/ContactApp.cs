@@ -40,7 +40,7 @@ public class ContactApp : BaseApplication
             string name = characters[i].Name;
             int relation = characters[i].BaseAffinity;
             string num = characters[i].TelNum.numbers;
-            Dictionary<string,Sprite> profilePics = characters[i].ProfilePics;
+            Dictionary<CharaEmotion,Sprite> profilePics = characters[i].ProfilePics;
             if (!alphabeticalStorage.ContainsKey(name[0]))
             {
                 AlphabeticalStorageCreation(name[0]);

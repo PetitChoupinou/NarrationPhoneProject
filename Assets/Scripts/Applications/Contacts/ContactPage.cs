@@ -19,7 +19,7 @@ public class ContactPage : MonoBehaviour
     private TMP_Text _preview;
     private TMP_Text _headerText;
     private Material _materialInstance;
-    [SerializeField] private Dictionary<string, Sprite> _charaEmotions = new Dictionary<string, Sprite>();
+    [SerializeField] private Dictionary<CharaEmotion, Sprite> _charaEmotions = new Dictionary<CharaEmotion, Sprite>();
 
     [SerializeField] private TMP_Text _content;
     [SerializeField] private Image _profilPic;
@@ -67,7 +67,7 @@ public class ContactPage : MonoBehaviour
             _headerText.text = _iD;
         PhoneManager.Instance.ChangeDepth(PhoneManager.AppDepth.inApp);
     }
-    public void SetUp(string title, string num,int relation, GameObject button, TMP_Text headerText,Dictionary<string,Sprite> profilePics)
+    public void SetUp(string title, string num,int relation, GameObject button, TMP_Text headerText,Dictionary<CharaEmotion,Sprite> profilePics)
     {
         _iD = title;
         _noteButton = button;
@@ -83,7 +83,7 @@ public class ContactPage : MonoBehaviour
         _preview = _noteButton.GetComponent<ContactAppButton>().Preview;
         _content.text = num;
         _charaEmotions = profilePics;
-        ChangeEmotion("Base");
+        ChangeEmotion(CharaEmotion.Base);
         _profilPic.color=Color.white;
         ChangePreview(num);
        _contactApp= (ContactApp)AppManager.Instance.GetApplication(ApplicationType.Contacts);
@@ -119,7 +119,7 @@ public class ContactPage : MonoBehaviour
         _phoneApp.AddToCurrentNbr(_content.text);
         _phoneApp.Call();
     }
-    private void ChangeEmotion(string Emotion)
+    private void ChangeEmotion(CharaEmotion Emotion)
     {
         if (_charaEmotions.ContainsKey(Emotion))
         {
