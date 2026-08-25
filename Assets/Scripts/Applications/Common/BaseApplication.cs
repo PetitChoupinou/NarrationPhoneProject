@@ -43,6 +43,10 @@ abstract public class BaseApplication : MonoBehaviour
 
     }
     abstract public void SetUp(StoryAppSetup setup);
+    public virtual void PostSetUp()
+    {
+
+    }
     abstract public void CloseCurrent();
     //indentedfield = serialzlizedIs=true:
 

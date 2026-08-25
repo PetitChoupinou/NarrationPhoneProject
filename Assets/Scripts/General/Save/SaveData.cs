@@ -8,9 +8,16 @@ public class SaveData
 {
     public string name;
     public string storyID;
-    public SaveData(string name, string storyID)
+    public bool photoTaken1;
+    public SaveData(string name, string storyID,bool photoTaken1)
     {
         this.name = name;
         this.storyID = storyID;
+        this.photoTaken1 = photoTaken1;
+    }
+    public string Value()
+    {
+        string ret=name + " " + storyID+" "+photoTaken1;
+        return ret;
     }
 }

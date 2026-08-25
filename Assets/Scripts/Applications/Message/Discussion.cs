@@ -42,8 +42,6 @@ public class Discussion : MonoBehaviour
     [SerializeField] private Material _positifRel;
     [SerializeField] private Material _negatiifRel;
     [SerializeField] private float  _feedbackDuration;
-    [SerializeField] private string _goodFeedbackTxt;
-    [SerializeField] private string _badFeedbackTxt;
     #endregion
     public string ID { get => _iD;}
     public bool CanChoose { get => _canChoose; set => _canChoose = value; }
@@ -350,9 +348,7 @@ public class Discussion : MonoBehaviour
         if (value > 0)
         {
             isGood = true;
-            CreateThought(_goodFeedbackTxt);
         }
-        else CreateThought(_badFeedbackTxt);
         StartCoroutine(RelationshipFeedback(isGood));
     }
 
@@ -385,6 +381,11 @@ public class Discussion : MonoBehaviour
             duration += Time.deltaTime;
             yield return null;
         }
+        if (isGood)
+        {
+            CreateThought(_iD + "a apprécié ça!");
+        }
+        else CreateThought(_iD + "n'as pas aimé!");
         yield return new WaitForSeconds(_feedbackDuration);
         duration = 0;
         while (duration < .5f)

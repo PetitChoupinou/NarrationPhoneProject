@@ -27,6 +27,11 @@ public class SceneLoader : MonoBehaviour
     {
         DontDestroyOnLoad(this);
     }
+    public StoryAppSetup RetrieveSavedStory(string savedStoryID)
+    {
+        _chosenStory = _story.Find(x => x.Name == savedStoryID);
+        return _chosenStory;
+    }
 
     public void LoadGameScene()
     {
@@ -37,7 +42,6 @@ public class SceneLoader : MonoBehaviour
     public void LoadLastGameScene()
     {
         _isNewStory = false;
-        _chosenStory = _story.Find(x => x.Name == SaveManager.instance.Save.storyID);
         StartCoroutine(LoadGameSceneAsync());
     }
     IEnumerator LoadGameSceneAsync()

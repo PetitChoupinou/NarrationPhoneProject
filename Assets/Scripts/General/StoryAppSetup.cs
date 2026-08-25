@@ -17,6 +17,7 @@ public class StoryAppSetup : ScriptableObject
     [SerializeField] List<PhoneNumbers> _phoneNumbers = new List<PhoneNumbers>();
     [SerializeField] List<InternetSerach> _internetSearches = new List<InternetSerach>();
     [SerializeField] Sprite _baseCameraPhoto;
+    [SerializeField] bool _hasPhotoBeenTaken;
     [SerializeField] HackSetup _hackAppSetup;
     List<LocationData> _locations = new List<LocationData>();
     [SerializeField] TimeData _timeData = new TimeData();
@@ -38,6 +39,7 @@ public class StoryAppSetup : ScriptableObject
     public TimeData TimeData { get => _timeData;}
     public Sprite BaseCameraPhoto { get => _baseCameraPhoto; }
     public Sprite MessageBackGround { get => _messageBackGround;}
+    public bool HasPhotoBeenTaken { get => _hasPhotoBeenTaken; set => _hasPhotoBeenTaken = value; }
 }
 
 [Serializable]
@@ -88,6 +90,7 @@ public struct LocationData
     public Sprite image;
     public Vector2 coordinates;
     public Sprite photo;
+    public bool hasPhotoBeenTaken;
     public NetworkState networkState;
 }
 

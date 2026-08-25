@@ -77,7 +77,10 @@ public class PhoneManager : MonoBehaviour
                 lockedApps.Add(app._appType, _setup.Applications[i]);
             }
             Destroy(app.gameObject);
-
+        }
+        foreach (BaseApplication app in _apps)
+        {
+            app.PostSetUp();
         }
         ClockSystem.SetUp(_setup);
     }
