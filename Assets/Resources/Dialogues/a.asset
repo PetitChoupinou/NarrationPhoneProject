@@ -13,36 +13,66 @@ MonoBehaviour:
   m_Name: a
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   nodes:
-  - rid: 533948709329698915
-  - rid: 533948709329698916
-  entryPointNodeGuid: e3c2656c-3f31-410d-9050-dd85fc69bbae
+  - rid: 533948709329698929
+  - rid: 533948709329698930
+  - rid: 533948709329698931
+  - rid: 533948709329698932
+  entryPointNodeGuid: 183cefaa-2dbf-4040-9549-2387b38981d9
   isLocked: 0
   _isLocked: 0
   hasStarted: 0
   references:
     version: 2
     RefIds:
-    - rid: 533948709329698915
+    - rid: 533948709329698929
       type: {class: NodeData, ns: , asm: Assembly-CSharp}
       data:
-        nodeGUID: e3c2656c-3f31-410d-9050-dd85fc69bbae
+        nodeGUID: 183cefaa-2dbf-4040-9549-2387b38981d9
         nodeType: 0
         position: {x: 250.4, y: 200}
         outputs:
         - portValue: Next
-          targetNodeGuid: ef2a25da-ba41-4eef-9e6c-713ec0f8e3a7
+          targetNodeGuid: 50a805c3-73a4-4765-b517-6ce59fe32edc
         isSentCurrent: 0
-    - rid: 533948709329698916
+    - rid: 533948709329698930
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
-        nodeGUID: ef2a25da-ba41-4eef-9e6c-713ec0f8e3a7
+        nodeGUID: 50a805c3-73a4-4765-b517-6ce59fe32edc
         nodeType: 1
-        position: {x: 474.4, y: 177.6}
+        position: {x: 436.8, y: 100}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 0c7f8d3c-aa60-4192-8981-11d2f0a06f60
+        isSentCurrent: 0
+        dialogueText: AAA
+        isNPC: 1
+        timerSending: 0
+        emotion: 0
+    - rid: 533948709329698931
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: b43979f2-3ce7-47bc-9d81-97fcd7ca9f02
+        nodeType: 1
+        position: {x: 839.2, y: 100}
         outputs:
         - portValue: Next
           targetNodeGuid: 
         isSentCurrent: 0
-        dialogueText: New Dialogue
+        dialogueText: rahlala
         isNPC: 1
         timerSending: 0
         emotion: 1
+    - rid: 533948709329698932
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 0c7f8d3c-aa60-4192-8981-11d2f0a06f60
+        nodeType: 1
+        position: {x: 656.8, y: 288.80002}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: b43979f2-3ce7-47bc-9d81-97fcd7ca9f02
+        isSentCurrent: 0
+        dialogueText: New Dialogue
+        isNPC: 0
+        timerSending: 0
+        emotion: 0

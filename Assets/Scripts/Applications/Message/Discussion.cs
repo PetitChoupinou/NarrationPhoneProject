@@ -358,9 +358,10 @@ public class Discussion : MonoBehaviour
     {
         if (_charaEmotions.ContainsKey(Emotion))
         {
+            
             _charaVisu.sprite= _charaEmotions[Emotion];
-            Debug.Log("Change emotion to: " + Emotion.ToString());
         }
+        //Debug.Log("Emotion changed to: " + Emotion.ToString());
     }
     IEnumerator RelationshipFeedback(bool isGood)
     {

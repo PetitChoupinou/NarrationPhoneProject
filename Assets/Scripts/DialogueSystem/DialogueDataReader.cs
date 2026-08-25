@@ -343,7 +343,7 @@ public class DialogueDataReader : MonoBehaviour
     {
         //Effet de message en cours d'envoi 
         yield return new WaitForSeconds(currentData.timerSending);
-        _messageApp.AddMessage(currentData.dialogueText, true, _characterID);
+        _messageApp.AddMessage(currentData.dialogueText, true, _characterID, currentData.emotion);
         ReadNextNode(currentData, 0);
 
     }
