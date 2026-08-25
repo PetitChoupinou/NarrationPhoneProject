@@ -119,7 +119,8 @@ public class Discussion : MonoBehaviour
     /// </summary>
     /// <param name="text">message</param>
     /// <param name="isNPC">allow to put messages in the right spot</param>
-    public void AddMessage(string text,bool isNPC)
+    /// <param name="emotion">the emotion shown by the character</param>
+    public void AddMessage(string text,bool isNPC, CharaEmotion emotion = CharaEmotion.Base)
     {
         if (AppManager.Instance.GetApplication(ApplicationType.Map)&&PhoneManager.Instance.CurrentLocation.networkState == NetworkState.Bad)
         {
@@ -162,6 +163,7 @@ public class Discussion : MonoBehaviour
                 _charaVisu.GetComponent<RectTransform>().anchoredPosition = new Vector3(-_charaVisuBasePosition.x,_charaVisuBasePosition.y,_charaVisuBasePosition.z);
             }
         }
+
 #else
         if (isNPC)
         {
@@ -174,7 +176,7 @@ public class Discussion : MonoBehaviour
                 _charaVisu.GetComponent<RectTransform>().anchoredPosition = new Vector3(-_charaVisuBasePosition.x,_charaVisuBasePosition.y,_charaVisuBasePosition.z);  
         }
 #endif
-
+        ChangeEmotion(emotion);
     }
     /// <summary>
     /// Link to add an app to the phone
@@ -338,7 +340,7 @@ public class Discussion : MonoBehaviour
             }
             else
             {
-                AddMessage(current.text, current.isNPC);
+                AddMessage(current.text, current.isNPC, current.emotion);
             }
         }
     }
@@ -357,6 +359,7 @@ public class Discussion : MonoBehaviour
         if (_charaEmotions.ContainsKey(Emotion))
         {
             _charaVisu.sprite= _charaEmotions[Emotion];
+            Debug.Log("Change emotion to: " + Emotion.ToString());
         }
     }
     IEnumerator RelationshipFeedback(bool isGood)
@@ -400,6 +403,7 @@ public class Discussion : MonoBehaviour
 public class PendingMsg
 {
     public bool isNPC;
+    public CharaEmotion emotion;
     public bool isDownload;
     public ApplicationType app;
     public string text;

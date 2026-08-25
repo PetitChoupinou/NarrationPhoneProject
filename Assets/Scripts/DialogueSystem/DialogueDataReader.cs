@@ -91,7 +91,8 @@ public class DialogueDataReader : MonoBehaviour
                 {
                     if (dialogueNodeData.isSentCurrent || isChoice)
                     {
-                        _messageApp.AddMessage(dialogueNodeData.dialogueText, dialogueNodeData.isNPC, _characterID);
+                        _messageApp.AddMessage(dialogueNodeData.dialogueText, dialogueNodeData.isNPC, _characterID, dialogueNodeData.emotion);
+                       
                         //Debug.Log("Message envoyé: " + dialogueNodeData.dialogueText);
                         ReadNextNode(nodeData, 0);
                     }

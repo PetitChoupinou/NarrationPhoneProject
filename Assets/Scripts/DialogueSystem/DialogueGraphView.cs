@@ -148,6 +148,22 @@ public class DialogueGraphView : GraphView
 
                 node.mainContainer.Add(timeField);
 
+                var emotionField = new DropdownField
+                {
+                    choices = Enum.GetNames(typeof(CharaEmotion)).ToList(),
+                };
+                emotionField.value = emotionField.choices[0];
+                emotionField.RegisterValueChangedCallback(evt =>
+                {
+                    if (Enum.TryParse<CharaEmotion>(evt.newValue, out var emotion))
+                    {
+                        dialogueNode.emotion = emotion;
+                    }
+                });
+
+                dialogueNode.mainContainer.Add(emotionField);
+                dialogueNode.emotionField = emotionField;
+
                 var talkerDialogue = new DropdownField
                 {
                     choices = Enum.GetNames(typeof(Talker)).ToList(),
@@ -158,9 +174,16 @@ public class DialogueGraphView : GraphView
                     if (Enum.TryParse<Talker>(evt.newValue, out var talker))
                     {
                         dialogueNode.isNPC = talker == Talker.NPC;
-                        
                     }
-                    
+                    if (dialogueNode.isNPC)
+                    {
+                        node.mainContainer.Add(emotionField);
+                    }
+                    else
+                    {
+                        if(node.mainContainer.Contains(emotionField))
+                        node.mainContainer.Remove(emotionField);
+                    }
                     timeField.enabledSelf = dialogueNode.isNPC;
                     
                 });
@@ -906,9 +929,11 @@ public class DialogueGraphView : GraphView
                 nodeDialogue.dialogueText = nodeDialogueData.dialogueText;
                 nodeDialogue.UpdateTextFieldValue();
                 nodeDialogue.isNPC = nodeDialogueData.isNPC;
+                nodeDialogue.emotion = nodeDialogueData.emotion;
                 nodeDialogue.timerSending = nodeDialogueData.timerSending;
                 nodeDialogue.TimeField.value = nodeDialogue.timerSending;
                 nodeDialogue.UpdateTalkerField();
+                nodeDialogue.UpdateEmotionField();
                 break;
 
             case NodeType.Choice:

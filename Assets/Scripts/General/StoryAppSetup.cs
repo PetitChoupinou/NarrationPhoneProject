@@ -134,5 +134,6 @@ public enum NetworkState
 };
 public enum CharaEmotion
 {
-    Base
+    Base,
+    Bored
 };

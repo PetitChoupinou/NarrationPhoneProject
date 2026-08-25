@@ -84,11 +84,11 @@ public class MessageApp : BaseApplication
         _currentConv.GetComponent<Discussion>().IsEnabled = false;
         _currentConv = null;
     }
-    public void AddMessage(string text, bool isNPC,string ID)
+    public void AddMessage(string text, bool isNPC,string ID, CharaEmotion emotion = CharaEmotion.Base)
     {
         var discussion = _discussions.Find(x => x.ID == ID);
         
-        discussion.AddMessage(text, isNPC);
+        discussion.AddMessage(text, isNPC, emotion);
     }
 
     public void AddLinkTo(ApplicationType applicationType, string ID)

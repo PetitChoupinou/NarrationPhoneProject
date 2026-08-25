@@ -36,6 +36,7 @@ public class DialogueNodeData : NodeData
     }
     public bool isNPC;
     public float timerSending;
+    public CharaEmotion emotion;
 }
 [Serializable]
 public class ChoiceNodeData : DialogueNodeData
