@@ -44,9 +44,27 @@ public class SaveManager : MonoBehaviour
     {
         save.photoTaken1 = photoTaken;
     }
+
     public void SaveData()
     {
         SaveSystem.SaveDataToFile(save.name, save.storyID,save.photoTaken1);
+        SaveDialogues();
+    }
+
+    public void SaveDialogues()
+    {
+        foreach(var character in _storySetup.Characters)
+        {
+            foreach(var dialogue in character.Dialogues)
+            {
+                SaveSystem.SaveDialogue(save, dialogue);
+            }
+        }
+    }
+
+    public void SaveDialogue(DialogueData dialogue)
+    {
+        SaveSystem.SaveDialogue(save, dialogue);
     }
 }
 
