@@ -21,6 +21,8 @@ public class Discussion : MonoBehaviour
     [SerializeField] private GameObject _linkPrefab;
     [SerializeField] private GameObject _choicePrefab;
     [SerializeField] private GameObject _choicePanel;
+    [SerializeField] private GameObject _preMessage;
+    [SerializeField] private GameObject _endOfDiscussion;
     [SerializeField] private SendingButton _sendingButton;
 
     [SerializeField] private bool _isEnabled;
@@ -399,6 +401,21 @@ public class Discussion : MonoBehaviour
             yield return null;
         }
         _relationFeedback.gameObject.SetActive(false);
+    }
+   public void PreMessageEnable(float duration)
+    {
+        if (_preMessage == null||duration <1) return;
+        StartCoroutine(PreMessageCoroutine(duration));
+    }
+    IEnumerator PreMessageCoroutine(float duration)
+    {
+        _preMessage.SetActive(true);
+        yield return new WaitForSeconds(duration-.5f);
+        _preMessage.SetActive(false);
+    }
+    public void AddEndOfDiscussion()
+    {
+        _endOfDiscussion.SetActive(true);
     }
 }
 public class PendingMsg
