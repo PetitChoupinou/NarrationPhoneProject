@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using TCG.Core.Dialogues;
 using TMPro;
 using Unity.VisualScripting;
@@ -38,6 +39,10 @@ public class Discussion : MonoBehaviour
     private ScrollRect _scrollRect;
 
     private DialogueDataReader _dialogueDataReader;
+
+    [SerializeField] private Material _blurMaterial;
+    [SerializeField] private Image _blurImage;
+
 
     #region Relationship Feedback
     [SerializeField] private Image _relationFeedback;
@@ -221,8 +226,9 @@ public class Discussion : MonoBehaviour
     /// <param name="choices">message previews</param>
     public void TriggerChoice(List<string> choices)
     {
+
         _canChoose = true;
-        
+       StartCoroutine(SetBlur());
         _choices.AddRange(choices);
         _choicePanel.SetActive(true);
         for (int i=0;i<choices.Count; i++)
@@ -308,6 +314,7 @@ public class Discussion : MonoBehaviour
     public void Choose(string msg)
     {
         _choicePanel.SetActive(false);
+        _blurImage.transform.gameObject.SetActive(false);
         if (AppManager.Instance.GetApplication(ApplicationType.Map)&&PhoneManager.Instance.CurrentLocation.networkState == NetworkState.Bad)
         {
             PhoneManager.Instance.CreateThought("Hmm pas de réseaux.");
@@ -416,6 +423,32 @@ public class Discussion : MonoBehaviour
     public void AddEndOfDiscussion()
     {
         _endOfDiscussion.SetActive(true);
+    }
+    IEnumerator SetBlur()
+    {
+        _blurImage.transform.gameObject.SetActive(true);
+#if PLATFORM_STANDALONE_WIN
+        ScreenCapture.CaptureScreenshot(System.IO.Path.Combine(Application.persistentDataPath, "ScreenBlur.png"));
+
+#else
+        ScreenCapture.CaptureScreenshot("ScreenBlur.png");
+#endif
+        yield return new WaitForEndOfFrame();
+        _blurImage.sprite = LoadSpriteFromFile(System.IO.Path.Combine(Application.persistentDataPath, "ScreenBlur.png"));
+    }
+ 
+    private Sprite LoadSpriteFromFile(string filePath)
+    {
+        if (!File.Exists(filePath))
+        {
+            Debug.LogError("File not found: " + filePath);
+            return null;
+        }
+
+        byte[] bytes = File.ReadAllBytes(filePath);
+        Texture2D tex = new Texture2D(2, 2);
+        tex.LoadImage(bytes); // This auto-resizes the texture
+        return Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f, 0.5f));
     }
 }
 public class PendingMsg
