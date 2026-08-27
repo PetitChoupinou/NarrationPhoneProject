@@ -24,5 +24,17 @@ public class SaveData
         return ret;
     }
 
+    public string FindJsonFromName(string name)
+    {
+        foreach (var dialogue in dialoguesData)
+        {
+            string dialogueName = dialogue.Split('\n')[0];
+            if(dialogueName == name)
+            {
+                return dialogue;
+            }
+        }
+        return "";
+    }
     
 }

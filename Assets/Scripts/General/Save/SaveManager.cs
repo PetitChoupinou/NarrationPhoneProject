@@ -1,5 +1,7 @@
 using NUnit.Framework;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using static UnityEngine.Audio.GeneratorInstance;
@@ -45,26 +47,49 @@ public class SaveManager : MonoBehaviour
         save.photoTaken1 = photoTaken;
     }
 
+
     public void SaveData()
     {
-        SaveSystem.SaveDataToFile(save.name, save.storyID,save.photoTaken1);
+        SaveSystem.SaveDataToFile(save.name, save.storyID, save.photoTaken1);
         SaveDialogues();
     }
 
+#region Save/Load Dialogue
     public void SaveDialogues()
     {
         foreach(var character in _storySetup.Characters)
         {
             foreach(var dialogue in character.Dialogues)
             {
-                SaveSystem.SaveDialogue(save, dialogue);
+                SaveDialogue(dialogue);
             }
         }
     }
 
-    public void SaveDialogue(DialogueData dialogue)
+    public void SaveDialogue(DialogueData dialogueData)
     {
-        SaveSystem.SaveDialogue(save, dialogue);
-    }
-}
+        string newData = dialogueData.name + "\n" + JsonUtility.ToJson(dialogueData);
+        string nameNewData = newData.Split('\n')[0];
+        //Debug.Log(nameNewData);
+        var foundData = save.dialoguesData.FirstOrDefault(x => x.Split('\n')[0] == nameNewData);
 
+        if (foundData == null)
+        {
+            save.dialoguesData.Add(newData);
+            //Debug.LogWarning("Not Found");
+        }
+        else
+        {
+            foundData = newData;
+            //Debug.LogError("Found");
+        }
+    }
+
+    public DialogueData LoadDialogue(string name)
+    {
+        string foundDialogue = save.FindJsonFromName(name);
+        DialogueData newData = JsonUtility.FromJson<DialogueData>(foundDialogue);
+        return newData;
+    }
+    #endregion
+}
