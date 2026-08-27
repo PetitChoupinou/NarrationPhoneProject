@@ -807,7 +807,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MessageApp
   _appType: 0
   _logo: {fileID: -7716149244922945786, guid: f3779f026f27db94fa123b57b3726fc9, type: 3}
-  _closingTime: 0.5
+  _closingTime: 1
   _isUnlocked: 1
   _buttonPrefab: {fileID: 1615588720625825027, guid: 2c31c95c68d89914db78d5ab7f70ebdd, type: 3}
   _discussionPrefab: {fileID: 5606949172641801510, guid: ad5ece03613391e4dad3ed204b722dcc, type: 3}
