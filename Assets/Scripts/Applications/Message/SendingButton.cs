@@ -9,7 +9,10 @@ public class SendingButton : MonoBehaviour
     [SerializeField] Image _sprite;
     [SerializeField] Color _enableColor;
     [SerializeField] Color _disableColor;
+    private bool _enabled;
     List<Action> _actionsBuffer = new List<Action>();
+
+    public bool Enabled { get => _enabled;}
 
     public void EnableButton(Action sendingAction)
     {
@@ -19,11 +22,13 @@ public class SendingButton : MonoBehaviour
             DisableButton();
             sendingAction();
         });
+        _enabled = true;
     }
 
     public void DisableButton()
     {
         _sprite.color = _disableColor;
         _button.onClick.RemoveAllListeners();
+        _enabled = false;
     }
 }

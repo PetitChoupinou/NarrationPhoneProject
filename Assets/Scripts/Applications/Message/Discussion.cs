@@ -86,7 +86,10 @@ public class Discussion : MonoBehaviour
         _headerText.text = _iD;
         PhoneManager.Instance.ChangeDepth(PhoneManager.AppDepth.inApp);
         _messageApp.SetCurrentConv(transform.gameObject);
-
+      /*  if (_sendingButton.Enabled)
+        {
+            SetBlur();
+        }*/
     }
     /// <summary>
     /// Set the discussions elements up
@@ -214,6 +217,8 @@ public class Discussion : MonoBehaviour
     public void EnableSendingButton(Action sendingAction)
     {
         _sendingButton.EnableButton(sendingAction);
+       // if(_messageApp.CurrentConv == gameObject)
+            // SetBlur();
     }
 
     public void DisableSendingButton()
@@ -228,7 +233,7 @@ public class Discussion : MonoBehaviour
     {
 
         _canChoose = true;
-       StartCoroutine(SetBlur());
+        StartCoroutine(SetBlur());
         _choices.AddRange(choices);
         _choicePanel.SetActive(true);
         for (int i=0;i<choices.Count; i++)
@@ -424,17 +429,19 @@ public class Discussion : MonoBehaviour
     {
         _endOfDiscussion.SetActive(true);
     }
-    IEnumerator SetBlur()
+     IEnumerator SetBlur()
     {
-        _blurImage.transform.gameObject.SetActive(true);
-#if PLATFORM_STANDALONE_WIN
+#if UNITY_EDITOR
         ScreenCapture.CaptureScreenshot(System.IO.Path.Combine(Application.persistentDataPath, "ScreenBlur.png"));
-
+#elif PLATFORM_STANDALONE_WIN                        
+        ScreenCapture.CaptureScreenshot(System.IO.Path.Combine(Application.persistentDataPath, "ScreenBlur.png"));
 #else
         ScreenCapture.CaptureScreenshot("ScreenBlur.png");
 #endif
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(.1f);
         _blurImage.sprite = LoadSpriteFromFile(System.IO.Path.Combine(Application.persistentDataPath, "ScreenBlur.png"));
+        _blurImage.transform.gameObject.SetActive(true);
+
     }
  
     private Sprite LoadSpriteFromFile(string filePath)
