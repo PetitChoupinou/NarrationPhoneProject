@@ -12,17 +12,10 @@ public class StorySaveData : SaveData
 
     [SerializeReference]
     public List<string> dialoguesData= new List<string>();
-    public StorySaveData(string name, string storyID,bool photoTaken1, List<string> dialoguesData)
+
+    public StorySaveData(string name) : base(name)
     {
-        this.name = name;
-        this.storyID = storyID;
-        this.photoTaken1 = photoTaken1;
-        this.dialoguesData = dialoguesData;
-    }
-    public string Value()
-    {
-        string ret=name + " " + storyID+" "+photoTaken1;
-        return ret;
+
     }
 
     public string FindJsonFromName(string name)
@@ -30,12 +23,11 @@ public class StorySaveData : SaveData
         foreach (var dialogue in dialoguesData)
         {
             string dialogueName = dialogue.Split('\n')[0];
-            if(dialogueName == name)
+            if (dialogueName == name)
             {
                 return dialogue;
             }
         }
         return "";
     }
-    
 }

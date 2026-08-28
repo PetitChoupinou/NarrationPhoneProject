@@ -22,53 +22,23 @@ public static class SaveSystem
         
         return path ;
     }
-    //To save player and story datas as files
-    public static void SaveDataToFile(SaveData data)
+
+    public static void SaveDataToFile<T>(T data, string parentFolderName = "") where T : SaveData
     {
         string serizalizedData = JsonUtility.ToJson(data);
-        File.WriteAllText(GetPath(data.name), serizalizedData);
+        File.WriteAllText(GetPath(data.name, parentFolderName), serizalizedData);
     }
 
-    /*public static SaveData LoadDataFromFile(string name, string parentName = "")
+    public static T LoadDataFromFile<T>(string name, string parentName = "") where T : SaveData
     {
-
-    }*/
-
-    /*public static void SaveDataToFile(string name,string storyID,bool photoTaken, List<string> dialoguesData)
-    {
-        BinaryFormatter bf = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/phoneStory.save";
-        FileStream stream=new FileStream(path, FileMode.OpenOrCreate);
-        PlayerSaveData data=new PlayerSaveData(name, storyID,photoTaken, dialoguesData);
-        bf.Serialize(stream, data);
-        stream.Close();
-    }*/
-    public static SaveData LoadDataFromFile()
-    {
-        string path = Application.persistentDataPath + "/phoneStory.save";
-        if (!File.Exists(path))
+        string path = GetPath(name, parentName);
+        if(!File.Exists(path)) 
         {
             return null;
         }
-        BinaryFormatter bf = new BinaryFormatter();
-        FileStream stream = new FileStream(path, FileMode.Open);
-        PlayerSaveData data = bf.Deserialize(stream) as PlayerSaveData;
-        Debug.Log(data.Value());
-       
-        stream.Close();
+        T data  = JsonUtility.FromJson<T>(path);
         return data;
     }
 
-    public static string FindJsonFromName(string name, List<string> dataList)
-    {
-        foreach (var data in dataList)
-        {
-            string dataName = data.Split('\n')[0];
-            if (dataName == name)
-            {
-                return data;
-            }
-        }
-        return "";
-    }
+    
 }

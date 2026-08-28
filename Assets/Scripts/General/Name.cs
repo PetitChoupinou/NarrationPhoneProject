@@ -22,8 +22,9 @@ public class Name : MonoBehaviour
     public void SetName()
     {
         _saver.SetName(nameField.text);
-        _saver.SetStoryID(PhoneManager.Instance.Setup.Name);
-        _saver.SaveData();
+        //_saver.SetStoryID(PhoneManager.Instance.Setup.Name);
+        //Save player Data to save name
+        //_saver.SaveData();
 
         Destroy(gameObject);
     }

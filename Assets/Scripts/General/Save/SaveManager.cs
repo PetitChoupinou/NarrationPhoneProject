@@ -29,37 +29,24 @@ public class SaveManager : MonoBehaviour
     }
     private void Start()
     {
-        save = SaveSystem.LoadDataFromFile();
+        save = SaveSystem.LoadDataFromFile<PlayerSaveData>("save");
         if (save == null)
         {
-            List<string> storyList = new List<string>();
-            save = new PlayerSaveData(storyList);
+            save = new PlayerSaveData("save");
+            SaveSystem.SaveDataToFile(save);
         }
-
+        //TODO:
         /*_storySetup=FindFirstObjectByType<SceneLoader>().RetrieveSavedStory(save.storyID);
         _storySetup.HasPhotoBeenTaken = save.photoTaken1;*/
     }
+
+    public void SaveStory(StorySaveData data)
+    {
+        SaveSystem.SaveDataToFile(data, "Story");
+    }
     public void SetName(string name)
     {
-        save.name = name;
-    }
-    public void SetStoryID(string ID)
-    { 
-        save.storyID = ID;
-    }
-    public void SetListPhotoTaken(bool photoTaken)
-    {
-        save.photoTaken1 = photoTaken;
-    }
-
-    public void SetDialogues(List<string> dialoguesData)
-    {
-        save.dialoguesData = dialoguesData;
-    }
-
-    public void SaveData()
-    {
-        SaveSystem.SaveDataToFile(save.name, save.storyID, save.photoTaken1, save.dialoguesData);
+        save.playerName = name;
     }
 
 #region Save/Load Dialogue
@@ -74,9 +61,12 @@ public class SaveManager : MonoBehaviour
         }
     }
 
+
+    
     public void SaveDialogue(DialogueData dialogueData)
     {
-        string newData = dialogueData.name + "\n" + JsonUtility.ToJson(dialogueData);
+        //TODO:
+        /*string newData = dialogueData.name + "\n" + JsonUtility.ToJson(dialogueData);
         string nameNewData = newData.Split('\n')[0];
         //Debug.Log(nameNewData);
         var foundData = save.dialoguesData.FirstOrDefault(x => x.Split('\n')[0] == nameNewData);
@@ -90,19 +80,21 @@ public class SaveManager : MonoBehaviour
         {
             foundData = newData;
             //Debug.LogError("Found");
-        }
+        }*/
     }
 
     public DialogueData LoadDialogue(string name)
     {
-        string foundDialogue = SaveSystem.FindJsonFromName(name);
+        return null;
+        //TODO:
+        /*string foundDialogue = SaveSystem.FindJsonFromName(name);
         string foundDialogueName = foundDialogue.Split("\n")[0];
         string foundDialogueData = foundDialogue.Split("\n")[1];
         DialogueData newData = ScriptableObject.CreateInstance<DialogueData>();
-        
+
         JsonUtility.FromJsonOverwrite(foundDialogueData, newData);
         newData.name = foundDialogueName;
-        return newData;
+        return newData;*/
     }
     #endregion
 }
