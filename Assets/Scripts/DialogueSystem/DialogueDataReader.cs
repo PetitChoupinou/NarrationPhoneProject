@@ -48,7 +48,8 @@ public class DialogueDataReader : MonoBehaviour
         _noteApp = AppManager.Instance.GetApplication(ApplicationType.Notes) as NoteApp;
         _hackApp = AppManager.Instance.GetApplication(ApplicationType.Hack) as HackApp;
         if (dialogueDatas.Count == 0) { return; }
-        _currentDialogueData = dialogueDatas.FirstOrDefault(data => data.name == conversationID);
+        _currentDialogueData = SaveManager.instance.LoadDialogue(conversationID);
+        //_currentDialogueData = dialogueDatas.FirstOrDefault(data => data.name == conversationID);
         if (!_currentDialogueData.hasStarted)
         {
             _currentDialogueData.hasStarted = true;
@@ -72,7 +73,7 @@ public class DialogueDataReader : MonoBehaviour
         
         var nextData = GetNextNodeData(currentNodeData, outputID);
         if(nextData == null) { Debug.Log("Fin de conv");  return; } // End of conversation
-        SaveManager.instance.SaveData();
+        SaveManager.instance.SaveDialogue(_currentDialogueData);
         ReadNodeData(nextData, isChoice).Invoke();
     }
 

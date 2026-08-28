@@ -12,11 +12,12 @@ public class SaveData
 
     [SerializeReference]
     public List<string> dialoguesData= new List<string>();
-    public SaveData(string name, string storyID,bool photoTaken1)
+    public SaveData(string name, string storyID,bool photoTaken1, List<string> dialoguesData)
     {
         this.name = name;
         this.storyID = storyID;
         this.photoTaken1 = photoTaken1;
+        this.dialoguesData = dialoguesData;
     }
     public string Value()
     {

@@ -6,12 +6,12 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public static class SaveSystem
 {
-    public static void SaveDataToFile(string name,string storyID,bool photoTaken=false)
+    public static void SaveDataToFile(string name,string storyID,bool photoTaken, List<string> dialoguesData)
     {
         BinaryFormatter bf = new BinaryFormatter();
         string path = Application.persistentDataPath + "/phoneStory.save";
         FileStream stream=new FileStream(path, FileMode.OpenOrCreate);
-        SaveData data=new SaveData(name, storyID,photoTaken);
+        SaveData data=new SaveData(name, storyID,photoTaken, dialoguesData);
         bf.Serialize(stream, data);
         stream.Close();
     }

@@ -30,7 +30,12 @@ public class SaveManager : MonoBehaviour
     private void Start()
     {
         save = SaveSystem.LoadDataFromFile();
-        if (save == null) save = new SaveData("", "",false);
+        if (save == null)
+        {
+            List<string> dialoguesData = new List<string>();
+            save = new SaveData("", "", false, dialoguesData);
+            SaveDialogues();
+        }
         _storySetup=FindFirstObjectByType<SceneLoader>().RetrieveSavedStory(save.storyID);
         _storySetup.HasPhotoBeenTaken = save.photoTaken1;
     }
@@ -47,11 +52,14 @@ public class SaveManager : MonoBehaviour
         save.photoTaken1 = photoTaken;
     }
 
+    public void SetDialogues(List<string> dialoguesData)
+    {
+        save.dialoguesData = dialoguesData;
+    }
 
     public void SaveData()
     {
-        SaveSystem.SaveDataToFile(save.name, save.storyID, save.photoTaken1);
-        SaveDialogues();
+        SaveSystem.SaveDataToFile(save.name, save.storyID, save.photoTaken1, save.dialoguesData);
     }
 
 #region Save/Load Dialogue
@@ -88,7 +96,12 @@ public class SaveManager : MonoBehaviour
     public DialogueData LoadDialogue(string name)
     {
         string foundDialogue = save.FindJsonFromName(name);
-        DialogueData newData = JsonUtility.FromJson<DialogueData>(foundDialogue);
+        string foundDialogueName = foundDialogue.Split("\n")[0];
+        string foundDialogueData = foundDialogue.Split("\n")[1];
+        DialogueData newData = ScriptableObject.CreateInstance<DialogueData>();
+        
+        JsonUtility.FromJsonOverwrite(foundDialogueData, newData);
+        newData.name = foundDialogueName;
         return newData;
     }
     #endregion

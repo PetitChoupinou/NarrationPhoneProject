@@ -37,6 +37,7 @@ public class SceneLoader : MonoBehaviour
     {
         _isNewStory = true;
         ResetAllDialogues();
+        SaveManager.instance.SaveDialogues();
         StartCoroutine(LoadGameSceneAsync());
     }
     public void LoadLastGameScene()

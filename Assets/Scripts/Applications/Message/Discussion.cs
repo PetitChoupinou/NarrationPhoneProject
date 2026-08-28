@@ -429,7 +429,8 @@ public class Discussion : MonoBehaviour
         _blurImage.transform.gameObject.SetActive(true);
 #if PLATFORM_STANDALONE_WIN
         ScreenCapture.CaptureScreenshot(System.IO.Path.Combine(Application.persistentDataPath, "ScreenBlur.png"));
-
+#elif UNITY_EDITOR
+        ScreenCapture.CaptureScreenshot(System.IO.Path.Combine(Application.persistentDataPath, "ScreenBlur.png"));
 #else
         ScreenCapture.CaptureScreenshot("ScreenBlur.png");
 #endif
