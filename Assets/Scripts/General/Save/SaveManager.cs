@@ -9,10 +9,10 @@ using static UnityEngine.Audio.GeneratorInstance;
 public class SaveManager : MonoBehaviour
 {
     static public SaveManager instance { get; private set; }
-    public SaveData Save { get => save;}
+    public PlayerSaveData Save { get => save;}
     private StoryAppSetup _storySetup;
 
-    private SaveData save;
+    private PlayerSaveData save;
     private void Awake()
     {
 
@@ -32,12 +32,12 @@ public class SaveManager : MonoBehaviour
         save = SaveSystem.LoadDataFromFile();
         if (save == null)
         {
-            List<string> dialoguesData = new List<string>();
-            save = new SaveData("", "", false, dialoguesData);
-            SaveDialogues();
+            List<string> storyList = new List<string>();
+            save = new PlayerSaveData(storyList);
         }
-        _storySetup=FindFirstObjectByType<SceneLoader>().RetrieveSavedStory(save.storyID);
-        _storySetup.HasPhotoBeenTaken = save.photoTaken1;
+
+        /*_storySetup=FindFirstObjectByType<SceneLoader>().RetrieveSavedStory(save.storyID);
+        _storySetup.HasPhotoBeenTaken = save.photoTaken1;*/
     }
     public void SetName(string name)
     {
@@ -95,7 +95,7 @@ public class SaveManager : MonoBehaviour
 
     public DialogueData LoadDialogue(string name)
     {
-        string foundDialogue = save.FindJsonFromName(name);
+        string foundDialogue = SaveSystem.FindJsonFromName(name);
         string foundDialogueName = foundDialogue.Split("\n")[0];
         string foundDialogueData = foundDialogue.Split("\n")[1];
         DialogueData newData = ScriptableObject.CreateInstance<DialogueData>();
