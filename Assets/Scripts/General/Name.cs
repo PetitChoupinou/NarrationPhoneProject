@@ -8,6 +8,7 @@ public class Name : MonoBehaviour
     [SerializeField] TMP_InputField nameField;
     SceneLoader _loader;
     SaveManager _saver;
+    StorySaveData _storyData;
     bool _touchKeyboardEnabled = false;
     private void Start()
     {
@@ -16,15 +17,15 @@ public class Name : MonoBehaviour
         _loader = FindFirstObjectByType<SceneLoader>();
         if (_loader != null)
         {
-            StorySaveData storyData = SaveSystem.LoadDataFromFile<StorySaveData>(_loader.CurrentStorySetup.Name, "Story");
-            if (storyData != null && !storyData.isNewStory) Destroy(gameObject);
+            _storyData = SaveManager.instance.LoadStory(_loader.CurrentStorySetup.Name);
+            if (_storyData != null && !_storyData.isNewStory) Destroy(gameObject);
         }
     }
     public void SetName()
     {
-        //_saver.SetPlayerName(nameField.text);
-        //_saver.SetStoryID(PhoneManager.Instance.Setup.Name);
-        //_saver.SaveData();
+        _storyData.isNewStory = false;
+        _storyData.SetPlayerName(nameField.text);
+        SaveManager.instance.SaveStory(_storyData);
 
         Destroy(gameObject);
     }

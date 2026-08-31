@@ -29,4 +29,5 @@ public class StorySelectionButton : MonoBehaviour
     {
         SoundManager.instance.PlaySound(_buttonSfx);
     }
+
 }
