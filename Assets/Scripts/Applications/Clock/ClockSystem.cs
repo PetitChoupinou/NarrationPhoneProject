@@ -31,12 +31,12 @@ public class TimeData
         CurrentTime = CurrentTime.AddDays(days);
         CurrentTime = CurrentTime.AddHours(hours);
         CurrentTime = CurrentTime.AddMinutes(minutes);
-        SetTimeFromDateTime();
+        SetTimeFromCurrentTime();
     }
 
 
 
-    private void SetTimeFromDateTime()
+    public void SetTimeFromCurrentTime()
     {
         _year = CurrentTime.Year;
         _month = CurrentTime.Month;
@@ -44,7 +44,6 @@ public class TimeData
         _hour = CurrentTime.Hour;
         _minute = CurrentTime.Minute;
     }
-
 
 }
 public class ClockSystem : MonoBehaviour

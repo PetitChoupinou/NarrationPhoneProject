@@ -10,22 +10,33 @@ public static class SaveSystem
     public static string GetPath(string name, string parentFolderName = "")
     {
         string path = Application.persistentDataPath + $"/{name}.json";
-        if(!string.IsNullOrEmpty(parentFolderName))
+        if (!string.IsNullOrEmpty(parentFolderName) || Directory.Exists(Application.persistentDataPath + $"/{parentFolderName}"))
         {
-            string parentFolderPath = Application.persistentDataPath + $"/{parentFolderName}";
-            if (!Directory.Exists(parentFolderPath))
-            {
-                Directory.CreateDirectory(parentFolderPath);
-            }
             path = Application.persistentDataPath + $"/{parentFolderName}/{name}.json";
         }
         
         return path ;
     }
 
+    public static bool DoesFileExist(string name, string parentFolderName = "")
+    {
+        string path = Application.persistentDataPath + $"/{name}.json";
+        if (!string.IsNullOrEmpty(parentFolderName))
+        {
+            path = Application.persistentDataPath + $"/{parentFolderName}/{name}.json";
+        }
+
+        return File.Exists(GetPath(name));
+    }
+
     public static void SaveDataToFile<T>(T data, string parentFolderName = "") where T : SaveData
     {
         string serizalizedData = JsonUtility.ToJson(data);
+        string parentFolderPath = Application.persistentDataPath + $"/{parentFolderName}";
+        if (!Directory.Exists(parentFolderPath))
+        {
+            Directory.CreateDirectory(parentFolderPath);
+        }
         File.WriteAllText(GetPath(data.name, parentFolderName), serizalizedData);
     }
 
@@ -36,9 +47,10 @@ public static class SaveSystem
         {
             return null;
         }
-        T data  = JsonUtility.FromJson<T>(path);
+        string jsonData = File.ReadAllText(path);
+        T data  = JsonUtility.FromJson<T>(jsonData);
         return data;
     }
 
-    
+   
 }

@@ -1,7 +1,9 @@
 using NUnit.Framework;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using TMPro;
 using UnityEngine;
 using static UnityEngine.Audio.GeneratorInstance;
@@ -9,10 +11,10 @@ using static UnityEngine.Audio.GeneratorInstance;
 public class SaveManager : MonoBehaviour
 {
     static public SaveManager instance { get; private set; }
-    public PlayerSaveData Save { get => save;}
-    private StoryAppSetup _storySetup;
+    public PlayerSaveData Save { get => _save;}
 
-    private PlayerSaveData save;
+    private PlayerSaveData _save;
+
     private void Awake()
     {
 
@@ -29,72 +31,96 @@ public class SaveManager : MonoBehaviour
     }
     private void Start()
     {
-        save = SaveSystem.LoadDataFromFile<PlayerSaveData>("save");
-        if (save == null)
+        _save = SaveSystem.LoadDataFromFile<PlayerSaveData>("save");
+        if (_save == null)
         {
-            save = new PlayerSaveData("save");
-            SaveSystem.SaveDataToFile(save);
+            _save = new PlayerSaveData("save");
+            SaveSystem.SaveDataToFile(_save);
         }
-        //TODO:
-        /*_storySetup=FindFirstObjectByType<SceneLoader>().RetrieveSavedStory(save.storyID);
-        _storySetup.HasPhotoBeenTaken = save.photoTaken1;*/
+
+        
+        //TODO: prendre la dernière histoire (à voir)
+        /*_storySetup=FindFirstObjectByType<SceneLoader>().RetrieveSavedStory(_save.storyID);
+        _storySetup.HasPhotoBeenTaken = _save.photoTaken1;*/
+    }
+
+    public void SavePlayerData()
+    {
+        SaveSystem.SaveDataToFile(_save);
     }
 
     public void SaveStory(StorySaveData data)
     {
+        data.dateOfSave.CurrentTime = DateTime.Now;
+        data.dateOfSave.SetTimeFromCurrentTime();
         SaveSystem.SaveDataToFile(data, "Story");
     }
-    public void SetName(string name)
+
+    public StorySaveData LoadStory(string storyName, bool shouldCreateNewSave = false)
     {
-        save.playerName = name;
+        StorySaveData storySaveData = SaveSystem.LoadDataFromFile<StorySaveData>(storyName, "Story");
+        if (storySaveData == null)
+        {
+            Debug.LogError("Failed to get story data at: " + SaveSystem.GetPath(storyName, "Story"));
+            
+            return null;
+        }
+        storySaveData.dateOfSave.SetCurrentTime();
+        return storySaveData;
     }
 
-#region Save/Load Dialogue
-    public void SaveDialogues()
+    
+
+    #region Save/Load Dialogue
+    public void SaveDialogues(string storyName)
     {
-        foreach(var character in _storySetup.Characters)
+        StoryAppSetup storySetup = FindFirstObjectByType<SceneLoader>().GetStorySetup(storyName);
+        foreach (var character in storySetup.Characters)
         {
             foreach(var dialogue in character.Dialogues)
             {
-                SaveDialogue(dialogue);
+                SaveDialogue(dialogue, storyName);
             }
         }
     }
 
 
     
-    public void SaveDialogue(DialogueData dialogueData)
+    public void SaveDialogue(DialogueData dialogueData, string storyName)
     {
-        //TODO:
-        /*string newData = dialogueData.name + "\n" + JsonUtility.ToJson(dialogueData);
+        StorySaveData storySaveData = LoadStory(storyName);
+        string newData = dialogueData.name + "\n" + JsonUtility.ToJson(dialogueData);
         string nameNewData = newData.Split('\n')[0];
         //Debug.Log(nameNewData);
-        var foundData = save.dialoguesData.FirstOrDefault(x => x.Split('\n')[0] == nameNewData);
+        var foundData = storySaveData.dialoguesData.FirstOrDefault(x => x.Split('\n')[0] == nameNewData);
 
         if (foundData == null)
         {
-            save.dialoguesData.Add(newData);
+            storySaveData.dialoguesData.Add(newData);
             //Debug.LogWarning("Not Found");
         }
         else
         {
             foundData = newData;
             //Debug.LogError("Found");
-        }*/
+        }
+        SaveStory(storySaveData);
     }
 
-    public DialogueData LoadDialogue(string name)
+    public DialogueData LoadDialogue(string name, string storyName)
     {
-        return null;
+        StorySaveData storySaveData = LoadStory(storyName);
         //TODO:
-        /*string foundDialogue = SaveSystem.FindJsonFromName(name);
+        string foundDialogue = storySaveData.FindJsonFromName(name);
         string foundDialogueName = foundDialogue.Split("\n")[0];
         string foundDialogueData = foundDialogue.Split("\n")[1];
         DialogueData newData = ScriptableObject.CreateInstance<DialogueData>();
 
         JsonUtility.FromJsonOverwrite(foundDialogueData, newData);
         newData.name = foundDialogueName;
-        return newData;*/
+        return newData;
     }
+
+    
     #endregion
 }

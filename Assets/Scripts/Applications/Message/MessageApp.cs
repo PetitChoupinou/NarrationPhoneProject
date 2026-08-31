@@ -20,8 +20,11 @@ public class MessageApp : BaseApplication
     [SerializeField] private GameObject _currentConv;
     [SerializeField] private Image _bgImage;
     private Sprite _baseBackground;
+    private string _storyName;
 
     public GameObject CurrentConv { get => _currentConv;}
+    public string StoryName { get => _storyName;}
+
     public void SetBackground(Sprite background)
     {
         if (_bgImage == null)
@@ -36,6 +39,7 @@ public class MessageApp : BaseApplication
     }
     public override void SetUp(StoryAppSetup setup)
     {
+        _storyName = setup.Name;
         List<CharacterSheet> characters = setup.Characters;
         _baseBackground= setup.MessageBackGround;
         SetBackground(_baseBackground);
@@ -57,7 +61,7 @@ public class MessageApp : BaseApplication
             //dialogueDataReader._currentDialogueData = character.currentDialogue;
             dialogueDataReader.dialogueDatas.AddRange(character.Dialogues);
         }
-        // Get la save => mettre les dialogues de la save dans le data reader
+        // Get la _save => mettre les dialogues de la _save dans le data reader
         print(SaveManager.instance.Save.name);
         StartCoroutine(StartGame());
     }

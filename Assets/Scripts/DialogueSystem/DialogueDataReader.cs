@@ -28,6 +28,8 @@ public class DialogueDataReader : MonoBehaviour
     private GlobalPropertiesData _globalPropertiesData;
 
     public string CharacterID { get => _characterID; set => _characterID = value; }
+
+    
     
     private void OnEnable()
     {
@@ -48,7 +50,7 @@ public class DialogueDataReader : MonoBehaviour
         _noteApp = AppManager.Instance.GetApplication(ApplicationType.Notes) as NoteApp;
         _hackApp = AppManager.Instance.GetApplication(ApplicationType.Hack) as HackApp;
         if (dialogueDatas.Count == 0) { return; }
-        _currentDialogueData = SaveManager.instance.LoadDialogue(conversationID);
+        _currentDialogueData = SaveManager.instance.LoadDialogue(conversationID, _messageApp.StoryName);
         //_currentDialogueData = dialogueDatas.FirstOrDefault(data => data.name == conversationID);
         if (!_currentDialogueData.hasStarted)
         {
@@ -73,7 +75,7 @@ public class DialogueDataReader : MonoBehaviour
         
         var nextData = GetNextNodeData(currentNodeData, outputID);
         if(nextData == null) { Debug.Log("Fin de conv");  return; } // End of conversation
-        SaveManager.instance.SaveDialogue(_currentDialogueData);
+        SaveManager.instance.SaveDialogue(_currentDialogueData, _messageApp.StoryName);
         ReadNodeData(nextData, isChoice).Invoke();
     }
 

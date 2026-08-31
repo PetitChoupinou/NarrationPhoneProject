@@ -16,14 +16,14 @@ public class Name : MonoBehaviour
         _loader = FindFirstObjectByType<SceneLoader>();
         if (_loader != null)
         {
-            if (!_loader.IsNewStory) Destroy(gameObject);
+            StorySaveData storyData = SaveSystem.LoadDataFromFile<StorySaveData>(_loader.CurrentStorySetup.Name, "Story");
+            if (storyData != null && !storyData.isNewStory) Destroy(gameObject);
         }
     }
     public void SetName()
     {
-        _saver.SetName(nameField.text);
+        //_saver.SetPlayerName(nameField.text);
         //_saver.SetStoryID(PhoneManager.Instance.Setup.Name);
-        //Save player Data to save name
         //_saver.SaveData();
 
         Destroy(gameObject);

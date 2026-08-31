@@ -47,7 +47,7 @@ public class PhoneManager : MonoBehaviour
         _loader = FindFirstObjectByType<SceneLoader>();
         if (_loader != null) 
         {
-            _setup = _loader.ChosenStory;
+            _setup = _loader.CurrentStorySetup;
         }
         if (instance != null && instance != this)
         {
@@ -59,6 +59,7 @@ public class PhoneManager : MonoBehaviour
             instance = this;
         }
         DontDestroyOnLoad(this.gameObject);
+        
     }
   
     void Start()

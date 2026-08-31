@@ -124,7 +124,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1362496953018082167}
         m_TargetAssemblyTypeName: StorySelectionButton, Assembly-CSharp
-        m_MethodName: ChooseStory
+        m_MethodName: StartNewStory
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
