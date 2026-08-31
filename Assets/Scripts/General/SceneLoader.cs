@@ -2,23 +2,23 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Android.Gradle.Manifest;
+using System.Security.Cryptography.X509Certificates;
 
 public class SceneLoader : MonoBehaviour
 {
     #region Fields
-
     [SerializeField] private string _sceneToLoad = "TestTexts";
     [SerializeField] private CanvasGroup _splashScreen;
-    [SerializeField] private bool _isNewStory;
     [SerializeField] private float _loadingTime = 1.2f;
-    [SerializeField] public List<StoryAppSetup> _story = new List<StoryAppSetup>();
+    [SerializeField] private List<StoryAppSetup> _storiesList = new List<StoryAppSetup>();
     [SerializeField] public string _buttonSfx;
-    private StoryAppSetup _chosenStory;
+    [SerializeField] private StoryAppSetup currentStorySetup;
 
     private float _timer = 0;
 
-    public StoryAppSetup ChosenStory { get => _chosenStory; set => _chosenStory = value; }
-    public bool IsNewStory { get => _isNewStory; }
+    public List<StoryAppSetup> StoriesList { get => _storiesList; set => _storiesList = value; }
+    public StoryAppSetup CurrentStorySetup { get => currentStorySetup; set => currentStorySetup = value; }
     #endregion
 
     #region Methods
@@ -27,23 +27,27 @@ public class SceneLoader : MonoBehaviour
     {
         DontDestroyOnLoad(this);
     }
-    public StoryAppSetup RetrieveSavedStory(string savedStoryID)
+    public StoryAppSetup GetStorySetup(string storyName)
     {
-        _chosenStory = _story.Find(x => x.Name == savedStoryID);
-        return _chosenStory;
+        StoryAppSetup storySetup = _storiesList.Find(x => x.Name == storyName);
+        return storySetup;
+    }
+    
+
+    public void LoadGameScene(StoryAppSetup storySetup, bool isStartingAgain)
+    {
+        if(isStartingAgain)
+        {
+            StorySaveData newData = new StorySaveData(storySetup.Name);
+            newData.isNewStory = true;
+            SaveManager.instance.SaveDialogues(newData.name);
+        }
+        currentStorySetup = storySetup;
+        /*ResetAllDialogues();
+        SaveManager.instance.SaveDialogues();*/
+        StartCoroutine(LoadGameSceneAsync());
     }
 
-    public void LoadGameScene()
-    {
-        _isNewStory = true;
-        ResetAllDialogues();
-        StartCoroutine(LoadGameSceneAsync());
-    }
-    public void LoadLastGameScene()
-    {
-        _isNewStory = false;
-        StartCoroutine(LoadGameSceneAsync());
-    }
     IEnumerator LoadGameSceneAsync()
     {
         AsyncOperation operation = SceneManager.LoadSceneAsync(_sceneToLoad);
@@ -69,9 +73,10 @@ public class SceneLoader : MonoBehaviour
         yield return null;
     }
 
-    private void ResetAllDialogues()
+    private void ResetAllDialogues(string storyName)
     {
-        foreach (CharacterSheet character in _chosenStory.Characters)
+        StoryAppSetup storySetup = GetStorySetup(storyName);
+        foreach (CharacterSheet character in storySetup.Characters)
         {
             foreach (DialogueData dialogue in character.Dialogues)
             {

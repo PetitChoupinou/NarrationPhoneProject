@@ -1891,7 +1891,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 600, y: -1320}
+  m_AnchoredPosition: {x: 400, y: -880}
   m_SizeDelta: {x: 300, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &689593916
@@ -2604,7 +2604,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ff09ff3d64d4246aaf37798a4cecdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SaveManager
-  testText: {fileID: 1553757605}
 --- !u!1 &1174577654
 GameObject:
   m_ObjectHideFlags: 0
@@ -3215,11 +3214,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SceneLoader
   _sceneToLoad: TestTexts
   _splashScreen: {fileID: 1780348641}
-  _isNewStory: 0
   _loadingTime: 1.2
-  _story:
+  _storiesList:
   - {fileID: 11400000, guid: 03585ea8afc96ef49a64f511cd395e0d, type: 2}
   _buttonSfx: Button
+  currentStorySetup: {fileID: 0}
 --- !u!4 &1780348640
 Transform:
   m_ObjectHideFlags: 0

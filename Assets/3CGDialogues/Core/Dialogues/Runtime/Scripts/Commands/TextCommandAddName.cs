@@ -13,7 +13,7 @@ namespace TCG.Core.Dialogues
 
             if (SaveManager.instance!=null&&SaveManager.instance.Save != null)
             {
-                _name = SaveManager.instance.Save.name;
+                _name = SaveManager.instance.GetCurrentStoryPlayerName();
             }
             Typer.CurrentText=Typer.CurrentText.Insert(EnterIndex, _name);
             return;

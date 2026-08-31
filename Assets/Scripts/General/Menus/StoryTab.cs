@@ -8,7 +8,7 @@ public class StoryTab : MonoBehaviour
     void Start()
     {
         loader = FindAnyObjectByType<SceneLoader>();
-        foreach(StoryAppSetup setup in loader._story)
+        foreach(StoryAppSetup setup in loader.StoriesList)
         {
             GameObject button = Instantiate(_button, transform);
             button.GetComponent<StorySelectionButton>().SetUp(setup);

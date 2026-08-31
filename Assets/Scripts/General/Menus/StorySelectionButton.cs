@@ -14,13 +14,20 @@ public class StorySelectionButton : MonoBehaviour
         _setup = setup;
         _text.text = setup.Name;
     }
-    public void ChooseStory()
+    public void ContinueStory()
     {
-        _loader.ChosenStory = _setup;
-        _loader.LoadGameScene();
+        _loader.LoadGameScene(_setup, false);
+
+    }
+
+    public void StartNewStory()
+    {
+        _loader.LoadGameScene(_setup, true);
+
     }
     public void OnButtonClicked()
     {
         SoundManager.instance.PlaySound(_buttonSfx);
     }
+
 }

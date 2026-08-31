@@ -70,8 +70,9 @@ public class CameraApp : BaseApplication
         };
         _photoApp.AddPhoto(newPhoto);
         _thumbnail.sprite = newPhoto.image;
-        SaveManager.instance.SetListPhotoTaken(true);
-        SaveManager.instance.SaveData();
+        //TODO
+        //SaveManager.instance.SetListPhotoTaken(true);
+        //SaveManager.instance.SaveData();
     }
 
     public void OpenGallery()

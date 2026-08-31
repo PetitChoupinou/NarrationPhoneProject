@@ -3,33 +3,54 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using Unity.VisualScripting;
-using TMPro;
 
 public static class SaveSystem
 {
-    public static void SaveDataToFile(string name,string storyID,bool photoTaken=false)
+
+    public static string GetPath(string name, string parentFolderName = "")
     {
-        BinaryFormatter bf = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/phoneStory.save";
-        FileStream stream=new FileStream(path, FileMode.OpenOrCreate);
-        SaveData data=new SaveData(name, storyID,photoTaken);
-        bf.Serialize(stream, data);
-        stream.Close();
+        string path = Application.persistentDataPath + $"/{name}.json";
+        if (!string.IsNullOrEmpty(parentFolderName) || Directory.Exists(Application.persistentDataPath + $"/{parentFolderName}"))
+        {
+            path = Application.persistentDataPath + $"/{parentFolderName}/{name}.json";
+        }
+        
+        return path ;
     }
-    public static SaveData LoadDataFromFile()
+
+    public static bool DoesFileExist(string name, string parentFolderName = "")
     {
-        string path = Application.persistentDataPath + "/phoneStory.save";
-        if (!File.Exists(path))
+        string path = Application.persistentDataPath + $"/{name}.json";
+        if (!string.IsNullOrEmpty(parentFolderName))
+        {
+            path = Application.persistentDataPath + $"/{parentFolderName}/{name}.json";
+        }
+
+        return File.Exists(GetPath(name));
+    }
+
+    public static void SaveDataToFile<T>(T data, string parentFolderName = "") where T : SaveData
+    {
+        string serizalizedData = JsonUtility.ToJson(data);
+        string parentFolderPath = Application.persistentDataPath + $"/{parentFolderName}";
+        if (!Directory.Exists(parentFolderPath))
+        {
+            Directory.CreateDirectory(parentFolderPath);
+        }
+        File.WriteAllText(GetPath(data.name, parentFolderName), serizalizedData);
+    }
+
+    public static T LoadDataFromFile<T>(string name, string parentName = "") where T : SaveData
+    {
+        string path = GetPath(name, parentName);
+        if(!File.Exists(path)) 
         {
             return null;
         }
-        BinaryFormatter bf = new BinaryFormatter();
-        FileStream stream = new FileStream(path, FileMode.Open);
-        SaveData data = bf.Deserialize(stream) as SaveData;
-        Debug.Log(data.Value());
-       
-        stream.Close();
+        string jsonData = File.ReadAllText(path);
+        T data  = JsonUtility.FromJson<T>(jsonData);
         return data;
     }
+
+   
 }
