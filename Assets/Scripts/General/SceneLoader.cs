@@ -40,6 +40,7 @@ public class SceneLoader : MonoBehaviour
         {
             StorySaveData newData = new StorySaveData(storySetup.Name);
             newData.isNewStory = true;
+            SaveManager.instance.SaveStory(newData);
             SaveManager.instance.SaveDialogues(newData.name);
         }
         currentStorySetup = storySetup;
