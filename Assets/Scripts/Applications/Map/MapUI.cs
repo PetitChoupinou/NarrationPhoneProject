@@ -64,6 +64,7 @@ public class MapUI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHan
         newLocation.GetComponent<RectTransform>().anchoredPosition = new Vector2(data.coordinates.x, data.coordinates.y);
         var mapLocation = newLocation.GetComponent<MapLocation>();
         mapLocation.SetupInstantiate(data);
+        
         return mapLocation;
     }
 

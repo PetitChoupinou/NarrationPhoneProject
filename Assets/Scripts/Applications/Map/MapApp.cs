@@ -29,4 +29,22 @@ public class MapApp : BaseApplication
             locations.Add(newLocation);
         }
     }
+
+    public void SetPhotoHasBeenTaken(string locationName)
+    {
+        MapLocation foundLocation = locations.Find(x => x.Data.locationName == locationName);
+        if( foundLocation != null)
+        {
+            LocationData newLocation = new LocationData()
+            {
+                locationName = foundLocation.Data.locationName,
+                image = foundLocation.Data.image,
+                coordinates = foundLocation.Data.coordinates,
+                photo = foundLocation.Data.photo,
+                hasPhotoBeenTaken = true,
+                networkState = foundLocation.Data.networkState,
+            };
+            foundLocation.Data = newLocation;
+        }
+    }
 }

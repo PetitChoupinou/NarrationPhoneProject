@@ -15,6 +15,9 @@ public class StorySaveData : SaveData
     [SerializeReference]
     public List<string> dialoguesData= new List<string>();
 
+    [SerializeReference]
+    public List<string> locationPhotoData = new List<string>();
+
     public StorySaveData(string name) : base(name)
     {
         dateOfSave = new TimeData();
@@ -25,14 +28,14 @@ public class StorySaveData : SaveData
         playerName = name;
     }
 
-    public string FindJsonFromName(string name)
+    public string FindJsonFromName(string name, List<string> dataList)
     {
-        foreach (var dialogue in dialoguesData)
+        foreach (var data in dataList)
         {
-            string dialogueName = dialogue.Split('\n')[0];
-            if (dialogueName == name)
+            string dataName = data.Split('\n')[0];
+            if (dataName == name)
             {
-                return dialogue;
+                return data;
             }
         }
         return "";
