@@ -31,9 +31,7 @@ public class NotificationManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
     public void SendNotifText(string message, string ID)
-    {
-        print(message);
-      
+    {      
         if (notifs.ContainsKey(ID))
         {
            notifs[ID].ChangeContent(message);

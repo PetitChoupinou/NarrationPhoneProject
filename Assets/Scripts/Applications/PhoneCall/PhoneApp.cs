@@ -40,7 +40,8 @@ public class PhoneApp : BaseApplication
     }
     public void DelLastDigit()
     {
-        _currentNum.Remove(_currentNum.Length - 1);
+        if(_currentNum.Length > 0) 
+            _currentNum=_currentNum.Remove(_currentNum.Length - 1);
         UpdateDisplay();
     }
     private void UpdateDisplay()
