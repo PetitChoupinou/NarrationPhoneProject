@@ -1055,7 +1055,7 @@ public class DialogueGraphView : GraphView
         blackboard.Clear();
         blackboard.Add(new BlackboardSection { title = "Exposed Properties" });
     }
-    public void AddPropertyToBlackboard(Type type, string propertyName = "")
+    public void AddPropertyToBlackboard(Type type, bool isNew, string propertyName = "")
     {
         ExposedProperty property = null;
         if (propertyName == "") propertyName = $"New {type.Name}";
@@ -1063,19 +1063,19 @@ public class DialogueGraphView : GraphView
         {
             case Type t when t == typeof(bool):
                 property = new ExposedProperty<bool>(propertyName, false);
-                AddPropertyToBlackboard<bool>(property);
+                AddPropertyToBlackboard<bool>(property, isNew);
                 break;
             case Type t when t == typeof(int):
                 property = new ExposedProperty<int>(propertyName, 0);
-                AddPropertyToBlackboard<int>(property);
+                AddPropertyToBlackboard<int>(property, isNew);
                 break;
             case Type t when t == typeof(float):
                 property = new ExposedProperty<float>(propertyName, 0);
-                AddPropertyToBlackboard<float>(property);
+                AddPropertyToBlackboard<float>(property, isNew);
                 break;
             case Type t when t == typeof(string):
                 property = new ExposedProperty<string>(propertyName, "");
-                AddPropertyToBlackboard<string>(property);
+                AddPropertyToBlackboard<string>(property, isNew);
                 break;
 
             default:
@@ -1083,22 +1083,22 @@ public class DialogueGraphView : GraphView
         }
     }
 
-    public void AddPropertyToBlackboard(ExposedProperty exposedProperty)
+    public void AddPropertyToBlackboard(ExposedProperty exposedProperty, bool isNew)
     {
         Type type = exposedProperty.type;
         switch (type)
         {
             case Type t when t == typeof(bool):
-                AddPropertyToBlackboard<bool>(exposedProperty);
+                AddPropertyToBlackboard<bool>(exposedProperty, isNew);
                 break;
             case Type t when t == typeof(int):
-                AddPropertyToBlackboard<int>(exposedProperty);
+                AddPropertyToBlackboard<int>(exposedProperty, isNew);
                 break;
             case Type t when t == typeof(float):
-                AddPropertyToBlackboard<float>(exposedProperty);
+                AddPropertyToBlackboard<float>(exposedProperty, isNew);
                 break;
             case Type t when t == typeof(string):
-                AddPropertyToBlackboard<string>(exposedProperty);
+                AddPropertyToBlackboard<string>(exposedProperty, isNew);
                 break;
 
             default:
@@ -1107,7 +1107,7 @@ public class DialogueGraphView : GraphView
     }
 
 
-    public void AddPropertyToBlackboard<T>(ExposedProperty exposedProperty)
+    public void AddPropertyToBlackboard<T>(ExposedProperty exposedProperty, bool isNew)
     {
         styleSheets.Add(Resources.Load<StyleSheet>("Property"));
         if (exposedProperty == null) return;
@@ -1115,19 +1115,22 @@ public class DialogueGraphView : GraphView
         var propertyValue = exposedProperty.GetValue();
         string newName = propertyName;
         int index = 0;
-        
 
-        while (blackBoardProperty.Any(p => p.Name == newName))
+        if (isNew)
         {
-            index++;
-            newName = $"{propertyName}_{index}";
+            while (globalPropertiesData.globalProperties.Any(p => p.Name == newName))
+            {
+                index++;
+                newName = $"{propertyName}_{index}";
+            }
         }
+        
         propertyName = newName;
         ExposedProperty property = new ExposedProperty<T>(propertyName, (T)propertyValue);
         
-        if (!globalPropertiesData.globalProperties.Contains(exposedProperty))
+        if (!globalPropertiesData.globalProperties.Contains(property))
         {
-            globalPropertiesData.globalProperties.Add(exposedProperty);
+            globalPropertiesData.globalProperties.Add(property);
         }
         var container = new VisualElement();
         
@@ -1141,14 +1144,13 @@ public class DialogueGraphView : GraphView
 
         var deleteButton = new Button(() =>
         {
-            var foundProperty = globalPropertiesData.globalProperties.FirstOrDefault(x => x.Name == exposedProperty.Name);
+            var foundProperty = globalPropertiesData.globalProperties.FirstOrDefault(x => x.Name == property.Name);
             if(foundProperty != null)
             {
                 globalPropertiesData.globalProperties.Remove(foundProperty);
 
             }
 
-            blackBoardProperty.Remove(property);
             blackboard.Remove(container);
         })
         {
@@ -1161,7 +1163,7 @@ public class DialogueGraphView : GraphView
         VisualElement containerValue = new VisualElement();
         var propertyField = CreateFieldForType(typeof(T), (T)propertyValue, value => {
             {
-                var foundProperty = FindPropertyByName(exposedProperty.Name);
+                var foundProperty = FindPropertyByName(property.Name);
                 foundProperty.SetValue(value);
             }
 
@@ -1172,7 +1174,6 @@ public class DialogueGraphView : GraphView
 
         container.Add(row);
         blackboard.Add(container);
-        blackBoardProperty.Add(property);
 
     }
 
@@ -1260,7 +1261,7 @@ public class DialogueGraphView : GraphView
         properties.AddRange(globalPropertiesData.globalProperties);
         foreach (var property in properties)
         {
-            AddPropertyToBlackboard(property);
+            AddPropertyToBlackboard(property, false);
         }
     }
 
