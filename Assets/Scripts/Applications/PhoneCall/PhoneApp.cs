@@ -23,12 +23,10 @@ public class PhoneApp : BaseApplication
         _soundManager = SoundManager.instance;
         foreach(CharacterSheet c in setup.Characters)
         {
-            print(c);
             _numbers.Add(c.TelNum);
         }
         foreach(PhoneNumbers n in setup.PhoneNumbers)
         {
-            print(n);
             _numbers.Add(n);
         }
         _phoneManager = PhoneManager.Instance;

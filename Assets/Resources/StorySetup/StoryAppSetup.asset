@@ -106,11 +106,13 @@ MonoBehaviour:
   _phoneNumbers:
   - title: Police
     numbers: 17
+    ringTime: 5
     callText:
     - "Merci d'avoir appel\xE9 la police ."
     - Pour vous remercier nous allons fermer votre application.
     - Au revoir!
     callAudio: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
+    ringAudio: {fileID: 8300000, guid: 04781cc3066655d4ea4a74726914cc23, type: 3}
   _internetSearches:
   - search: Feur?
     text: coubeh
@@ -146,4 +148,4 @@ MonoBehaviour:
     _month: 9
     _year: 2004
     _hour: 7
-    _minute: 15
+    _minute: 19
