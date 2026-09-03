@@ -13,66 +13,40 @@ MonoBehaviour:
   m_Name: a
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   nodes:
-  - rid: 533948709329698929
-  - rid: 533948709329698930
-  - rid: 533948709329698931
-  - rid: 533948709329698932
-  entryPointNodeGuid: 183cefaa-2dbf-4040-9549-2387b38981d9
+  - rid: 4237343050295935353
+  - rid: 4237343050295935354
+  entryPointNodeGuid: de568c48-d639-4454-8588-53c73b31454d
   isLocked: 0
   _isLocked: 0
   hasStarted: 0
   references:
     version: 2
     RefIds:
-    - rid: 533948709329698929
+    - rid: 4237343050295935353
       type: {class: NodeData, ns: , asm: Assembly-CSharp}
       data:
-        nodeGUID: 183cefaa-2dbf-4040-9549-2387b38981d9
+        nodeGUID: de568c48-d639-4454-8588-53c73b31454d
         nodeType: 0
         position: {x: 250.4, y: 200}
         outputs:
         - portValue: Next
-          targetNodeGuid: 50a805c3-73a4-4765-b517-6ce59fe32edc
+          targetNodeGuid: 
         isSentCurrent: 0
-    - rid: 533948709329698930
-      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+    - rid: 4237343050295935354
+      type: {class: SetPropertyNodeData, ns: , asm: Assembly-CSharp}
       data:
-        nodeGUID: 50a805c3-73a4-4765-b517-6ce59fe32edc
-        nodeType: 1
-        position: {x: 436.8, y: 100}
-        outputs:
-        - portValue: Next
-          targetNodeGuid: 0c7f8d3c-aa60-4192-8981-11d2f0a06f60
-        isSentCurrent: 0
-        dialogueText: AAA
-        isNPC: 1
-        timerSending: 0
-        emotion: 0
-    - rid: 533948709329698931
-      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
-      data:
-        nodeGUID: b43979f2-3ce7-47bc-9d81-97fcd7ca9f02
-        nodeType: 1
-        position: {x: 839.2, y: 100}
+        nodeGUID: 89af3edf-4848-4d4e-8925-b7841cde3b7d
+        nodeType: 6
+        position: {x: 472, y: 192.8}
         outputs:
         - portValue: Next
           targetNodeGuid: 
         isSentCurrent: 0
-        dialogueText: rahlala
-        isNPC: 1
-        timerSending: 0
-        emotion: 1
-    - rid: 533948709329698932
-      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+        property:
+          rid: 4237343050295935355
+        valueString: False
+    - rid: 4237343050295935355
+      type: {class: 'ExposedProperty`1[[System.Boolean, mscorlib]]', ns: , asm: Assembly-CSharp}
       data:
-        nodeGUID: 0c7f8d3c-aa60-4192-8981-11d2f0a06f60
-        nodeType: 1
-        position: {x: 656.8, y: 288.80002}
-        outputs:
-        - portValue: Next
-          targetNodeGuid: b43979f2-3ce7-47bc-9d81-97fcd7ca9f02
-        isSentCurrent: 0
-        dialogueText: New Dialogue
-        isNPC: 0
-        timerSending: 0
-        emotion: 0
+        Name: New Boolean
+        PropertyValue: 0

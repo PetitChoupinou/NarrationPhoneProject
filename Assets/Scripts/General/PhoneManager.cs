@@ -22,7 +22,11 @@ public class PhoneManager : MonoBehaviour
     public static PhoneManager Instance => instance;
 
     public AppDepth CurrentDepth { get => _currentDepth; }
-    public LocationData CurrentLocation { get => _currentLocation;
+    public LocationData CurrentLocation {
+        get {
+            return AppManager.Instance.GetApplication(ApplicationType.Map).GetComponent<MapApp>().locations.Find(x => x.Data.locationName == _currentLocation.locationName).Data;
+        }
+                
         set {
             _network.ChangeReception(value.networkState);
             if (value.networkState != NetworkState.Bad && _currentLocation.networkState == NetworkState.Bad)

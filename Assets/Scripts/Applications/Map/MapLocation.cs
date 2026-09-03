@@ -7,11 +7,12 @@ public class MapLocation : MonoBehaviour
     [SerializeField] bool isMainLocation;
     [SerializeField] LocationData _data;
 
+    public LocationData Data { get => _data; set => _data = value; }
+
     public void SetupInstantiate(LocationData data)
     {
         _data = data;
         Setup();
-
     }
 
     public void Setup()

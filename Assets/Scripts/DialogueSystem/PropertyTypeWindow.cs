@@ -38,7 +38,7 @@ public class PropertyTypeWindow : ScriptableObject, ISearchWindowProvider
     {
         var worldMousePosition = _window.rootVisualElement.ChangeCoordinatesTo(_window.rootVisualElement.parent, context.screenMousePosition - _window.position.position);
         var localMousePosition = _graphView.contentViewContainer.WorldToLocal(worldMousePosition);
-        _graphView.AddPropertyToBlackboard((Type)SearchTreeEntry.userData);
+        _graphView.AddPropertyToBlackboard((Type)SearchTreeEntry.userData, true);
         return true;
         
     }

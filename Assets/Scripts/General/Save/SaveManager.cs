@@ -111,7 +111,7 @@ public class SaveManager : MonoBehaviour
     public DialogueData LoadDialogue(string name, string storyName)
     {
         StorySaveData storySaveData = LoadStory(storyName);
-        string foundDialogue = storySaveData.FindJsonFromName(name);
+        string foundDialogue = storySaveData.FindJsonFromName(name, storySaveData.dialoguesData);
         string foundDialogueName = foundDialogue.Split("\n")[0];
         string foundDialogueData = foundDialogue.Split("\n")[1];
         DialogueData newData = ScriptableObject.CreateInstance<DialogueData>();
@@ -120,7 +120,47 @@ public class SaveManager : MonoBehaviour
         newData.name = foundDialogueName;
         return newData;
     }
+    #endregion
 
-    
+    #region Save/Load Location Photo
+
+    public void SaveLocationPhoto(string locationName, PhotoData photoData, string storyName)
+    {
+        StorySaveData storyData = LoadStory(storyName);
+        DateTime time = new DateTime(photoData.year, photoData.month, photoData.day, photoData.hour, photoData.minute, 0);
+        LocationPhotoData locationPhotoData = new LocationPhotoData(time, photoData.image);
+
+        string newData = locationName + "\n" + JsonUtility.ToJson(locationPhotoData);
+        string nameNewData = newData.Split('\n')[0];
+        var foundData = storyData.locationPhotoData.FirstOrDefault(x => x.Split('\n')[0] == nameNewData);
+        if (foundData == null)
+        {
+            storyData.locationPhotoData.Add(newData);
+        }
+        else
+        {
+            int index = storyData.locationPhotoData.IndexOf(foundData);
+            storyData.locationPhotoData[index] = newData;
+        }
+        SaveStory(storyData);
+        
+    }
+
+    public LocationPhotoData LoadLocationPhoto(string locationName, string storyName)
+    {
+        StorySaveData storyData = LoadStory(storyName);
+        string foundLocationData = storyData.FindJsonFromName(locationName, storyData.locationPhotoData);
+        if(foundLocationData == "")
+        {
+            return null;
+        }
+        string foundLocationDataName = foundLocationData.Split("\n")[0];
+        string foundLocationDataJson = foundLocationData.Split("\n")[1];
+
+        LocationPhotoData newData = JsonUtility.FromJson<LocationPhotoData>(foundLocationDataJson);
+        newData.locationName = foundLocationDataName;
+        return newData;
+    }
+
     #endregion
 }
