@@ -100,7 +100,7 @@ public class SoundManager : MonoBehaviour
         _usedSource = new Queue<AudioSource>(_usedSource.Where(p => p != source));
         return;
     }
-    public void  PlaySound(string soundName)
+    public void  PlaySound(string soundName,bool isLooping=false)
     {
         if (!_sfxDictionary.TryGetValue(soundName, out AudioClip clip))
         {
@@ -121,13 +121,14 @@ public class SoundManager : MonoBehaviour
         //float finalVolume = soundVolume * global sfx Volume; à faire dans un truc d'option i guess;
         audioSource.clip = clip;
         audioSource.volume = soudVolume;
+        audioSource.loop = isLooping;
         audioSource.Play();
     }
     public void StopSound(string soundName)
     {
         foreach(AudioSource source in _usedSource)
         {
-            if(source.name == soundName)
+            if(source.clip.name == soundName)
             {
                 source.Stop();
                 RemoveSource(source);

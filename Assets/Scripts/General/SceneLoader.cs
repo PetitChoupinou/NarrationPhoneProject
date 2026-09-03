@@ -7,6 +7,7 @@ public class SceneLoader : MonoBehaviour
 {
     #region Fields
     [SerializeField] private string _sceneToLoad = "TestTexts";
+    [SerializeField] private string _menuScene = "MenuScene";
     [SerializeField] private CanvasGroup _splashScreen;
     [SerializeField] private float _loadingTime = 1.2f;
     [SerializeField] private List<StoryAppSetup> _storiesList = new List<StoryAppSetup>();
@@ -30,8 +31,11 @@ public class SceneLoader : MonoBehaviour
         StoryAppSetup storySetup = _storiesList.Find(x => x.Name == storyName);
         return storySetup;
     }
-    
 
+   public void LoadMenuScene()
+    {
+        StartCoroutine(LoadGameSceneAsync(_menuScene));
+    }
     public void LoadGameScene(StoryAppSetup storySetup, bool isStartingAgain)
     {
         if(isStartingAgain)
@@ -44,12 +48,12 @@ public class SceneLoader : MonoBehaviour
         currentStorySetup = storySetup;
         /*ResetAllDialogues();
         SaveManager.instance.SaveDialogues();*/
-        StartCoroutine(LoadGameSceneAsync());
+        StartCoroutine(LoadGameSceneAsync(_sceneToLoad));
     }
 
-    IEnumerator LoadGameSceneAsync()
+    IEnumerator LoadGameSceneAsync(string sceneToLoad)
     {
-        AsyncOperation operation = SceneManager.LoadSceneAsync(_sceneToLoad);
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneToLoad);
         operation.allowSceneActivation = false;
         while (_timer < _loadingTime)
         {

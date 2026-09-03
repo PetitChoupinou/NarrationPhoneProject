@@ -71,7 +71,14 @@ public class PhoneApp : BaseApplication
 
      IEnumerator Call(PhoneNumbers x) 
     {
-        yield return null;
+        if (x.ringTime > 0.3f)
+        {
+            _soundManager.PlaySound(x.ringAudio.name,true);
+            yield return new WaitForSeconds(x.ringTime);
+            _soundManager.StopSound(x.ringAudio.name);
+            yield return null;
+        }
+        yield return new WaitForSeconds(.5f);
         print(x.callText.Count);
         for (int i=0;i<x.callText.Count;i++)
         {
@@ -86,7 +93,7 @@ public class PhoneApp : BaseApplication
         yield return null;
         if (x.title == "Police")
         {
-            Application.Quit();
+            FindFirstObjectByType<SceneLoader>().LoadMenuScene();
             yield return null;
         }
     }

@@ -18,7 +18,6 @@ MonoBehaviour:
   - {fileID: 7991513738419085291, guid: 1699363c4bee2a9438541c194156c950, type: 3}
   - {fileID: 7331036238270016989, guid: c04bc797bdc1ea949acd8b45d27686bc, type: 3}
   - {fileID: 6712939520116750977, guid: 793e509e335ffba41b32e01d5a542f30, type: 3}
-  - {fileID: 6775899789610250122, guid: 1027d6c83a2b2c14796ecb2a046f8dce, type: 3}
   - {fileID: 8123866142440240300, guid: a60deef65e0ce0b45bb9b32796eae084, type: 3}
   - {fileID: 2250242251753996431, guid: 8c7873ef089222d48b008521f06136c0, type: 3}
   - {fileID: 6181967884565453760, guid: 6b8ad8eb37dae484b8944ed12517cb51, type: 3}
@@ -120,6 +119,7 @@ MonoBehaviour:
   - search: pourquoi 42?
     text: "c'est la r\xE9ponse \xE0 la vie."
   _baseCameraPhoto: {fileID: 0}
+  _hasPhotoBeenTaken: 0
   _hackAppSetup:
     title: test
     folders:
@@ -145,5 +145,5 @@ MonoBehaviour:
     _day: 18
     _month: 9
     _year: 2004
-    _hour: 6
-    _minute: 57
+    _hour: 7
+    _minute: 15

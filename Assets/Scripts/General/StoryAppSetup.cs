@@ -100,8 +100,10 @@ public struct PhoneNumbers
 {
     public string title;
     public string numbers;
+    public int ringTime;
     public List<string> callText;
     public AudioClip callAudio;//mumble
+    public AudioClip ringAudio;//mumble
 }
 
 [Serializable]
