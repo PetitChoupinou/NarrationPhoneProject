@@ -10,6 +10,7 @@ using static UnityEngine.EventSystems.EventTrigger;
 
 public class DialogueDataReader : MonoBehaviour
 {
+    
     public List<DialogueData> dialogueDatas = new List<DialogueData>();
     private DialogueData _currentDialogueData;
     
@@ -51,15 +52,30 @@ public class DialogueDataReader : MonoBehaviour
         _hackApp = AppManager.Instance.GetApplication(ApplicationType.Hack) as HackApp;
         if (dialogueDatas.Count == 0) { return; }
         _currentDialogueData = SaveManager.instance.LoadDialogue(conversationID, _messageApp.StoryName);
+        List<NodeData> nodes = _currentDialogueData.nodes;
         //_currentDialogueData = dialogueDatas.FirstOrDefault(data => data.name == conversationID);
         if (!_currentDialogueData.hasStarted)
         {
             _currentDialogueData.hasStarted = true;
+            StartCoroutine(WaitForDialogueToStart());
+            return;
         }
-        List<NodeData> nodes = _currentDialogueData.nodes;
+        StartReadingDialogue();
         //var affinityProperty = _currentDialogueData.properties.FirstOrDefault(x => x.Name == "Affinity");
+
+    }
+
+    private void StartReadingDialogue()
+    {
         ReadNodeData(GetNextNodeData(_currentDialogueData.nodes.FirstOrDefault(node => node.nodeGUID == _currentDialogueData.entryPointNodeGuid))).Invoke();
-        
+    }
+
+    IEnumerator WaitForDialogueToStart()
+    {
+        yield return new WaitForSeconds(_currentDialogueData.GetSecondsToWait());
+        Debug.Log("New conv");
+        StartReadingDialogue();
+        yield return null;
     }
 
 
