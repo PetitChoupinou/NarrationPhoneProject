@@ -24,8 +24,6 @@ public class AppManager : MonoBehaviour
         {
             instance = this;
         }
-
-        DontDestroyOnLoad(this.gameObject);
     }
     public void addToApps(BaseApplication app)
     {

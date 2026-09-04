@@ -28,7 +28,6 @@ public class NotificationManager : MonoBehaviour
         {
             instance = this;
         }
-        DontDestroyOnLoad(this.gameObject);
     }
     public void SendNotifText(string message, string ID)
     {      
