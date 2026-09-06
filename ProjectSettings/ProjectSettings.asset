@@ -167,6 +167,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.4
   androidMinAspectRatio: 1
   applicationIdentifier:
+    Android: com.defaultcompany.narrativephonegame
     Standalone: com.DefaultCompany.2D-URP
   buildNumber:
     Standalone: 0
@@ -785,7 +786,8 @@ PlayerSettings:
   webGLCloseOnQuit: 0
   webWasm2023: 0
   webEnableSubmoduleStrippingCompatibility: 0
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    Android: LEVELPLAY_DEPENDENCIES_INSTALLED
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
@@ -862,7 +864,13 @@ PlayerSettings:
   XboxOneOverrideIdentityName: 
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
-  cloudServicesEnabled: {}
+  cloudServicesEnabled:
+    Build: 0
+    Game Performance: 0
+    Legacy Analytics: 0
+    Purchasing: 0
+    UDP: 0
+    Unity Ads: 0
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -884,11 +892,11 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 1
   windowsGamepadBackendHint: 0
-  cloudProjectId: a58774df-8f25-44ee-8794-f5bdde52f27a
+  cloudProjectId: 4bd2e472-1d0d-4aa1-a8ce-1f8d894562dc
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: NarrationPhoneProject 2026-03-08_12-25-10
-  organizationId: unity_014d6cd83febc850c6d1
+  projectName: NarrationPhoneProject
+  organizationId: lebourhisalexis11
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}

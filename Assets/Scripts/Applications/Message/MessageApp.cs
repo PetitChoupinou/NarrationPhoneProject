@@ -62,7 +62,7 @@ public class MessageApp : BaseApplication
             dialogueDataReader.dialogueDatas.AddRange(character.Dialogues);
         }
         // Get la _save => mettre les dialogues de la _save dans le data reader
-        print(SaveManager.instance.Save.name);
+        print(SaveManager.Instance.Save.name);
         StartCoroutine(StartGame());
     }
     public override void CloseCurrent()

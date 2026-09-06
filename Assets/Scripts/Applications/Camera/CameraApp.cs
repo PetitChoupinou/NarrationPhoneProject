@@ -29,7 +29,7 @@ public class CameraApp : BaseApplication
         StoryAppSetup setup = _phoneManager.Setup;
         foreach (var location in _mapApp.locations)
         {
-            LocationPhotoData photoSavedData = SaveManager.instance.LoadLocationPhoto(location.Data.locationName, setup.Name);
+            LocationPhotoData photoSavedData = SaveManager.Instance.LoadLocationPhoto(location.Data.locationName, setup.Name);
             if (photoSavedData != null)
             {
                 photoSavedData.datePhoto.SetCurrentTime();
@@ -77,7 +77,7 @@ public class CameraApp : BaseApplication
         _photoApp.AddPhoto(newPhoto);
         _thumbnail.sprite = newPhoto.image;
         _mapApp.SetPhotoHasBeenTaken(_phoneManager.CurrentLocation.locationName);
-        SaveManager.instance.SaveLocationPhoto(_phoneManager.CurrentLocation.locationName, newPhoto, _phoneManager.Setup.Name);
+        SaveManager.Instance.SaveLocationPhoto(_phoneManager.CurrentLocation.locationName, newPhoto, _phoneManager.Setup.Name);
     }
 
     public void OpenGallery()

@@ -8,21 +8,21 @@ using UnityEngine;
 
 public class SaveManager : MonoBehaviour
 {
-    static public SaveManager instance { get; private set; }
+    static public SaveManager Instance { get; private set; }
     public PlayerSaveData Save { get => _save;}
 
     private PlayerSaveData _save;
 
     private void Awake()
     {
-        if (instance != null && instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(this.gameObject);
             return;
         }
         else
         {
-            instance = this;
+            Instance = this;
         }
         DontDestroyOnLoad(this.gameObject);
     }
@@ -65,6 +65,12 @@ public class SaveManager : MonoBehaviour
     {
         StorySaveData currentStoryData = LoadStory(FindFirstObjectByType<SceneLoader>().CurrentStorySetup.Name);
         return currentStoryData.playerName;
+    }
+
+    public void AddEnergy(float value)
+    {
+        _save.energy += value;
+        SavePlayerData();
     }
 
     #region Save/Load Dialogue

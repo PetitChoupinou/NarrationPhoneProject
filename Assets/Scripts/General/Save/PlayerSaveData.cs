@@ -6,7 +6,7 @@ using System;
 [Serializable]
 public class PlayerSaveData : SaveData
 {
-
+    public float energy;
     public PlayerSaveData(string name) : base(name)
     {
 

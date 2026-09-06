@@ -42,12 +42,12 @@ public class SceneLoader : MonoBehaviour
         {
             StorySaveData newData = new StorySaveData(storySetup.Name);
             newData.isNewStory = true;
-            SaveManager.instance.SaveStory(newData);
-            SaveManager.instance.SaveDialogues(newData.name);
+            SaveManager.Instance.SaveStory(newData);
+            SaveManager.Instance.SaveDialogues(newData.name);
         }
         currentStorySetup = storySetup;
         /*ResetAllDialogues();
-        SaveManager.instance.SaveDialogues();*/
+        SaveManager.Instance.SaveDialogues();*/
         StartCoroutine(LoadGameSceneAsync(_sceneToLoad));
     }
 
