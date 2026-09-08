@@ -2,7 +2,7 @@ using System;
 using Unity.Services.LevelPlay;
 using UnityEngine;
 
-public class LevelAdsManager : MonoBehaviour
+public class LevelPlayAdsManager : MonoBehaviour
 {
     [Header("App Key")]
     [SerializeField] private string _androidAppKey;
@@ -77,18 +77,21 @@ public class LevelAdsManager : MonoBehaviour
         }
     }
 
+    public static LevelPlayAdsManager Instance;
+
     private void Awake()
     {
+        if (Instance == null) Instance = this;
         DontDestroyOnLoad(this);
     }
 
     public void Start()
     {
         LevelPlay.ValidateIntegration();
-        // Register OnInitFailed and OnInitSuccess listeners
+
         LevelPlay.OnInitSuccess += SdkInitializationCompletedEvent;
         LevelPlay.OnInitFailed += SdkInitializationFailedEvent;
-        // SDK init
+
         LevelPlay.Init(_appKey);
     }
 
