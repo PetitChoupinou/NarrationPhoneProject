@@ -12,293 +12,295 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ef08a29b60933941822e91151f6e732, type: 3}
   m_Name: D_Sacha_1
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  secondsToWait: 60
+  secondsToWaitFast: 5
   nodes:
-  - rid: 983295549385998912
-  - rid: 983295549385998913
-  - rid: 983295549385998914
-  - rid: 983295549385998915
-  - rid: 983295549385998916
-  - rid: 983295549385998917
-  - rid: 983295549385998918
-  - rid: 983295549385998919
-  - rid: 983295549385998920
-  - rid: 983295549385998921
-  - rid: 983295549385998922
-  - rid: 983295549385998923
-  - rid: 983295549385998924
-  - rid: 983295549385998925
-  - rid: 983295549385998926
-  - rid: 983295549385998927
-  - rid: 983295549385998928
-  - rid: 983295549385998929
-  - rid: 983295549385998930
-  - rid: 983295549385998931
-  - rid: 983295549385998932
-  - rid: 983295549385998933
-  - rid: 983295549385998934
-  - rid: 983295549385998935
-  - rid: 983295549385998936
-  - rid: 983295549385998937
-  - rid: 983295549385998938
-  - rid: 983295549385998939
-  - rid: 983295549385998940
-  - rid: 983295549385998941
-  - rid: 983295549385998942
-  - rid: 983295549385998943
-  - rid: 983295549385998944
-  - rid: 983295549385998945
-  - rid: 983295549385998946
-  - rid: 983295549385998947
-  - rid: 983295549385998948
-  - rid: 983295549385998949
-  - rid: 983295549385998950
-  - rid: 983295549385998951
-  - rid: 983295549385998952
-  - rid: 983295549385998953
-  - rid: 983295549385998954
-  - rid: 983295549385998955
-  - rid: 983295549385998956
-  - rid: 983295549385998957
-  - rid: 983295549385998958
-  - rid: 983295549385998959
-  - rid: 983295549385998960
-  - rid: 983295549385998961
-  - rid: 983295549385998962
-  - rid: 983295549385998963
-  - rid: 983295549385998964
-  - rid: 983295549385998965
-  - rid: 983295549385998966
-  - rid: 983295549385998967
-  - rid: 983295549385998968
-  - rid: 983295549385998969
-  - rid: 983295549385998970
-  - rid: 983295549385998971
-  - rid: 983295549385998972
-  - rid: 983295549385998973
-  - rid: 983295549385998974
-  - rid: 983295549385998975
-  - rid: 983295549385998976
-  - rid: 983295549385998977
-  - rid: 983295549385998978
-  - rid: 983295549385998979
-  - rid: 983295549385998980
-  - rid: 983295549385998981
-  - rid: 983295549385998982
-  - rid: 983295549385998983
-  - rid: 983295549385998984
-  - rid: 983295549385998985
-  - rid: 983295549385998986
-  - rid: 983295549385998987
-  - rid: 983295549385998988
-  - rid: 983295549385998989
-  - rid: 983295549385998990
-  - rid: 983295549385998991
-  - rid: 983295549385998992
-  - rid: 983295549385998993
-  - rid: 983295549385998994
-  - rid: 983295549385998995
-  - rid: 983295549385998996
-  - rid: 983295549385998997
-  - rid: 983295549385998998
-  - rid: 983295549385998999
-  - rid: 983295549385999000
-  - rid: 983295549385999001
-  - rid: 983295549385999002
-  - rid: 983295549385999003
-  - rid: 983295549385999004
-  - rid: 983295549385999005
-  - rid: 983295549385999006
-  - rid: 983295549385999007
-  - rid: 983295549385999008
-  - rid: 983295549385999009
-  - rid: 983295549385999010
-  - rid: 983295549385999011
-  - rid: 983295549385999012
-  - rid: 983295549385999013
-  - rid: 983295549385999014
-  - rid: 983295549385999015
-  - rid: 983295549385999016
-  - rid: 983295549385999017
-  - rid: 983295549385999018
-  - rid: 983295549385999019
-  - rid: 983295549385999020
-  - rid: 983295549385999021
-  - rid: 983295549385999022
-  - rid: 983295549385999023
-  - rid: 983295549385999024
-  - rid: 983295549385999025
-  - rid: 983295549385999026
-  - rid: 983295549385999027
-  - rid: 983295549385999028
-  - rid: 983295549385999029
-  - rid: 983295549385999030
-  - rid: 983295549385999031
-  - rid: 983295549385999032
-  - rid: 983295549385999033
-  - rid: 983295549385999034
-  - rid: 983295549385999035
-  - rid: 983295549385999036
-  - rid: 983295549385999037
-  - rid: 983295549385999038
-  - rid: 983295549385999039
-  - rid: 983295549385999040
-  - rid: 983295549385999041
-  - rid: 983295549385999042
-  - rid: 983295549385999043
-  - rid: 983295549385999044
-  - rid: 983295549385999045
-  - rid: 983295549385999046
-  - rid: 983295549385999047
-  - rid: 983295549385999048
-  - rid: 983295549385999049
-  - rid: 983295549385999050
-  - rid: 983295549385999051
-  - rid: 983295549385999052
-  - rid: 983295549385999053
-  - rid: 983295549385999054
-  - rid: 983295549385999055
-  - rid: 983295549385999056
-  - rid: 983295549385999057
-  - rid: 983295549385999058
-  - rid: 983295549385999059
-  - rid: 983295549385999060
-  - rid: 983295549385999061
-  - rid: 983295549385999062
-  - rid: 983295549385999063
-  - rid: 983295549385999064
-  - rid: 983295549385999065
-  - rid: 983295549385999066
-  - rid: 983295549385999067
-  - rid: 983295549385999068
-  - rid: 983295549385999069
-  - rid: 983295549385999070
-  - rid: 983295549385999071
-  - rid: 983295549385999072
-  - rid: 983295549385999073
-  - rid: 983295549385999074
-  - rid: 983295549385999075
-  - rid: 983295549385999076
-  - rid: 983295549385999077
-  - rid: 983295549385999078
-  - rid: 983295549385999079
-  - rid: 983295549385999080
-  - rid: 983295549385999081
-  - rid: 983295549385999082
-  - rid: 983295549385999083
-  - rid: 983295549385999084
-  - rid: 983295549385999085
-  - rid: 983295549385999086
-  - rid: 983295549385999087
-  - rid: 983295549385999088
-  - rid: 983295549385999089
-  - rid: 983295549385999090
-  - rid: 983295549385999091
-  - rid: 983295549385999092
-  - rid: 983295549385999093
-  - rid: 983295549385999094
-  - rid: 983295549385999095
-  - rid: 983295549385999096
-  - rid: 983295549385999097
-  - rid: 983295549385999098
-  - rid: 983295549385999099
-  - rid: 983295549385999100
-  - rid: 983295549385999101
-  - rid: 983295549385999102
-  - rid: 983295549385999103
-  - rid: 983295549385999104
-  - rid: 983295549385999105
-  - rid: 983295549385999106
-  - rid: 983295549385999107
-  - rid: 983295549385999108
-  - rid: 983295549385999109
-  - rid: 983295549385999110
-  - rid: 983295549385999111
-  - rid: 983295549385999112
-  - rid: 983295549385999113
-  - rid: 983295549385999114
-  - rid: 983295549385999115
-  - rid: 983295549385999116
-  - rid: 983295549385999117
-  - rid: 983295549385999118
-  - rid: 983295549385999119
-  - rid: 983295549385999120
-  - rid: 983295549385999121
-  - rid: 983295549385999122
-  - rid: 983295549385999123
-  - rid: 983295549385999124
-  - rid: 983295549385999125
-  - rid: 983295549385999126
-  - rid: 983295549385999127
-  - rid: 983295549385999128
-  - rid: 983295549385999129
-  - rid: 983295549385999130
-  - rid: 983295549385999131
-  - rid: 983295549385999132
-  - rid: 983295549385999133
-  - rid: 983295549385999134
-  - rid: 983295549385999135
-  - rid: 983295549385999136
-  - rid: 983295549385999137
-  - rid: 983295549385999138
-  - rid: 983295549385999139
-  - rid: 983295549385999140
-  - rid: 983295549385999141
-  - rid: 983295549385999142
-  - rid: 983295549385999143
-  - rid: 983295549385999144
-  - rid: 983295549385999145
-  - rid: 983295549385999146
-  - rid: 983295549385999147
-  - rid: 983295549385999148
-  - rid: 983295549385999149
-  - rid: 983295549385999150
-  - rid: 983295549385999151
-  - rid: 983295549385999152
-  - rid: 983295549385999153
-  - rid: 983295549385999154
-  - rid: 983295549385999155
-  - rid: 983295549385999156
-  - rid: 983295549385999157
-  - rid: 983295549385999158
-  - rid: 983295549385999159
-  - rid: 983295549385999160
-  - rid: 983295549385999161
-  - rid: 983295549385999162
-  - rid: 983295549385999163
-  - rid: 983295549385999164
-  - rid: 983295549385999165
-  - rid: 983295549385999166
-  - rid: 983295549385999167
-  - rid: 983295549385999168
-  - rid: 983295549385999169
-  - rid: 983295549385999170
-  - rid: 983295549385999171
-  - rid: 983295549385999172
-  - rid: 983295549385999173
-  - rid: 983295549385999174
-  - rid: 983295549385999175
-  - rid: 983295549385999176
-  - rid: 983295549385999177
-  - rid: 983295549385999178
-  - rid: 983295549385999179
-  - rid: 983295549385999180
-  - rid: 983295549385999181
-  - rid: 983295549385999182
-  - rid: 983295549385999183
-  - rid: 983295549385999184
-  - rid: 983295549385999185
-  - rid: 983295549385999186
-  - rid: 983295549385999187
-  - rid: 983295549385999188
-  - rid: 983295549385999189
-  - rid: 983295549385999190
-  - rid: 983295549385999191
-  - rid: 983295549385999192
-  - rid: 983295549385999193
-  - rid: 983295549385999194
-  - rid: 983295549385999195
-  - rid: 983295549385999196
-  - rid: 983295549385999197
+  - rid: 983295639550689391
+  - rid: 983295639550689392
+  - rid: 983295639550689393
+  - rid: 983295639550689394
+  - rid: 983295639550689395
+  - rid: 983295639550689396
+  - rid: 983295639550689397
+  - rid: 983295639550689398
+  - rid: 983295639550689399
+  - rid: 983295639550689400
+  - rid: 983295639550689401
+  - rid: 983295639550689402
+  - rid: 983295639550689403
+  - rid: 983295639550689404
+  - rid: 983295639550689405
+  - rid: 983295639550689406
+  - rid: 983295639550689407
+  - rid: 983295639550689408
+  - rid: 983295639550689409
+  - rid: 983295639550689410
+  - rid: 983295639550689411
+  - rid: 983295639550689412
+  - rid: 983295639550689413
+  - rid: 983295639550689414
+  - rid: 983295639550689415
+  - rid: 983295639550689416
+  - rid: 983295639550689417
+  - rid: 983295639550689418
+  - rid: 983295639550689419
+  - rid: 983295639550689420
+  - rid: 983295639550689421
+  - rid: 983295639550689422
+  - rid: 983295639550689423
+  - rid: 983295639550689424
+  - rid: 983295639550689425
+  - rid: 983295639550689426
+  - rid: 983295639550689427
+  - rid: 983295639550689428
+  - rid: 983295639550689429
+  - rid: 983295639550689430
+  - rid: 983295639550689431
+  - rid: 983295639550689432
+  - rid: 983295639550689433
+  - rid: 983295639550689434
+  - rid: 983295639550689435
+  - rid: 983295639550689436
+  - rid: 983295639550689437
+  - rid: 983295639550689438
+  - rid: 983295639550689439
+  - rid: 983295639550689440
+  - rid: 983295639550689441
+  - rid: 983295639550689442
+  - rid: 983295639550689443
+  - rid: 983295639550689444
+  - rid: 983295639550689445
+  - rid: 983295639550689446
+  - rid: 983295639550689447
+  - rid: 983295639550689448
+  - rid: 983295639550689449
+  - rid: 983295639550689450
+  - rid: 983295639550689451
+  - rid: 983295639550689452
+  - rid: 983295639550689453
+  - rid: 983295639550689454
+  - rid: 983295639550689455
+  - rid: 983295639550689456
+  - rid: 983295639550689457
+  - rid: 983295639550689458
+  - rid: 983295639550689459
+  - rid: 983295639550689460
+  - rid: 983295639550689461
+  - rid: 983295639550689462
+  - rid: 983295639550689463
+  - rid: 983295639550689464
+  - rid: 983295639550689465
+  - rid: 983295639550689466
+  - rid: 983295639550689467
+  - rid: 983295639550689468
+  - rid: 983295639550689469
+  - rid: 983295639550689470
+  - rid: 983295639550689471
+  - rid: 983295639550689472
+  - rid: 983295639550689473
+  - rid: 983295639550689474
+  - rid: 983295639550689475
+  - rid: 983295639550689476
+  - rid: 983295639550689477
+  - rid: 983295639550689478
+  - rid: 983295639550689479
+  - rid: 983295639550689480
+  - rid: 983295639550689481
+  - rid: 983295639550689482
+  - rid: 983295639550689483
+  - rid: 983295639550689484
+  - rid: 983295639550689485
+  - rid: 983295639550689486
+  - rid: 983295639550689487
+  - rid: 983295639550689488
+  - rid: 983295639550689489
+  - rid: 983295639550689490
+  - rid: 983295639550689491
+  - rid: 983295639550689492
+  - rid: 983295639550689493
+  - rid: 983295639550689494
+  - rid: 983295639550689495
+  - rid: 983295639550689496
+  - rid: 983295639550689497
+  - rid: 983295639550689498
+  - rid: 983295639550689499
+  - rid: 983295639550689500
+  - rid: 983295639550689501
+  - rid: 983295639550689502
+  - rid: 983295639550689503
+  - rid: 983295639550689504
+  - rid: 983295639550689505
+  - rid: 983295639550689506
+  - rid: 983295639550689507
+  - rid: 983295639550689508
+  - rid: 983295639550689509
+  - rid: 983295639550689510
+  - rid: 983295639550689511
+  - rid: 983295639550689512
+  - rid: 983295639550689513
+  - rid: 983295639550689514
+  - rid: 983295639550689515
+  - rid: 983295639550689516
+  - rid: 983295639550689517
+  - rid: 983295639550689518
+  - rid: 983295639550689519
+  - rid: 983295639550689520
+  - rid: 983295639550689521
+  - rid: 983295639550689522
+  - rid: 983295639550689523
+  - rid: 983295639550689524
+  - rid: 983295639550689525
+  - rid: 983295639550689526
+  - rid: 983295639550689527
+  - rid: 983295639550689528
+  - rid: 983295639550689529
+  - rid: 983295639550689530
+  - rid: 983295639550689531
+  - rid: 983295639550689532
+  - rid: 983295639550689533
+  - rid: 983295639550689534
+  - rid: 983295639550689535
+  - rid: 983295639550689536
+  - rid: 983295639550689537
+  - rid: 983295639550689538
+  - rid: 983295639550689539
+  - rid: 983295639550689540
+  - rid: 983295639550689541
+  - rid: 983295639550689542
+  - rid: 983295639550689543
+  - rid: 983295639550689544
+  - rid: 983295639550689545
+  - rid: 983295639550689546
+  - rid: 983295639550689547
+  - rid: 983295639550689548
+  - rid: 983295639550689549
+  - rid: 983295639550689550
+  - rid: 983295639550689551
+  - rid: 983295639550689552
+  - rid: 983295639550689553
+  - rid: 983295639550689554
+  - rid: 983295639550689555
+  - rid: 983295639550689556
+  - rid: 983295639550689557
+  - rid: 983295639550689558
+  - rid: 983295639550689559
+  - rid: 983295639550689560
+  - rid: 983295639550689561
+  - rid: 983295639550689562
+  - rid: 983295639550689563
+  - rid: 983295639550689564
+  - rid: 983295639550689565
+  - rid: 983295639550689566
+  - rid: 983295639550689567
+  - rid: 983295639550689568
+  - rid: 983295639550689569
+  - rid: 983295639550689570
+  - rid: 983295639550689571
+  - rid: 983295639550689572
+  - rid: 983295639550689573
+  - rid: 983295639550689574
+  - rid: 983295639550689575
+  - rid: 983295639550689576
+  - rid: 983295639550689577
+  - rid: 983295639550689578
+  - rid: 983295639550689579
+  - rid: 983295639550689580
+  - rid: 983295639550689581
+  - rid: 983295639550689582
+  - rid: 983295639550689583
+  - rid: 983295639550689584
+  - rid: 983295639550689585
+  - rid: 983295639550689586
+  - rid: 983295639550689587
+  - rid: 983295639550689588
+  - rid: 983295639550689589
+  - rid: 983295639550689590
+  - rid: 983295639550689591
+  - rid: 983295639550689592
+  - rid: 983295639550689593
+  - rid: 983295639550689594
+  - rid: 983295639550689595
+  - rid: 983295639550689596
+  - rid: 983295639550689597
+  - rid: 983295639550689598
+  - rid: 983295639550689599
+  - rid: 983295639550689600
+  - rid: 983295639550689601
+  - rid: 983295639550689602
+  - rid: 983295639550689603
+  - rid: 983295639550689604
+  - rid: 983295639550689605
+  - rid: 983295639550689606
+  - rid: 983295639550689607
+  - rid: 983295639550689608
+  - rid: 983295639550689609
+  - rid: 983295639550689610
+  - rid: 983295639550689611
+  - rid: 983295639550689612
+  - rid: 983295639550689613
+  - rid: 983295639550689614
+  - rid: 983295639550689615
+  - rid: 983295639550689616
+  - rid: 983295639550689617
+  - rid: 983295639550689618
+  - rid: 983295639550689619
+  - rid: 983295639550689620
+  - rid: 983295639550689621
+  - rid: 983295639550689622
+  - rid: 983295639550689623
+  - rid: 983295639550689624
+  - rid: 983295639550689625
+  - rid: 983295639550689626
+  - rid: 983295639550689627
+  - rid: 983295639550689628
+  - rid: 983295639550689629
+  - rid: 983295639550689630
+  - rid: 983295639550689631
+  - rid: 983295639550689632
+  - rid: 983295639550689633
+  - rid: 983295639550689634
+  - rid: 983295639550689635
+  - rid: 983295639550689636
+  - rid: 983295639550689637
+  - rid: 983295639550689638
+  - rid: 983295639550689639
+  - rid: 983295639550689640
+  - rid: 983295639550689641
+  - rid: 983295639550689642
+  - rid: 983295639550689643
+  - rid: 983295639550689644
+  - rid: 983295639550689645
+  - rid: 983295639550689646
+  - rid: 983295639550689647
+  - rid: 983295639550689648
+  - rid: 983295639550689649
+  - rid: 983295639550689650
+  - rid: 983295639550689651
+  - rid: 983295639550689652
+  - rid: 983295639550689653
+  - rid: 983295639550689654
+  - rid: 983295639550689655
+  - rid: 983295639550689656
+  - rid: 983295639550689657
+  - rid: 983295639550689658
+  - rid: 983295639550689659
+  - rid: 983295639550689660
+  - rid: 983295639550689661
+  - rid: 983295639550689662
+  - rid: 983295639550689663
+  - rid: 983295639550689664
+  - rid: 983295639550689665
+  - rid: 983295639550689666
+  - rid: 983295639550689667
+  - rid: 983295639550689668
+  - rid: 983295639550689669
+  - rid: 983295639550689670
+  - rid: 983295639550689671
+  - rid: 983295639550689672
+  - rid: 983295639550689673
+  - rid: 983295639550689674
+  - rid: 983295639550689675
+  - rid: 983295639550689676
   entryPointNodeGuid: 09044617-7ef1-4536-8d28-c817136d675a
   isLocked: 0
   _isLocked: 0
@@ -306,7 +308,7 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 983295549385998912
+    - rid: 983295639550689391
       type: {class: NodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 09044617-7ef1-4536-8d28-c817136d675a
@@ -316,7 +318,7 @@ MonoBehaviour:
         - portValue: Next
           targetNodeGuid: ff4ae94f-c93c-4a5d-8feb-c3059f85f2ee
         isSentCurrent: 0
-    - rid: 983295549385998913
+    - rid: 983295639550689392
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: ff4ae94f-c93c-4a5d-8feb-c3059f85f2ee
@@ -330,7 +332,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 0
         emotion: 0
-    - rid: 983295549385998914
+    - rid: 983295639550689393
       type: {class: ChoiceNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: ded43721-0e1f-402e-99d3-c6f862abfcf6
@@ -349,7 +351,7 @@ MonoBehaviour:
         timerSending: 0
         emotion: 0
         chosenChoiceID: -1
-    - rid: 983295549385998915
+    - rid: 983295639550689394
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: cfd7fea0-c8fe-4d68-9dea-fa941cd41c6d
@@ -363,7 +365,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385998916
+    - rid: 983295639550689395
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: c609863c-fc91-4742-9e9c-3bd0b5f544c1
@@ -378,7 +380,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385998917
+    - rid: 983295639550689396
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 5b6f6211-c2a3-4ce4-93f6-799c8bf57b07
@@ -392,7 +394,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 1
         emotion: 0
-    - rid: 983295549385998918
+    - rid: 983295639550689397
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: dbc0bce7-68c9-44a3-a6f4-6d600b21dada
@@ -406,7 +408,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385998919
+    - rid: 983295639550689398
       type: {class: ChoiceNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: e9d71465-1f5d-4111-ad31-5e0461de0a32
@@ -423,7 +425,7 @@ MonoBehaviour:
         timerSending: 0
         emotion: 0
         chosenChoiceID: -1
-    - rid: 983295549385998920
+    - rid: 983295639550689399
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 266f414a-6b62-4ffe-bc14-134a7649e7a7
@@ -438,7 +440,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385998921
+    - rid: 983295639550689400
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: c9d25932-0b3d-4513-8978-1746e88c6906
@@ -452,7 +454,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385998922
+    - rid: 983295639550689401
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 5a9601c9-e362-48b5-9a11-a76fb4995706
@@ -466,7 +468,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385998923
+    - rid: 983295639550689402
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: bd3a5260-177d-434e-8548-d12c9b3b3c0d
@@ -481,7 +483,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 4
         emotion: 0
-    - rid: 983295549385998924
+    - rid: 983295639550689403
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: f20c9257-eab4-4085-aabf-ba7b95bc5d1f
@@ -495,7 +497,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385998925
+    - rid: 983295639550689404
       type: {class: ChoiceNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 846717b6-0cb2-491f-8d70-64a98cd4eac7
@@ -512,7 +514,7 @@ MonoBehaviour:
         timerSending: 0
         emotion: 0
         chosenChoiceID: -1
-    - rid: 983295549385998926
+    - rid: 983295639550689405
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 1cb93754-eed2-476f-a916-c3126a271850
@@ -526,7 +528,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 0
         emotion: 0
-    - rid: 983295549385998927
+    - rid: 983295639550689406
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 6c839e74-b14e-48f1-b005-2cb3c171ec1c
@@ -540,7 +542,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385998928
+    - rid: 983295639550689407
       type: {class: ChoiceNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 102d2154-8a57-475b-8163-d358b3dc27f9
@@ -557,7 +559,7 @@ MonoBehaviour:
         timerSending: 0
         emotion: 0
         chosenChoiceID: -1
-    - rid: 983295549385998929
+    - rid: 983295639550689408
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 9529b8a7-4d55-4d7e-9337-0287b62c91d8
@@ -571,7 +573,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385998930
+    - rid: 983295639550689409
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 778ab185-80e7-4a6c-9e94-220c358c425d
@@ -585,7 +587,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385998931
+    - rid: 983295639550689410
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 04db3066-2fd5-4b73-aab0-6e5cdad9c37b
@@ -599,7 +601,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385998932
+    - rid: 983295639550689411
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 10b47cc1-7c2d-4fb3-83b6-6dcb87ffa548
@@ -613,7 +615,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385998933
+    - rid: 983295639550689412
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: b6340e5a-ef59-4f15-8d52-3cf4bf0bfa2e
@@ -627,7 +629,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 0
         emotion: 0
-    - rid: 983295549385998934
+    - rid: 983295639550689413
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: cb2de0dd-ba3e-41df-abc1-0f6e5c44c788
@@ -641,7 +643,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 3
         emotion: 0
-    - rid: 983295549385998935
+    - rid: 983295639550689414
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 641c4200-6747-490c-abfc-175d8e3f126d
@@ -655,7 +657,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385998936
+    - rid: 983295639550689415
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 2a5a60ac-5e48-4453-92cd-16c46ee11f49
@@ -669,7 +671,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385998937
+    - rid: 983295639550689416
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 03f219d1-d805-4864-9228-c9738bfbb12e
@@ -683,7 +685,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385998938
+    - rid: 983295639550689417
       type: {class: ChoiceNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 2fbc286a-63d8-40b0-8b4c-75892080e998
@@ -700,7 +702,7 @@ MonoBehaviour:
         timerSending: 0
         emotion: 0
         chosenChoiceID: -1
-    - rid: 983295549385998939
+    - rid: 983295639550689418
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 4c0c5653-00b8-4c5b-a642-71e0f4a29111
@@ -714,7 +716,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385998940
+    - rid: 983295639550689419
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: b500c59c-e62e-4d3b-bdf2-70e837725893
@@ -728,7 +730,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385998941
+    - rid: 983295639550689420
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 22531122-73ba-4356-84a5-f4baf0569b04
@@ -742,7 +744,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385998942
+    - rid: 983295639550689421
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 2fb83ff2-18dd-43bf-9735-28ccc4d3dbda
@@ -756,7 +758,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385998943
+    - rid: 983295639550689422
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 4b6b7358-ea7c-4cc5-8fc1-a86e142ca937
@@ -770,7 +772,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385998944
+    - rid: 983295639550689423
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 745b2815-87cc-4ff3-a9f0-bce951740f49
@@ -784,7 +786,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385998945
+    - rid: 983295639550689424
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 244400eb-5db4-4623-9448-e0f10525be50
@@ -798,7 +800,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385998946
+    - rid: 983295639550689425
       type: {class: AffinityNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: c237ac94-391a-4c7d-8ef7-895cecf6b3c7
@@ -809,7 +811,7 @@ MonoBehaviour:
           targetNodeGuid: d0e8f3db-075c-4015-b4e5-2ce71f7ecba8
         isSentCurrent: 0
         affinityGain: -0.5
-    - rid: 983295549385998947
+    - rid: 983295639550689426
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: d0e8f3db-075c-4015-b4e5-2ce71f7ecba8
@@ -823,7 +825,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385998948
+    - rid: 983295639550689427
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: fee0ae79-1b9e-4333-8d82-c368d71a911e
@@ -837,7 +839,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 3
         emotion: 0
-    - rid: 983295549385998949
+    - rid: 983295639550689428
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: a92a03ad-a6e6-4cbe-b7e8-8dbf86f32ace
@@ -851,7 +853,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385998950
+    - rid: 983295639550689429
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: d238dc70-bb53-4648-b6f2-00fd68334ed9
@@ -866,7 +868,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 4
         emotion: 0
-    - rid: 983295549385998951
+    - rid: 983295639550689430
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 0a0cb7ba-54ef-488a-b908-df08c85767f4
@@ -880,7 +882,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 4
         emotion: 0
-    - rid: 983295549385998952
+    - rid: 983295639550689431
       type: {class: ChoiceNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 3b03c869-4d71-4fc8-8d7e-ea03c1dee29e
@@ -897,7 +899,7 @@ MonoBehaviour:
         timerSending: 0
         emotion: 0
         chosenChoiceID: -1
-    - rid: 983295549385998953
+    - rid: 983295639550689432
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: d1b82d5b-9091-4c02-bc30-02b2552d6e1a
@@ -911,7 +913,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 1
         emotion: 0
-    - rid: 983295549385998954
+    - rid: 983295639550689433
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: e6f09222-93a6-499e-bef8-da715cfe94ab
@@ -925,7 +927,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 4
         emotion: 0
-    - rid: 983295549385998955
+    - rid: 983295639550689434
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 9afad2ac-e0aa-4ebe-8e40-61f09444ff4c
@@ -939,7 +941,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 3
         emotion: 0
-    - rid: 983295549385998956
+    - rid: 983295639550689435
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 8b4b063d-20e0-4261-a9db-7339fa94b299
@@ -953,7 +955,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385998957
+    - rid: 983295639550689436
       type: {class: ChoiceNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 97aed529-d7f8-42df-9f31-5bbd7ee28857
@@ -970,7 +972,7 @@ MonoBehaviour:
         timerSending: 0
         emotion: 0
         chosenChoiceID: -1
-    - rid: 983295549385998958
+    - rid: 983295639550689437
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 0825f778-0e35-452e-bca9-86db94df9915
@@ -984,7 +986,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385998959
+    - rid: 983295639550689438
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: f7779131-eeef-4e9e-aa80-4b8188f70754
@@ -998,7 +1000,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385998960
+    - rid: 983295639550689439
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 9c530ef9-3a59-4ca5-af45-31fb9eb20287
@@ -1012,7 +1014,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385998961
+    - rid: 983295639550689440
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 4977d776-32e0-486f-a6fd-065143fce9a9
@@ -1026,7 +1028,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 0
         emotion: 0
-    - rid: 983295549385998962
+    - rid: 983295639550689441
       type: {class: AffinityNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 4d4b9f74-caaa-409b-a2e9-c23d5bdaa5c1
@@ -1037,7 +1039,7 @@ MonoBehaviour:
           targetNodeGuid: 4977d776-32e0-486f-a6fd-065143fce9a9
         isSentCurrent: 0
         affinityGain: -2
-    - rid: 983295549385998963
+    - rid: 983295639550689442
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: cc05b74c-28d2-4bbb-b4ef-1601a65c1828
@@ -1051,7 +1053,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385998964
+    - rid: 983295639550689443
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 2427b46a-7dab-4e00-8dac-1320a340686a
@@ -1066,7 +1068,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385998965
+    - rid: 983295639550689444
       type: {class: AffinityNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: d7e2d67c-1d4c-4b97-8c4c-903bcc4a2deb
@@ -1077,7 +1079,7 @@ MonoBehaviour:
           targetNodeGuid: 98f6a953-add7-4a48-afd6-0ced83c70eb9
         isSentCurrent: 0
         affinityGain: 0.5
-    - rid: 983295549385998966
+    - rid: 983295639550689445
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 98f6a953-add7-4a48-afd6-0ced83c70eb9
@@ -1091,7 +1093,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 0
         emotion: 0
-    - rid: 983295549385998967
+    - rid: 983295639550689446
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: d8950d2b-80f4-4bde-a903-a5ff372614a7
@@ -1105,7 +1107,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385998968
+    - rid: 983295639550689447
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 772b4ad7-9a3c-48ff-ada7-74c96ec4ed14
@@ -1119,7 +1121,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385998969
+    - rid: 983295639550689448
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: dc21ac20-dca1-4b6e-853d-9da548f27ee2
@@ -1133,7 +1135,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 3
         emotion: 0
-    - rid: 983295549385998970
+    - rid: 983295639550689449
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: a32983ab-84e5-4159-b236-98c9c6f4fca5
@@ -1147,7 +1149,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 3
         emotion: 0
-    - rid: 983295549385998971
+    - rid: 983295639550689450
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 5e07b0cc-7f37-495e-ab78-267508198efa
@@ -1161,7 +1163,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385998972
+    - rid: 983295639550689451
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 33b8a3f2-9733-4543-9de7-a149f64e6112
@@ -1175,7 +1177,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385998973
+    - rid: 983295639550689452
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: b15450c3-13c7-4add-9b22-6f761ef4df5d
@@ -1189,7 +1191,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 3
         emotion: 0
-    - rid: 983295549385998974
+    - rid: 983295639550689453
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 1df53c3b-3d8e-4f10-ba42-852fde9c3d63
@@ -1203,7 +1205,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 1
         emotion: 0
-    - rid: 983295549385998975
+    - rid: 983295639550689454
       type: {class: UnlockNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: f7b441d4-d721-456f-a371-4ddb0e5e4ced
@@ -1215,7 +1217,7 @@ MonoBehaviour:
         isSentCurrent: 0
         characterID: Sacha
         dialogueID: D_Sacha_1
-    - rid: 983295549385998976
+    - rid: 983295639550689455
       type: {class: ChoiceNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 23613c3b-4cc5-4b45-b6a0-d4665352f793
@@ -1232,7 +1234,7 @@ MonoBehaviour:
         timerSending: 0
         emotion: 0
         chosenChoiceID: -1
-    - rid: 983295549385998977
+    - rid: 983295639550689456
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 67af6f5c-745b-423e-a5e3-d32987ef37ae
@@ -1246,7 +1248,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385998978
+    - rid: 983295639550689457
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: b3a73adb-9476-44c0-968e-44d0dc78c50d
@@ -1260,7 +1262,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385998979
+    - rid: 983295639550689458
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: ff8f51d8-c2ba-4ba5-ac1e-261585f21594
@@ -1274,7 +1276,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 1
         emotion: 0
-    - rid: 983295549385998980
+    - rid: 983295639550689459
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 3a79257b-e2bd-4eb0-9d7b-c54e32d55975
@@ -1288,7 +1290,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 4
         emotion: 0
-    - rid: 983295549385998981
+    - rid: 983295639550689460
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 9bd68c89-0af3-4e47-9e9a-3baa5e9c4abc
@@ -1302,7 +1304,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385998982
+    - rid: 983295639550689461
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 982873dd-7e84-4547-9bec-e7b34144554b
@@ -1316,7 +1318,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385998983
+    - rid: 983295639550689462
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 12052f63-a7f5-4fdf-8004-472e05879222
@@ -1330,7 +1332,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385998984
+    - rid: 983295639550689463
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 14803a5a-b543-4a79-8e22-10761ea35b2b
@@ -1345,7 +1347,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 4
         emotion: 0
-    - rid: 983295549385998985
+    - rid: 983295639550689464
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 46a5d535-f22a-4003-a1af-37d5f0d4cf9a
@@ -1359,7 +1361,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 3
         emotion: 0
-    - rid: 983295549385998986
+    - rid: 983295639550689465
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 1accc5cf-e119-471e-9601-ef1240785040
@@ -1373,7 +1375,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 0
         emotion: 0
-    - rid: 983295549385998987
+    - rid: 983295639550689466
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: efafbcd8-e57d-4668-8ce0-9d89fd97775f
@@ -1387,7 +1389,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385998988
+    - rid: 983295639550689467
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 0ed51ec5-823d-429a-8863-80ed8d375275
@@ -1401,7 +1403,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385998989
+    - rid: 983295639550689468
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 5f6d5a83-fcb6-40b8-8c23-f73f8a62085d
@@ -1416,7 +1418,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 4
         emotion: 0
-    - rid: 983295549385998990
+    - rid: 983295639550689469
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 00b9e4c2-664a-4171-bb1a-9185b55bd18e
@@ -1430,7 +1432,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385998991
+    - rid: 983295639550689470
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: dfa9bbdf-4996-4033-9853-f17dfb60f288
@@ -1444,7 +1446,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 3
         emotion: 0
-    - rid: 983295549385998992
+    - rid: 983295639550689471
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 5ae35bef-c005-4e04-9635-1f7e52951e76
@@ -1459,7 +1461,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 4
         emotion: 0
-    - rid: 983295549385998993
+    - rid: 983295639550689472
       type: {class: ChoiceNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 7570932a-6e8f-4721-943e-dd5b79473d79
@@ -1476,7 +1478,7 @@ MonoBehaviour:
         timerSending: 0
         emotion: 0
         chosenChoiceID: -1
-    - rid: 983295549385998994
+    - rid: 983295639550689473
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: d1a006e0-d6c5-43d5-b723-f6b32e7e745d
@@ -1490,7 +1492,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385998995
+    - rid: 983295639550689474
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 96ab0894-9e66-423f-8758-a48db49ba76f
@@ -1504,7 +1506,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 3
         emotion: 0
-    - rid: 983295549385998996
+    - rid: 983295639550689475
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 2a76ecf3-c1a9-4a17-8e8d-78958f59551b
@@ -1518,7 +1520,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 3
         emotion: 0
-    - rid: 983295549385998997
+    - rid: 983295639550689476
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: a84e3ba5-6068-4b0b-831d-fa4dd2893a36
@@ -1533,7 +1535,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 4
         emotion: 0
-    - rid: 983295549385998998
+    - rid: 983295639550689477
       type: {class: ChoiceNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 4f68f3fc-3695-48f3-8e29-dabe926b8c29
@@ -1550,7 +1552,7 @@ MonoBehaviour:
         timerSending: 0
         emotion: 0
         chosenChoiceID: -1
-    - rid: 983295549385998999
+    - rid: 983295639550689478
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: d28a24f7-3291-452d-8a68-88c070397729
@@ -1564,7 +1566,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999000
+    - rid: 983295639550689479
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 2fcbd443-5448-4e31-be30-bfdf14d7017d
@@ -1578,7 +1580,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385999001
+    - rid: 983295639550689480
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 6646bae6-1a05-4501-a47e-286d2d0be8ba
@@ -1592,7 +1594,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385999002
+    - rid: 983295639550689481
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: e33d7872-0582-4131-8533-902c0e609b46
@@ -1606,7 +1608,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385999003
+    - rid: 983295639550689482
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 4854ab0c-562f-4940-a4f9-49a51ae11579
@@ -1620,7 +1622,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999004
+    - rid: 983295639550689483
       type: {class: ChoiceNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: dcec5b61-c128-4d5a-b2dd-c0a217bbc702
@@ -1637,7 +1639,7 @@ MonoBehaviour:
         timerSending: 0
         emotion: 0
         chosenChoiceID: -1
-    - rid: 983295549385999005
+    - rid: 983295639550689484
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 0c4cfa85-5df3-49ab-834a-81b40f6dfab8
@@ -1651,7 +1653,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385999006
+    - rid: 983295639550689485
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 4b577dcd-028e-4587-be54-dde0931a3a03
@@ -1665,7 +1667,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385999007
+    - rid: 983295639550689486
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 3c5ed2d5-c227-4b8d-a385-19c7daf4e508
@@ -1679,7 +1681,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 3
         emotion: 0
-    - rid: 983295549385999008
+    - rid: 983295639550689487
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: b97087dc-4603-430f-ad3a-54fb234ebd2d
@@ -1694,7 +1696,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999009
+    - rid: 983295639550689488
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 2a1996a9-d1e5-4a9e-9f37-b73f2c39ffe4
@@ -1708,7 +1710,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999010
+    - rid: 983295639550689489
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 0e4013e0-2800-4ab0-a8bc-c6e1121e9ed4
@@ -1723,7 +1725,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999011
+    - rid: 983295639550689490
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 93b9b3e3-0349-445e-bab8-92b421e421b4
@@ -1737,7 +1739,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385999012
+    - rid: 983295639550689491
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: c1cdf9f4-c085-4ff4-ae02-b269972f45e8
@@ -1751,7 +1753,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385999013
+    - rid: 983295639550689492
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: d278f3a7-3f42-422f-9431-30d875627581
@@ -1765,7 +1767,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999014
+    - rid: 983295639550689493
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: c78e7f3a-b4d6-4496-ac62-eb23b90c64db
@@ -1779,7 +1781,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999015
+    - rid: 983295639550689494
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 3fca006f-e26c-4662-86b2-f04e4aa3d3be
@@ -1793,7 +1795,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999016
+    - rid: 983295639550689495
       type: {class: ChoiceNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: dfe72632-db46-4ee2-9323-3e3d1ea018e9
@@ -1810,7 +1812,7 @@ MonoBehaviour:
         timerSending: 0
         emotion: 0
         chosenChoiceID: -1
-    - rid: 983295549385999017
+    - rid: 983295639550689496
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 295cbf27-4f24-4120-a8e8-6691094e91d9
@@ -1824,7 +1826,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999018
+    - rid: 983295639550689497
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: f8d1aaa3-3616-4afd-85fe-9b89331bd38c
@@ -1838,7 +1840,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385999019
+    - rid: 983295639550689498
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: f203347e-2907-4b3f-9c0d-a2a6b9be893d
@@ -1852,7 +1854,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999020
+    - rid: 983295639550689499
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 35302ba6-e548-44c1-8c06-db16663c822c
@@ -1866,7 +1868,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385999021
+    - rid: 983295639550689500
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: ca74c779-d3b9-4b66-9658-2f8f31109a4a
@@ -1880,7 +1882,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999022
+    - rid: 983295639550689501
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 9f234bcc-ddf9-4df1-b843-734b18ed37e6
@@ -1894,7 +1896,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385999023
+    - rid: 983295639550689502
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: fd630605-921a-466c-9c45-c159e6c3865b
@@ -1908,7 +1910,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 3
         emotion: 0
-    - rid: 983295549385999024
+    - rid: 983295639550689503
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 4b735249-379f-408c-8792-91f265542f69
@@ -1922,7 +1924,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385999025
+    - rid: 983295639550689504
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: dcbe59ec-470a-441b-8e5f-9c4507a7bd5c
@@ -1936,7 +1938,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999026
+    - rid: 983295639550689505
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: b0943f55-5ae9-4683-82f9-02670b827e06
@@ -1951,7 +1953,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 4
         emotion: 0
-    - rid: 983295549385999027
+    - rid: 983295639550689506
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 963c4096-c2ba-422e-a383-3f4ff8189251
@@ -1966,7 +1968,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 5
         emotion: 0
-    - rid: 983295549385999028
+    - rid: 983295639550689507
       type: {class: ChoiceNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 6fe66942-3a9d-46e9-b091-d1b34d6eeadd
@@ -1983,7 +1985,7 @@ MonoBehaviour:
         timerSending: 0
         emotion: 0
         chosenChoiceID: -1
-    - rid: 983295549385999029
+    - rid: 983295639550689508
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: d850fc92-f620-473e-ad08-0e1fa3f9041a
@@ -1997,7 +1999,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999030
+    - rid: 983295639550689509
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 86a7adf4-6746-40ab-84fa-b3751c028a7a
@@ -2011,7 +2013,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999031
+    - rid: 983295639550689510
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 7bea7612-b964-4e09-abfa-40a50623eb2b
@@ -2026,7 +2028,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999032
+    - rid: 983295639550689511
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 9f3d16a5-5dbe-4ef6-a3bf-bc38cb3b6023
@@ -2040,7 +2042,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999033
+    - rid: 983295639550689512
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 90219d6b-ebe0-4e17-8fb3-aa518e96d186
@@ -2054,7 +2056,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999034
+    - rid: 983295639550689513
       type: {class: AffinityNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: fd87357a-584b-42ae-bd62-e3f0f5ae83a7
@@ -2065,7 +2067,7 @@ MonoBehaviour:
           targetNodeGuid: 581ac38b-e4d0-4d8d-954f-4aaead3f0f10
         isSentCurrent: 0
         affinityGain: -0.5
-    - rid: 983295549385999035
+    - rid: 983295639550689514
       type: {class: AffinityNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 296fb0ac-f06c-490a-9769-19bb1c08e27e
@@ -2076,7 +2078,7 @@ MonoBehaviour:
           targetNodeGuid: deb24e3b-e2a8-4c8b-865a-9b8973939bbc
         isSentCurrent: 0
         affinityGain: 0.5
-    - rid: 983295549385999036
+    - rid: 983295639550689515
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 62f6d51f-757f-4f02-9fc6-0fc7ae4137a1
@@ -2090,7 +2092,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385999037
+    - rid: 983295639550689516
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 581ac38b-e4d0-4d8d-954f-4aaead3f0f10
@@ -2104,7 +2106,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999038
+    - rid: 983295639550689517
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: deb24e3b-e2a8-4c8b-865a-9b8973939bbc
@@ -2118,7 +2120,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385999039
+    - rid: 983295639550689518
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: a271ba90-aa8d-476c-96ae-4afafd71cbe5
@@ -2132,7 +2134,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 4
         emotion: 0
-    - rid: 983295549385999040
+    - rid: 983295639550689519
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 6f418b2f-7bac-4d28-bee1-472dc34d27ee
@@ -2146,7 +2148,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 3
         emotion: 0
-    - rid: 983295549385999041
+    - rid: 983295639550689520
       type: {class: ChoiceNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 6d50ca47-e89e-47bd-ad3e-bfafd58a1ede
@@ -2163,7 +2165,7 @@ MonoBehaviour:
         timerSending: 0
         emotion: 0
         chosenChoiceID: -1
-    - rid: 983295549385999042
+    - rid: 983295639550689521
       type: {class: UnlockNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: f2f6bc38-a633-4bb5-81b6-7838ffd6caa3
@@ -2175,7 +2177,7 @@ MonoBehaviour:
         isSentCurrent: 0
         characterID: Sacha
         dialogueID: D_Sacha_1
-    - rid: 983295549385999043
+    - rid: 983295639550689522
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 88733f80-c6d6-4708-b40e-d536e12bc6d9
@@ -2189,7 +2191,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999044
+    - rid: 983295639550689523
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: ef156795-e653-4f76-a585-6e84183692e7
@@ -2203,7 +2205,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999045
+    - rid: 983295639550689524
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 46841b0c-a060-4f37-83c1-88efd3147cb8
@@ -2217,7 +2219,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999046
+    - rid: 983295639550689525
       type: {class: AffinityNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 529c6ba8-9458-48a9-a746-c909333ea8cd
@@ -2228,7 +2230,7 @@ MonoBehaviour:
           targetNodeGuid: b880a87d-b77a-4d0e-a5c2-c13bd44da266
         isSentCurrent: 0
         affinityGain: -2
-    - rid: 983295549385999047
+    - rid: 983295639550689526
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 5669fd36-0a9f-4800-bf59-f952629bdeb3
@@ -2242,7 +2244,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 3
         emotion: 0
-    - rid: 983295549385999048
+    - rid: 983295639550689527
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: b880a87d-b77a-4d0e-a5c2-c13bd44da266
@@ -2256,7 +2258,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385999049
+    - rid: 983295639550689528
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 40c82a32-c7d3-4b49-bba7-1dfbcb349e47
@@ -2270,7 +2272,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 3
         emotion: 0
-    - rid: 983295549385999050
+    - rid: 983295639550689529
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: d9638e9b-bc2c-438c-a649-4a387a60e3c2
@@ -2284,7 +2286,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999051
+    - rid: 983295639550689530
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: e3fa664f-909f-45e0-bc0d-82c0e490b322
@@ -2298,7 +2300,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385999052
+    - rid: 983295639550689531
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 0614550c-a22d-4e0b-889c-ac466f74a4bd
@@ -2312,7 +2314,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 3
         emotion: 0
-    - rid: 983295549385999053
+    - rid: 983295639550689532
       type: {class: ChoiceNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: d79b4fe6-f6d0-44a5-9b18-e7c33dd33f1c
@@ -2329,7 +2331,7 @@ MonoBehaviour:
         timerSending: 0
         emotion: 0
         chosenChoiceID: -1
-    - rid: 983295549385999054
+    - rid: 983295639550689533
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 45332484-59e6-4428-aec0-d20cfa99f4cc
@@ -2343,7 +2345,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999055
+    - rid: 983295639550689534
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 0b3a54ba-012a-4ef4-ac15-07ff92ae283f
@@ -2357,7 +2359,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999056
+    - rid: 983295639550689535
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 2b336964-b56a-4815-9ec8-435df4c11130
@@ -2371,7 +2373,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 3
         emotion: 0
-    - rid: 983295549385999057
+    - rid: 983295639550689536
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 6a36ea2a-d90a-4db0-8449-81fe68825001
@@ -2385,7 +2387,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 4
         emotion: 0
-    - rid: 983295549385999058
+    - rid: 983295639550689537
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: bdb09ea1-3f35-49fd-9099-0ba8145941a8
@@ -2399,7 +2401,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 3
         emotion: 0
-    - rid: 983295549385999059
+    - rid: 983295639550689538
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 15271ff0-ee0a-464a-b017-426d8b7b35a8
@@ -2413,7 +2415,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999060
+    - rid: 983295639550689539
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 7f218e03-6a43-4629-aa40-0ca235e1c285
@@ -2427,7 +2429,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999061
+    - rid: 983295639550689540
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 6061578f-7e8d-4102-b6e3-57d6355184be
@@ -2441,7 +2443,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 3
         emotion: 0
-    - rid: 983295549385999062
+    - rid: 983295639550689541
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 7ff08f7a-4498-4bb6-98e4-65ae4c12ffb2
@@ -2455,7 +2457,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 4
         emotion: 0
-    - rid: 983295549385999063
+    - rid: 983295639550689542
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 5861b881-9b26-44e2-90aa-e7d03cc41adc
@@ -2469,7 +2471,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999064
+    - rid: 983295639550689543
       type: {class: AffinityNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 29498ce0-a7a0-4361-ac82-14d2c7346377
@@ -2480,7 +2482,7 @@ MonoBehaviour:
           targetNodeGuid: 6177b39e-2814-48fa-b2cd-4aa239345ed6
         isSentCurrent: 0
         affinityGain: -0.5
-    - rid: 983295549385999065
+    - rid: 983295639550689544
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 6177b39e-2814-48fa-b2cd-4aa239345ed6
@@ -2494,7 +2496,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999066
+    - rid: 983295639550689545
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 54176b35-737e-48c3-bfe8-92c1e4f5b2bd
@@ -2508,7 +2510,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999067
+    - rid: 983295639550689546
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: dc1b6a7a-03b5-4121-b533-de2624a8cb55
@@ -2522,7 +2524,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999068
+    - rid: 983295639550689547
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 1bf51e05-c177-4468-b2e0-2243bb9bca80
@@ -2536,7 +2538,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999069
+    - rid: 983295639550689548
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 3bc180b0-7ba4-4e62-a3a7-60a2caf7ad36
@@ -2550,7 +2552,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 3
         emotion: 0
-    - rid: 983295549385999070
+    - rid: 983295639550689549
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 7177c902-94cc-4897-a06c-681c322fad2a
@@ -2564,7 +2566,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999071
+    - rid: 983295639550689550
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 90523d15-326d-4775-a6ae-96ca9a01f974
@@ -2578,7 +2580,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385999072
+    - rid: 983295639550689551
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: e5a33d33-ec24-4a3d-99a0-ce07b11a70be
@@ -2593,7 +2595,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 4
         emotion: 0
-    - rid: 983295549385999073
+    - rid: 983295639550689552
       type: {class: ChoiceNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 3fa515e7-4784-4a97-92b2-e96de010dd28
@@ -2610,7 +2612,7 @@ MonoBehaviour:
         timerSending: 0
         emotion: 0
         chosenChoiceID: -1
-    - rid: 983295549385999074
+    - rid: 983295639550689553
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 8a323538-6ee1-40fd-ab32-806a502a3094
@@ -2624,7 +2626,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999075
+    - rid: 983295639550689554
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: c76ecce4-f4aa-48f3-a50c-43d481b364e8
@@ -2638,7 +2640,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999076
+    - rid: 983295639550689555
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: b60786c4-0a18-495d-a113-95f911f7aace
@@ -2652,7 +2654,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999077
+    - rid: 983295639550689556
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 5550171c-7781-40e7-bde3-68fc5166de8d
@@ -2667,7 +2669,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 4
         emotion: 0
-    - rid: 983295549385999078
+    - rid: 983295639550689557
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 679331d7-0fc1-46be-ac89-37253e9978fd
@@ -2681,7 +2683,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999079
+    - rid: 983295639550689558
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 967d1619-80ef-4f85-b3f1-45a452282207
@@ -2696,7 +2698,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 4
         emotion: 0
-    - rid: 983295549385999080
+    - rid: 983295639550689559
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: e7c8f0d8-a612-4d7d-88b6-87c30947ed50
@@ -2710,7 +2712,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 3
         emotion: 0
-    - rid: 983295549385999081
+    - rid: 983295639550689560
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: d8130642-16bc-419b-a1b7-26e227ab561f
@@ -2724,7 +2726,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 3
         emotion: 0
-    - rid: 983295549385999082
+    - rid: 983295639550689561
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 26b27eab-8187-4b80-926a-a9f439f3d357
@@ -2738,7 +2740,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 1
         emotion: 0
-    - rid: 983295549385999083
+    - rid: 983295639550689562
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 38c344e1-b361-4caf-ab05-f792fa449f53
@@ -2752,7 +2754,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999084
+    - rid: 983295639550689563
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 9c196dfb-7be9-4ae2-a72b-1c00d9439868
@@ -2766,7 +2768,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999085
+    - rid: 983295639550689564
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 9e116ece-48ca-492c-8f22-1c73a6029942
@@ -2780,7 +2782,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999086
+    - rid: 983295639550689565
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: eed58b28-1698-45c6-9609-57505efe7961
@@ -2794,7 +2796,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999087
+    - rid: 983295639550689566
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: d179d72a-847e-486a-9bee-f41b3630e245
@@ -2809,7 +2811,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999088
+    - rid: 983295639550689567
       type: {class: AffinityNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 1cdb0467-3dd0-4dcc-bbf0-50c485d53113
@@ -2820,7 +2822,7 @@ MonoBehaviour:
           targetNodeGuid: a4f4c630-c489-4dc6-841c-38fc03ab915b
         isSentCurrent: 0
         affinityGain: -0.5
-    - rid: 983295549385999089
+    - rid: 983295639550689568
       type: {class: AffinityNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: ebb00aa0-c7a0-4f4a-aed9-62781fa7927c
@@ -2831,7 +2833,7 @@ MonoBehaviour:
           targetNodeGuid: c502405c-fff2-48db-a70e-fad824b944c3
         isSentCurrent: 0
         affinityGain: 0.5
-    - rid: 983295549385999090
+    - rid: 983295639550689569
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: a4f4c630-c489-4dc6-841c-38fc03ab915b
@@ -2845,7 +2847,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 4
         emotion: 0
-    - rid: 983295549385999091
+    - rid: 983295639550689570
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: fc9b38bd-e607-4d10-9c13-6b956aca8fb3
@@ -2859,7 +2861,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385999092
+    - rid: 983295639550689571
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: ff2364ea-4731-4acb-b0bf-985f6bb1cd52
@@ -2873,7 +2875,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385999093
+    - rid: 983295639550689572
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: c502405c-fff2-48db-a70e-fad824b944c3
@@ -2887,7 +2889,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999094
+    - rid: 983295639550689573
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 0f3da989-88c1-444d-8b0c-c1750a220c59
@@ -2902,7 +2904,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 4
         emotion: 0
-    - rid: 983295549385999095
+    - rid: 983295639550689574
       type: {class: ChoiceNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 9f63d2a8-9568-4fd6-b969-0e44e3f91f75
@@ -2919,7 +2921,7 @@ MonoBehaviour:
         timerSending: 0
         emotion: 0
         chosenChoiceID: -1
-    - rid: 983295549385999096
+    - rid: 983295639550689575
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 8736ccfd-53ca-4042-8de4-632347498b6a
@@ -2933,7 +2935,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 3
         emotion: 0
-    - rid: 983295549385999097
+    - rid: 983295639550689576
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: de09e433-3a31-412a-b3f4-8dbd276106b0
@@ -2947,7 +2949,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999098
+    - rid: 983295639550689577
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: f68743dc-7255-4263-b715-a76f704324ba
@@ -2961,7 +2963,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999099
+    - rid: 983295639550689578
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: dbc70867-4cf6-44b1-93ad-4950a208ffb4
@@ -2975,7 +2977,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999100
+    - rid: 983295639550689579
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: ccfedb54-dd11-4f76-96f3-32c394200e8a
@@ -2990,7 +2992,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999101
+    - rid: 983295639550689580
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: c02a3364-e06c-463d-acde-87356dacd2e8
@@ -3004,7 +3006,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 3
         emotion: 0
-    - rid: 983295549385999102
+    - rid: 983295639550689581
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: ca7ea89f-1b71-4d85-90af-46272040e604
@@ -3018,7 +3020,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 4
         emotion: 0
-    - rid: 983295549385999103
+    - rid: 983295639550689582
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 013aea4e-ab99-4358-ae26-1da73089f9b7
@@ -3032,7 +3034,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385999104
+    - rid: 983295639550689583
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: d8a1e0f5-6044-4e8e-ad1a-3183da6e96aa
@@ -3046,7 +3048,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385999105
+    - rid: 983295639550689584
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: dfba3411-bce2-4856-9ae4-153428dba45c
@@ -3061,7 +3063,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 5
         emotion: 0
-    - rid: 983295549385999106
+    - rid: 983295639550689585
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 5a264713-8003-49f4-a827-3f2ad19b30e9
@@ -3075,7 +3077,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999107
+    - rid: 983295639550689586
       type: {class: ChoiceNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: a42a4a46-b390-4599-8e04-579ca006e01d
@@ -3092,7 +3094,7 @@ MonoBehaviour:
         timerSending: 0
         emotion: 0
         chosenChoiceID: -1
-    - rid: 983295549385999108
+    - rid: 983295639550689587
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 025f623d-72ba-4203-9bc7-cf5c2e912f12
@@ -3107,7 +3109,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999109
+    - rid: 983295639550689588
       type: {class: ChoiceNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 9fb3d05c-33c0-43fb-b125-9b9817c953a4
@@ -3124,7 +3126,7 @@ MonoBehaviour:
         timerSending: 0
         emotion: 0
         chosenChoiceID: -1
-    - rid: 983295549385999110
+    - rid: 983295639550689589
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 1b57c69d-c105-470b-a4d2-55b25afd3c9d
@@ -3138,7 +3140,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999111
+    - rid: 983295639550689590
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 15f24508-aa66-4a32-ac9b-98874dd817c2
@@ -3152,7 +3154,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999112
+    - rid: 983295639550689591
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: bf512d64-5b39-4e51-b6cc-1eb9cd3af894
@@ -3167,7 +3169,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999113
+    - rid: 983295639550689592
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 8d07f5df-9a48-453b-8e8f-1a2da7eb56d0
@@ -3181,7 +3183,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999114
+    - rid: 983295639550689593
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 90a59586-6672-4aa9-8db7-f2cfc05f7e50
@@ -3195,7 +3197,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999115
+    - rid: 983295639550689594
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: a70f8314-ea7e-4873-870e-f76a5c263eae
@@ -3209,7 +3211,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385999116
+    - rid: 983295639550689595
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: a56e531b-b68f-4e7b-8125-0c1554609a6d
@@ -3224,7 +3226,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 4
         emotion: 0
-    - rid: 983295549385999117
+    - rid: 983295639550689596
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 1def2d69-968a-4363-98c3-7e5de3c7a14a
@@ -3239,7 +3241,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 5
         emotion: 0
-    - rid: 983295549385999118
+    - rid: 983295639550689597
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 97ddc1c8-d51b-48d1-8405-287fda9d3653
@@ -3253,7 +3255,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 5
         emotion: 0
-    - rid: 983295549385999119
+    - rid: 983295639550689598
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 134862bb-1588-4407-981e-fdd04fa78425
@@ -3267,7 +3269,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 3
         emotion: 0
-    - rid: 983295549385999120
+    - rid: 983295639550689599
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 377f0190-f3d8-4e98-a4d7-41dc1a0d7cd4
@@ -3282,7 +3284,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 5
         emotion: 0
-    - rid: 983295549385999121
+    - rid: 983295639550689600
       type: {class: ChoiceNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: fd1e5009-d917-41ff-a309-7bee5f2fe9ed
@@ -3299,7 +3301,7 @@ MonoBehaviour:
         timerSending: 0
         emotion: 0
         chosenChoiceID: -1
-    - rid: 983295549385999122
+    - rid: 983295639550689601
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: ce0e6a41-6bab-4e3b-ac34-12d6dcc8f505
@@ -3313,7 +3315,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999123
+    - rid: 983295639550689602
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 21613d4c-2274-4eed-bd0b-98abcf5fdedf
@@ -3327,7 +3329,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999124
+    - rid: 983295639550689603
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 997a9c78-f1a7-475d-8f58-c4a6f61d154a
@@ -3341,7 +3343,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999125
+    - rid: 983295639550689604
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: c6682a55-0312-4ae7-b89f-53f23cc468f2
@@ -3356,7 +3358,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999126
+    - rid: 983295639550689605
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: b8df5615-bf41-4112-b59e-b4bd9eb94ebd
@@ -3370,7 +3372,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385999127
+    - rid: 983295639550689606
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 819a0539-b32f-4395-a408-5f27c3eac566
@@ -3385,7 +3387,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 4
         emotion: 0
-    - rid: 983295549385999128
+    - rid: 983295639550689607
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 8cb6764c-a944-4320-a4c7-ad041c0b7f3f
@@ -3400,7 +3402,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 3
         emotion: 0
-    - rid: 983295549385999129
+    - rid: 983295639550689608
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 18048233-761f-4f0b-810d-16ff645ac822
@@ -3414,7 +3416,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385999130
+    - rid: 983295639550689609
       type: {class: ChoiceNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 8b64009e-458a-49e1-aaf5-431a39d7886f
@@ -3431,7 +3433,7 @@ MonoBehaviour:
         timerSending: 0
         emotion: 0
         chosenChoiceID: -1
-    - rid: 983295549385999131
+    - rid: 983295639550689610
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: ec2c7072-3d2a-46ec-83fe-d27d63f3057e
@@ -3445,7 +3447,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999132
+    - rid: 983295639550689611
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 5a157041-e89c-4f5f-bc7b-7543471d6b70
@@ -3459,7 +3461,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999133
+    - rid: 983295639550689612
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 46984ecd-6849-4fc3-9fe9-5162292e1bb4
@@ -3473,7 +3475,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385999134
+    - rid: 983295639550689613
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: df1cb59a-1d5c-47c5-ae98-b2046a7c3d87
@@ -3487,7 +3489,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385999135
+    - rid: 983295639550689614
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 59df4fe4-48a4-4092-8e2c-a86860157b9d
@@ -3501,7 +3503,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 3
         emotion: 0
-    - rid: 983295549385999136
+    - rid: 983295639550689615
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 2448301e-93c8-4109-b098-6eb85dcd2fef
@@ -3515,7 +3517,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 1
         emotion: 0
-    - rid: 983295549385999137
+    - rid: 983295639550689616
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 64ff209c-0984-4a96-9b38-0cee864941f3
@@ -3529,7 +3531,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 3
         emotion: 0
-    - rid: 983295549385999138
+    - rid: 983295639550689617
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 8a50dfc2-44c4-4190-bfbe-060e45dea4b3
@@ -3543,7 +3545,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385999139
+    - rid: 983295639550689618
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: d9717cce-3d6b-434e-a3fd-174e26fce75b
@@ -3557,7 +3559,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999140
+    - rid: 983295639550689619
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 88738ef4-9990-468c-9a96-db466eba88bd
@@ -3572,7 +3574,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 3
         emotion: 0
-    - rid: 983295549385999141
+    - rid: 983295639550689620
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 5fbac0aa-47bd-4c4e-ba8f-39e646370821
@@ -3586,7 +3588,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999142
+    - rid: 983295639550689621
       type: {class: ChoiceNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 295e4ee7-72dd-4ddc-bae3-3d11887df0a1
@@ -3603,7 +3605,7 @@ MonoBehaviour:
         timerSending: 0
         emotion: 0
         chosenChoiceID: -1
-    - rid: 983295549385999143
+    - rid: 983295639550689622
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 820d50b6-75cb-4711-ae8f-73a072a35a5e
@@ -3617,7 +3619,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999144
+    - rid: 983295639550689623
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 60de9bc6-3459-471f-a03a-a7bd5c1f50de
@@ -3631,7 +3633,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999145
+    - rid: 983295639550689624
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 9c8605d3-ce68-44c7-8843-5531cf77c2c9
@@ -3645,7 +3647,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999146
+    - rid: 983295639550689625
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: b4a1370f-5bf4-42b7-afaa-684b90f4c670
@@ -3660,7 +3662,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 4
         emotion: 0
-    - rid: 983295549385999147
+    - rid: 983295639550689626
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: db8a5b5d-5654-460c-8492-9b30ab9e4c93
@@ -3674,7 +3676,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 3
         emotion: 0
-    - rid: 983295549385999148
+    - rid: 983295639550689627
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 5aa32735-f49d-45e9-8323-af84f789942f
@@ -3689,7 +3691,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 4
         emotion: 0
-    - rid: 983295549385999149
+    - rid: 983295639550689628
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: cdb5ebd5-32ee-4d30-bee8-ef462eea0a7b
@@ -3703,7 +3705,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385999150
+    - rid: 983295639550689629
       type: {class: ChoiceNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 518fbaf6-7d40-4163-af42-e5c04de2dd96
@@ -3720,7 +3722,7 @@ MonoBehaviour:
         timerSending: 0
         emotion: 0
         chosenChoiceID: -1
-    - rid: 983295549385999151
+    - rid: 983295639550689630
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 87991f46-d92b-4c30-9557-59e56893c1fe
@@ -3734,7 +3736,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385999152
+    - rid: 983295639550689631
       type: {class: ChoiceNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 5f356580-c166-4844-8b51-af5fd59e4d32
@@ -3751,7 +3753,7 @@ MonoBehaviour:
         timerSending: 0
         emotion: 0
         chosenChoiceID: -1
-    - rid: 983295549385999153
+    - rid: 983295639550689632
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 4fce3613-eec2-48d9-bf6f-7849d4230788
@@ -3765,7 +3767,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999154
+    - rid: 983295639550689633
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 7cb1bff8-470d-40cd-8ad1-c764cbfa9bf6
@@ -3779,7 +3781,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999155
+    - rid: 983295639550689634
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: c0d4d733-ac73-4e06-95a6-081c5f84ed75
@@ -3793,7 +3795,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385999156
+    - rid: 983295639550689635
       type: {class: ChoiceNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 30c992d8-937c-49ad-b3bd-5a67323ff846
@@ -3810,7 +3812,7 @@ MonoBehaviour:
         timerSending: 0
         emotion: 0
         chosenChoiceID: -1
-    - rid: 983295549385999157
+    - rid: 983295639550689636
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 3bbf27fe-497a-4a71-af8f-d5ec2f527672
@@ -3824,7 +3826,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999158
+    - rid: 983295639550689637
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 317a6654-5a47-4f3a-842b-6257b0154549
@@ -3838,7 +3840,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999159
+    - rid: 983295639550689638
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 4e64b192-a505-46cf-a271-f6c2817f167e
@@ -3852,7 +3854,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999160
+    - rid: 983295639550689639
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: c8f15dab-36fa-4596-9d37-40aef93b7917
@@ -3866,7 +3868,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999161
+    - rid: 983295639550689640
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: f5e8d757-d84e-4e70-b7a4-6eebcda9383c
@@ -3880,7 +3882,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385999162
+    - rid: 983295639550689641
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 46ccde91-bdfa-4e03-995a-f4b6df4e68bc
@@ -3894,7 +3896,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385999163
+    - rid: 983295639550689642
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: de9b2f38-fc8b-48cb-b70b-5c2ebd1d80a1
@@ -3908,7 +3910,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 3
         emotion: 0
-    - rid: 983295549385999164
+    - rid: 983295639550689643
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 8daf707a-ee3d-4c5c-b08e-8bbe3eaebefe
@@ -3922,7 +3924,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 3
         emotion: 0
-    - rid: 983295549385999165
+    - rid: 983295639550689644
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 027b7e5f-7f1b-4586-8ee3-8619166b8e30
@@ -3936,7 +3938,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999166
+    - rid: 983295639550689645
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 2f74d89f-28af-49ec-8a4a-d6fdc8a4cdd2
@@ -3951,7 +3953,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999167
+    - rid: 983295639550689646
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 333043b4-34a3-42b6-8a23-b58c97c424d4
@@ -3965,7 +3967,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999168
+    - rid: 983295639550689647
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 37752a6f-afd3-4d3e-ac59-99aad168078e
@@ -3979,7 +3981,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 1
         emotion: 0
-    - rid: 983295549385999169
+    - rid: 983295639550689648
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 79fc5ee6-ead6-42be-8e8f-eafd569af22b
@@ -3994,7 +3996,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999170
+    - rid: 983295639550689649
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 77bd8b77-5b19-4e72-bcec-954777fe0d86
@@ -4009,7 +4011,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999171
+    - rid: 983295639550689650
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 2159bcb1-b169-4312-b1bb-fb4671d5481d
@@ -4023,7 +4025,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999172
+    - rid: 983295639550689651
       type: {class: ChoiceNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: b739551f-c6ad-4a18-be90-a5cbeac716cc
@@ -4042,7 +4044,7 @@ MonoBehaviour:
         timerSending: 0
         emotion: 0
         chosenChoiceID: -1
-    - rid: 983295549385999173
+    - rid: 983295639550689652
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: fac146c7-4d24-4796-9c07-dad840ced197
@@ -4056,7 +4058,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999174
+    - rid: 983295639550689653
       type: {class: AffinityNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: d60a16ea-6723-4545-8f18-bf35302ecf87
@@ -4067,7 +4069,7 @@ MonoBehaviour:
           targetNodeGuid: 595bd481-f0dd-47a5-bc49-9ccfbb49f308
         isSentCurrent: 0
         affinityGain: -1
-    - rid: 983295549385999175
+    - rid: 983295639550689654
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 595bd481-f0dd-47a5-bc49-9ccfbb49f308
@@ -4081,7 +4083,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 3
         emotion: 0
-    - rid: 983295549385999176
+    - rid: 983295639550689655
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 89bad358-2280-41fc-8f82-30dfdc09c9ea
@@ -4095,7 +4097,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385999177
+    - rid: 983295639550689656
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 1ae12969-b615-451c-9d7a-c85f4bfbcc4b
@@ -4109,7 +4111,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385999178
+    - rid: 983295639550689657
       type: {class: AffinityNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: d7769c7f-d7c2-4577-bcb1-8adfce745cdf
@@ -4120,7 +4122,7 @@ MonoBehaviour:
           targetNodeGuid: e589c867-5989-4e19-b781-3534a9d4ea9b
         isSentCurrent: 0
         affinityGain: 2
-    - rid: 983295549385999179
+    - rid: 983295639550689658
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: b48e0dfd-c068-4d7f-88db-c347718d884c
@@ -4135,7 +4137,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 3
         emotion: 0
-    - rid: 983295549385999180
+    - rid: 983295639550689659
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: e589c867-5989-4e19-b781-3534a9d4ea9b
@@ -4149,7 +4151,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385999181
+    - rid: 983295639550689660
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 4ad2e4ea-42b2-4ef9-b159-8a08c1193f03
@@ -4163,7 +4165,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385999182
+    - rid: 983295639550689661
       type: {class: AffinityNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: ac949afb-5c54-456c-bc1e-9dba2b68827e
@@ -4174,7 +4176,7 @@ MonoBehaviour:
           targetNodeGuid: 522497a9-eb0b-4794-b38a-a1efbdca0f4a
         isSentCurrent: 0
         affinityGain: 1
-    - rid: 983295549385999183
+    - rid: 983295639550689662
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 522497a9-eb0b-4794-b38a-a1efbdca0f4a
@@ -4188,7 +4190,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385999184
+    - rid: 983295639550689663
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 5dbef48a-0292-4f65-bc88-1ab5b36b089a
@@ -4202,7 +4204,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385999185
+    - rid: 983295639550689664
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: d851dc3a-c4d1-46a2-958e-51b30b793e6a
@@ -4216,7 +4218,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385999186
+    - rid: 983295639550689665
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 0de42f16-1c50-43c5-9f51-e38cc4191338
@@ -4230,7 +4232,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385999187
+    - rid: 983295639550689666
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: b86e429c-d59e-4c2e-b3f9-c86bb0d37a07
@@ -4244,7 +4246,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385999188
+    - rid: 983295639550689667
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 444da902-ec56-4921-a99d-2bf3e32804bb
@@ -4258,7 +4260,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385999189
+    - rid: 983295639550689668
       type: {class: SetPropertyNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 28166363-7f0b-41a8-87d0-671bcf6f6612
@@ -4269,9 +4271,9 @@ MonoBehaviour:
           targetNodeGuid: 6fe66942-3a9d-46e9-b091-d1b34d6eeadd
         isSentCurrent: 0
         property:
-          rid: 983295549385999198
+          rid: 983295639550689677
         valueString: False
-    - rid: 983295549385999190
+    - rid: 983295639550689669
       type: {class: SetPropertyNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 74b2edff-b496-4c7d-99ae-766d4f057da6
@@ -4282,9 +4284,9 @@ MonoBehaviour:
           targetNodeGuid: 2fbc286a-63d8-40b0-8b4c-75892080e998
         isSentCurrent: 0
         property:
-          rid: 983295549385999199
+          rid: 983295639550689678
         valueString: False
-    - rid: 983295549385999191
+    - rid: 983295639550689670
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 85f32e1b-495e-4ae5-9b1e-9081f5db274d
@@ -4298,7 +4300,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385999192
+    - rid: 983295639550689671
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 44138e81-48fd-4157-8c6d-4eef3238c4c0
@@ -4312,7 +4314,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999193
+    - rid: 983295639550689672
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 65de122b-62c5-4a73-bc27-8c0035a247b8
@@ -4326,7 +4328,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295549385999194
+    - rid: 983295639550689673
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: fa7502fc-3f08-439d-9b47-51dc74c559d8
@@ -4340,7 +4342,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 3
         emotion: 0
-    - rid: 983295549385999195
+    - rid: 983295639550689674
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: df013f5d-155b-4cd2-917b-7ebd70c7bf5f
@@ -4354,7 +4356,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295549385999196
+    - rid: 983295639550689675
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 14518be3-843b-484c-8815-6d27a653b7a9
@@ -4369,7 +4371,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 3
         emotion: 0
-    - rid: 983295549385999197
+    - rid: 983295639550689676
       type: {class: SetPropertyNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: ded6561f-6129-4fdd-a658-4bd645f8e628
@@ -4380,20 +4382,20 @@ MonoBehaviour:
           targetNodeGuid: fd1e5009-d917-41ff-a309-7bee5f2fe9ed
         isSentCurrent: 0
         property:
-          rid: 983295549385999200
+          rid: 983295639550689679
         valueString: False
-    - rid: 983295549385999198
+    - rid: 983295639550689677
       type: {class: 'ExposedProperty`1[[System.Boolean, mscorlib]]', ns: , asm: Assembly-CSharp}
       data:
-        Name: "SachaN\xB01_2"
+        Name: "MargauxN\xB02_2"
         PropertyValue: 0
-    - rid: 983295549385999199
+    - rid: 983295639550689678
       type: {class: 'ExposedProperty`1[[System.Boolean, mscorlib]]', ns: , asm: Assembly-CSharp}
       data:
-        Name: "SachaN\xB01_1"
+        Name: "MargauxN\xB02_1"
         PropertyValue: 0
-    - rid: 983295549385999200
+    - rid: 983295639550689679
       type: {class: 'ExposedProperty`1[[System.Boolean, mscorlib]]', ns: , asm: Assembly-CSharp}
       data:
-        Name: "SachaN\xB01_3"
+        Name: "MargauxN\xB02_3"
         PropertyValue: 0

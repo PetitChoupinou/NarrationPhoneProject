@@ -465,7 +465,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InternetApp
   _appType: 10
-  _logo: {fileID: 5468614384645153258, guid: ed394a9d5236c2745836842420ec7d75, type: 3}
+  _logo: {fileID: 7466070985540378945, guid: 7720353d7b1d7f7408f5afac68346697, type: 3}
+  _closingTime: 1
   _isUnlocked: 1
   _headerTxt: {fileID: 228137444105074166}
   _basePage: {fileID: 2050822154551275459}

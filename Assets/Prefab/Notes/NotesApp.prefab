@@ -753,7 +753,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NoteApp
   _appType: 3
-  _logo: {fileID: -7180319427162239281, guid: a0f9aae35a2927442bfbfc0197f649ca, type: 3}
+  _logo: {fileID: -4841720520028814253, guid: 2dcc801e68d32a540bab283b9b287e45, type: 3}
   _closingTime: 1
   _isUnlocked: 1
   _buttonPrefab: {fileID: 655638322311523039, guid: 2e3db80c297a3a8409b93013fcb5ed33, type: 3}

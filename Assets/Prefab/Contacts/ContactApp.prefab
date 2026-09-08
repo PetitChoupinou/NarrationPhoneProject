@@ -843,7 +843,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ContactApp
   _appType: 1
-  _logo: {fileID: -8329447868056420380, guid: 7914eebc89c90ec49b19a91fb8cb9fa8, type: 3}
+  _logo: {fileID: 2505645869028942593, guid: cc18edcfdf5d1204baabf3897cffb625, type: 3}
   _closingTime: 1
   _isUnlocked: 1
   _buttonPrefab: {fileID: 8993750035258260197, guid: 4fd9f05865e3942438e5b45b79e6a9aa, type: 3}
