@@ -12,7 +12,7 @@ public class EnergyManager : MonoBehaviour
     [SerializeField] private int _energyPerTimeSpan=1;
     [SerializeField] private int _timeSpanInMinute=20;
     Coroutine activeEnergyGain;
-    private int _currentEnergy;
+    [SerializeField] private int _currentEnergy;
     PlayerSaveData _playerSave;
     private SaveManager _saveManager;
     public int CurrentEnergy { get => _currentEnergy;
@@ -25,7 +25,7 @@ public class EnergyManager : MonoBehaviour
     }
     public static DateTime GetNistTime()
     {
-        var myHttpWebRequest = (HttpWebRequest)WebRequest.Create("http://www.google.com");
+        var myHttpWebRequest = (HttpWebRequest)WebRequest.Create("https://www.google.com");
         var response = myHttpWebRequest.GetResponse();
         string todaysDates = response.Headers["date"];
         return DateTime.ParseExact(todaysDates,
@@ -35,8 +35,8 @@ public class EnergyManager : MonoBehaviour
     }
     private void Start()
     {
-        _saveManager = SaveManager.instance;
-        Load();
+   //     _saveManager = SaveManager.instance;
+     //   Load();
     }
     private void OnApplicationQuit()
     {
@@ -46,6 +46,7 @@ public class EnergyManager : MonoBehaviour
     {
         if (focus)
         {
+            _saveManager = SaveManager.instance;
             Load();
         }
         else
@@ -56,18 +57,22 @@ public class EnergyManager : MonoBehaviour
     private void Save()
     {
         _saveManager.Save.SetLastAppQuit(new TimeData(GetNistTime()));
-        _saveManager.Save.SetCurrentEnergy(_energyMax);
+        _saveManager.Save.SetCurrentEnergy(_currentEnergy);
+        print(_saveManager.Save.currentEnergy);
         _saveManager.SavePlayerData();
+        if (activeEnergyGain == null) return;
         StopCoroutine(activeEnergyGain);
         activeEnergyGain = null;
     }
     private void Load()
     {
         CurrentEnergy = _saveManager.Save.currentEnergy;
+        print(CurrentEnergy);
         TimeSpan difference = GetNistTime() - _saveManager.Save.lastAppQuit.CurrentTime;
         int diffInMinute = (int)difference.TotalMinutes;
+        print(_saveManager.Save.lastAppQuit.CurrentTime);
         AddEnergy(diffInMinute * _energyPerTimeSpan / _timeSpanInMinute);
-        activeEnergyGain = StartCoroutine(RecurrentEnergyGain());
+        activeEnergyGain = StartCoroutine(RecurrentEnergyGain(diffInMinute));
     }
     public void AddEnergy (int energyAdded)
     {
@@ -77,8 +82,15 @@ public class EnergyManager : MonoBehaviour
     {
         CurrentEnergy -= energyRemoved;
     }
-    IEnumerator RecurrentEnergyGain()
+    IEnumerator RecurrentEnergyGain(int diffInMin)
     {
-        yield return null;
+        WaitForSeconds wait = new WaitForSeconds(_timeSpanInMinute*60);
+        float timer= diffInMin * _energyPerTimeSpan % _timeSpanInMinute;
+        yield return new WaitForSeconds((_timeSpanInMinute - timer)*60);
+        while (true)
+        {
+            AddEnergy(_energyPerTimeSpan);
+            yield return wait;
+        }
     }
 }

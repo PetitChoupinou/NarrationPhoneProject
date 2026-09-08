@@ -27,6 +27,7 @@ public class SaveManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
 
         _save = SaveSystem.LoadDataFromFile<PlayerSaveData>("save");
+        _save.lastAppQuit.SetCurrentTime();
         if (_save == null)
         {
             _save = new PlayerSaveData("save");
