@@ -2,8 +2,7 @@ using System;
 using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.FilePathAttribute;
-using static UnityEngine.Audio.GeneratorInstance;
+
 
 public class CameraApp : BaseApplication
 {

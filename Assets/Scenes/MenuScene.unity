@@ -3390,6 +3390,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1088876916}
   - component: {fileID: 1088876917}
+  - component: {fileID: 1088876918}
   m_Layer: 0
   m_Name: SaveManager
   m_TagString: Untagged
@@ -3424,6 +3425,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ff09ff3d64d4246aaf37798a4cecdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SaveManager
+--- !u!114 &1088876918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088876915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daba53c263b2a054487819b1f2ad268c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnergyManager
+  _energyMax: 100
+  _energyPerTimeSpan: 1
+  _timeSpanInMinute: 15
+  _currentEnergy: 0
 --- !u!1 &1172371081
 GameObject:
   m_ObjectHideFlags: 0

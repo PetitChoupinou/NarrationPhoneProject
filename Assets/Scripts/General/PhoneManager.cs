@@ -62,8 +62,6 @@ public class PhoneManager : MonoBehaviour
         {
             instance = this;
         }
-        DontDestroyOnLoad(this.gameObject);
-        
     }
   
     void Start()
