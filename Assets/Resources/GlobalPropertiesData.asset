@@ -12,7 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9204b2fb13b6b048af718cc4141cc5a, type: 3}
   m_Name: GlobalPropertiesData
   m_EditorClassIdentifier: Assembly-CSharp::GlobalPropertiesData
-  globalProperties: []
+  globalProperties:
+  - rid: 4237343184246538389
+  - rid: 4237343184246538390
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 4237343184246538389
+      type: {class: 'ExposedProperty`1[[System.Int32, mscorlib]]', ns: , asm: Assembly-CSharp}
+      data:
+        Name: Int
+        PropertyValue: 0
+    - rid: 4237343184246538390
+      type: {class: 'ExposedProperty`1[[System.Boolean, mscorlib]]', ns: , asm: Assembly-CSharp}
+      data:
+        Name: Boule
+        PropertyValue: 0

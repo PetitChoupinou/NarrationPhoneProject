@@ -11,7 +11,7 @@ public class GlobalPropertiesEditor : Editor
 
         
 
-        EditorGUI.BeginDisabledGroup(true);
+        EditorGUI.BeginDisabledGroup(false);
         EditorGUILayout.PropertyField(serializedObject.FindProperty("globalProperties"), true);
         EditorGUI.EndDisabledGroup();
 
