@@ -8,11 +8,13 @@ public class PlayerSaveData : SaveData
 {
     public TimeData lastAppQuit;
     public int currentEnergy;
+    public QuestBase[] currentQuests;
 
     public PlayerSaveData(string name) : base(name)
     {
         lastAppQuit=new TimeData();
         currentEnergy = 100;
+        currentQuests = new QuestBase[3];
     }
     public string GetSaveTimeToString()
     {
@@ -39,6 +41,15 @@ public class PlayerSaveData : SaveData
         string year = lastAppQuit.CurrentTime.Year.ToString();
 
         return $"{day}/{month}/{year}, {hour}:{minute}";
+    }
+    public string GetQuestsToString()
+    {
+        string returnString = "";
+        foreach (QuestBase quest in currentQuests)
+        {
+            returnString += quest.ToSave();
+        }
+        return returnString ;
     }
     public void SetLastAppQuit(TimeData timeData)
     {

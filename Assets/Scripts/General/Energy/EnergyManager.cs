@@ -15,6 +15,20 @@ public class EnergyManager : MonoBehaviour
     [SerializeField] private int _currentEnergy;
     PlayerSaveData _playerSave;
     private SaveManager _saveManager;
+    public static EnergyManager Instance { get; private set; }
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        else
+        {
+            Instance = this;
+        }
+        DontDestroyOnLoad(this.gameObject);
+    }
     public int CurrentEnergy { get => _currentEnergy;
         set 
         {
