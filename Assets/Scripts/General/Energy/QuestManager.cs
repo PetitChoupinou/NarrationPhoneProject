@@ -69,4 +69,10 @@ public class QuestManager : MonoBehaviour
             }
         }
     }
+
+    public void TempAddOne()
+    {
+        _selectedQuests[1].UpdateValue(1);
+        _save.currentQuests = _selectedQuests;
+    }
 }
