@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,7 +10,7 @@ public class QuestManager : MonoBehaviour
 
     [SerializeField] private QuestBase[] _possibleQuests;
     [SerializeField] private int _questsNbr=3;
-    private QuestBase[] _selectedQuests;
+    [SerializeField] private QuestBase[] _selectedQuests;
     [SerializeField] UnityEvent _onEnergyUsage;
     [SerializeField] private int _resetTime=23;
     private SaveManager _saveManager;
@@ -40,7 +41,7 @@ public class QuestManager : MonoBehaviour
         if(_save != null)
         {
             DateTime lastConnection = _save.lastAppQuit.CurrentTime;
-            if (currentTime.Day > lastConnection.Day || (currentTime.Hour > _resetTime && lastConnection.Hour < _resetTime))
+            if (currentTime.Day > lastConnection.Day || (currentTime.Hour > _resetTime && lastConnection.Hour < _resetTime) || _save.currentQuests[0].Title=="")
             {
                 SelectQuests();
             }
@@ -48,6 +49,7 @@ public class QuestManager : MonoBehaviour
             {
                 _selectedQuests = _save.currentQuests;
             }
+            _save.currentQuests = _selectedQuests;
         }
  
     }
@@ -57,7 +59,13 @@ public class QuestManager : MonoBehaviour
         {
             for(int i=0; i < _questsNbr; i++)
             {
-                _selectedQuests[i] = _possibleQuests[UnityEngine.Random.Range(0, _possibleQuests.Length)];
+                int rand =UnityEngine.Random.Range(0, _possibleQuests.Length);
+                while(_selectedQuests.Contains(PossibleQuests[rand]))
+                {
+                    rand++;
+                    if (rand == PossibleQuests.Length) rand = 0;
+                }
+                _selectedQuests[i] = _possibleQuests[rand];
             }
         }
     }

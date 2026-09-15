@@ -12,34 +12,37 @@ public enum QuestType
 [Serializable]
 public class QuestBase
 {
-  [SerializeField]private QuestType _type;
+  [SerializeField] private QuestType _type;
     [SerializeField] private string _title;
     [SerializeField] private string _desc;
     [SerializeField] private int _targetValue;
-    private int _currentValue;
+    [SerializeField]private int _currentValue;
     [SerializeField] private int _gemReward=0;
     [SerializeField] private int _energyReward;
-    private bool hasBeenCompleted;
+    [SerializeField] private bool hasBeenCompleted;
+
+    public string Title { get => _title;}
 
     public void UpdateValue(int value)
     {
         _currentValue +=value;
-        if (_currentValue >= _targetValue)
+        if (_currentValue >= _targetValue&&!hasBeenCompleted)
         {
-
+            Validate();
         }
     }
     public void Validate()
     {
-        hasBeenCompleted = true;
+        if (hasBeenCompleted) return;
         if(_gemReward > 0)
         {
 
         }
         if (_energyReward > 0)
         {
-
+            EnergyManager.Instance.AddEnergy(_energyReward);
         }
+        hasBeenCompleted = true;
     }
     public string ToSave()
     {

@@ -1603,32 +1603,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::QuestManager
   _possibleQuests:
   - _type: 4
-    _title: 
-    _desc: 
-    _targetValue: 0
+    _title: aaaa
+    _desc: zzzz
+    _targetValue: 3
+    _currentValue: 0
     _gemReward: 0
-    _energyReward: 0
-  - _type: 4
-    _title: 
-    _desc: 
-    _targetValue: 0
+    _energyReward: 3
+    hasBeenCompleted: 0
+  - _type: 1
+    _title: aeaeae
+    _desc: rzrzrz
+    _targetValue: 1
+    _currentValue: 0
+    _gemReward: 2
+    _energyReward: 2
+    hasBeenCompleted: 0
+  - _type: 3
+    _title: 442
+    _desc: 16
+    _targetValue: 16
+    _currentValue: 0
     _gemReward: 0
-    _energyReward: 0
-  - _type: 4
-    _title: 
-    _desc: 
-    _targetValue: 0
+    _energyReward: 100
+    hasBeenCompleted: 0
+  - _type: 2
+    _title: PUB
+    _desc: PUBPUBPUB
+    _targetValue: 1
+    _currentValue: 0
     _gemReward: 0
-    _energyReward: 0
-  - _type: 4
-    _title: 
-    _desc: 
-    _targetValue: 0
-    _gemReward: 0
-    _energyReward: 0
+    _energyReward: 10
+    hasBeenCompleted: 0
+  _questsNbr: 3
+  _selectedQuests: []
   _onEnergyUsage:
     m_PersistentCalls:
       m_Calls: []
+  _resetTime: 23
 --- !u!4 &499964491
 Transform:
   m_ObjectHideFlags: 0
