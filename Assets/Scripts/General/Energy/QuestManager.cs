@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Networking;
 
 public class QuestManager : MonoBehaviour
 {
@@ -34,16 +35,24 @@ public class QuestManager : MonoBehaviour
     void Start()
     {
         _saveManager = SaveManager.instance;
-        DateTime currentTime = EnergyManager.GetNistTime();
+
         if (_questsNbr>_possibleQuests.Length)_questsNbr = _possibleQuests.Length;
         _selectedQuests=new QuestBase[_questsNbr];
         _save = _saveManager.Save;
         if(_save != null)
         {
             DateTime lastConnection = _save.lastAppQuit.CurrentTime;
-            if (currentTime.Day > lastConnection.Day || (currentTime.Hour > _resetTime && lastConnection.Hour < _resetTime) || _save.currentQuests[0].Title=="")
+            if(InternetConnection.GetRequest() == UnityWebRequest.Result.Success)
             {
-                SelectQuests();
+                DateTime currentTime = InternetConnection.GetNistTime();
+                if ((currentTime.Day > lastConnection.Day || (currentTime.Hour > _resetTime && lastConnection.Hour < _resetTime) || _save.currentQuests[0].Title == ""))
+                {
+                    SelectQuests();
+                }
+                else
+                {
+                    _selectedQuests = _save.currentQuests;
+                }
             }
             else
             {
@@ -51,7 +60,6 @@ public class QuestManager : MonoBehaviour
             }
             _save.currentQuests = _selectedQuests;
         }
- 
     }
     public void SelectQuests()
     {
