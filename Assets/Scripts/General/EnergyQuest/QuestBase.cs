@@ -19,21 +19,27 @@ public class QuestBase
     [SerializeField]private int _currentValue;
     [SerializeField] private int _gemReward=0;
     [SerializeField] private int _energyReward;
-    [SerializeField] private bool hasBeenCompleted;
+    [SerializeField] private bool _hasBeenCompleted;
 
     public string Title { get => _title;}
+    public string Desc { get => _desc; }
+    public int Targ { get => _targetValue;}
+    public int Current { get => _currentValue;}
+    public int EReward { get => _energyReward; }
+    public int GReward { get => _gemReward; }
+    public bool IsComp { get => _hasBeenCompleted;}
 
     public void UpdateValue(int value)
     {
         _currentValue +=value;
-        if (_currentValue >= _targetValue&&!hasBeenCompleted)
+        if (_currentValue >= _targetValue&&!_hasBeenCompleted)
         {
             Validate();
         }
     }
     public void Validate()
     {
-        if (hasBeenCompleted) return;
+        if (_hasBeenCompleted) return;
         if(_gemReward > 0)
         {
 
@@ -42,11 +48,11 @@ public class QuestBase
         {
             EnergyManager.Instance.AddEnergy(_energyReward);
         }
-        hasBeenCompleted = true;
+        _hasBeenCompleted = true;
     }
     public string ToSave()
     {
-        string returnString = _title + " " + _currentValue + " " + hasBeenCompleted;
+        string returnString = _title + " " + _currentValue + " " + _hasBeenCompleted;
         return returnString;
     }
 }

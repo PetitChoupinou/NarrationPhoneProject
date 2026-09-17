@@ -7,19 +7,6 @@ using UnityEngine.Networking;
 
 public  class InternetConnection
 {
-    public static UnityWebRequest.Result GetRequest()
-    {
-        string uri= "https://www.google.com/";
-        using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
-        {
-            // Request and wait for the desired page.
-             webRequest.SendWebRequest();
-
-            string[] pages = uri.Split('/');
-            int page = pages.Length - 1;
-            return webRequest.result;
-        }
-    }
     public static DateTime GetNistTime()
     {
         //default Windows time server

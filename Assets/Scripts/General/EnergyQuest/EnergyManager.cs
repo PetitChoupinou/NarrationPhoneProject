@@ -62,7 +62,7 @@ public class EnergyManager : MonoBehaviour
     }
     private void Save()
     {
-        if (InternetConnection.GetRequest() == UnityWebRequest.Result.Success)
+        if (ConnectionManager.Instance.IsConnected)
         {
             _saveManager.Save.SetLastAppQuit(new TimeData(InternetConnection.GetNistTime()));
         }
@@ -79,12 +79,7 @@ public class EnergyManager : MonoBehaviour
     private void Load()
     {
         CurrentEnergy = _saveManager.Save.currentEnergy;
-        print(CurrentEnergy);
-        TimeSpan difference =InternetConnection.GetNistTime() - _saveManager.Save.lastAppQuit.CurrentTime;
-        int diffInMinute = (int)difference.TotalMinutes;
-        print(_saveManager.Save.lastAppQuit.CurrentTime);
-        AddEnergy(diffInMinute * _energyPerTimeSpan / _timeSpanInMinute);
-        activeEnergyGain = StartCoroutine(RecurrentEnergyGain(diffInMinute));
+        activeEnergyGain = StartCoroutine(RecurrentEnergyGain(0));
     }
     public void AddEnergy (int energyAdded)
     {
@@ -104,5 +99,13 @@ public class EnergyManager : MonoBehaviour
             AddEnergy(_energyPerTimeSpan);
             yield return wait;
         }
+    }
+    public void OfflineEnergyGain()
+    {
+        print(CurrentEnergy);
+        TimeSpan difference = InternetConnection.GetNistTime() - _saveManager.Save.lastAppQuit.CurrentTime;
+        int diffInMinute = (int)difference.TotalMinutes;
+        print(_saveManager.Save.lastAppQuit.CurrentTime);
+        AddEnergy(diffInMinute * _energyPerTimeSpan / _timeSpanInMinute);
     }
 }

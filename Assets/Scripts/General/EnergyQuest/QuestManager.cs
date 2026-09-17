@@ -17,7 +17,9 @@ public class QuestManager : MonoBehaviour
     private SaveManager _saveManager;
     private PlayerSaveData _save;
     public static QuestManager Instance { get; private set; }
-    public QuestBase[] PossibleQuests { get => _possibleQuests; }
+    public QuestBase[] PossibleQuests { get => _possibleQuests;}
+    public QuestBase[] SelectedQuests { get => _selectedQuests;}
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -32,7 +34,7 @@ public class QuestManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void StartQuests()
     {
         _saveManager = SaveManager.instance;
 
@@ -42,17 +44,10 @@ public class QuestManager : MonoBehaviour
         if(_save != null)
         {
             DateTime lastConnection = _save.lastAppQuit.CurrentTime;
-            if(InternetConnection.GetRequest() == UnityWebRequest.Result.Success)
+            DateTime currentTime = InternetConnection.GetNistTime();
+            if ((currentTime.Day != lastConnection.Day || _save.currentQuests[0].Title == ""))
             {
-                DateTime currentTime = InternetConnection.GetNistTime();
-                if ((currentTime.Day > lastConnection.Day || (currentTime.Hour > _resetTime && lastConnection.Hour < _resetTime) || _save.currentQuests[0].Title == ""))
-                {
-                    SelectQuests();
-                }
-                else
-                {
-                    _selectedQuests = _save.currentQuests;
-                }
+                SelectQuests();
             }
             else
             {
