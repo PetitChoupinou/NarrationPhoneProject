@@ -438,7 +438,7 @@ public class Discussion : MonoBehaviour
 #else
         ScreenCapture.CaptureScreenshot("ScreenBlur.png");
 #endif
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(.3f);
         _blurImage.sprite = LoadSpriteFromFile(System.IO.Path.Combine(Application.persistentDataPath, "ScreenBlur.png"));
         _blurImage.transform.gameObject.SetActive(true);
 

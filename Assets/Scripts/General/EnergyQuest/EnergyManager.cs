@@ -107,5 +107,6 @@ public class EnergyManager : MonoBehaviour
         int diffInMinute = (int)difference.TotalMinutes;
         print(_saveManager.Save.lastAppQuit.CurrentTime);
         AddEnergy(diffInMinute * _energyPerTimeSpan / _timeSpanInMinute);
+        _saveManager.SavePlayerData();
     }
 }
