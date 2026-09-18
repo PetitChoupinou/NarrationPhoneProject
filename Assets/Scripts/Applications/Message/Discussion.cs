@@ -151,30 +151,6 @@ public class Discussion : MonoBehaviour
             NotificationManager.Instance.SendNotifText(_preview.text, _iD);
         }
         Transform visuTransform = _charaVisu.transform;
-#if UNITY_EDITOR
-        if (isNPC)
-        {
-            if(!isCharaVisuSideMode)
-                visuTransform.SetAsLastSibling();
-            else
-            {
-                visuTransform.localScale=new Vector3(1,1,1);
-                _charaVisu.GetComponent<RectTransform>().anchoredPosition=new Vector3(_charaVisuBasePosition.x,_charaVisuBasePosition.y,_charaVisuBasePosition.z);
-            }
-
-        }
-        else {
-
-            if(!isCharaVisuSideMode)
-                visuTransform.SetAsFirstSibling();
-            else
-            {
-                visuTransform.localScale=new Vector3(-1,1,1);
-                _charaVisu.GetComponent<RectTransform>().anchoredPosition = new Vector3(-_charaVisuBasePosition.x,_charaVisuBasePosition.y,_charaVisuBasePosition.z);
-            }
-        }
-
-#else
         if (isNPC)
         {
                visuTransform.localScale=new Vector3(1,1,1);
@@ -185,7 +161,6 @@ public class Discussion : MonoBehaviour
                 visuTransform.localScale=new Vector3(-1,1,1);
                 _charaVisu.GetComponent<RectTransform>().anchoredPosition = new Vector3(-_charaVisuBasePosition.x,_charaVisuBasePosition.y,_charaVisuBasePosition.z);  
         }
-#endif
         ChangeEmotion(emotion);
     }
     /// <summary>

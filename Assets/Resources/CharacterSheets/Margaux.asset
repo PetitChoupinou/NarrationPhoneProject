@@ -30,12 +30,12 @@ MonoBehaviour:
   dialogueIndex: 0
   EmotionPIcs:
   - Emotion: 0
-    Picture: {fileID: 2824324766532458760, guid: bfa6323a7d191ef45bbc2c58c08fd238, type: 3}
+    Picture: {fileID: 21300000, guid: bfa6323a7d191ef45bbc2c58c08fd238, type: 3}
   - Emotion: 1
-    Picture: {fileID: -1969242786396653882, guid: 818949a2c48e8d14b9c285e398e99cf3, type: 3}
+    Picture: {fileID: 21300000, guid: 818949a2c48e8d14b9c285e398e99cf3, type: 3}
   - Emotion: 2
-    Picture: {fileID: 2643273418234699327, guid: b5ecff979de1325429ca0c97a940094b, type: 3}
+    Picture: {fileID: 21300000, guid: b5ecff979de1325429ca0c97a940094b, type: 3}
   - Emotion: 3
-    Picture: {fileID: 7266418025450033566, guid: 21fb9fa9d46f1d04baef3103f0f744fd, type: 3}
+    Picture: {fileID: 21300000, guid: 21fb9fa9d46f1d04baef3103f0f744fd, type: 3}
   - Emotion: 4
-    Picture: {fileID: 6887781535440116489, guid: 8eaa3fede52c6e840996012d397eb34d, type: 3}
+    Picture: {fileID: 21300000, guid: 8eaa3fede52c6e840996012d397eb34d, type: 3}
