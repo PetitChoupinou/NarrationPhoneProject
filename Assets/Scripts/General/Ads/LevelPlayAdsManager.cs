@@ -9,8 +9,8 @@ public class LevelPlayAdsManager : MonoBehaviour
     [SerializeField] private string _iosAppKey;
 
     [Header("Banner Ad Unit ID")]
-    [SerializeField] private string _androidBannerAdUnitID;
-    [SerializeField] private string _iosBannerAdUnitID;
+    /*[SerializeField] */private string _androidBannerAdUnitID;
+    /*[SerializeField] */private string _iosBannerAdUnitID;
 
     [Header("Interstitial Ad Unit ID")]
     [SerializeField] private string _androidInterstitialAdUnitID;

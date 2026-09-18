@@ -44,11 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63dbe9cc001a03343b8f6649a7af8444, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelAdsManager
-  _androidAppKey: 27f7a8535
-  _iosAppKey: 27f7eca4d
-  _androidBannerAdUnitID: htjnthab3igd4dno
-  _iosBannerAdUnitID: xyo4elvwwqnbckvk
-  _androidInterstitialAdUnitID: by6q2a50jxsdcnpm
-  _iosInterstitialAdUnitID: hnrs643g7n2fqq4y
-  _androidRewardedAdUnitID: z7sqtqe6mooz3s57
-  _iosRewardedAdUnitID: k61eig11xn8zl7m7
+  _androidAppKey: 282629b2d
+  _iosAppKey: 28263814d
+  _androidInterstitialAdUnitID: 86rod5b6p5e79n9p
+  _iosInterstitialAdUnitID: 91vxvs5goczdi1u6
+  _androidRewardedAdUnitID: 4sw9iql60jc0ul5n
+  _iosRewardedAdUnitID: 5rxxgn8r044n0a34
