@@ -62,6 +62,8 @@ public class DialogueGraphView : GraphView
         {
             globalPropertiesData = ScriptableObject.CreateInstance<GlobalPropertiesData>();
             AssetDatabase.CreateAsset(globalPropertiesData, $"Assets/Resources/GlobalPropertiesData.asset");
+
+            
         }
         
     }
@@ -1127,10 +1129,13 @@ public class DialogueGraphView : GraphView
         
         propertyName = newName;
         ExposedProperty property = new ExposedProperty<T>(propertyName, (T)propertyValue);
-        
-        if (!globalPropertiesData.globalProperties.Contains(property))
+
+        var foundProperty = globalPropertiesData.globalProperties.FirstOrDefault(x => x.Name == property.Name);
+        if (foundProperty == null)
         {
             globalPropertiesData.globalProperties.Add(property);
+            EditorUtility.SetDirty(globalPropertiesData);
+            AssetDatabase.SaveAssets();
         }
         var container = new VisualElement();
         
@@ -1148,7 +1153,8 @@ public class DialogueGraphView : GraphView
             if(foundProperty != null)
             {
                 globalPropertiesData.globalProperties.Remove(foundProperty);
-
+                EditorUtility.SetDirty(globalPropertiesData);
+                AssetDatabase.SaveAssets();
             }
 
             blackboard.Remove(container);

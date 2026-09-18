@@ -33,8 +33,17 @@ public class TimeData
         CurrentTime = CurrentTime.AddMinutes(minutes);
         SetTimeFromCurrentTime();
     }
-
-
+    public TimeSpan GetDifference(TimeData otherTime)
+    {
+        return otherTime.CurrentTime-this.CurrentTime;
+        
+    }
+    public TimeData() { }
+    public TimeData(DateTime time)
+    {
+        CurrentTime= time;
+        SetTimeFromCurrentTime();
+    }
 
     public void SetTimeFromCurrentTime()
     {

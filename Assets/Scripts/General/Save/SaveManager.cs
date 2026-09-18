@@ -25,22 +25,25 @@ public class SaveManager : MonoBehaviour
             Instance = this;
         }
         DontDestroyOnLoad(this.gameObject);
-    }
-    private void Start()
-    {
+
         _save = SaveSystem.LoadDataFromFile<PlayerSaveData>("save");
         if (_save == null)
         {
             _save = new PlayerSaveData("save");
             SaveSystem.SaveDataToFile(_save);
         }
+        _save.lastAppQuit.SetCurrentTime();
+    }
+    private void Start()
+    {
+
     }
 
     public void SavePlayerData()
     {
         SaveSystem.SaveDataToFile(_save);
     }
-
+    #region Save/Load Story
     public void SaveStory(StorySaveData data)
     {
         data.dateOfSave.CurrentTime = DateTime.Now;
@@ -66,12 +69,7 @@ public class SaveManager : MonoBehaviour
         StorySaveData currentStoryData = LoadStory(FindFirstObjectByType<SceneLoader>().CurrentStorySetup.Name);
         return currentStoryData.playerName;
     }
-
-    public void AddEnergy(float value)
-    {
-        _save.energy += value;
-        SavePlayerData();
-    }
+#endregion
 
     #region Save/Load Dialogue
     public void SaveDialogues(string storyName)

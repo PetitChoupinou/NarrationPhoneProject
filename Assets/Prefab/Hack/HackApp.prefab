@@ -194,7 +194,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpecialApp
   _appType: 11
-  _logo: {fileID: -7713684878125597319, guid: 7fb328501e4645b439e92603fa9de78a, type: 3}
+  _logo: {fileID: 3644473966692851444, guid: 3b8b7c84955a12144870e3e9bca3dfdb, type: 3}
+  _closingTime: 1
   _isUnlocked: 1
   _content: {fileID: 613720164382788723}
   _returnButton: {fileID: 3285876406555764792}

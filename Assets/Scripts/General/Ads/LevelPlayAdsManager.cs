@@ -243,7 +243,8 @@ public class LevelPlayAdsManager : MonoBehaviour
     void RewardedOnAdRewardedEvent(LevelPlayAdInfo adInfo, LevelPlayReward adReward)
     {
         Debug.Log($"Reward earned: {adReward.Amount} {adReward.Name}");
-        SaveManager.Instance.AddEnergy(adReward.Amount);
+        /*SaveManager.Instance.AddEnergy(adReward.Amount);*/
+        //Add energy
     }
     void RewardedOnAdClosedEvent(LevelPlayAdInfo adInfo)
     {

@@ -151,30 +151,6 @@ public class Discussion : MonoBehaviour
             NotificationManager.Instance.SendNotifText(_preview.text, _iD);
         }
         Transform visuTransform = _charaVisu.transform;
-#if UNITY_EDITOR
-        if (isNPC)
-        {
-            if(!isCharaVisuSideMode)
-                visuTransform.SetAsLastSibling();
-            else
-            {
-                visuTransform.localScale=new Vector3(1,1,1);
-                _charaVisu.GetComponent<RectTransform>().anchoredPosition=new Vector3(_charaVisuBasePosition.x,_charaVisuBasePosition.y,_charaVisuBasePosition.z);
-            }
-
-        }
-        else {
-
-            if(!isCharaVisuSideMode)
-                visuTransform.SetAsFirstSibling();
-            else
-            {
-                visuTransform.localScale=new Vector3(-1,1,1);
-                _charaVisu.GetComponent<RectTransform>().anchoredPosition = new Vector3(-_charaVisuBasePosition.x,_charaVisuBasePosition.y,_charaVisuBasePosition.z);
-            }
-        }
-
-#else
         if (isNPC)
         {
                visuTransform.localScale=new Vector3(1,1,1);
@@ -185,7 +161,6 @@ public class Discussion : MonoBehaviour
                 visuTransform.localScale=new Vector3(-1,1,1);
                 _charaVisu.GetComponent<RectTransform>().anchoredPosition = new Vector3(-_charaVisuBasePosition.x,_charaVisuBasePosition.y,_charaVisuBasePosition.z);  
         }
-#endif
         ChangeEmotion(emotion);
     }
     /// <summary>
@@ -438,7 +413,7 @@ public class Discussion : MonoBehaviour
 #else
         ScreenCapture.CaptureScreenshot("ScreenBlur.png");
 #endif
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(.3f);
         _blurImage.sprite = LoadSpriteFromFile(System.IO.Path.Combine(Application.persistentDataPath, "ScreenBlur.png"));
         _blurImage.transform.gameObject.SetActive(true);
 

@@ -500,8 +500,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 3380239144453109057}
   - {fileID: 2390398721992712686}
+  - {fileID: 3380239144453109057}
   - {fileID: 1739593476702796767}
   m_Father: {fileID: 6405247141993330418}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -563,7 +563,7 @@ GameObject:
   - component: {fileID: 7855167073092259729}
   - component: {fileID: 1701158203891385808}
   m_Layer: 5
-  m_Name: NPCMessageTemp
+  m_Name: NPCChatRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
