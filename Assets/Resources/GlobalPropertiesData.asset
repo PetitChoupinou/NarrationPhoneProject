@@ -13,18 +13,24 @@ MonoBehaviour:
   m_Name: GlobalPropertiesData
   m_EditorClassIdentifier: Assembly-CSharp::GlobalPropertiesData
   globalProperties:
-  - rid: 4237343184246538389
-  - rid: 4237343184246538390
+  - rid: 983295663717220352
+  - rid: 983295663717220353
+  - rid: 983295663717220354
   references:
     version: 2
     RefIds:
-    - rid: 4237343184246538389
-      type: {class: 'ExposedProperty`1[[System.Int32, mscorlib]]', ns: , asm: Assembly-CSharp}
-      data:
-        Name: Int
-        PropertyValue: 0
-    - rid: 4237343184246538390
+    - rid: 983295663717220352
       type: {class: 'ExposedProperty`1[[System.Boolean, mscorlib]]', ns: , asm: Assembly-CSharp}
       data:
-        Name: Boule
+        Name: "MargauxN\xB02_1"
+        PropertyValue: 0
+    - rid: 983295663717220353
+      type: {class: 'ExposedProperty`1[[System.Boolean, mscorlib]]', ns: , asm: Assembly-CSharp}
+      data:
+        Name: "MargauxN\xB02_2"
+        PropertyValue: 0
+    - rid: 983295663717220354
+      type: {class: 'ExposedProperty`1[[System.Boolean, mscorlib]]', ns: , asm: Assembly-CSharp}
+      data:
+        Name: New Boolean
         PropertyValue: 0
