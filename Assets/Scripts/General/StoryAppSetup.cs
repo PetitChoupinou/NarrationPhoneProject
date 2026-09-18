@@ -118,5 +118,8 @@ public enum NetworkState
 public enum CharaEmotion
 {
     Base,
-    Bored
+    Angry,
+    Doubt,
+    Scared,
+    Think
 };

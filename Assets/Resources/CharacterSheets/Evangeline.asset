@@ -22,10 +22,20 @@ MonoBehaviour:
   telNum:
     title: Eva
     numbers: 0101010101
+    ringTime: 0
     callText:
     - 00000
     callAudio: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
+    ringAudio: {fileID: 0}
   dialogueIndex: 0
   EmotionPIcs:
-  - Emotion: Base
-    Picture: {fileID: -3518012999459807980, guid: 15ab4f93554a7f2418ffe508a22bc5ef, type: 3}
+  - Emotion: 0
+    Picture: {fileID: 3881675516879796588, guid: 766294f1757473240a1a0b815d31bfee, type: 3}
+  - Emotion: 1
+    Picture: {fileID: 2896329362132653603, guid: 72749bceefe2fef43acfd1a2a3cb909f, type: 3}
+  - Emotion: 2
+    Picture: {fileID: -2997718332804010899, guid: 597f6ceea650f194aad2764c4c1a69f8, type: 3}
+  - Emotion: 3
+    Picture: {fileID: -4890802295177396480, guid: 53e24de60650416438f9d74b5fd292e0, type: 3}
+  - Emotion: 4
+    Picture: {fileID: 5793004492825593876, guid: 2e61c5343620c0f449d3c4088eaa7358, type: 3}

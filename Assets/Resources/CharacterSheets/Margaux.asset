@@ -22,10 +22,20 @@ MonoBehaviour:
   telNum:
     title: Margaux
     numbers: 0761964399
+    ringTime: 0
     callText:
     - :3
     callAudio: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
+    ringAudio: {fileID: 0}
   dialogueIndex: 0
   EmotionPIcs:
-  - Emotion: Base
-    Picture: {fileID: 3180124609191791154, guid: bb11d6d118cbef944acc11b6c210c4d7, type: 3}
+  - Emotion: 0
+    Picture: {fileID: 2824324766532458760, guid: bfa6323a7d191ef45bbc2c58c08fd238, type: 3}
+  - Emotion: 1
+    Picture: {fileID: -1969242786396653882, guid: 818949a2c48e8d14b9c285e398e99cf3, type: 3}
+  - Emotion: 2
+    Picture: {fileID: 2643273418234699327, guid: b5ecff979de1325429ca0c97a940094b, type: 3}
+  - Emotion: 3
+    Picture: {fileID: 7266418025450033566, guid: 21fb9fa9d46f1d04baef3103f0f744fd, type: 3}
+  - Emotion: 4
+    Picture: {fileID: 6887781535440116489, guid: 8eaa3fede52c6e840996012d397eb34d, type: 3}

@@ -22,10 +22,20 @@ MonoBehaviour:
   telNum:
     title: Ethan
     numbers: 0612047223
+    ringTime: 0
     callText:
     - Allo
     callAudio: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
+    ringAudio: {fileID: 0}
   dialogueIndex: 0
   EmotionPIcs:
-  - Emotion: Base
-    Picture: {fileID: -6794848408686732605, guid: e065cf202f1296a4f882df332c727f76, type: 3}
+  - Emotion: 0
+    Picture: {fileID: -5307722451877339762, guid: 5eb85982ec10f104bb21878a1b3d6976, type: 3}
+  - Emotion: 1
+    Picture: {fileID: -1944184714200457772, guid: 58901086c24dd9d4291206a9b1667fa4, type: 3}
+  - Emotion: 2
+    Picture: {fileID: -8243657716351924256, guid: c02aca559c1dd934fa86e797dc599518, type: 3}
+  - Emotion: 3
+    Picture: {fileID: -7786896382567520643, guid: 2df9d2ece12887540a771021ca7dd50a, type: 3}
+  - Emotion: 4
+    Picture: {fileID: -4914886401923487501, guid: 0ea2a959df0a45d41b113790167464b0, type: 3}

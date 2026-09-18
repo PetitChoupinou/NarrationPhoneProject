@@ -22,10 +22,20 @@ MonoBehaviour:
   telNum:
     title: Sach
     numbers: 0707070707
+    ringTime: 0
     callText:
     - ...
     callAudio: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
+    ringAudio: {fileID: 0}
   dialogueIndex: 0
   EmotionPIcs:
-  - Emotion: Base
-    Picture: {fileID: 3382265816457917842, guid: 948f00eeddb7afc49b18abb175c03d00, type: 3}
+  - Emotion: 0
+    Picture: {fileID: -6023453240284142446, guid: 8c22643eea42700439c4e74129ec6e50, type: 3}
+  - Emotion: 1
+    Picture: {fileID: 2287368036769375648, guid: 75a4017ee5c37dd47b09f4007957219c, type: 3}
+  - Emotion: 2
+    Picture: {fileID: -1684308287631853481, guid: 10bee69b8507e064098912a18a40fadf, type: 3}
+  - Emotion: 3
+    Picture: {fileID: 8714291575315819705, guid: ddd336ffe74c074478387769045488a0, type: 3}
+  - Emotion: 4
+    Picture: {fileID: -3935412424031580934, guid: 5e4858ed4077ade43923065c75715d92, type: 3}
