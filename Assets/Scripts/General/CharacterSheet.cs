@@ -51,10 +51,6 @@ public class CharacterSheet : ScriptableObject
 
     public Sprite GetBasePicture()
     {
-        foreach (CharaEmotion s in ProfilePics.Keys)
-        {
-            Debug.Log(s);
-        }
         return profilePics[CharaEmotion.Base];
     }
 }

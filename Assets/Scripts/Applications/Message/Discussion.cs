@@ -208,24 +208,7 @@ public class Discussion : MonoBehaviour
     {
 
         _canChoose = true;
-        StartCoroutine(SetBlur());
-        _choices.AddRange(choices);
-        _choicePanel.SetActive(true);
-        for (int i=0;i<choices.Count; i++)
-        {
-            GameObject choice=Instantiate(_choicePrefab, _choicePanel.transform.GetChild(0));
-            _choiceButtons.Add(choice);
-            choice.GetComponentInChildren<UITextTyperMsg>().ReadText(choices[i]);
-            choice.GetComponent<MessageChoice>().value = choices[i];
-            //GameObject choice=Instantiate(_choicePrefab, transform);
-            _choicePrefab.GetComponent<RectTransform>().localPosition += new Vector3(0,40,0);
-            if (!DialogueDataReader.IsChoicePossible(choices[i]))
-            {
-                choice.GetComponent<Image>().color = Color.red;
-                choice.GetComponent<Button>().interactable = false;
-            }
-        }
-
+        StartCoroutine(SetBlur(choices));
     }
     /// <summary>
     /// Change preview on the base screen of the message app
@@ -404,7 +387,12 @@ public class Discussion : MonoBehaviour
     {
         _endOfDiscussion.SetActive(true);
     }
-     IEnumerator SetBlur()
+    /// <summary>
+    /// took most of what was in the trigger choice function to ensure the blur and the message would arrive at the same time. Not the best solution but will do for now.
+    /// </summary>
+    /// <param name="choices"></param>
+    /// <returns></returns>
+     IEnumerator SetBlur(List<string> choices)
     {
 #if UNITY_EDITOR
         ScreenCapture.CaptureScreenshot(System.IO.Path.Combine(Application.persistentDataPath, "ScreenBlur.png"));
@@ -416,7 +404,23 @@ public class Discussion : MonoBehaviour
         yield return new WaitForSeconds(.3f);
         _blurImage.sprite = LoadSpriteFromFile(System.IO.Path.Combine(Application.persistentDataPath, "ScreenBlur.png"));
         _blurImage.transform.gameObject.SetActive(true);
+        _choicePanel.SetActive(true);
+        _choices.AddRange(choices);
 
+        for (int i = 0; i < choices.Count; i++)
+        {
+            GameObject choice = Instantiate(_choicePrefab, _choicePanel.transform.GetChild(0));
+            _choiceButtons.Add(choice);
+            choice.GetComponentInChildren<UITextTyperMsg>().ReadText(choices[i]);
+            choice.GetComponent<MessageChoice>().value = choices[i];
+            //GameObject choice=Instantiate(_choicePrefab, transform);
+            _choicePrefab.GetComponent<RectTransform>().localPosition += new Vector3(0, 40, 0);
+            if (!DialogueDataReader.IsChoicePossible(choices[i]))
+            {
+                choice.GetComponent<Image>().color = Color.red;
+                choice.GetComponent<Button>().interactable = false;
+            }
+        }
     }
  
     private Sprite LoadSpriteFromFile(string filePath)

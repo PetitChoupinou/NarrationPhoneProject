@@ -102,10 +102,9 @@ public class EnergyManager : MonoBehaviour
     }
     public void OfflineEnergyGain()
     {
-        print(CurrentEnergy);
+        print("offlineGain");
         TimeSpan difference = InternetConnection.GetNistTime() - _saveManager.Save.lastAppQuit.CurrentTime;
         int diffInMinute = (int)difference.TotalMinutes;
-        print(_saveManager.Save.lastAppQuit.CurrentTime);
         AddEnergy(diffInMinute * _energyPerTimeSpan / _timeSpanInMinute);
         _saveManager.SavePlayerData();
     }

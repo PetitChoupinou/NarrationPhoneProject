@@ -9,25 +9,26 @@ public class ConnectionManager : MonoBehaviour
     public static ConnectionManager Instance { get; private set; }
 
     public bool IsConnected { get => _isConnected;}
-    IEnumerator checkInternetConnection(Action<bool> action)
+    IEnumerator CheckInternetConnection(Action<bool> onResult)
     {
-        UnityWebRequest www = new UnityWebRequest("http://google.com");
-        yield return www;
-        if (www.error != null)
+        while (true)
         {
-            yield return new WaitForSeconds(60);
-            StartCoroutine(checkInternetConnection((isConnected) => {
-                _isConnected = isConnected;
-                QuestManager.Instance.StartQuests();
-                EnergyManager.Instance.OfflineEnergyGain();
-            }));
-        }
-        else
-        {
-            action(true);
+            using (UnityWebRequest www = UnityWebRequest.Head("https://clients3.google.com/generate_204"))
+            {
+                www.timeout = 5;
+                yield return www.SendWebRequest();
+
+                if (www.result == UnityWebRequest.Result.Success)
+                {
+                    onResult(true);
+                    yield break;
+                }
+            }
+            yield return new WaitForSeconds(30);
+            
         }
     }
-     private void Awake()
+    private void Awake()
     {
         if (Instance != null && Instance != this)
         {
@@ -42,7 +43,7 @@ public class ConnectionManager : MonoBehaviour
     }
     void Start()
     {
-        StartCoroutine(checkInternetConnection((isConnected) => {
+        StartCoroutine(CheckInternetConnection((isConnected) => {
             _isConnected = isConnected;
             QuestManager.Instance.StartQuests();
             EnergyManager.Instance.OfflineEnergyGain();
