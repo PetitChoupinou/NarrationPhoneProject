@@ -15,32 +15,89 @@ MonoBehaviour:
   secondsToWait: 60
   secondsToWaitFast: 5
   nodes:
-  - rid: 983295845986730048
-  - rid: 983295845986730049
-  - rid: 983295845986730050
-  - rid: 983295845986730051
-  - rid: 983295845986730052
-  - rid: 983295845986730053
-  - rid: 983295845986730054
-  - rid: 983295845986730055
-  - rid: 983295845986730056
-  - rid: 983295845986730057
-  - rid: 983295845986730058
-  - rid: 983295845986730059
-  - rid: 983295845986730060
-  - rid: 983295845986730061
-  - rid: 983295845986730062
-  - rid: 983295845986730063
-  - rid: 983295845986730064
-  - rid: 983295845986730065
-  - rid: 983295845986730066
-  - rid: 983295845986730067
-  - rid: 983295845986730068
-  - rid: 983295845986730069
-  - rid: 983295845986730070
-  - rid: 983295845986730071
-  - rid: 983295845986730072
-  - rid: 983295845986730073
+  - rid: 983295935321473740
+  - rid: 983295935321473741
+  - rid: 983295935321473742
+  - rid: 983295935321473743
+  - rid: 983295935321473744
+  - rid: 983295935321473745
+  - rid: 983295935321473746
+  - rid: 983295935321473747
+  - rid: 983295935321473748
+  - rid: 983295935321473749
+  - rid: 983295935321473750
+  - rid: 983295935321473751
+  - rid: 983295935321473752
+  - rid: 983295935321473753
+  - rid: 983295935321473754
+  - rid: 983295935321473755
+  - rid: 983295935321473756
+  - rid: 983295935321473757
+  - rid: 983295935321473758
+  - rid: 983295935321473759
+  - rid: 983295935321473760
+  - rid: 983295935321473761
+  - rid: 983295935321473762
+  - rid: 983295935321473763
+  - rid: 983295935321473764
+  - rid: 983295935321473765
+  - rid: 983295935321473766
+  - rid: 983295935321473767
+  - rid: 983295935321473768
+  - rid: 983295935321473769
+  - rid: 983295935321473770
+  - rid: 983295935321473771
+  - rid: 983295935321473772
+  - rid: 983295935321473773
+  - rid: 983295935321473774
+  - rid: 983295935321473775
+  - rid: 983295935321473776
+  - rid: 983295935321473777
+  - rid: 983295935321473778
+  - rid: 983295935321473779
+  - rid: 983295935321473780
+  - rid: 983295935321473781
+  - rid: 983295935321473782
+  - rid: 983295935321473783
+  - rid: 983295935321473784
+  - rid: 983295935321473785
+  - rid: 983295935321473786
+  - rid: 983295935321473787
+  - rid: 983295935321473788
+  - rid: 983295935321473789
+  - rid: 983295935321473790
+  - rid: 983295935321473791
+  - rid: 983295935321473792
+  - rid: 983295935321473793
+  - rid: 983295935321473794
+  - rid: 983295935321473795
+  - rid: 983295935321473796
+  - rid: 983295935321473797
+  - rid: 983295935321473798
+  - rid: 983295935321473799
+  - rid: 983295935321473800
+  - rid: 983295935321473801
+  - rid: 983295935321473802
+  - rid: 983295935321473803
+  - rid: 983295935321473804
+  - rid: 983295935321473805
+  - rid: 983295935321473806
+  - rid: 983295935321473807
+  - rid: 983295935321473808
+  - rid: 983295935321473809
+  - rid: 983295935321473810
+  - rid: 983295935321473811
+  - rid: 983295935321473812
+  - rid: 983295935321473813
+  - rid: 983295935321473814
+  - rid: 983295935321473815
+  - rid: 983295935321473816
+  - rid: 983295935321473817
+  - rid: 983295935321473818
+  - rid: 983295935321473819
+  - rid: 983295935321473820
+  - rid: 983295935321473821
+  - rid: 983295935321473822
   entryPointNodeGuid: e7c79b18-94f6-4952-9ae7-c6e88569f91c
   isLocked: 0
   _isLocked: 0
@@ -48,7 +105,7 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 983295845986730048
+    - rid: 983295935321473740
       type: {class: NodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: e7c79b18-94f6-4952-9ae7-c6e88569f91c
@@ -58,7 +115,7 @@ MonoBehaviour:
         - portValue: Next
           targetNodeGuid: fdeb5265-7ad7-4268-b0ce-9b0013f42c99
         isSentCurrent: 0
-    - rid: 983295845986730049
+    - rid: 983295935321473741
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: fdeb5265-7ad7-4268-b0ce-9b0013f42c99
@@ -72,7 +129,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 0
         emotion: 0
-    - rid: 983295845986730050
+    - rid: 983295935321473742
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 096621bf-6bdf-4e0c-900e-275d13d7503d
@@ -86,7 +143,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295845986730051
+    - rid: 983295935321473743
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: ec2a8ffb-8f0c-4ef0-a7a0-591fd5682fe8
@@ -100,7 +157,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295845986730052
+    - rid: 983295935321473744
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 9008289c-c61e-4316-ab58-e1f01d6dce47
@@ -114,7 +171,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295845986730053
+    - rid: 983295935321473745
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: a962a790-e2bf-46b0-81bd-91b4f58dcac9
@@ -128,7 +185,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295845986730054
+    - rid: 983295935321473746
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: d960166c-bc9a-4bbb-ba10-075665b74c2d
@@ -142,7 +199,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295845986730055
+    - rid: 983295935321473747
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 3ab065b1-2123-4989-9ee1-521339b17c87
@@ -156,7 +213,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295845986730056
+    - rid: 983295935321473748
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: d89deb24-88a2-47e9-a119-eebba7209a21
@@ -170,7 +227,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295845986730057
+    - rid: 983295935321473749
       type: {class: ChoiceNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: a1cc3679-49e4-428f-a7d9-c8e89f91c968
@@ -189,7 +246,7 @@ MonoBehaviour:
         timerSending: 0
         emotion: 0
         chosenChoiceID: -1
-    - rid: 983295845986730058
+    - rid: 983295935321473750
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 9ffc7987-7e57-42ae-abdc-2f743db84617
@@ -203,7 +260,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295845986730059
+    - rid: 983295935321473751
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: d5e8b974-d21a-4070-93aa-76700a7cda31
@@ -217,7 +274,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295845986730060
+    - rid: 983295935321473752
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 56d4c9e1-0dfb-4a03-8326-76456750c58d
@@ -231,7 +288,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 0
         emotion: 0
-    - rid: 983295845986730061
+    - rid: 983295935321473753
       type: {class: ChoiceNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 77a466de-72f5-482b-bbb8-8ca78af2080c
@@ -248,7 +305,7 @@ MonoBehaviour:
         timerSending: 0
         emotion: 0
         chosenChoiceID: -1
-    - rid: 983295845986730062
+    - rid: 983295935321473754
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 4bafdb9f-4caf-4df8-a817-cc69471aa031
@@ -262,7 +319,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295845986730063
+    - rid: 983295935321473755
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: dad87952-948a-4abe-8f30-20424c4ea979
@@ -276,7 +333,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295845986730064
+    - rid: 983295935321473756
       type: {class: AffinityNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 702d2285-4b06-4e7b-8818-1ad40517e214
@@ -287,7 +344,7 @@ MonoBehaviour:
           targetNodeGuid: 26047cb6-4613-4a20-828b-c14877c91135
         isSentCurrent: 0
         affinityGain: -1
-    - rid: 983295845986730065
+    - rid: 983295935321473757
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 26047cb6-4613-4a20-828b-c14877c91135
@@ -301,7 +358,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 1.5
         emotion: 0
-    - rid: 983295845986730066
+    - rid: 983295935321473758
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: cebd4fe4-d6bc-45fb-ae37-1f520e3b7126
@@ -315,7 +372,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2.5
         emotion: 0
-    - rid: 983295845986730067
+    - rid: 983295935321473759
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: f79fe8bd-6b66-43b7-a0ba-7cf2421fc3e2
@@ -329,7 +386,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 1.2
         emotion: 0
-    - rid: 983295845986730068
+    - rid: 983295935321473760
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: bb9e1848-3e0d-496a-96c9-3590ba02454a
@@ -343,7 +400,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295845986730069
+    - rid: 983295935321473761
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 00f68c4c-2281-4946-8772-f3c51d2faed6
@@ -357,7 +414,7 @@ MonoBehaviour:
         isNPC: 0
         timerSending: 0
         emotion: 0
-    - rid: 983295845986730070
+    - rid: 983295935321473762
       type: {class: ChoiceNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 25ae48b8-6866-4b31-878d-5069c5e88dcf
@@ -374,7 +431,7 @@ MonoBehaviour:
         timerSending: 0
         emotion: 0
         chosenChoiceID: -1
-    - rid: 983295845986730071
+    - rid: 983295935321473763
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: c21a7f85-bcb4-47bd-b5b6-435d224cff7b
@@ -388,7 +445,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295845986730072
+    - rid: 983295935321473764
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 661b4721-5623-4bb4-9bbf-acd8b8429429
@@ -402,7 +459,7 @@ MonoBehaviour:
         isNPC: 1
         timerSending: 2
         emotion: 0
-    - rid: 983295845986730073
+    - rid: 983295935321473765
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 47bfb2b4-6308-4173-9d20-bc727d0637c5
@@ -410,10 +467,827 @@ MonoBehaviour:
         position: {x: 3744.8, y: 212}
         outputs:
         - portValue: Next
-          targetNodeGuid: 
+          targetNodeGuid: 76effed1-9114-46ff-8061-9047cb692d06
         isSentCurrent: 0
         dialogueText: "J'imagine qu'une preuve concr\xEAte que tu n'as rien fait
           \xE0 Valentine pourrait \xEAtres suffisant. "
         isNPC: 1
         timerSending: 3
+        emotion: 0
+    - rid: 983295935321473766
+      type: {class: ChoiceNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 76effed1-9114-46ff-8061-9047cb692d06
+        nodeType: 2
+        position: {x: 4264, y: 212}
+        outputs:
+        - portValue: Envoyer la preuve
+          targetNodeGuid: 7dceab54-7918-4265-924b-348cded39628
+        - portValue: Comment tu sais pour Valentine ?
+          targetNodeGuid: 8bd78afc-241d-4c02-9a03-32a41d63e57b
+        isSentCurrent: 0
+        dialogueText: 
+        isNPC: 0
+        timerSending: 0
+        emotion: 0
+        chosenChoiceID: -1
+    - rid: 983295935321473767
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 8bd78afc-241d-4c02-9a03-32a41d63e57b
+        nodeType: 1
+        position: {x: 4645.6, y: 397.6}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 1bb5e5ea-167d-404c-b365-2db49bdfa14d
+        isSentCurrent: 0
+        dialogueText: Donc tu sais que Valentine a disparus.
+        isNPC: 0
+        timerSending: 0
+        emotion: 0
+    - rid: 983295935321473768
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 1bb5e5ea-167d-404c-b365-2db49bdfa14d
+        nodeType: 1
+        position: {x: 4890.4004, y: 397.6}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 97ba1072-0fee-4b3c-b13d-b88414087cb4
+        isSentCurrent: 0
+        dialogueText: Comment est-ce que tu es au courant ?
+        isNPC: 0
+        timerSending: 0
+        emotion: 0
+    - rid: 983295935321473769
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 97ba1072-0fee-4b3c-b13d-b88414087cb4
+        nodeType: 1
+        position: {x: 5154.4004, y: 397.6}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 890ba96f-d3a6-43de-ac54-2c4792cee021
+        isSentCurrent: 0
+        dialogueText: "Inutile de chercher \xE0 me faire parler."
+        isNPC: 1
+        timerSending: 1.5
+        emotion: 0
+    - rid: 983295935321473770
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 890ba96f-d3a6-43de-ac54-2c4792cee021
+        nodeType: 1
+        position: {x: 5403.2, y: 397.6}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 247758e7-6c33-4e62-8c36-432011128823
+        isSentCurrent: 0
+        dialogueText: Je ne te dirais rien.
+        isNPC: 1
+        timerSending: 0
+        emotion: 0
+    - rid: 983295935321473771
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 247758e7-6c33-4e62-8c36-432011128823
+        nodeType: 1
+        position: {x: 5642.4004, y: 397.6}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 75cdb9b2-a672-4cc4-8df9-f77883c43747
+        isSentCurrent: 0
+        dialogueText: 'Prouve moi que je peut te faire confiance et je te parlerais. '
+        isNPC: 1
+        timerSending: 2.2
+        emotion: 0
+    - rid: 983295935321473772
+      type: {class: ChoiceNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 75cdb9b2-a672-4cc4-8df9-f77883c43747
+        nodeType: 2
+        position: {x: 5998.4004, y: 397.6}
+        outputs:
+        - portValue: Envoyer la preuve
+          targetNodeGuid: 7dceab54-7918-4265-924b-348cded39628
+        - portValue: Je ne te fais pas confiance
+          targetNodeGuid: 5680dc24-d4a7-4959-a8b4-dce40df6cfbc
+        isSentCurrent: 0
+        dialogueText: 
+        isNPC: 0
+        timerSending: 0
+        emotion: 0
+        chosenChoiceID: -1
+    - rid: 983295935321473773
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 5680dc24-d4a7-4959-a8b4-dce40df6cfbc
+        nodeType: 1
+        position: {x: 6312, y: 397.6}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 89077648-6e5b-410f-a8dd-1c538c941557
+        isSentCurrent: 0
+        dialogueText: Non, je ne te fais pas confiance.
+        isNPC: 0
+        timerSending: 0
+        emotion: 0
+    - rid: 983295935321473774
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 89077648-6e5b-410f-a8dd-1c538c941557
+        nodeType: 1
+        position: {x: 6549.6, y: 397.6}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 857f60b4-63d5-493c-a403-10485ae61697
+        isSentCurrent: 0
+        dialogueText: "Tu pourrais me pi\xE9ger."
+        isNPC: 0
+        timerSending: 0
+        emotion: 0
+    - rid: 983295935321473775
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 857f60b4-63d5-493c-a403-10485ae61697
+        nodeType: 1
+        position: {x: 6794.4004, y: 397.6}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 24aecfe6-cf4a-4bf3-b53e-6b0e1498fca1
+        isSentCurrent: 0
+        dialogueText: 'Dis moi ton nom et je te donnerais une preuve. '
+        isNPC: 0
+        timerSending: 0
+        emotion: 0
+    - rid: 983295935321473776
+      type: {class: AffinityNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 24aecfe6-cf4a-4bf3-b53e-6b0e1498fca1
+        nodeType: 3
+        position: {x: 7089.6, y: 397.6}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 44a31bb0-6c20-493d-baca-effea0e9a79c
+        isSentCurrent: 0
+        affinityGain: -1
+    - rid: 983295935321473777
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 44a31bb0-6c20-493d-baca-effea0e9a79c
+        nodeType: 1
+        position: {x: 7276.8003, y: 397.6}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: ead5a407-3c65-45a0-8e76-ca238ae5a98c
+        isSentCurrent: 0
+        dialogueText: "Je savais que c'\xE9tait inutile. "
+        isNPC: 1
+        timerSending: 1.2
+        emotion: 0
+    - rid: 983295935321473778
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: ead5a407-3c65-45a0-8e76-ca238ae5a98c
+        nodeType: 1
+        position: {x: 7522.4004, y: 397.6}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 5ba3994b-1ab5-47cf-8f96-c01f1f789ce0
+        isSentCurrent: 0
+        dialogueText: Tu es un manipulateur.
+        isNPC: 1
+        timerSending: 0
+        emotion: 0
+    - rid: 983295935321473779
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 5ba3994b-1ab5-47cf-8f96-c01f1f789ce0
+        nodeType: 1
+        position: {x: 7767.2, y: 397.6}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 7f4abd66-620b-4705-b863-8deafe5cec51
+        isSentCurrent: 0
+        dialogueText: "\xC7a ne sers \xE0 rien de continuer."
+        isNPC: 1
+        timerSending: 1.2
+        emotion: 0
+    - rid: 983295935321473780
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 7dceab54-7918-4265-924b-348cded39628
+        nodeType: 1
+        position: {x: 4696.8003, y: 100}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: ea3b1db2-50dc-4ed5-9a7f-7a59d417145c
+        isSentCurrent: 0
+        dialogueText: 'Regarde sur la photo. '
+        isNPC: 0
+        timerSending: 0
+        emotion: 0
+    - rid: 983295935321473781
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: ea3b1db2-50dc-4ed5-9a7f-7a59d417145c
+        nodeType: 1
+        position: {x: 4932, y: 100}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 067a97ed-a3c8-49a8-a0f5-d21a6bfb3514
+        isSentCurrent: 0
+        dialogueText: "J'\xE9tais \xE0 la soir\xE9e et tout le monde m'a vue."
+        isNPC: 0
+        timerSending: 0
+        emotion: 0
+    - rid: 983295935321473782
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 067a97ed-a3c8-49a8-a0f5-d21a6bfb3514
+        nodeType: 1
+        position: {x: 5202.4004, y: 100}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 2aee935c-af22-41c8-a3af-1c2eb46943c9
+        isSentCurrent: 0
+        dialogueText: New Dialogue
+        isNPC: 0
+        timerSending: 0
+        emotion: 0
+    - rid: 983295935321473783
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 2aee935c-af22-41c8-a3af-1c2eb46943c9
+        nodeType: 1
+        position: {x: 5441.6, y: 100}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 5d95d64b-dcc8-400a-b631-a97458e0dd41
+        isSentCurrent: 0
+        dialogueText: "Je suis partis vers 3h, Valentine \xE9tait d\xE9j\xE0 plus
+          l\xE0."
+        isNPC: 0
+        timerSending: 0
+        emotion: 0
+    - rid: 983295935321473784
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 5d95d64b-dcc8-400a-b631-a97458e0dd41
+        nodeType: 1
+        position: {x: 5759.2, y: 100}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 2d3a4d0b-3225-4976-ae27-2b554ec659a7
+        isSentCurrent: 0
+        dialogueText: Humm
+        isNPC: 1
+        timerSending: 2
+        emotion: 0
+    - rid: 983295935321473785
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 2d3a4d0b-3225-4976-ae27-2b554ec659a7
+        nodeType: 1
+        position: {x: 6011.2, y: 100}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 274df310-25da-4dbc-9690-569e1aac3953
+        isSentCurrent: 0
+        dialogueText: "Oui j'imagine que \xE7a se tiens."
+        isNPC: 1
+        timerSending: 1.5
+        emotion: 0
+    - rid: 983295935321473786
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 274df310-25da-4dbc-9690-569e1aac3953
+        nodeType: 1
+        position: {x: 6256.8003, y: 100}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 75ad7ecd-921c-4127-80ed-c7facb1d937e
+        isSentCurrent: 0
+        dialogueText: "Pour le coup \xE7a remet en cause ma th\xE9orie sur toi."
+        isNPC: 1
+        timerSending: 2
+        emotion: 0
+    - rid: 983295935321473787
+      type: {class: ChoiceNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 7f4abd66-620b-4705-b863-8deafe5cec51
+        nodeType: 2
+        position: {x: 8024, y: 397.6}
+        outputs:
+        - portValue: Je vais te prouver que non
+          targetNodeGuid: 1226a716-cff5-4547-8d58-a06a57a005a4
+        - portValue: La conversation est close
+          targetNodeGuid: fb8ee16d-cb53-48b8-96e3-bb49c4bd2b07
+        isSentCurrent: 0
+        dialogueText: 
+        isNPC: 0
+        timerSending: 0
+        emotion: 0
+        chosenChoiceID: -1
+    - rid: 983295935321473788
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: fb8ee16d-cb53-48b8-96e3-bb49c4bd2b07
+        nodeType: 1
+        position: {x: 8396, y: 596.8}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 31f1ed72-af1e-4b53-aa1e-39b2cf616009
+        isSentCurrent: 0
+        dialogueText: "Au moins on est d'accord sur \xE7a."
+        isNPC: 0
+        timerSending: 0
+        emotion: 0
+    - rid: 983295935321473789
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 31f1ed72-af1e-4b53-aa1e-39b2cf616009
+        nodeType: 1
+        position: {x: 8645.601, y: 596.8}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 
+        isSentCurrent: 0
+        dialogueText: Le conversation est close.
+        isNPC: 0
+        timerSending: 0
+        emotion: 0
+    - rid: 983295935321473790
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 1226a716-cff5-4547-8d58-a06a57a005a4
+        nodeType: 1
+        position: {x: 8396, y: 397.6}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 3274f88c-3469-41dc-8e6f-14316e96c09a
+        isSentCurrent: 0
+        dialogueText: Ok je vais te le prouver.
+        isNPC: 0
+        timerSending: 0
+        emotion: 0
+    - rid: 983295935321473791
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 3274f88c-3469-41dc-8e6f-14316e96c09a
+        nodeType: 1
+        position: {x: 8645.601, y: 397.6}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: c3c29086-ec6c-491d-813e-a939edb56344
+        isSentCurrent: 0
+        dialogueText: 'Mais si je le fais promet moi de me dire ce que tu sais. '
+        isNPC: 0
+        timerSending: 0
+        emotion: 0
+    - rid: 983295935321473792
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: c3c29086-ec6c-491d-813e-a939edb56344
+        nodeType: 1
+        position: {x: 8981.601, y: 397.6}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: ec830b6e-8ba2-4ee9-88ee-b9b0ba961691
+        isSentCurrent: 0
+        dialogueText: 'Je ne promet rien. '
+        isNPC: 1
+        timerSending: 0
+        emotion: 0
+    - rid: 983295935321473793
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: ec830b6e-8ba2-4ee9-88ee-b9b0ba961691
+        nodeType: 1
+        position: {x: 9232.8, y: 397.6}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 7dceab54-7918-4265-924b-348cded39628
+        isSentCurrent: 0
+        dialogueText: "Mais prouve ton innocence et peut \xEAtre qiue je parlerais. "
+        isNPC: 1
+        timerSending: 2
+        emotion: 0
+    - rid: 983295935321473794
+      type: {class: ChoiceNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 75ad7ecd-921c-4127-80ed-c7facb1d937e
+        nodeType: 2
+        position: {x: 6593.6, y: 100}
+        outputs:
+        - portValue: "Ta th\xE9orie ?"
+          targetNodeGuid: f4504326-d757-4b9d-b3a5-1580582d4477
+        - portValue: "Maintenant \xE0 toi de parler"
+          targetNodeGuid: 
+        isSentCurrent: 0
+        dialogueText: 
+        isNPC: 0
+        timerSending: 0
+        emotion: 0
+        chosenChoiceID: -1
+    - rid: 983295935321473795
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: f4504326-d757-4b9d-b3a5-1580582d4477
+        nodeType: 1
+        position: {x: 6999.2, y: -213.6}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 62687936-f8e8-4df4-83fa-279efd10da5b
+        isSentCurrent: 0
+        dialogueText: "Ta th\xE9orie ?"
+        isNPC: 0
+        timerSending: 0
+        emotion: 0
+    - rid: 983295935321473796
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 62687936-f8e8-4df4-83fa-279efd10da5b
+        nodeType: 1
+        position: {x: 7240.8003, y: -213.6}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 2180d309-5983-4fd8-9ff0-a6fca2015292
+        isSentCurrent: 0
+        dialogueText: "Tu \xE9tais persuad\xE9 que j'avais fait du mal \xE0 Valentine
+          ? "
+        isNPC: 0
+        timerSending: 0
+        emotion: 0
+    - rid: 983295935321473797
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 2180d309-5983-4fd8-9ff0-a6fca2015292
+        nodeType: 1
+        position: {x: 7571.2, y: -213.6}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: f0f011f1-f61b-4b36-85a2-c56659e8adea
+        isSentCurrent: 0
+        dialogueText: Et bien
+        isNPC: 1
+        timerSending: 0
+        emotion: 0
+    - rid: 983295935321473798
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: f0f011f1-f61b-4b36-85a2-c56659e8adea
+        nodeType: 1
+        position: {x: 7812, y: -213.6}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: decf3c6b-3d6f-455b-9e60-9af84320d4e3
+        isSentCurrent: 0
+        dialogueText: "\xC7a semblait logique."
+        isNPC: 1
+        timerSending: 0
+        emotion: 0
+    - rid: 983295935321473799
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: decf3c6b-3d6f-455b-9e60-9af84320d4e3
+        nodeType: 1
+        position: {x: 8048, y: -213.6}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: fc607490-ccb5-4b0e-843d-2b845a294067
+        isSentCurrent: 0
+        dialogueText: "Tu avais son t\xE9l\xE9phone et je ne t'avais pas vu \xE0
+          la soir\xE9e. "
+        isNPC: 1
+        timerSending: 2
+        emotion: 0
+    - rid: 983295935321473800
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: b24a2c54-2ae3-436c-a679-3befbc3421b1
+        nodeType: 1
+        position: {x: 8896.8, y: -504.8}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 81a6003b-be3f-46ba-8509-06e79ae4b735
+        isSentCurrent: 0
+        dialogueText: "Tu m'a vu rammasser le t\xE9l\xE9phone de Valentine ?"
+        isNPC: 0
+        timerSending: 0
+        emotion: 0
+    - rid: 983295935321473801
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 81a6003b-be3f-46ba-8509-06e79ae4b735
+        nodeType: 1
+        position: {x: 9198.4, y: -504.8}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: d8556693-b11a-424b-8bc6-43a5f9f00063
+        isSentCurrent: 0
+        dialogueText: "Et vu qu'on commence \xE0 parler tu pourais peut \xEAtre me
+          dire ton nom ?"
+        isNPC: 0
+        timerSending: 0
+        emotion: 0
+    - rid: 983295935321473802
+      type: {class: ChoiceNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: fc607490-ccb5-4b0e-843d-2b845a294067
+        nodeType: 2
+        position: {x: 8484, y: -213.6}
+        outputs:
+        - portValue: "Tu m'a vu rammasser le t\xE9l\xE9phone ?"
+          targetNodeGuid: b24a2c54-2ae3-436c-a679-3befbc3421b1
+        - portValue: Tu peut me dire qui tu es ?
+          targetNodeGuid: dccb167d-ef6e-4877-a529-d725584cf8e8
+        isSentCurrent: 0
+        dialogueText: 
+        isNPC: 0
+        timerSending: 0
+        emotion: 0
+        chosenChoiceID: -1
+    - rid: 983295935321473803
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: dccb167d-ef6e-4877-a529-d725584cf8e8
+        nodeType: 1
+        position: {x: 8896.8, y: -207.2}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 32af7f3b-4581-4578-9ee1-1ca112f73aa6
+        isSentCurrent: 0
+        dialogueText: Maintenant que tu sais que je ne suis pas coupable...
+        isNPC: 0
+        timerSending: 0
+        emotion: 0
+    - rid: 983295935321473804
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 32af7f3b-4581-4578-9ee1-1ca112f73aa6
+        nodeType: 1
+        position: {x: 9233.601, y: -207.2}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 2328e9ce-d4ec-4f31-b0cd-2016fccb1c0e
+        isSentCurrent: 0
+        dialogueText: "Tu peut peut \xEAtre me dire qui tu es ?"
+        isNPC: 0
+        timerSending: 0
+        emotion: 0
+    - rid: 983295935321473805
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 2328e9ce-d4ec-4f31-b0cd-2016fccb1c0e
+        nodeType: 1
+        position: {x: 9511.2, y: -207.2}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 7f850a77-ffa2-4fee-9039-45d997bca5da
+        isSentCurrent: 0
+        dialogueText: Oui
+        isNPC: 1
+        timerSending: 0
+        emotion: 0
+    - rid: 983295935321473806
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 7f850a77-ffa2-4fee-9039-45d997bca5da
+        nodeType: 1
+        position: {x: 9758.4, y: -207.2}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 6fdf2fa9-7df8-40ae-923e-30f4ff1bb4d2
+        isSentCurrent: 0
+        dialogueText: J'imagine.
+        isNPC: 1
+        timerSending: 1
+        emotion: 0
+    - rid: 983295935321473807
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 6fdf2fa9-7df8-40ae-923e-30f4ff1bb4d2
+        nodeType: 1
+        position: {x: 10008, y: -207.2}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 1267a20b-47a3-46bf-8e70-20fde2c27c18
+        isSentCurrent: 0
+        dialogueText: "Je m'appele \xC9vang\xE9line. "
+        isNPC: 1
+        timerSending: 1
+        emotion: 0
+    - rid: 983295935321473808
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 1267a20b-47a3-46bf-8e70-20fde2c27c18
+        nodeType: 1
+        position: {x: 10255.2, y: -207.2}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 99671ea0-922c-4d5d-9a28-58592d8f4b5a
+        isSentCurrent: 0
+        dialogueText: "Je suis dans le m\xEAme lyc\xE9e que toi."
+        isNPC: 1
+        timerSending: 1.5
+        emotion: 0
+    - rid: 983295935321473809
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: d8556693-b11a-424b-8bc6-43a5f9f00063
+        nodeType: 1
+        position: {x: 9620.8, y: -504.8}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 6fdf2fa9-7df8-40ae-923e-30f4ff1bb4d2
+        isSentCurrent: 0
+        dialogueText: Je t'ai vu de loin oui.
+        isNPC: 1
+        timerSending: 0
+        emotion: 0
+    - rid: 983295935321473810
+      type: {class: ChoiceNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 99671ea0-922c-4d5d-9a28-58592d8f4b5a
+        nodeType: 2
+        position: {x: 10527.2, y: -207.2}
+        outputs:
+        - portValue: "Enchant\xE9, je ne t'ai jamais vu au lyc\xE9e"
+          targetNodeGuid: 9153a835-5d6b-4a11-bf2f-df24c0da045c
+        - portValue: Et tu es une amie de Valentine ?
+          targetNodeGuid: 68f769fb-da27-4c58-b73e-aebd08397542
+        isSentCurrent: 0
+        dialogueText: 
+        isNPC: 0
+        timerSending: 0
+        emotion: 0
+        chosenChoiceID: -1
+    - rid: 983295935321473811
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 68f769fb-da27-4c58-b73e-aebd08397542
+        nodeType: 1
+        position: {x: 10999.2, y: -207.2}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 72eeef87-42be-43a0-9712-ffd592806a5c
+        isSentCurrent: 0
+        dialogueText: Ok je vois.
+        isNPC: 0
+        timerSending: 0
+        emotion: 0
+    - rid: 983295935321473812
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 9153a835-5d6b-4a11-bf2f-df24c0da045c
+        nodeType: 1
+        position: {x: 10999.2, y: -512.8}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: cbd73da5-b791-40f8-8c9c-cb4dd0aabc5d
+        isSentCurrent: 0
+        dialogueText: "Enchant\xE9 \xC9vang\xE9line."
+        isNPC: 0
+        timerSending: 0
+        emotion: 0
+    - rid: 983295935321473813
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: cbd73da5-b791-40f8-8c9c-cb4dd0aabc5d
+        nodeType: 1
+        position: {x: 11249.601, y: -512.8}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 84558b7e-8027-4e74-9a50-6f43f1278735
+        isSentCurrent: 0
+        dialogueText: "C'est bizarre, je t'ai jamais vu au lyc\xE9e."
+        isNPC: 0
+        timerSending: 0
+        emotion: 0
+    - rid: 983295935321473814
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 84558b7e-8027-4e74-9a50-6f43f1278735
+        nodeType: 1
+        position: {x: 11520.8, y: -512.8}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 1f542915-390c-4f75-ac71-5baff20d2be8
+        isSentCurrent: 0
+        dialogueText: 'Heu  '
+        isNPC: 1
+        timerSending: 2
+        emotion: 0
+    - rid: 983295935321473815
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 1f542915-390c-4f75-ac71-5baff20d2be8
+        nodeType: 1
+        position: {x: 11776.8, y: -512.8}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: f7067df7-579c-454c-8023-6e35479acf86
+        isSentCurrent: 0
+        dialogueText: Je suis assez timide en fait.
+        isNPC: 1
+        timerSending: 1.2
+        emotion: 0
+    - rid: 983295935321473816
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: f7067df7-579c-454c-8023-6e35479acf86
+        nodeType: 1
+        position: {x: 12034.4, y: -512.8}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 192f8324-247b-4701-9d95-f9e606c6bc96
+        isSentCurrent: 0
+        dialogueText: J'ai pas trop d'amis.
+        isNPC: 1
+        timerSending: 0
+        emotion: 0
+    - rid: 983295935321473817
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 192f8324-247b-4701-9d95-f9e606c6bc96
+        nodeType: 1
+        position: {x: 12288, y: -512.8}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 
+        isSentCurrent: 0
+        dialogueText: "Mais \xE7a me va je pr\xE9f\xE8re rester seule."
+        isNPC: 1
+        timerSending: 1.5
+        emotion: 0
+    - rid: 983295935321473818
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 72eeef87-42be-43a0-9712-ffd592806a5c
+        nodeType: 1
+        position: {x: 11255.2, y: -207.2}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 791520c4-9e00-4ff0-a240-a4ddc7c74330
+        isSentCurrent: 0
+        dialogueText: Et du coup tu es proche de Valentine ?
+        isNPC: 0
+        timerSending: 0
+        emotion: 0
+    - rid: 983295935321473819
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 791520c4-9e00-4ff0-a240-a4ddc7c74330
+        nodeType: 1
+        position: {x: 11521.601, y: -207.2}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: ce971db6-233b-4231-9b03-5e9814516d79
+        isSentCurrent: 0
+        dialogueText: Heu
+        isNPC: 1
+        timerSending: 0
+        emotion: 0
+    - rid: 983295935321473820
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: ce971db6-233b-4231-9b03-5e9814516d79
+        nodeType: 1
+        position: {x: 11771.2, y: -207.2}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 17dd9dab-df87-407e-bf6c-34d442c30211
+        isSentCurrent: 0
+        dialogueText: Je ne la connais que de loin.
+        isNPC: 1
+        timerSending: 1.5
+        emotion: 0
+    - rid: 983295935321473821
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 17dd9dab-df87-407e-bf6c-34d442c30211
+        nodeType: 1
+        position: {x: 12017.601, y: -207.2}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 483c0ef7-7080-447f-a01e-198b3276f97b
+        isSentCurrent: 0
+        dialogueText: Mais je la trouve vraiment classe.
+        isNPC: 1
+        timerSending: 1.5
+        emotion: 0
+    - rid: 983295935321473822
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 483c0ef7-7080-447f-a01e-198b3276f97b
+        nodeType: 1
+        position: {x: 12254.4, y: -207.2}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 
+        isSentCurrent: 0
+        dialogueText: C'est une personne incroyable.
+        isNPC: 1
+        timerSending: 1.5
         emotion: 0
