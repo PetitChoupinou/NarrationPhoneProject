@@ -11,9 +11,9 @@ namespace TCG.Core.Dialogues
         public override void SetupData(string strCommandData)
         {
 
-            if (SaveManager.instance!=null&&SaveManager.instance.Save != null)
+            if (SaveManager.Instance!=null&&SaveManager.Instance.Save != null)
             {
-                _name = SaveManager.instance.GetCurrentStoryPlayerName();
+                _name = SaveManager.Instance.GetCurrentStoryPlayerName();
             }
             Typer.CurrentText=Typer.CurrentText.Insert(EnterIndex, _name);
             return;

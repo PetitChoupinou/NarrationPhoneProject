@@ -52,7 +52,7 @@ public class EnergyManager : MonoBehaviour
     {
         if (focus)
         {
-            _saveManager = SaveManager.instance;
+            _saveManager = SaveManager.Instance;
             Load();
         }
         else

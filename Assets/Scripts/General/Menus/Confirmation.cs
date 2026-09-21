@@ -19,7 +19,7 @@ public class Confirmation : MonoBehaviour
     }
     private void OnEnable()
     {
-        if (_saveManager ==null) _saveManager = SaveManager.instance;
+        if (_saveManager ==null) _saveManager = SaveManager.Instance;
         StorySaveData save = _saveManager.LoadStory(_setup.Name);
         if (!SaveSystem.DoesFileExist(_setup.Name,"Story"))
         {

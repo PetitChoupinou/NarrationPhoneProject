@@ -13,7 +13,7 @@ public class Name : MonoBehaviour
     bool _touchKeyboardEnabled = false;
     private void Start()
     {
-        _saver = SaveManager.instance;
+        _saver = SaveManager.Instance;
         if (_saver == null) Destroy(gameObject);
         _loader = FindFirstObjectByType<SceneLoader>();
     }

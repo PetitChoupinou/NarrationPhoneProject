@@ -37,7 +37,7 @@ public class QuestManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void StartQuests()
     {
-        _saveManager = SaveManager.instance;
+        _saveManager = SaveManager.Instance;
 
         if (_questsNbr>_possibleQuests.Length)_questsNbr = _possibleQuests.Length;
         _selectedQuests=new QuestBase[_questsNbr];
