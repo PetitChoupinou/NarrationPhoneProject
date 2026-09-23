@@ -45,11 +45,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoundManager
   _soundEffects:
+  - name: SFX_MessageSend
+    clip: {fileID: 8300000, guid: 66de0ede4d5773c469eeb07f4af45978, type: 3}
+    volume: 0.21
+  - name: SFX_MessageRecieved
+    clip: {fileID: 8300000, guid: 66de0ede4d5773c469eeb07f4af45978, type: 3}
+    volume: 0.187
+  - name: SFX_MessageNotification
+    clip: {fileID: 8300000, guid: 66de0ede4d5773c469eeb07f4af45978, type: 3}
+    volume: 0.187
+  - name: SFX_MessageTyping
+    clip: {fileID: 8300000, guid: 66de0ede4d5773c469eeb07f4af45978, type: 3}
+    volume: 0.187
+  - name: SFX_AffinityIncrease
+    clip: {fileID: 8300000, guid: 66de0ede4d5773c469eeb07f4af45978, type: 3}
+    volume: 0.187
+  - name: SFX_AffinityDecrease
+    clip: {fileID: 8300000, guid: 66de0ede4d5773c469eeb07f4af45978, type: 3}
+    volume: 0.187
   - name: oui
     clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
-    volume: 0.21
+    volume: 0.187
   - name: Button
     clip: {fileID: 8300000, guid: 66de0ede4d5773c469eeb07f4af45978, type: 3}
     volume: 0.187
-  _musics: []
+  _musics:
+  - name: AMB_MainMenu
+    clip: {fileID: 0}
+    volume: 0
   _poolSize: 5

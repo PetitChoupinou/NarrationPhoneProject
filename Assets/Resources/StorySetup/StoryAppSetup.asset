@@ -67,42 +67,6 @@ MonoBehaviour:
     content: ah
   - title: B
     content: beh
-  _clocks:
-  - Town: Tokyo
-    timeDiff: 7
-  - Town: Dublin
-    timeDiff: -1
-  _alarms:
-  - tag: "R\xE9veil"
-    repetition: 8
-    isActive: 1
-    hours: 6
-    minutes: 20
-  - tag: "R\xE9veil 2"
-    repetition: 8
-    isActive: 1
-    hours: 6
-    minutes: 25
-  - tag: 3
-    repetition: 8
-    isActive: 1
-    hours: 6
-    minutes: 30
-  - tag: Rdv psy
-    repetition: 4
-    isActive: 0
-    hours: 17
-    minutes: 15
-  - tag: Argh
-    repetition: 9
-    isActive: 0
-    hours: 22
-    minutes: 38
-  - tag: 
-    repetition: 0
-    isActive: 0
-    hours: 13
-    minutes: 19
   _phoneNumbers:
   - title: Police
     numbers: 17
@@ -148,4 +112,81 @@ MonoBehaviour:
     _month: 9
     _year: 2004
     _hour: 7
-    _minute: 19
+    _minute: 20
+  storySFX:
+  - name: SFX_PNJ_MargauxShocked
+    clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
+    volume: 0
+  - name: SFX_PNJ_MargauxAngry
+    clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
+    volume: 0
+  - name: SFX_PNJ_MargauxScared
+    clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
+    volume: 0
+  - name: SFX_PNJ_MargauxThinking
+    clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
+    volume: 0
+  - name: SFX_PNJ_MargauxShy
+    clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
+    volume: 0
+  - name: SFX_PNJ_EthanShocked
+    clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
+    volume: 0
+  - name: SFX_PNJ_EthanAngry
+    clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
+    volume: 0
+  - name: SFX_PNJ_EthanScared
+    clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
+    volume: 0
+  - name: SFX_PNJ_EthanShy
+    clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
+    volume: 0
+  - name: SFX_PNJ_EthanThinking
+    clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
+    volume: 0
+  - name: SFX_PNJ_EvangelineShocked
+    clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
+    volume: 0
+  - name: SFX_PNJ_EvangelineAngry
+    clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
+    volume: 0
+  - name: SFX_PNJ_EvangelineScared
+    clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
+    volume: 0
+  - name: SFX_PNJ_EvangelineShy
+    clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
+    volume: 0
+  - name: SFX_PNJ_EvangelineThinking
+    clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
+    volume: 0
+  - name: SFX_PNJ_SachaShocked
+    clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
+    volume: 0
+  - name: SFX_PNJ_SachaAngry
+    clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
+    volume: 0
+  - name: SFX_PNJ_SachaShocked
+    clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
+    volume: 0
+  - name: SFX_PNJ_SachaShy
+    clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
+    volume: 0
+  - name: SFX_PNJ_SachaThinking
+    clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
+    volume: 0
+  storyMus:
+  - name: AMB_Dialogue
+    clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
+    volume: 0
+  - name: AMB_Tension
+    clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
+    volume: 0
+  - name: MUS_GoodEnding
+    clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
+    volume: 0
+  - name: MUS_BadEnding
+    clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
+    volume: 0
+  - name: MUS_UncertainEnding
+    clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
+    volume: 0

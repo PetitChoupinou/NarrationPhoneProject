@@ -34,6 +34,8 @@ public class SceneLoader : MonoBehaviour
 
    public void LoadMenuScene()
     {
+        SoundManager.instance.RemoveSFX(currentStorySetup.StorySFX);
+        SoundManager.instance.RemoveMusic(currentStorySetup.StoryMus);
         StartCoroutine(LoadGameSceneAsync(_menuScene));
     }
     public void LoadGameScene(StoryAppSetup storySetup, bool isStartingAgain)
@@ -49,6 +51,8 @@ public class SceneLoader : MonoBehaviour
         /*ResetAllDialogues();
         SaveManager.Instance.SaveDialogues();*/
         StartCoroutine(LoadGameSceneAsync(_sceneToLoad));
+        SoundManager.instance.AddSFX(storySetup.StorySFX);
+        SoundManager.instance.AddMusic(storySetup.StoryMus);
     }
 
     IEnumerator LoadGameSceneAsync(string sceneToLoad)
