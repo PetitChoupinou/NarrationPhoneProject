@@ -55,6 +55,7 @@ public class Discussion : MonoBehaviour
     public DialogueDataReader DialogueDataReader { get => _dialogueDataReader; set => _dialogueDataReader = value; }
     public GameObject MessageButton { get => _messageButton;}
     public bool IsEnabled { get => _isEnabled; set => _isEnabled = value; }
+    public Dictionary<CharaEmotion, Sprite> CharaEmotions { get => _charaEmotions; }
 
     private void Start()
     {
