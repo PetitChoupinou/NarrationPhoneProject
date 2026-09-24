@@ -30,4 +30,8 @@ public class QuestDisplay : MonoBehaviour
         _reward.text = rewardT;
         if (q.IsComp == true) GetComponent<Image>().color = Color.green;
     }
+    private void OnDisable()
+    {
+        Destroy(gameObject);
+    }
 }

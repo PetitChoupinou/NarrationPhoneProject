@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using TCG.Core.Dialogues;
 using TMPro;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -25,7 +26,7 @@ public class Discussion : MonoBehaviour
     [SerializeField] private GameObject _preMessage;
     [SerializeField] private GameObject _endOfDiscussion;
     [SerializeField] private SendingButton _sendingButton;
-
+    private List<String> _wrongPhotoResponse;
     [SerializeField] private bool _isEnabled;
     [SerializeField] private Image _charaVisu;
     [SerializeField] private Dictionary<CharaEmotion, Sprite> _charaEmotions=new Dictionary<CharaEmotion, Sprite>();
@@ -100,7 +101,7 @@ public class Discussion : MonoBehaviour
     /// <param name="button">button to discussion</param>
     /// <param name="headerText">Text field</param>
     /// <param name="background">conversation background image</param>
-    public void SetUp(string name, SentText[] texts, GameObject button, TMP_Text headerText, Sprite background, Dictionary<CharaEmotion, Sprite> chara)
+    public void SetUp(string name, SentText[] texts, GameObject button, TMP_Text headerText, Sprite background, Dictionary<CharaEmotion, Sprite> chara,List<String> wrongPhotoResponse)
     {
         DialogueDataReader = GetComponent<DialogueDataReader>();
         _iD = name;
@@ -111,6 +112,7 @@ public class Discussion : MonoBehaviour
         _backgroundImage = background;
         _charaEmotions = chara;
         ChangeEmotion(CharaEmotion.Base);
+        _wrongPhotoResponse = wrongPhotoResponse;
         /*if (texts.Length<=0) return;
         for (int i = 0; i < texts.Length; i++)
         {
@@ -436,6 +438,12 @@ public class Discussion : MonoBehaviour
         Texture2D tex = new Texture2D(2, 2);
         tex.LoadImage(bytes); // This auto-resizes the texture
         return Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f, 0.5f));
+    }
+    private void OnWrongPhotoSent()
+    {
+        if (_wrongPhotoResponse.Count <= 0) return;
+        int rand = UnityEngine.Random.Range(0, _wrongPhotoResponse.Count);
+        AddMessage(_wrongPhotoResponse[rand], true, CharaEmotion.Think);
     }
 }
 public class PendingMsg
