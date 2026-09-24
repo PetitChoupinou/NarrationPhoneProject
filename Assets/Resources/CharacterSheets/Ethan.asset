@@ -27,6 +27,9 @@ MonoBehaviour:
     - Allo
     callAudio: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
     ringAudio: {fileID: 0}
+  wrongPhotoResponses:
+  - '?'
+  - "Pk tu m'envois \xE7a"
   dialogueIndex: 0
   EmotionPIcs:
   - Emotion: 0
