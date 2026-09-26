@@ -9,8 +9,6 @@ public class QuestMenu : MonoBehaviour
     [SerializeField] GameObject returnButton;
     void OnEnable()
     {
-        
-        print("a");
         _questManager = QuestManager.Instance;
         foreach(QuestBase quest in _questManager.SelectedQuests)
         {

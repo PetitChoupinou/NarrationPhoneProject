@@ -38,7 +38,13 @@ public class TimeData
         return otherTime.CurrentTime-this.CurrentTime;
         
     }
-    public TimeData() { }
+    public TimeData() {
+        _day = 1;
+        _month = 1;
+        _year = 1;
+        _hour = 0;
+        _minute = 0;
+    }
     public TimeData(DateTime time)
     {
         CurrentTime= time;
