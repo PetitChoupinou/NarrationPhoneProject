@@ -26,6 +26,7 @@ public class PhotoApp : BaseApplication
     List<InAppButton> _previewButtons = new List<InAppButton>();
 
     public GameObject CurrentStoragePanel { get => _currentStoragePanel; set => _currentStoragePanel = value; }
+    public Image Photo { get => _photo; set => _photo = value; }
 
     public override void CloseCurrent()
     {
@@ -122,6 +123,8 @@ public class PhotoApp : BaseApplication
             }
         }*/
     }
+
+    
 
 }
 

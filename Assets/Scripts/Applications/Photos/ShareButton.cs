@@ -27,5 +27,6 @@ public class ShareButton : MonoBehaviour
         _messageApp.GetComponent<Canvas>().enabled = true;
         _discussion.MessageButton.GetComponent<InAppButton>().OnButtonClicked();
         //ajouter lappel de la fonction pour envoyer le message photo
+        _discussion.DialogueDataReader.SendImageFromPhotoApp(_photoApp.Photo.sprite);
     }
 }

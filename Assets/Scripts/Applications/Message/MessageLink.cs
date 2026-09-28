@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using TCG.Core.Dialogues;
 
 public class MessageLink : MonoBehaviour
 {

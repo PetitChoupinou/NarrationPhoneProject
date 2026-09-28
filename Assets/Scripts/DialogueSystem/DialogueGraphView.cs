@@ -24,7 +24,8 @@ public enum NodeType
     Block,
     NewApplication,
     NewFile,
-    Time
+    Time,
+    Image
 }
 
 public enum Talker
@@ -593,6 +594,91 @@ public class DialogueGraphView : GraphView
                 node.RefreshPorts();
                 node.SetPosition(new Rect(position, BaseNode.defaultNodeSize));
                 break;
+            case NodeType.Image:
+                node = new ImageNode
+                {
+                    GUID = Guid.NewGuid().ToString(),
+                    title = "Image",
+                    nodeType = NodeType.Image,
+                    
+                };
+                ImageNode imageNode = node as ImageNode;
+                inputPort = node.GeneratePort(Direction.Input, Port.Capacity.Multi);
+                inputPort.portName = "Input";
+                node.inputContainer.Add(inputPort);
+
+
+                var senderImage = new DropdownField
+                {
+                    choices = Enum.GetNames(typeof(Talker)).ToList(),
+                };
+                senderImage.value = senderImage.choices[0];
+                senderImage.RegisterValueChangedCallback(evt =>
+                {
+                    if (Enum.TryParse<Talker>(evt.newValue, out var talker))
+                    {
+                        imageNode.isNPC = talker == Talker.NPC;
+                    }
+                   
+
+                });
+
+                node.titleContainer.Add(senderImage);
+                imageNode.senderField = senderImage;
+                imageNode.isNPC = true;
+
+                FloatField timeImageField = new FloatField
+                {
+                    label = "Time before sending",
+                    value = 1
+                };
+                imageNode.TimeField = timeImageField;
+                timeImageField.RegisterValueChangedCallback(evt =>
+                {
+                    imageNode.timerSending = evt.newValue;
+                });
+
+                node.mainContainer.Add(timeImageField);
+
+
+                ObjectField imageChoiceField = new ObjectField
+                {
+                    label = "Source",
+                    objectType = typeof(Sprite)
+                };
+                Image imageField = new Image
+                {
+                    sprite = null,
+                    scaleMode = ScaleMode.ScaleToFit,
+                };
+
+                imageField.style.maxHeight = 200;
+                imageField.style.maxWidth = 200;
+                imageField.style.alignSelf = Align.Center;
+
+
+                imageChoiceField.RegisterValueChangedCallback(evt =>
+                {
+                    Sprite sprite = evt.newValue as Sprite;
+                    imageField.sprite = sprite;
+                    imageNode.imageSprite = sprite;
+                });
+
+                
+
+                
+
+                imageNode.imageField = imageField;
+                node.mainContainer.Add(imageChoiceField);
+                node.mainContainer.Add(imageField);
+                outputPort = node.GeneratePort(Direction.Output);
+                outputPort.portName = "Next";
+                node.outputContainer.Add(outputPort);
+
+                node.RefreshExpandedState();
+                node.RefreshPorts();
+                node.SetPosition(new Rect(position, BaseNode.defaultNodeSize));
+                break;
             case NodeType.Time:
                 node = new TimeNode
                 {
@@ -1024,6 +1110,16 @@ public class DialogueGraphView : GraphView
                 var nodeTime = node as TimeNode;
                 var nodeTimeData = nodeData as TimeNodeData;
                 nodeTime.UpdateTime(nodeTimeData.year, nodeTimeData.month, nodeTimeData.day, nodeTimeData.hour, nodeTimeData.minute);
+                break;
+            case NodeType.Image:
+                var nodeImage = node as ImageNode;
+                var nodeImageData = nodeData as ImageNodeData;
+                nodeImage.isNPC = nodeImageData.isNPC;
+                nodeImage.imageSprite = nodeImageData.image;
+                nodeImage.timerSending = nodeImageData.timerSending;
+                nodeImage.TimeField.value = nodeImage.timerSending;
+                nodeImage.UpdateImageField();
+                nodeImage.UpdateSenderField();
                 break;
         }
         node.isSentToggle.value = nodeData.IsSentBase;
