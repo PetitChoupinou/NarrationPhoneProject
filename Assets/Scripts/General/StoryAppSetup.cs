@@ -23,7 +23,7 @@ public class StoryAppSetup : ScriptableObject
     [SerializeField] List<Music> storyMus = new List<Music>();
 
 
-    public string Name { get => _name;}
+    public string Name { get => _name; set => _name = value; }
     public List<GameObject> Applications { get => _applications; }
 
     public List<CharacterSheet> Characters { get => _characters;}
