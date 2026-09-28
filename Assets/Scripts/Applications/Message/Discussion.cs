@@ -49,6 +49,8 @@ public class Discussion : MonoBehaviour
     [SerializeField] private Material _blurMaterial;
     [SerializeField] private Image _blurImage;
 
+    public event Action<bool> OnConversationStatutUpdate;
+
 
     #region Relationship Feedback
     [SerializeField] private Image _relationFeedback;
@@ -502,6 +504,12 @@ public class Discussion : MonoBehaviour
         AddMessage(response, true, CharaEmotion.Think);
         _dialogueDataReader.CreateTemporaryDialogueNodeData(response, CharaEmotion.Think);
     }
+
+    public void UpdateStatutConv(bool isConvActive)
+    {
+        print(isConvActive);
+        OnConversationStatutUpdate.Invoke(isConvActive);
+    }
 }
 public class PendingMsg
 {
@@ -530,5 +538,7 @@ public class PendingMsg
         this.image = image;
         this.isDownload = false;
     }
+
+
 
 }
