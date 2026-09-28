@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -15,6 +16,7 @@ public class DialogueDataReader : MonoBehaviour
     private DialogueData _currentDialogueData;
     
     private NodeData _currentNodeData;
+    private NodeData _lastNodeData;
 
     private MessageApp _messageApp;
     private ContactApp _contactApp;
@@ -28,6 +30,10 @@ public class DialogueDataReader : MonoBehaviour
 
     private GlobalPropertiesData _globalPropertiesData;
 
+    private Sprite _askedImage = null;
+
+    public event Action OnWrongPhotoSent;
+
     public string CharacterID { get => _characterID; set => _characterID = value; }
 
     
@@ -38,6 +44,7 @@ public class DialogueDataReader : MonoBehaviour
         if (_messageApp == null) _messageApp = FindAnyObjectByType<MessageApp>();
         _eventTrigger = gameObject.GetComponent<EventTrigger>();
         _globalPropertiesData = Resources.Load<GlobalPropertiesData>("GlobalPropertiesData");
+
 
         //Get dialogueData from contact app
         /*var contactApp = AppManager.Instance.GetApplication(ApplicationType.Contacts) as ContactApp;
@@ -53,6 +60,7 @@ public class DialogueDataReader : MonoBehaviour
         if (dialogueDatas.Count == 0) { return; }
         _currentDialogueData = SaveManager.Instance.LoadDialogue(conversationID, _messageApp.StoryName);
         List<NodeData> nodes = _currentDialogueData.nodes;
+        List<NodeData> temporaryNodes = _currentDialogueData.temporaryNodes;
         //_currentDialogueData = dialogueDatas.FirstOrDefault(data => data.name == conversationID);
         if (!_currentDialogueData.hasStarted)
         {
@@ -60,6 +68,9 @@ public class DialogueDataReader : MonoBehaviour
             StartCoroutine(WaitForDialogueToStart());
             return;
         }
+
+        //Check if temporaryNodes to display before starting?
+
         StartReadingDialogue();
         //var affinityProperty = _currentDialogueData.properties.FirstOrDefault(x => x.Name == "Affinity");
 
@@ -90,12 +101,29 @@ public class DialogueDataReader : MonoBehaviour
         currentNodeData.isSentCurrent = true;
         
         var nextData = GetNextNodeData(currentNodeData, outputID);
+        
         if(nextData == null) { Debug.Log("Fin de conv");  return; } // End of conversation
+
+        
+        List<NodeData> tempNodes = _currentDialogueData.temporaryNodes.FindAll(node => node.outputs[0].targetNodeGuid == nextData.nodeGUID);
+        foreach(var node in tempNodes)
+        {
+            ReadNodeData(node, false, true).Invoke();
+        }
+
         SaveManager.Instance.SaveDialogue(_currentDialogueData, _messageApp.StoryName);
+        _lastNodeData = _currentNodeData;
         ReadNodeData(nextData, isChoice).Invoke();
     }
 
-    public Action ReadNodeData(NodeData nodeData, bool isChoice = false)
+    private void ReadNextNode(string targetNodeGUID)
+    {
+        var nextNode = _currentDialogueData.nodes.Find(x => x.nodeGUID == targetNodeGUID);
+        ReadNodeData(nextNode).Invoke();
+    }
+
+
+    public Action ReadNodeData(NodeData nodeData, bool isChoice = false, bool isTemporary = false)
     {
         _currentNodeData = nodeData;
         
@@ -108,12 +136,15 @@ public class DialogueDataReader : MonoBehaviour
                 DialogueNodeData dialogueNodeData = nodeData as DialogueNodeData;
                 return () =>
                 {
-                    if (dialogueNodeData.isSentCurrent || isChoice)
+                    if (dialogueNodeData.isSentCurrent || isChoice || isTemporary)
                     {
                         _messageApp.AddMessage(dialogueNodeData.dialogueText, dialogueNodeData.isNPC, _characterID, dialogueNodeData.emotion);
-                       
+
                         //Debug.Log("Message envoyé: " + dialogueNodeData.dialogueText);
-                        ReadNextNode(nodeData, 0);
+                        if (!isTemporary)
+                        {
+                            ReadNextNode(nodeData, 0);
+                        }
                     }
                     else
                     {
@@ -121,14 +152,17 @@ public class DialogueDataReader : MonoBehaviour
                         if (dialogueNodeData.isNPC)
                         {
                             //Debug.Log("Message NPC: " + dialogueNodeData.dialogueText);
-                            StartCoroutine(DelayMessage(dialogueNodeData));
+                            StartCoroutine(DelayMessage(dialogueNodeData, isTemporary));
                         }
                         else
                         {
                             //Debug.Log("Message joueur attente de clic: " + dialogueNodeData.dialogueText);
                             WaitForMouseClick(() => {
                                 _messageApp.AddMessage(dialogueNodeData.dialogueText, dialogueNodeData.isNPC, _characterID);
-                                ReadNextNode(nodeData, 0);
+                                if (!isTemporary)
+                                {
+                                    ReadNextNode(nodeData, 0);
+                                }
                             });
 
                         }
@@ -178,6 +212,7 @@ public class DialogueDataReader : MonoBehaviour
 
                     if (choiceData.isSentCurrent && choiceData.chosenChoiceID > -1)
                     {
+
                         ReadNextNode(nodeData, choiceData.chosenChoiceID);
                     }
                     else
@@ -278,10 +313,124 @@ public class DialogueDataReader : MonoBehaviour
                     PhoneManager.Instance.ClockSystem.AddTime(timeNodeData.year, timeNodeData.month, timeNodeData.day, timeNodeData.hour, timeNodeData.minute);
                     ReadNextNode(nodeData, 0);
                 };
+            case NodeType.Image:
+                ImageNodeData imageNodeData = nodeData as ImageNodeData;
+                if (imageNodeData.isNPC || imageNodeData.isSentCurrent)
+                {
+                    print("UwU");
+                }
+                return () =>
+                {
+                    if (imageNodeData.isNPC || imageNodeData.isSentCurrent)
+                    {
+                        _messageApp.AddImage(imageNodeData.image, imageNodeData.isNPC, _characterID);
+                        if (!isTemporary)
+                        {
+                            ReadNextNode(nodeData, 0);
+                        }
+                        
+                    }
+                    else
+                    {
+                        WaitForSendingImage(imageNodeData.image, _characterID);
+                    }
+                };
             default:
                 return () => { };
         }
         
+    }
+
+    private void WaitForSendingImage(Sprite image, string ID)
+    {
+        _askedImage = image;
+    }
+
+    public void SendImage(Sprite image)
+    {
+        _messageApp.AddImage(image, false, _characterID);
+    }
+
+    public void SendImageFromPhotoApp(Sprite image)
+    {
+        OutputData outputData = new OutputData();
+        outputData.portValue = "Next";
+        if (_currentNodeData.nodeType != NodeType.Image) { _currentNodeData = _lastNodeData; }
+
+        _messageApp.DisableSendingButton(_characterID);
+        if(_currentNodeData != null)
+        {
+
+            if (_currentNodeData.nodeType == NodeType.Choice)
+            {
+                outputData.targetNodeGuid = GetNextNodeData(_currentNodeData, ((ChoiceNodeData)_currentNodeData).chosenChoiceID).nodeGUID;
+            }
+            else
+            {
+                outputData.targetNodeGuid = GetNextNodeData(_currentNodeData).nodeGUID;
+            }
+        }
+        NodeData data = new NodeData();
+        data.outputs.Add(outputData);
+        data.nodeType = NodeType.Image;
+        ImageNodeData newTemporaryData = new ImageNodeData(data);
+        newTemporaryData.image = image;
+        newTemporaryData.isNPC = false;
+        newTemporaryData.isSentCurrent = true;
+        if (_currentDialogueData != null) _currentDialogueData.temporaryNodes.Add(newTemporaryData);
+        
+        SendImage(image);
+        SaveManager.Instance.SaveDialogue(_currentDialogueData, _messageApp.StoryName);
+        CheckForImage(image, outputData.targetNodeGuid);
+    }
+
+    private void CheckForImage(Sprite sentImage, string targetGUID)
+    {
+        if (_askedImage != null && sentImage == _askedImage)
+        {
+            _askedImage = null;
+            ReadNextNode(targetGUID); //A verif
+        }
+        else if (_askedImage == null || sentImage != _askedImage)
+        {
+            OnWrongPhotoSent.Invoke();
+        }
+    }
+
+    public void CreateTemporaryDialogueNodeData(string text, CharaEmotion emotion, bool shouldContinue = false)
+    {
+
+        OutputData outputData = new OutputData();
+        outputData.portValue = "Next";
+        if (_currentNodeData.nodeType != NodeType.Image) { _currentNodeData = _lastNodeData; }
+        _messageApp.DisableSendingButton(_characterID);
+        if (_currentNodeData != null)
+        {
+
+            if (_currentNodeData.nodeType == NodeType.Choice)
+            {
+                outputData.targetNodeGuid = GetNextNodeData(_currentNodeData, ((ChoiceNodeData)_currentNodeData).chosenChoiceID).nodeGUID;
+            }
+            else
+            {
+                outputData.targetNodeGuid = GetNextNodeData(_currentNodeData).nodeGUID;
+            }
+        }
+        NodeData data = new NodeData();
+        data.outputs.Add(outputData);
+        data.nodeType = NodeType.Dialogue;
+        DialogueNodeData newTemporaryData = new DialogueNodeData(data);
+        newTemporaryData.dialogueText = text;
+        newTemporaryData.isNPC = true;
+        newTemporaryData.isSentCurrent = true;
+        newTemporaryData.emotion = emotion;
+        if (_currentDialogueData != null) _currentDialogueData.temporaryNodes.Add(newTemporaryData);
+        
+        SaveManager.Instance.SaveDialogue(_currentDialogueData, _messageApp.StoryName);
+        if (shouldContinue)
+        {
+            ReadNextNode(outputData.targetNodeGuid);
+        }
     }
 
     private void WaitForMouseClick(Action sendingAction)
@@ -358,11 +507,24 @@ public class DialogueDataReader : MonoBehaviour
         yield return new WaitForSeconds(1f);
     }
 
-    IEnumerator DelayMessage(DialogueNodeData currentData)
+    IEnumerator DelayMessage(DialogueNodeData currentData, bool isTemporary = false)
     {
         //Effet de message en cours d'envoi 
         yield return new WaitForSeconds(currentData.timerSending);
         _messageApp.AddMessage(currentData.dialogueText, true, _characterID, currentData.emotion);
+        if (!isTemporary)
+        {
+            ReadNextNode(currentData, 0);
+        }
+        
+
+    }
+
+    IEnumerator DelayImage(ImageNodeData currentData)
+    {
+        
+        yield return new WaitForSeconds(currentData.timerSending);
+        _messageApp.AddImage(currentData.image, true, _characterID);
         ReadNextNode(currentData, 0);
 
     }
@@ -388,4 +550,6 @@ public class DialogueDataReader : MonoBehaviour
         }
         return true;
     }
+
+    
 }

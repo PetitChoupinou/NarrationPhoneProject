@@ -14,6 +14,7 @@ public class CharacterSheet : ScriptableObject
     [SerializeField] private Sprite messageBackground;
     [SerializeField] private DialogueData[] dialogues;
     [SerializeField] private PhoneNumbers telNum;
+    [SerializeField] private List<String> wrongPhotoResponses=new List<string>() ;
     public int dialogueIndex;
 
     public string Name { get => name;}
@@ -48,6 +49,7 @@ public class CharacterSheet : ScriptableObject
 
     public DialogueData[] Dialogues { get => dialogues; set => dialogues = value; }
     public Sprite MessageBackground { get => messageBackground;}
+    public List<string> WrongPhotoResponses { get => wrongPhotoResponses; }
 
     public Sprite GetBasePicture()
     {

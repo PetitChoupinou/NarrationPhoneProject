@@ -15,7 +15,6 @@ public class DialogueNode : BaseNode
     public float timerSending;
 
     public FloatField TimeField { get => _timeField; set => _timeField = value; }
-
     public void UpdateTextFieldValue()
     {
         textField.SetValueWithoutNotify(dialogueText);

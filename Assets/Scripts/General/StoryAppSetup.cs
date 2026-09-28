@@ -19,6 +19,8 @@ public class StoryAppSetup : ScriptableObject
     [SerializeField] HackSetup _hackAppSetup;
     List<LocationData> _locations = new List<LocationData>();
     [SerializeField] TimeData _timeData = new TimeData();
+    [SerializeField] List<SFX> storySFX = new List<SFX>();
+    [SerializeField] List<Music> storyMus = new List<Music>();
 
 
     public string Name { get => _name;}
@@ -35,6 +37,8 @@ public class StoryAppSetup : ScriptableObject
     public Sprite BaseCameraPhoto { get => _baseCameraPhoto; }
     public Sprite MessageBackGround { get => _messageBackGround;}
     public bool HasPhotoBeenTaken { get => _hasPhotoBeenTaken; set => _hasPhotoBeenTaken = value; }
+    public List<SFX> StorySFX { get => storySFX;}
+    public List<Music> StoryMus { get => storyMus;}
 }
 
 [Serializable]

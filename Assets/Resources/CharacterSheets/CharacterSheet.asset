@@ -16,12 +16,15 @@ MonoBehaviour:
   baseText: []
   baseNotes: 
   baseAffinity: 0
-  profilePic: {fileID: 0}
   messageBackground: {fileID: 0}
   dialogues: []
   telNum:
     title: 
     numbers: 
+    ringTime: 0
     callText: []
     callAudio: {fileID: 0}
+    ringAudio: {fileID: 0}
+  wrongPhotoResponses: []
   dialogueIndex: 0
+  EmotionPIcs: []

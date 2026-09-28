@@ -15,6 +15,8 @@ public class PhotoApp : BaseApplication
     [SerializeField] private GameObject _returnButton;
     [SerializeField] private GameObject _buttonPanel;
     [SerializeField] private GameObject _buttonPrefab;
+    [SerializeField] private GameObject _sharePanel;
+    [SerializeField] private GameObject _shareButtonPrefab;
     private GameObject _currentStoragePanel;
     [SerializeField] private TMP_Text _headerTxt;
     [SerializeField] private Image _photo;
@@ -24,6 +26,7 @@ public class PhotoApp : BaseApplication
     List<InAppButton> _previewButtons = new List<InAppButton>();
 
     public GameObject CurrentStoragePanel { get => _currentStoragePanel; set => _currentStoragePanel = value; }
+    public Image Photo { get => _photo; set => _photo = value; }
 
     public override void CloseCurrent()
     {
@@ -63,7 +66,12 @@ public class PhotoApp : BaseApplication
             photoPrev.SetActive(false);
             photoPreviews.Add(photoPreview);
         }
-        
+        foreach (Discussion disc in FindObjectsOfType<Discussion>())
+        {
+            GameObject shareButton = Instantiate(_shareButtonPrefab, _sharePanel.transform);
+            shareButton.GetComponent<ShareButton>().Setup(disc, disc.CharaEmotions[CharaEmotion.Base]);
+        }
+        _photoPanel.transform.SetAsLastSibling();
     }
     public void AddPhoto(PhotoData photo)
     {
@@ -78,7 +86,7 @@ public class PhotoApp : BaseApplication
         foreach (PhotoPreview preview in photoPreviews)
         {
             var latestPhotoData = preview.GetLatestPhoto();
-            if(latestPhotoData.Item2 > latestDate)
+            if (latestPhotoData.Item2 > latestDate)
             {
                 latestDate = latestPhotoData.Item2;
                 lastPhoto = latestPhotoData.Item1;
@@ -95,9 +103,9 @@ public class PhotoApp : BaseApplication
         foreach (InAppButton previewButton in _previewButtons)
         {
             PhotoPreview preview = previewButton.Discussion.GetComponent<PhotoPreview>();
-            
+
             var latestPhotoData = preview.GetLatestPhoto();
-            if(preview.GetPhoto(latestPhotoData.Item2, latestPhotoData.Item1.GetComponent<Image>()) != null)
+            if (preview.GetPhoto(latestPhotoData.Item2, latestPhotoData.Item1.GetComponent<Image>()) != null)
             {
                 previewButton.OnButtonClicked();
                 preview.OpenPhoto(latestPhotoData.Item2, latestPhotoData.Item1.GetComponent<Image>());
@@ -115,5 +123,8 @@ public class PhotoApp : BaseApplication
             }
         }*/
     }
+
+    
+
 }
 

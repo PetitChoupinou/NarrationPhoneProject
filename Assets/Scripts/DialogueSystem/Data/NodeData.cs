@@ -189,6 +189,21 @@ public class TimeNodeData : NodeData
 }
 
 [Serializable]
+public class ImageNodeData : NodeData
+{
+    public bool isNPC;
+    public Sprite image;
+    public float timerSending;
+    public ImageNodeData(NodeData data)
+    {
+        nodeGUID = data.nodeGUID;
+        nodeType = data.nodeType;
+        position = data.position;
+        outputs = data.outputs;
+    }
+}
+
+[Serializable]
 public class OutputData
 {
     public string portValue;

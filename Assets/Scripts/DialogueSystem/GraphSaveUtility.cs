@@ -202,6 +202,14 @@ public class GraphSaveUtility
                 timeNodeData.outputs.Add(CreateOutputData(connectedPorts, node, "Next"));
                 data = timeNodeData;
                 break;
+            case NodeType.Image:
+                var imageNode = node as ImageNode;
+                ImageNodeData imageNodeData = new ImageNodeData(data);
+                imageNodeData.isNPC = imageNode.isNPC;
+                imageNodeData.image = imageNode.imageSprite;
+                imageNodeData.outputs.Add(CreateOutputData(connectedPorts, node, "Next"));
+                data = imageNodeData;
+                break;
             default:
                 break;
         }

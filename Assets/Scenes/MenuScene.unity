@@ -1914,7 +1914,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _resetTime: 23
-  _titre: {fileID: 1553757605}
 --- !u!4 &499964491
 Transform:
   m_ObjectHideFlags: 0
@@ -6267,6 +6266,38 @@ PrefabInstance:
     - target: {fileID: 4351641932127957890, guid: 0b53b56413384e940a4cee518cbd64f1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5619117892250465613, guid: 0b53b56413384e940a4cee518cbd64f1, type: 3}
+      propertyPath: _soundEffects.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5619117892250465613, guid: 0b53b56413384e940a4cee518cbd64f1, type: 3}
+      propertyPath: _soundEffects.Array.data[6].name
+      value: SFX_Blocked
+      objectReference: {fileID: 0}
+    - target: {fileID: 5619117892250465613, guid: 0b53b56413384e940a4cee518cbd64f1, type: 3}
+      propertyPath: _soundEffects.Array.data[8].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
+    - target: {fileID: 5619117892250465613, guid: 0b53b56413384e940a4cee518cbd64f1, type: 3}
+      propertyPath: _soundEffects.Array.data[8].name
+      value: oui
+      objectReference: {fileID: 0}
+    - target: {fileID: 5619117892250465613, guid: 0b53b56413384e940a4cee518cbd64f1, type: 3}
+      propertyPath: _soundEffects.Array.data[9].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 04781cc3066655d4ea4a74726914cc23, type: 3}
+    - target: {fileID: 5619117892250465613, guid: 0b53b56413384e940a4cee518cbd64f1, type: 3}
+      propertyPath: _soundEffects.Array.data[9].name
+      value: ringtone
+      objectReference: {fileID: 0}
+    - target: {fileID: 5619117892250465613, guid: 0b53b56413384e940a4cee518cbd64f1, type: 3}
+      propertyPath: _soundEffects.Array.data[8].volume
+      value: 0.187
+      objectReference: {fileID: 0}
+    - target: {fileID: 5619117892250465613, guid: 0b53b56413384e940a4cee518cbd64f1, type: 3}
+      propertyPath: _soundEffects.Array.data[9].volume
+      value: 0.187
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

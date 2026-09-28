@@ -1,30 +1,31 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
-
+[Serializable]
+public class SFX
+{
+    public string name;
+    public AudioClip clip;
+    [Range(0, 1)] public float volume = 1.0f;
+}
+[Serializable]
+public class Music
+{
+    public string name;
+    public AudioClip clip;
+    [Range(0, 1)] public float volume = 1.0f;
+}
 public class SoundManager : MonoBehaviour
 {
     private float _sfxVolume=1.0f;
     private float _musicVolume=1.0f;
-    [Serializable]
-    public class SFX
-    {
-        public string name;
-        public AudioClip clip;
-        [Range(0,1)] public float volume=1.0f;
-    }
-    [Serializable]
-    public class Music
-    {
-        public string name;
-        public AudioClip clip;
-        [Range(0, 1)] public float volume = 1.0f;
-    }
 
-    [SerializeField] private SFX[] _soundEffects;
-    [SerializeField] private Music[] _musics;
+
+    [SerializeField] private List<SFX> _soundEffects=new List<SFX>();
+    [SerializeField] private List<Music> _musics=new List<Music>();
     [SerializeField] private int _poolSize = 5;
     private List<AudioSource> _sources = new List<AudioSource>();
     Queue<AudioSource> _usedSource=new Queue<AudioSource>();
@@ -48,7 +49,28 @@ public class SoundManager : MonoBehaviour
             _musicVolume = value;
         }
     }
-
+    public void AddSFX(List<SFX> sfxs)
+    {
+        _soundEffects.AddRange(sfxs);
+    }
+    public void AddMusic(List<Music> musics)
+    {
+        _musics.AddRange(musics);
+    }
+    public void RemoveSFX(List<SFX> sfxs)
+    {
+        foreach(SFX sfx in sfxs)
+        {
+            _soundEffects.Remove(sfx);
+        }
+    }
+    public void RemoveMusic(List<Music> musics)
+    {
+        foreach (Music music in musics)
+        {
+            _musics.Remove(music);
+        }
+    }
     private void Awake()
     {
         if (instance != null && instance != this)

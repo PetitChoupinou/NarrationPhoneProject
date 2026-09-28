@@ -10,6 +10,8 @@ public class DialogueData : ScriptableObject
     [SerializeField] float secondsToWaitFast = 5;
     [SerializeReference]
     public List<NodeData> nodes = new List<NodeData>();
+    [SerializeReference]
+    public List<NodeData> temporaryNodes = new List<NodeData>();
     public string entryPointNodeGuid = "";
     [HideInInspector] public bool isLocked;
     [SerializeField] private bool _isLocked;

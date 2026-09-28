@@ -1,3 +1,5 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class QuestMenu : MonoBehaviour
@@ -7,7 +9,6 @@ public class QuestMenu : MonoBehaviour
     [SerializeField] GameObject returnButton;
     void OnEnable()
     {
-        print("a");
         _questManager = QuestManager.Instance;
         foreach(QuestBase quest in _questManager.SelectedQuests)
         {
@@ -17,5 +18,4 @@ public class QuestMenu : MonoBehaviour
         }
         returnButton.transform.SetAsLastSibling();
     }
-
 }
