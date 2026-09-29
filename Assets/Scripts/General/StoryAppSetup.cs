@@ -4,6 +4,7 @@ using System.ComponentModel;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "StoryAppSetup", menuName = "Scriptable Objects/StoryAppSetup")]
+[Serializable]
 public class StoryAppSetup : ScriptableObject
 {
     [SerializeField] private string _name;
@@ -33,12 +34,26 @@ public class StoryAppSetup : ScriptableObject
     public List<InternetSerach> InternetSeraches { get => _internetSearches; }
     public List<LocationData> Locations { get => _locations; }
     public HackSetup HackAppSetup { get => _hackAppSetup;  }
-    public TimeData TimeData { get => _timeData;}
+    public TimeData TimeData { get => _timeData; set => _timeData = value; }
     public Sprite BaseCameraPhoto { get => _baseCameraPhoto; }
     public Sprite MessageBackGround { get => _messageBackGround;}
     public bool HasPhotoBeenTaken { get => _hasPhotoBeenTaken; set => _hasPhotoBeenTaken = value; }
     public List<SFX> StorySFX { get => storySFX;}
     public List<Music> StoryMus { get => storyMus;}
+
+    public void AddApplication()
+    {
+        _applications.Add(null);
+    }
+    public void RemoveApp(GameObject app)
+    {
+        if (!_applications.Contains(app)) return;
+        _applications.Remove(app);
+    }
+    public void SetApplication(List<GameObject> apps)
+    {
+        _applications = apps;
+    }
 }
 
 [Serializable]
