@@ -496,13 +496,13 @@ public class Discussion : MonoBehaviour
 
 
 
-    private void OnWrongPhotoSent()
+    private void OnWrongPhotoSent(bool shouldContinue)
     {
         if (_wrongPhotoResponse.Count <= 0) return;
         int rand = UnityEngine.Random.Range(0, _wrongPhotoResponse.Count);
         var response = _wrongPhotoResponse[rand];
         AddMessage(response, true, CharaEmotion.Think);
-        _dialogueDataReader.CreateTemporaryDialogueNodeData(response, CharaEmotion.Think);
+        _dialogueDataReader.CreateTemporaryDialogueNodeData(response, CharaEmotion.Think, shouldContinue);
     }
 
     public void UpdateStatutConv(bool isConvActive)

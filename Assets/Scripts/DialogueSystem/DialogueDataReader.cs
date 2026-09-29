@@ -35,7 +35,7 @@ public class DialogueDataReader : MonoBehaviour
 
     private Sprite _askedImage = null;
 
-    public event Action OnWrongPhotoSent;
+    public event Action<bool> OnWrongPhotoSent;
 
     public string CharacterID { get => _characterID; set => _characterID = value; }
     public DialogueData CurrentDialogueData { get => _currentDialogueData; set => _currentDialogueData = value; }
@@ -413,7 +413,7 @@ public class DialogueDataReader : MonoBehaviour
         }
         else if (_askedImage == null || sentImage != _askedImage)
         {
-            OnWrongPhotoSent.Invoke();
+            OnWrongPhotoSent.Invoke(_askedImage == null);
         }
     }
 
