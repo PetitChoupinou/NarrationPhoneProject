@@ -45,14 +45,25 @@ public class StoryAppSetup : ScriptableObject
     {
         _applications.Add(null);
     }
-    public void RemoveApp(GameObject app)
+    public void RemoveApp(int appPos)
     {
-        if (!_applications.Contains(app)) return;
-        _applications.Remove(app);
+        _applications.RemoveAt(appPos);
     }
-    public void SetApplication(List<GameObject> apps)
+    public void SetApplication(int i,GameObject obj)
     {
-        _applications = apps;
+        _applications[i] = obj;
+    }
+    public void AddChara()
+    {
+        _characters.Add(null);
+    }
+    public void RemoveChara(int appPos)
+    {
+        _characters.RemoveAt(appPos);
+    }
+    public void SetChara(int i, CharacterSheet obj)
+    {
+        _characters[i] = obj;
     }
 }
 
