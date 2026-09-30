@@ -112,7 +112,7 @@ MonoBehaviour:
     _month: 9
     _year: 2004
     _hour: 7
-    _minute: 20
+    _minute: 21
   storySFX:
   - name: SFX_PNJ_MargauxShocked
     clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
@@ -126,7 +126,7 @@ MonoBehaviour:
   - name: SFX_PNJ_MargauxThinking
     clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
     volume: 0
-  - name: SFX_PNJ_MargauxShy
+  - name: SFX_PNJ_MargauxDoubt
     clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
     volume: 0
   - name: SFX_PNJ_EthanShocked
@@ -138,7 +138,7 @@ MonoBehaviour:
   - name: SFX_PNJ_EthanScared
     clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
     volume: 0
-  - name: SFX_PNJ_EthanShy
+  - name: SFX_PNJ_EthanDoubt
     clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
     volume: 0
   - name: SFX_PNJ_EthanThinking
@@ -153,7 +153,7 @@ MonoBehaviour:
   - name: SFX_PNJ_EvangelineScared
     clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
     volume: 0
-  - name: SFX_PNJ_EvangelineShy
+  - name: SFX_PNJ_EvangelineDoubt
     clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
     volume: 0
   - name: SFX_PNJ_EvangelineThinking
@@ -168,7 +168,7 @@ MonoBehaviour:
   - name: SFX_PNJ_SachaShocked
     clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
     volume: 0
-  - name: SFX_PNJ_SachaShy
+  - name: SFX_PNJ_SachaDoubt
     clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
     volume: 0
   - name: SFX_PNJ_SachaThinking

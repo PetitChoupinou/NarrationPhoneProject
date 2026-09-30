@@ -6272,6 +6272,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5619117892250465613, guid: 0b53b56413384e940a4cee518cbd64f1, type: 3}
+      propertyPath: _soundEffects.Array.data[1].name
+      value: SFX_MessageReceived
+      objectReference: {fileID: 0}
+    - target: {fileID: 5619117892250465613, guid: 0b53b56413384e940a4cee518cbd64f1, type: 3}
       propertyPath: _soundEffects.Array.data[6].name
       value: SFX_Blocked
       objectReference: {fileID: 0}

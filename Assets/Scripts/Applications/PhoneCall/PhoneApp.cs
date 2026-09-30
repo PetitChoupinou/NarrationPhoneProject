@@ -20,7 +20,7 @@ public class PhoneApp : BaseApplication
 
     public override void SetUp(StoryAppSetup setup)
     {
-        _soundManager = SoundManager.instance;
+        _soundManager = SoundManager.Instance;
         foreach(CharacterSheet c in setup.Characters)
         {
             _numbers.Add(c.TelNum);

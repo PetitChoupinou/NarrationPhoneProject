@@ -85,7 +85,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1492649169789970837}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -147,6 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShareButton
   _visu: {fileID: 7319561060509727410}
+  greyFilter: {fileID: -876546973899608171, guid: 177c58e8d355cf74bb104ed0a7f815b1, type: 3}
 --- !u!1 &4761156979978924523
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,7 +213,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 2df9d2ece12887540a771021ca7dd50a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

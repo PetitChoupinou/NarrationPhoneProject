@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 [Serializable]
@@ -13,9 +14,29 @@ public class DialogueData : ScriptableObject
     [SerializeReference]
     public List<NodeData> temporaryNodes = new List<NodeData>();
     public string entryPointNodeGuid = "";
-    [HideInInspector] public bool isLocked;
+    [HideInInspector] private bool isLocked;
     [SerializeField] private bool _isLocked;
-    [HideInInspector] public bool hasStarted;
+    [HideInInspector] private bool hasStarted;
+
+    public bool IsLocked { 
+        get => isLocked;
+        set 
+        {
+            isLocked = value;
+            GetIsActive();
+        } 
+    }
+
+    public bool HasStarted { 
+        get => hasStarted;
+        set
+        {
+            hasStarted = value;
+            GetIsActive();
+        }
+    }
+
+    public event Action<bool> OnDialogueStatutChange;
   
 
     private void OnValidate()
@@ -42,5 +63,13 @@ public class DialogueData : ScriptableObject
     {
         //Check option fast wait
         return secondsToWait;
+    }
+
+    public bool GetIsActive()
+    {
+        bool result = !IsLocked && HasStarted;
+        //Debug.Log($"{IsLocked} && {HasStarted} ====> {result}");
+        OnDialogueStatutChange.Invoke(result);
+        return result;
     }
 }

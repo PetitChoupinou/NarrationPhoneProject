@@ -13,6 +13,9 @@ public class DialogueDataReader : MonoBehaviour
 {
     
     public List<DialogueData> dialogueDatas = new List<DialogueData>();
+    public bool isActive;
+    public bool isBlocked;
+    private bool _isWaitingForStart;
     private DialogueData _currentDialogueData;
     
     private NodeData _currentNodeData;
@@ -32,9 +35,11 @@ public class DialogueDataReader : MonoBehaviour
 
     private Sprite _askedImage = null;
 
-    public event Action OnWrongPhotoSent;
+    public event Action<bool> OnWrongPhotoSent;
 
     public string CharacterID { get => _characterID; set => _characterID = value; }
+    public DialogueData CurrentDialogueData { get => _currentDialogueData; set => _currentDialogueData = value; }
+
 
     
     
@@ -52,6 +57,8 @@ public class DialogueDataReader : MonoBehaviour
     }
 
 
+
+
     public void StartConversation(string conversationID)
     {
         _contactApp = AppManager.Instance.GetApplication(ApplicationType.Contacts) as ContactApp;
@@ -59,12 +66,13 @@ public class DialogueDataReader : MonoBehaviour
         _hackApp = AppManager.Instance.GetApplication(ApplicationType.Hack) as HackApp;
         if (dialogueDatas.Count == 0) { return; }
         _currentDialogueData = SaveManager.Instance.LoadDialogue(conversationID, _messageApp.StoryName);
+        _currentDialogueData.OnDialogueStatutChange += _messageApp.GetDiscussion(CharacterID).GetComponent<Discussion>().UpdateStatutConv;
         List<NodeData> nodes = _currentDialogueData.nodes;
         List<NodeData> temporaryNodes = _currentDialogueData.temporaryNodes;
         //_currentDialogueData = dialogueDatas.FirstOrDefault(data => data.name == conversationID);
-        if (!_currentDialogueData.hasStarted)
+        if (!_currentDialogueData.HasStarted && !_isWaitingForStart)
         {
-            _currentDialogueData.hasStarted = true;
+            _isWaitingForStart = true;
             StartCoroutine(WaitForDialogueToStart());
             return;
         }
@@ -78,6 +86,7 @@ public class DialogueDataReader : MonoBehaviour
 
     private void StartReadingDialogue()
     {
+        CurrentDialogueData.HasStarted = true;
         ReadNodeData(GetNextNodeData(_currentDialogueData.nodes.FirstOrDefault(node => node.nodeGUID == _currentDialogueData.entryPointNodeGuid))).Invoke();
     }
 
@@ -85,6 +94,7 @@ public class DialogueDataReader : MonoBehaviour
     {
         yield return new WaitForSeconds(_currentDialogueData.GetSecondsToWait());
         Debug.Log("New conv");
+        _isWaitingForStart = false;
         StartReadingDialogue();
         yield return null;
     }
@@ -102,7 +112,12 @@ public class DialogueDataReader : MonoBehaviour
         
         var nextData = GetNextNodeData(currentNodeData, outputID);
         
-        if(nextData == null) { Debug.Log("Fin de conv");  return; } // End of conversation
+        if(nextData == null) 
+        { 
+            Debug.Log("Fin de conv");  
+            EndOfConversation();
+            return;
+        } 
 
         
         List<NodeData> tempNodes = _currentDialogueData.temporaryNodes.FindAll(node => node.outputs[0].targetNodeGuid == nextData.nodeGUID);
@@ -114,6 +129,11 @@ public class DialogueDataReader : MonoBehaviour
         SaveManager.Instance.SaveDialogue(_currentDialogueData, _messageApp.StoryName);
         _lastNodeData = _currentNodeData;
         ReadNodeData(nextData, isChoice).Invoke();
+    }
+
+    private void EndOfConversation()
+    {
+        _currentDialogueData.HasStarted = false;
     }
 
     private void ReadNextNode(string targetNodeGUID)
@@ -289,7 +309,7 @@ public class DialogueDataReader : MonoBehaviour
                 BlockNodeData blockNodeData = nodeData as BlockNodeData;
                 return () =>
                 {
-                    _currentDialogueData.isLocked = true;
+                    _currentDialogueData.IsLocked = true;
                 };
             case NodeType.NewApplication:
                 NewApplicationNodeData newAppNodeData = nodeData as NewApplicationNodeData;
@@ -355,7 +375,7 @@ public class DialogueDataReader : MonoBehaviour
     {
         OutputData outputData = new OutputData();
         outputData.portValue = "Next";
-        if (_currentNodeData.nodeType != NodeType.Image) { _currentNodeData = _lastNodeData; }
+        if (_currentNodeData != null && _currentNodeData.nodeType != NodeType.Image) { _currentNodeData = _lastNodeData; }
 
         _messageApp.DisableSendingButton(_characterID);
         if(_currentNodeData != null)
@@ -393,7 +413,7 @@ public class DialogueDataReader : MonoBehaviour
         }
         else if (_askedImage == null || sentImage != _askedImage)
         {
-            OnWrongPhotoSent.Invoke();
+            OnWrongPhotoSent.Invoke(_askedImage == null);
         }
     }
 
@@ -532,7 +552,7 @@ public class DialogueDataReader : MonoBehaviour
     internal void UnlockDialogue(string dialogueID)
     {
         var data = dialogueDatas.FirstOrDefault(x => x.name == dialogueID);
-        data.isLocked = false;
+        data.IsLocked = false;
         StartConversation(dialogueID);  
         Debug.Log($"Dialogue avec {CharacterID} est maintenant débloqué");
     }

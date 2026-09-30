@@ -13,6 +13,7 @@ public class NotificationManager : MonoBehaviour
     [SerializeField] private RectTransform notifScrollview;
      private List<AppButton> buttons=new List<AppButton>();
      private Dictionary<string, NotificationMsg> notifs=new Dictionary<string, NotificationMsg>();
+    SoundManager _soundManager;
     public static NotificationManager Instance => instance;
 
     public List<AppButton> Buttons { get => buttons; set => buttons = value; }
@@ -29,6 +30,10 @@ public class NotificationManager : MonoBehaviour
             instance = this;
         }
     }
+    private void Start()
+    {
+        _soundManager = SoundManager.Instance;
+    }
     public void SendNotifText(string message, string ID)
     {      
         if (notifs.ContainsKey(ID))
@@ -37,6 +42,7 @@ public class NotificationManager : MonoBehaviour
             return;
         }
           GameObject newMsgNotif = Instantiate(notifMsgPrefab, notifPanel.transform);
+        _soundManager.PlaySound("SFX_MessageNotification");
          notifs.Add(ID, newMsgNotif.GetComponent<NotificationMsg>());
         notifScrollview.localScale = Vector3.one;
         newMsgNotif.GetComponent<NotificationMsg>().SetUp(ID, message, notifScrollview);

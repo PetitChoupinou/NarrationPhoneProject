@@ -34,7 +34,7 @@ public class SoundManager : MonoBehaviour
     private Dictionary<string, AudioClip> _musicDictionary = new Dictionary<string, AudioClip>();
     private float _volume = 1.0f;
 
-    public static SoundManager instance { get; private set; }
+    public static SoundManager Instance { get; private set; }
     public float SfxVolume { get => _sfxVolume; set
         {
             if (value > 1.0f) value = 1.0f;
@@ -73,14 +73,14 @@ public class SoundManager : MonoBehaviour
     }
     private void Awake()
     {
-        if (instance != null && instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(this.gameObject);
             return;
         }
         else
         {
-            instance = this;
+            Instance = this;
         }
         for (int i = 0; i < _poolSize; i++)
         {

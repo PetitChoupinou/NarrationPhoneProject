@@ -42,12 +42,15 @@ public class Discussion : MonoBehaviour
     private List<string> _choices = new List<string>();
     private List<GameObject> _choiceButtons = new List<GameObject>();
     private ScrollRect _scrollRect;
+    private SoundManager _soundManager;
     
 
     private DialogueDataReader _dialogueDataReader;
 
     [SerializeField] private Material _blurMaterial;
     [SerializeField] private Image _blurImage;
+
+    public event Action<bool> OnConversationStatutUpdate;
 
 
     #region Relationship Feedback
@@ -70,6 +73,7 @@ public class Discussion : MonoBehaviour
         _messageApp= FindAnyObjectByType<MessageApp>();
         _scrollRect = GetComponentInChildren<ScrollRect>();
         _charaVisuBasePosition = _charaVisu.GetComponent<RectTransform>().anchoredPosition;
+        _soundManager = SoundManager.Instance;
     }
 #if UNITY_EDITOR
     bool isCharaVisuSideMode=true;
@@ -157,20 +161,23 @@ public class Discussion : MonoBehaviour
         newMessage.transform.localScale = Vector3.zero;
         StartCoroutine(MessageApplyResize(newMessage));
         if(_messageApp==null) _messageApp = FindAnyObjectByType<MessageApp>();
-        if (_messageApp.CurrentConv != gameObject )
+        if (_messageApp.CurrentConv != gameObject && isNPC)
         {
             NotificationManager.Instance.SendNotifText(_preview.text, _iD);
         }
         Transform visuTransform = _charaVisu.transform;
         if (isNPC)
         {
-               visuTransform.localScale=new Vector3(1,1,1);
-                _charaVisu.GetComponent<RectTransform>().anchoredPosition=new Vector3(_charaVisuBasePosition.x,_charaVisuBasePosition.y,_charaVisuBasePosition.z);
+            visuTransform.localScale=new Vector3(1,1,1);
+            _charaVisu.GetComponent<RectTransform>().anchoredPosition=new Vector3(_charaVisuBasePosition.x,_charaVisuBasePosition.y,_charaVisuBasePosition.z);
+            if(_messageApp.CurrentConv == gameObject)
+                _soundManager.PlaySound("SFX_MessageReceived");
         }
         else 
         {
                 visuTransform.localScale=new Vector3(-1,1,1);
-                _charaVisu.GetComponent<RectTransform>().anchoredPosition = new Vector3(-_charaVisuBasePosition.x,_charaVisuBasePosition.y,_charaVisuBasePosition.z);  
+                _charaVisu.GetComponent<RectTransform>().anchoredPosition = new Vector3(-_charaVisuBasePosition.x,_charaVisuBasePosition.y,_charaVisuBasePosition.z);
+         
         }
         ChangeEmotion(emotion);
     }
@@ -200,14 +207,16 @@ public class Discussion : MonoBehaviour
         {
             visuTransform.localScale = new Vector3(1, 1, 1);
             _charaVisu.GetComponent<RectTransform>().anchoredPosition = new Vector3(_charaVisuBasePosition.x, _charaVisuBasePosition.y, _charaVisuBasePosition.z);
+            if (_messageApp.CurrentConv == gameObject)
+                _soundManager.PlaySound("SFX_MessageReceived");
         }
         else
         {
             visuTransform.localScale = new Vector3(-1, 1, 1);
             _charaVisu.GetComponent<RectTransform>().anchoredPosition = new Vector3(-_charaVisuBasePosition.x, _charaVisuBasePosition.y, _charaVisuBasePosition.z);
         }
-
-
+        if (_messageApp.CurrentConv == gameObject)
+            _soundManager.PlaySound("SFX_MessageSend");
     }
 
     /// <summary>
@@ -233,7 +242,10 @@ public class Discussion : MonoBehaviour
         {
             NotificationManager.Instance.SendNotifText(_preview.text, _iD);
         }
-
+        _charaVisu.transform.localScale = new Vector3(1, 1, 1);
+        _charaVisu.GetComponent<RectTransform>().anchoredPosition = new Vector3(_charaVisuBasePosition.x, _charaVisuBasePosition.y, _charaVisuBasePosition.z);
+        if (_messageApp.CurrentConv == gameObject)
+            _soundManager.PlaySound("SFX_MessageReceived");
     }
 
     public void EnableSendingButton(Action sendingAction)
@@ -387,6 +399,9 @@ public class Discussion : MonoBehaviour
         {
             
             _charaVisu.sprite= _charaEmotions[Emotion];
+            print("SFX_NPC_" + ID + Emotion);
+            if(Emotion!=CharaEmotion.Base&& _messageApp.CurrentConv == gameObject)
+            _soundManager.PlaySound("SFX_NPC_" + ID + Emotion);
         }
         //Debug.Log("Emotion changed to: " + Emotion.ToString());
     }
@@ -395,11 +410,13 @@ public class Discussion : MonoBehaviour
         if (isGood)
         {
             _relationFeedback.material = _positifRel;
+            _soundManager.PlaySound("SFX_AffinityIncrease");
             yield return null;
         }
         else
         {
             _relationFeedback.material = _negatiifRel;
+            _soundManager.PlaySound("SFX_AffinityDecrease");
             yield return null;
 
         }
@@ -460,6 +477,7 @@ public class Discussion : MonoBehaviour
         _blurImage.sprite = LoadSpriteFromFile(System.IO.Path.Combine(Application.persistentDataPath, "ScreenBlur.png"));
         _blurImage.transform.gameObject.SetActive(true);
         _choicePanel.SetActive(true);
+        _soundManager.PlaySound("SFX_MessageTyping");
         _choices.AddRange(choices);
 
         for (int i = 0; i < choices.Count; i++)
@@ -494,13 +512,24 @@ public class Discussion : MonoBehaviour
 
 
 
-    private void OnWrongPhotoSent()
+    private void OnWrongPhotoSent(bool shouldContinue)
     {
         if (_wrongPhotoResponse.Count <= 0) return;
         int rand = UnityEngine.Random.Range(0, _wrongPhotoResponse.Count);
         var response = _wrongPhotoResponse[rand];
         AddMessage(response, true, CharaEmotion.Think);
-        _dialogueDataReader.CreateTemporaryDialogueNodeData(response, CharaEmotion.Think);
+        _dialogueDataReader.CreateTemporaryDialogueNodeData(response, CharaEmotion.Think, shouldContinue);
+    }
+
+    public void UpdateStatutConv(bool isConvActive)
+    {
+        print(isConvActive);
+        OnConversationStatutUpdate.Invoke(isConvActive);
+    }
+
+    public void Block()
+    {
+        _soundManager.PlaySound("SFX_Blocked");
     }
 }
 public class PendingMsg
@@ -530,5 +559,7 @@ public class PendingMsg
         this.image = image;
         this.isDownload = false;
     }
+
+
 
 }
