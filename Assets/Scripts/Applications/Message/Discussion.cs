@@ -9,6 +9,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+
 public class Discussion : MonoBehaviour
 {
     private TMP_Text _lastMessage;
@@ -18,9 +19,12 @@ public class Discussion : MonoBehaviour
     private GameObject _messageButton;
     private MessageApp _messageApp;
     private Sprite _backgroundImage;
+
+
     [SerializeField] private GameObject _content;
     [SerializeField] private GameObject _messagePrefab;
     [SerializeField] private GameObject _linkPrefab;
+    [SerializeField] private GameObject _imageMessagePrefab;
     [SerializeField] private GameObject _choicePrefab;
     [SerializeField] private GameObject _choicePanel;
     [SerializeField] private GameObject _preMessage;
@@ -30,7 +34,7 @@ public class Discussion : MonoBehaviour
     [SerializeField] private bool _isEnabled;
     [SerializeField] private Image _charaVisu;
     [SerializeField] private Dictionary<CharaEmotion, Sprite> _charaEmotions=new Dictionary<CharaEmotion, Sprite>();
-     [SerializeField] private Vector3 _charaVisuBasePosition;
+    [SerializeField] private Vector3 _charaVisuBasePosition;
 
 
     private Queue<PendingMsg> _pendingMsgs=new Queue<PendingMsg>();
@@ -38,11 +42,15 @@ public class Discussion : MonoBehaviour
     private List<string> _choices = new List<string>();
     private List<GameObject> _choiceButtons = new List<GameObject>();
     private ScrollRect _scrollRect;
+    private SoundManager _soundManager;
+    
 
     private DialogueDataReader _dialogueDataReader;
 
     [SerializeField] private Material _blurMaterial;
     [SerializeField] private Image _blurImage;
+
+    public event Action<bool> OnConversationStatutUpdate;
 
 
     #region Relationship Feedback
@@ -51,6 +59,8 @@ public class Discussion : MonoBehaviour
     [SerializeField] private Material _negatiifRel;
     [SerializeField] private float  _feedbackDuration;
     #endregion
+
+    
     public string ID { get => _iD;}
     public bool CanChoose { get => _canChoose; set => _canChoose = value; }
     public DialogueDataReader DialogueDataReader { get => _dialogueDataReader; set => _dialogueDataReader = value; }
@@ -63,6 +73,7 @@ public class Discussion : MonoBehaviour
         _messageApp= FindAnyObjectByType<MessageApp>();
         _scrollRect = GetComponentInChildren<ScrollRect>();
         _charaVisuBasePosition = _charaVisu.GetComponent<RectTransform>().anchoredPosition;
+        _soundManager = SoundManager.Instance;
     }
 #if UNITY_EDITOR
     bool isCharaVisuSideMode=true;
@@ -104,6 +115,7 @@ public class Discussion : MonoBehaviour
     public void SetUp(string name, SentText[] texts, GameObject button, TMP_Text headerText, Sprite background, Dictionary<CharaEmotion, Sprite> chara,List<String> wrongPhotoResponse)
     {
         DialogueDataReader = GetComponent<DialogueDataReader>();
+        _dialogueDataReader.OnWrongPhotoSent += OnWrongPhotoSent ;
         _iD = name;
         DialogueDataReader.CharacterID = name;
         _headerText = headerText;
@@ -149,23 +161,64 @@ public class Discussion : MonoBehaviour
         newMessage.transform.localScale = Vector3.zero;
         StartCoroutine(MessageApplyResize(newMessage));
         if(_messageApp==null) _messageApp = FindAnyObjectByType<MessageApp>();
-        if (_messageApp.CurrentConv != gameObject )
+        if (_messageApp.CurrentConv != gameObject && isNPC)
         {
             NotificationManager.Instance.SendNotifText(_preview.text, _iD);
         }
         Transform visuTransform = _charaVisu.transform;
         if (isNPC)
         {
-               visuTransform.localScale=new Vector3(1,1,1);
-                _charaVisu.GetComponent<RectTransform>().anchoredPosition=new Vector3(_charaVisuBasePosition.x,_charaVisuBasePosition.y,_charaVisuBasePosition.z);
+            visuTransform.localScale=new Vector3(1,1,1);
+            _charaVisu.GetComponent<RectTransform>().anchoredPosition=new Vector3(_charaVisuBasePosition.x,_charaVisuBasePosition.y,_charaVisuBasePosition.z);
+            if(_messageApp.CurrentConv == gameObject)
+                _soundManager.PlaySound("SFX_MessageReceived");
         }
         else 
         {
                 visuTransform.localScale=new Vector3(-1,1,1);
-                _charaVisu.GetComponent<RectTransform>().anchoredPosition = new Vector3(-_charaVisuBasePosition.x,_charaVisuBasePosition.y,_charaVisuBasePosition.z);  
+                _charaVisu.GetComponent<RectTransform>().anchoredPosition = new Vector3(-_charaVisuBasePosition.x,_charaVisuBasePosition.y,_charaVisuBasePosition.z);
+         
         }
         ChangeEmotion(emotion);
     }
+
+    public void AddImage(Sprite image, bool isNPC)
+    {
+        if (AppManager.Instance.GetApplication(ApplicationType.Map) && PhoneManager.Instance.CurrentLocation.networkState == NetworkState.Bad)
+        {
+
+            _pendingMsgs.Enqueue(new PendingMsg(isNPC, image));
+            return;
+        }
+        GameObject newMessage = Instantiate(_imageMessagePrefab, _content.transform);
+        MessageImage message = newMessage.GetComponent<MessageImage>();
+        message.SetIsNPC(isNPC);
+        message.SetImage(image);
+        ChangePreview("", false, true);
+        newMessage.transform.localScale = Vector3.zero;
+        StartCoroutine(MessageApplyResize(newMessage));
+        if (_messageApp == null) _messageApp = FindAnyObjectByType<MessageApp>();
+        if (_messageApp.CurrentConv != gameObject)
+        {
+            NotificationManager.Instance.SendNotifText("image.png", _iD);
+        }
+        Transform visuTransform = _charaVisu.transform;
+        if (isNPC)
+        {
+            visuTransform.localScale = new Vector3(1, 1, 1);
+            _charaVisu.GetComponent<RectTransform>().anchoredPosition = new Vector3(_charaVisuBasePosition.x, _charaVisuBasePosition.y, _charaVisuBasePosition.z);
+            if (_messageApp.CurrentConv == gameObject)
+                _soundManager.PlaySound("SFX_MessageReceived");
+        }
+        else
+        {
+            visuTransform.localScale = new Vector3(-1, 1, 1);
+            _charaVisu.GetComponent<RectTransform>().anchoredPosition = new Vector3(-_charaVisuBasePosition.x, _charaVisuBasePosition.y, _charaVisuBasePosition.z);
+        }
+        if (_messageApp.CurrentConv == gameObject)
+            _soundManager.PlaySound("SFX_MessageSend");
+    }
+
     /// <summary>
     /// Link to add an app to the phone
     /// </summary>
@@ -189,7 +242,10 @@ public class Discussion : MonoBehaviour
         {
             NotificationManager.Instance.SendNotifText(_preview.text, _iD);
         }
-
+        _charaVisu.transform.localScale = new Vector3(1, 1, 1);
+        _charaVisu.GetComponent<RectTransform>().anchoredPosition = new Vector3(_charaVisuBasePosition.x, _charaVisuBasePosition.y, _charaVisuBasePosition.z);
+        if (_messageApp.CurrentConv == gameObject)
+            _soundManager.PlaySound("SFX_MessageReceived");
     }
 
     public void EnableSendingButton(Action sendingAction)
@@ -218,13 +274,21 @@ public class Discussion : MonoBehaviour
     /// </summary>
     /// <param name="text">preview</param>
     /// <param name="isDl">is it a link</param>
-    public void ChangePreview(string text,bool isDl=false)
+    public void ChangePreview(string text,bool isDl=false, bool isImage = false)
     {
         if (isDl)
         {
             _preview.text = "download";
+            _preview.fontStyle = FontStyles.Italic;
             return;
         }
+        else if (isImage)
+        {
+            _preview.text = "image";
+            _preview.fontStyle = FontStyles.Italic;
+            return;
+        }
+        _preview.fontStyle = FontStyles.Normal;
         string previewText = "";
         if (text.Length > 15)
         {
@@ -335,6 +399,9 @@ public class Discussion : MonoBehaviour
         {
             
             _charaVisu.sprite= _charaEmotions[Emotion];
+            print("SFX_NPC_" + ID + Emotion);
+            if(Emotion!=CharaEmotion.Base&& _messageApp.CurrentConv == gameObject)
+            _soundManager.PlaySound("SFX_NPC_" + ID + Emotion);
         }
         //Debug.Log("Emotion changed to: " + Emotion.ToString());
     }
@@ -343,11 +410,13 @@ public class Discussion : MonoBehaviour
         if (isGood)
         {
             _relationFeedback.material = _positifRel;
+            _soundManager.PlaySound("SFX_AffinityIncrease");
             yield return null;
         }
         else
         {
             _relationFeedback.material = _negatiifRel;
+            _soundManager.PlaySound("SFX_AffinityDecrease");
             yield return null;
 
         }
@@ -408,6 +477,7 @@ public class Discussion : MonoBehaviour
         _blurImage.sprite = LoadSpriteFromFile(System.IO.Path.Combine(Application.persistentDataPath, "ScreenBlur.png"));
         _blurImage.transform.gameObject.SetActive(true);
         _choicePanel.SetActive(true);
+        _soundManager.PlaySound("SFX_MessageTyping");
         _choices.AddRange(choices);
 
         for (int i = 0; i < choices.Count; i++)
@@ -439,11 +509,27 @@ public class Discussion : MonoBehaviour
         tex.LoadImage(bytes); // This auto-resizes the texture
         return Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f, 0.5f));
     }
-    private void OnWrongPhotoSent()
+
+
+
+    private void OnWrongPhotoSent(bool shouldContinue)
     {
         if (_wrongPhotoResponse.Count <= 0) return;
         int rand = UnityEngine.Random.Range(0, _wrongPhotoResponse.Count);
-        AddMessage(_wrongPhotoResponse[rand], true, CharaEmotion.Think);
+        var response = _wrongPhotoResponse[rand];
+        AddMessage(response, true, CharaEmotion.Think);
+        _dialogueDataReader.CreateTemporaryDialogueNodeData(response, CharaEmotion.Think, shouldContinue);
+    }
+
+    public void UpdateStatutConv(bool isConvActive)
+    {
+        print(isConvActive);
+        OnConversationStatutUpdate.Invoke(isConvActive);
+    }
+
+    public void Block()
+    {
+        _soundManager.PlaySound("SFX_Blocked");
     }
 }
 public class PendingMsg
@@ -453,6 +539,7 @@ public class PendingMsg
     public bool isDownload;
     public ApplicationType app;
     public string text;
+    public Sprite image;
 
     public PendingMsg(bool isNPC, string text)
     {
@@ -465,5 +552,14 @@ public class PendingMsg
         this.isDownload=true;
         this.app = type;
     }
+
+    public PendingMsg(bool isNPC, Sprite image)
+    {
+        this.isNPC = isNPC;
+        this.image = image;
+        this.isDownload = false;
+    }
+
+
 
 }

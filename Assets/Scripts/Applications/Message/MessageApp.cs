@@ -58,10 +58,12 @@ public class MessageApp : BaseApplication
             gameObjectsToDeactivate.Add(discussion);
             _discussions.Add(discussion.GetComponent<Discussion>());
             DialogueDataReader dialogueDataReader = discussion.GetComponent<DialogueDataReader>();
+            
             //dialogueDataReader._currentDialogueData = character.currentDialogue;
             dialogueDataReader.dialogueDatas.AddRange(character.Dialogues);
         }
         // Get la _save => mettre les dialogues de la _save dans le data reader
+        var save = SaveManager.Instance.Save;
         print(SaveManager.Instance.Save.name);
         StartCoroutine(StartGame());
     }
@@ -94,6 +96,13 @@ public class MessageApp : BaseApplication
         var discussion = _discussions.Find(x => x.ID == ID);
         
         discussion.AddMessage(text, isNPC, emotion);
+    }
+
+    public void AddImage(Sprite image, bool isNPC, string ID)
+    {
+        var discussion = _discussions.Find(x => x.ID == ID);
+
+        discussion.AddImage(image, isNPC);
     }
 
     public void AddLinkTo(ApplicationType applicationType, string ID)
@@ -136,7 +145,7 @@ public class MessageApp : BaseApplication
             DialogueDataReader dialogueDataReader = discussion.GetComponent<DialogueDataReader>();
             if (dialogueDataReader != null && dialogueDataReader.dialogueDatas.Count > 0)
             {
-                var availableData = dialogueDataReader.dialogueDatas.FirstOrDefault(x => x.isLocked == false);
+                var availableData = dialogueDataReader.dialogueDatas.FirstOrDefault(x => x.IsLocked == false);
                 if(availableData != null) dialogueDataReader.StartConversation(availableData.name);
             }
         }

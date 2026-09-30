@@ -9,7 +9,7 @@ public class MessageTextBase : MonoBehaviour
     private TMP_Text _message;
     [SerializeField] private bool _isNPCMsg;
     [SerializeField] private GameObject _messagePrefab;
-   [SerializeField]private UITextTyperMsg _textTyper;
+    [SerializeField] private UITextTyperMsg _textTyper;
     [SerializeField] int _maxMsgWidth=15;
 
     public TMP_Text Message { get => _message;}
@@ -45,6 +45,8 @@ public class MessageTextBase : MonoBehaviour
         }
         _textTyper.ReadText(msg);
     }
+
+    
     public string AddLineReturn(string text)
     {
         int lastSpace = 0;

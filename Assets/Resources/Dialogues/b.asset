@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ef08a29b60933941822e91151f6e732, type: 3}
+  m_Name: b
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  secondsToWait: 0
+  secondsToWaitFast: 0
+  nodes:
+  - rid: 4237343616817692803
+  - rid: 4237343616817692804
+  - rid: 4237343616817692805
+  - rid: 4237343616817692806
+  temporaryNodes: []
+  entryPointNodeGuid: 50a5bf07-aca8-4f5d-8286-552f87baa4c8
+  isLocked: 0
+  _isLocked: 0
+  hasStarted: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 4237343616817692803
+      type: {class: NodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 50a5bf07-aca8-4f5d-8286-552f87baa4c8
+        nodeType: 0
+        position: {x: 250.4, y: 200}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 610a32ac-8b14-47b6-b050-503aa4936394
+        isSentCurrent: 0
+    - rid: 4237343616817692804
+      type: {class: ImageNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: ce91778e-f1b5-4e76-b65d-6fe7b139ad93
+        nodeType: 13
+        position: {x: 836, y: 203.20001}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: aedb882e-a94b-4ee0-8a75-86ab686c26c9
+        isSentCurrent: 0
+        isNPC: 0
+        image: {fileID: 21300000, guid: 010861aecb582804594e2e5b87bbe5db, type: 3}
+        timerSending: 0
+    - rid: 4237343616817692805
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: 610a32ac-8b14-47b6-b050-503aa4936394
+        nodeType: 1
+        position: {x: 436.8, y: 203.20001}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: ce91778e-f1b5-4e76-b65d-6fe7b139ad93
+        isSentCurrent: 0
+        dialogueText: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA image stp
+        isNPC: 1
+        timerSending: 0
+        emotion: 2
+    - rid: 4237343616817692806
+      type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        nodeGUID: aedb882e-a94b-4ee0-8a75-86ab686c26c9
+        nodeType: 1
+        position: {x: 1174.4, y: 184.8}
+        outputs:
+        - portValue: Next
+          targetNodeGuid: 
+        isSentCurrent: 0
+        dialogueText: ONO UWU ITADAKIMASU
+        isNPC: 1
+        timerSending: 0
+        emotion: 3
