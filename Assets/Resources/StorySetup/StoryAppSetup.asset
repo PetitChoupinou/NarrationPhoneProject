@@ -113,7 +113,7 @@ MonoBehaviour:
     _year: 2004
     _hour: 7
     _minute: 21
-  storySFX:
+  _storySFX:
   - name: SFX_PNJ_MargauxShocked
     clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
     volume: 0
@@ -174,19 +174,4 @@ MonoBehaviour:
   - name: SFX_PNJ_SachaThinking
     clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
     volume: 0
-  storyMus:
-  - name: AMB_Dialogue
-    clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
-    volume: 0
-  - name: AMB_Tension
-    clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
-    volume: 0
-  - name: MUS_GoodEnding
-    clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
-    volume: 0
-  - name: MUS_BadEnding
-    clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
-    volume: 0
-  - name: MUS_UncertainEnding
-    clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
-    volume: 0
+  _storyMus: []
