@@ -36,7 +36,7 @@ public class StoryAppSetup : ScriptableObject
     public HackSetup HackAppSetup { get => _hackAppSetup;  }
     public TimeData TimeData { get => _timeData;}
     public Sprite BaseCameraPhoto { get => _baseCameraPhoto; }
-    public Sprite MessageBackGround { get => _messageBackGround;}
+    public Sprite MessageBackGround { get => _messageBackGround;set => _messageBackGround = value; }
     public bool HasPhotoBeenTaken { get => _hasPhotoBeenTaken; set => _hasPhotoBeenTaken = value; }
     public List<SFX> StorySFX { get => _storySFX;}
     public List<Music> StoryMus { get => _storyMus;}

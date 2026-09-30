@@ -135,134 +135,145 @@ public class StorySetupTool:EditorWindow
         }
         EditorGUILayout.EndHorizontal();
         EditorGUILayout.EndScrollView();
-        EditorGUILayout.BeginHorizontal(); 
-        GUILayout.Label("Name  : " + _activeAppSetup.ToString(), new GUIStyle(GUI.skin.label) {fixedWidth=200, fontSize = 14, alignment = TextAnchor.MiddleLeft });
-        _activeStory.Name = GUILayout.TextField(_activeStory.Name, new GUIStyle(GUI.skin.textField) {fixedWidth=200, fontSize=14,alignment = TextAnchor.MiddleCenter});
-        EditorGUILayout.EndHorizontal();
-        EditorGUILayout.BeginHorizontal();
-        EditorGUILayout.BeginVertical();
-        GUILayout.Label("Applications  : ", new GUIStyle(GUI.skin.label) { fixedWidth = 320, fontSize = 14, alignment = TextAnchor.MiddleLeft });
-        for (int i=0; i<_activeStory.Applications.Count;i++) 
+        switch (_activeAppSetup)
         {
-            GameObject app = _activeStory.Applications[i];
-            if (app != null && app.GetComponent<BaseApplication>()) _obj = app;
-            else _obj = null;
-            _obj = (GameObject)EditorGUILayout.ObjectField( _obj, typeof(GameObject), false,GUILayout.MaxWidth(320));
-            if (_obj)
-            {
-                _activeStory.SetApplication(i, _obj);
-            }
-            if (GUILayout.Button( "RemoveApp",new GUIStyle(GUI.skin.button) { fixedWidth = 320 }))
-            {
-                _activeStory.RemoveApp(i);
-                return;
-            }
-            else _obj = null;
-        }
-        if (GUILayout.Button( "AddApp", new GUIStyle(GUI.skin.button) { fixedWidth = 320 }))
-        {
-            _activeStory.AddApplication();
-        }
-        EditorGUILayout.EndVertical();
-        EditorGUILayout.BeginVertical();
-        GUILayout.Label("Characters  : ", new GUIStyle(GUI.skin.label) { fixedWidth = 320, fontSize = 14, alignment = TextAnchor.MiddleLeft });
-        for (int i = 0; i < _activeStory.Characters.Count; i++)
-        {
-            CharacterSheet chara = _activeStory.Characters[i];
-            if (chara != null) _chara = chara;
-            else _chara = null;
-            _chara = (CharacterSheet)EditorGUILayout.ObjectField( _chara, typeof(CharacterSheet), false, GUILayout.MaxWidth(320));
-            if (_chara)
-            {
-                _activeStory.SetChara(i, _chara);
-            }
-            if (GUILayout.Button("RemoveChar", new GUIStyle(GUI.skin.button) { fixedWidth = 320 }))
-            {
-                _activeStory.RemoveChara(i);
-                return;
-            }
-            else _chara = null;
-        }
-        if (GUILayout.Button( "AddChara", new GUIStyle(GUI.skin.button) { fixedWidth = 320 }))
-        {
-            _activeStory.AddChara();
-        }
-        EditorGUILayout.EndVertical();
-        EditorGUILayout.BeginVertical();
-        GUILayout.Label("Time  : ", new GUIStyle(GUI.skin.label) { fixedWidth = 320, fontSize = 14, alignment = TextAnchor.MiddleLeft });
-        TimeData timeData = _activeStory.TimeData;
-        day = timeData.Day;
-        month = timeData.Month;
-        year = timeData.Year;
-        hour = timeData.Hour;
-        min = timeData.Min;
-        year = EditorGUILayout.IntField("year :", year,GUILayout.MaxWidth(320));
-        month = EditorGUILayout.IntSlider("month :", month, 1, 12, GUILayout.MaxWidth(320));
-        int daymax = 31;
-        switch (month)
-        {
-            case 2:
-                daymax = 28;
+            case ApplicationType.Base:
+                EditorGUILayout.BeginHorizontal();
+                GUILayout.Label("Name  : " + _activeAppSetup.ToString(), new GUIStyle(GUI.skin.label) { fixedWidth = 200, fontSize = 14, alignment = TextAnchor.MiddleLeft });
+                _activeStory.Name = GUILayout.TextField(_activeStory.Name, new GUIStyle(GUI.skin.textField) { fixedWidth = 200, fontSize = 14, alignment = TextAnchor.MiddleCenter });
+                EditorGUILayout.EndHorizontal();
+                EditorGUILayout.BeginHorizontal();
+                EditorGUILayout.BeginVertical();
+                GUILayout.Label("Applications  : ", new GUIStyle(GUI.skin.label) { fixedWidth = 320, fontSize = 14, alignment = TextAnchor.MiddleLeft });
+                for (int i = 0; i < _activeStory.Applications.Count; i++)
+                {
+                    GameObject app = _activeStory.Applications[i];
+                    if (app != null && app.GetComponent<BaseApplication>()) _obj = app;
+                    else _obj = null;
+                    _obj = (GameObject)EditorGUILayout.ObjectField(_obj, typeof(GameObject), false, GUILayout.MaxWidth(320));
+                    if (_obj)
+                    {
+                        _activeStory.SetApplication(i, _obj);
+                    }
+                    if (GUILayout.Button("RemoveApp", new GUIStyle(GUI.skin.button) { fixedWidth = 320 }))
+                    {
+                        _activeStory.RemoveApp(i);
+                        return;
+                    }
+                    else _obj = null;
+                }
+                if (GUILayout.Button("AddApp", new GUIStyle(GUI.skin.button) { fixedWidth = 320 }))
+                {
+                    _activeStory.AddApplication();
+                }
+                EditorGUILayout.EndVertical();
+                EditorGUILayout.BeginVertical();
+                GUILayout.Label("Characters  : ", new GUIStyle(GUI.skin.label) { fixedWidth = 320, fontSize = 14, alignment = TextAnchor.MiddleLeft });
+                for (int i = 0; i < _activeStory.Characters.Count; i++)
+                {
+                    CharacterSheet chara = _activeStory.Characters[i];
+                    if (chara != null) _chara = chara;
+                    else _chara = null;
+                    _chara = (CharacterSheet)EditorGUILayout.ObjectField(_chara, typeof(CharacterSheet), false, GUILayout.MaxWidth(320));
+                    if (_chara)
+                    {
+                        _activeStory.SetChara(i, _chara);
+                    }
+                    if (GUILayout.Button("RemoveChar", new GUIStyle(GUI.skin.button) { fixedWidth = 320 }))
+                    {
+                        _activeStory.RemoveChara(i);
+                        return;
+                    }
+                    else _chara = null;
+                }
+                if (GUILayout.Button("AddChara", new GUIStyle(GUI.skin.button) { fixedWidth = 320 }))
+                {
+                    _activeStory.AddChara();
+                }
+                EditorGUILayout.EndVertical();
+                EditorGUILayout.BeginVertical();
+                GUILayout.Label("Time  : ", new GUIStyle(GUI.skin.label) { fixedWidth = 320, fontSize = 14, alignment = TextAnchor.MiddleLeft });
+                TimeData timeData = _activeStory.TimeData;
+                day = timeData.Day;
+                month = timeData.Month;
+                year = timeData.Year;
+                hour = timeData.Hour;
+                min = timeData.Min;
+                year = EditorGUILayout.IntField("year :", year, GUILayout.MaxWidth(320));
+                month = EditorGUILayout.IntSlider("month :", month, 1, 12, GUILayout.MaxWidth(320));
+                int daymax = 31;
+                switch (month)
+                {
+                    case 2:
+                        daymax = 28;
+                        break;
+                    case 4:
+                    case 6:
+                    case 9:
+                    case 11:
+                        daymax = 30;
+                        break;
+                }
+                day = EditorGUILayout.IntSlider("day :", day, 1, daymax, GUILayout.MaxWidth(320));
+                hour = EditorGUILayout.IntSlider("hour :", hour, 1, 24, GUILayout.MaxWidth(320));
+                min = EditorGUILayout.IntSlider("hour :", min, 1, 60, GUILayout.MaxWidth(320));
+                _activeStory.SetTime(new TimeData(day, month, year, hour, min));
+                EditorGUILayout.EndVertical();
+                EditorGUILayout.BeginVertical();
+                GUILayout.Label("SFX  : ", new GUIStyle(GUI.skin.label) { fixedWidth = 320, fontSize = 14, alignment = TextAnchor.MiddleLeft });
+                _scrollPos2 = EditorGUILayout.BeginScrollView(_scrollPos2, GUILayout.MaxHeight(Mathf.Min(600, _activeStory.StorySFX.Count * 86)), GUILayout.MaxWidth(340));
+                for (int i = 0; i < _activeStory.StorySFX.Count; i++)
+                {
+                    SFX sfx = _activeStory.StorySFX[i];
+                    sfx.name = GUILayout.TextField(sfx.name, new GUIStyle(GUI.skin.textField) { fixedWidth = 320, fontSize = 14, alignment = TextAnchor.MiddleCenter });
+                    sfx.clip = (AudioClip)EditorGUILayout.ObjectField(sfx.clip, typeof(AudioClip), false, GUILayout.MaxWidth(320));
+                    sfx.volume = EditorGUILayout.Slider("volume :", sfx.volume, 0, 1, GUILayout.MaxWidth(320));
+                    _activeStory.SetSFX(i, sfx);
+                    if (GUILayout.Button("RemoveSFX", new GUIStyle(GUI.skin.button) { fixedWidth = 320 }))
+                    {
+                        _activeStory.RemoveSFX(i);
+                        return;
+                    }
+                    else _chara = null;
+                }
+                EditorGUILayout.EndScrollView();
+                if (GUILayout.Button("AddSFX", new GUIStyle(GUI.skin.button) { fixedWidth = 320 }))
+                {
+                    _activeStory.AddSFX();
+                }
+                EditorGUILayout.EndVertical();
+                EditorGUILayout.BeginVertical();
+                GUILayout.Label("Music/Amb  : ", new GUIStyle(GUI.skin.label) { fixedWidth = 320, fontSize = 14, alignment = TextAnchor.MiddleLeft });
+                _scrollPos3 = EditorGUILayout.BeginScrollView(_scrollPos3, GUILayout.MaxHeight(Mathf.Min(600, _activeStory.StoryMus.Count * 86)), GUILayout.MaxWidth(340));
+                for (int i = 0; i < _activeStory.StoryMus.Count; i++)
+                {
+                    Music mus = _activeStory.StoryMus[i];
+                    mus.name = GUILayout.TextField(mus.name, new GUIStyle(GUI.skin.textField) { fixedWidth = 320, fontSize = 14, alignment = TextAnchor.MiddleCenter });
+                    mus.clip = (AudioClip)EditorGUILayout.ObjectField(mus.clip, typeof(AudioClip), false, GUILayout.MaxWidth(320));
+                    mus.volume = EditorGUILayout.Slider("volume :", mus.volume, 0, 1, GUILayout.MaxWidth(320));
+                    _activeStory.SetMus(i, mus);
+                    if (GUILayout.Button("Remove Music", new GUIStyle(GUI.skin.button) { fixedWidth = 320 }))
+                    {
+                        _activeStory.RemoveMus(i);
+                        return;
+                    }
+                    else _chara = null;
+                }
+                EditorGUILayout.EndScrollView();
+                if (GUILayout.Button("Add Music", new GUIStyle(GUI.skin.button) { fixedWidth = 320 }))
+                {
+                    _activeStory.AddMus();
+                }
+                EditorGUILayout.EndVertical();
+                EditorGUILayout.EndHorizontal();
                 break;
-            case 4:
-            case 6:
-            case 9:
-            case 11:
-                daymax = 30;
+
+            case ApplicationType.Messages:
+                EditorGUILayout.BeginVertical();
+                _activeStory.MessageBackGround = (Sprite)EditorGUILayout.ObjectField("Background" ,_activeStory.MessageBackGround, typeof(Sprite), false, GUILayout.MaxWidth(200));
+                EditorGUILayout.EndVertical();
                 break;
         }
-        day = EditorGUILayout.IntSlider("day :", day, 1, daymax, GUILayout.MaxWidth(320));
-        hour = EditorGUILayout.IntSlider("hour :", hour, 1, 24, GUILayout.MaxWidth(320));
-        min = EditorGUILayout.IntSlider("hour :", min, 1, 60, GUILayout.MaxWidth(320));
-        _activeStory.SetTime(new TimeData(day, month, year, hour, min));
-        EditorGUILayout.EndVertical();
-        EditorGUILayout.BeginVertical();
-        GUILayout.Label("SFX  : ", new GUIStyle(GUI.skin.label) { fixedWidth = 320, fontSize = 14, alignment = TextAnchor.MiddleLeft });
-        _scrollPos2 = EditorGUILayout.BeginScrollView(_scrollPos2, GUILayout.MaxHeight(Mathf.Min(600, _activeStory.StorySFX.Count*86)),GUILayout.MaxWidth(340));
-        for (int i = 0; i < _activeStory.StorySFX.Count; i++)
-        {
-            SFX sfx = _activeStory.StorySFX[i];
-            sfx.name= GUILayout.TextField(sfx.name, new GUIStyle(GUI.skin.textField) { fixedWidth = 320,fontSize = 14, alignment = TextAnchor.MiddleCenter });
-            sfx.clip= (AudioClip)EditorGUILayout.ObjectField(sfx.clip,typeof(AudioClip),false,GUILayout.MaxWidth(320));
-            sfx.volume = EditorGUILayout.Slider("volume :", sfx.volume, 0, 1, GUILayout.MaxWidth(320));
-            _activeStory.SetSFX(i, sfx);
-            if (GUILayout.Button("RemoveSFX", new GUIStyle(GUI.skin.button) { fixedWidth = 320 }))
-            {
-                _activeStory.RemoveSFX(i);
-                return;
-            }
-            else _chara = null;
-        }
-        EditorGUILayout.EndScrollView();
-        if (GUILayout.Button("AddSFX", new GUIStyle(GUI.skin.button) { fixedWidth = 320 }))
-        {
-            _activeStory.AddSFX();
-        }
-        EditorGUILayout.EndVertical();
-        EditorGUILayout.BeginVertical();
-        GUILayout.Label("Music/Amb  : ", new GUIStyle(GUI.skin.label) { fixedWidth = 320, fontSize = 14, alignment = TextAnchor.MiddleLeft });
-        _scrollPos3 = EditorGUILayout.BeginScrollView(_scrollPos3, GUILayout.MaxHeight(Mathf.Min(600, _activeStory.StoryMus.Count * 86)),GUILayout.MaxWidth(340));
-        for (int i = 0; i < _activeStory.StoryMus.Count; i++)
-        {
-            Music mus = _activeStory.StoryMus[i];
-            mus.name = GUILayout.TextField(mus.name, new GUIStyle(GUI.skin.textField) { fixedWidth = 320, fontSize = 14, alignment = TextAnchor.MiddleCenter });
-            mus.clip = (AudioClip)EditorGUILayout.ObjectField(mus.clip, typeof(AudioClip), false, GUILayout.MaxWidth(320));
-            mus.volume = EditorGUILayout.Slider("volume :", mus.volume, 0, 1, GUILayout.MaxWidth(320));
-            _activeStory.SetMus(i, mus);
-            if (GUILayout.Button("Remove Music", new GUIStyle(GUI.skin.button) { fixedWidth = 320 }))
-            {
-                _activeStory.RemoveMus(i);
-                return;
-            }
-            else _chara = null;
-        }
-        EditorGUILayout.EndScrollView();
-        if (GUILayout.Button("Add Music", new GUIStyle(GUI.skin.button) { fixedWidth = 320 }))
-        {
-            _activeStory.AddMus();
-        }
-        EditorGUILayout.EndVertical();
-        EditorGUILayout.EndHorizontal();
 
     }
     #endregion
