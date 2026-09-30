@@ -20,8 +20,8 @@ public class StoryAppSetup : ScriptableObject
     [SerializeField] HackSetup _hackAppSetup;
     List<LocationData> _locations = new List<LocationData>();
     [SerializeField] TimeData _timeData = new TimeData();
-    [SerializeField] List<SFX> storySFX = new List<SFX>();
-    [SerializeField] List<Music> storyMus = new List<Music>();
+    [SerializeField] List<SFX> _storySFX = new List<SFX>();
+    [SerializeField] List<Music> _storyMus = new List<Music>();
 
 
     public string Name { get => _name; set => _name = value; }
@@ -34,12 +34,12 @@ public class StoryAppSetup : ScriptableObject
     public List<InternetSerach> InternetSeraches { get => _internetSearches; }
     public List<LocationData> Locations { get => _locations; }
     public HackSetup HackAppSetup { get => _hackAppSetup;  }
-    public TimeData TimeData { get => _timeData; set => _timeData = value; }
+    public TimeData TimeData { get => _timeData;}
     public Sprite BaseCameraPhoto { get => _baseCameraPhoto; }
     public Sprite MessageBackGround { get => _messageBackGround;}
     public bool HasPhotoBeenTaken { get => _hasPhotoBeenTaken; set => _hasPhotoBeenTaken = value; }
-    public List<SFX> StorySFX { get => storySFX;}
-    public List<Music> StoryMus { get => storyMus;}
+    public List<SFX> StorySFX { get => _storySFX;}
+    public List<Music> StoryMus { get => _storyMus;}
 
     public void AddApplication()
     {
@@ -64,6 +64,34 @@ public class StoryAppSetup : ScriptableObject
     public void SetChara(int i, CharacterSheet obj)
     {
         _characters[i] = obj;
+    }
+    public void SetTime(TimeData timeData)
+    {
+        _timeData = timeData;
+    }
+    public void AddSFX()
+    {
+        _storySFX.Add(null);
+    }
+    public void RemoveSFX(int appPos)
+    {
+        _storySFX.RemoveAt(appPos);
+    }
+    public void SetSFX(int i, SFX obj)
+    {
+        _storySFX[i] = obj;
+    }
+    public void AddMus()
+    {
+        _storyMus.Add(null);
+    }
+    public void RemoveMus(int appPos)
+    {
+        _storyMus.RemoveAt(appPos);
+    }
+    public void SetMus(int i, Music obj)
+    {
+        _storyMus[i] = obj;
     }
 }
 

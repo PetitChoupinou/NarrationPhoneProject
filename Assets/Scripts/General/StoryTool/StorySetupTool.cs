@@ -21,6 +21,11 @@ public class StorySetupTool:EditorWindow
     private ActiveWindow _activeWindow=ActiveWindow.Base;
     public GameObject _obj = null;
     public CharacterSheet _chara = null;
+    int day = 1;
+    int month = 1;
+    int year = 1;
+    int hour= 0;
+    int min = 0;
     private ApplicationType _activeAppSetup = ApplicationType.Base;
     enum ActiveWindow
     {
@@ -132,52 +137,88 @@ public class StorySetupTool:EditorWindow
         _activeStory.Name = GUILayout.TextField(_activeStory.Name, new GUIStyle(GUI.skin.textField) {fixedWidth=200, fontSize=14,alignment = TextAnchor.MiddleCenter});
         EditorGUILayout.EndHorizontal();
         EditorGUILayout.BeginHorizontal();
-        GUILayout.Label("Applications  : ", new GUIStyle(GUI.skin.label) { fixedWidth = 200, fontSize = 14, alignment = TextAnchor.MiddleLeft });
         EditorGUILayout.BeginVertical();
+        GUILayout.Label("Applications  : ", new GUIStyle(GUI.skin.label) { fixedWidth = 320, fontSize = 14, alignment = TextAnchor.MiddleLeft });
         for (int i=0; i<_activeStory.Applications.Count;i++) 
         {
             GameObject app = _activeStory.Applications[i];
             if (app != null && app.GetComponent<BaseApplication>()) _obj = app;
             else _obj = null;
-            _obj = (GameObject)EditorGUI.ObjectField(new Rect(3, 180 + i * 50, position.width/6 - 6, 20), "", _obj, typeof(GameObject), false);
+            _obj = (GameObject)EditorGUILayout.ObjectField( _obj, typeof(GameObject), false,GUILayout.MaxWidth(320));
             if (_obj)
             {
                 _activeStory.SetApplication(i, _obj);
             }
-            if (GUI.Button(new Rect(3, 205 + i * 50, position.width/6 - 6, 20), "RemoveApp"))
+            if (GUILayout.Button( "RemoveApp",new GUIStyle(GUI.skin.button) { fixedWidth = 320 }))
             {
                 _activeStory.RemoveApp(i);
                 return;
             }
             else _obj = null;
         }
-        if (GUI.Button(new Rect(3, 180+_activeStory.Applications.Count*50, position.width/6 - 6, 20), "AddApp"))
+        if (GUILayout.Button( "AddApp", new GUIStyle(GUI.skin.button) { fixedWidth = 320 }))
         {
             _activeStory.AddApplication();
         }
         EditorGUILayout.EndVertical();
         EditorGUILayout.BeginVertical();
-        GUILayout.Label("Characters  : ", new GUIStyle(GUI.skin.label) { fixedWidth = 200, fontSize = 14, alignment = TextAnchor.MiddleLeft });
+        GUILayout.Label("Characters  : ", new GUIStyle(GUI.skin.label) { fixedWidth = 320, fontSize = 14, alignment = TextAnchor.MiddleLeft });
         for (int i = 0; i < _activeStory.Characters.Count; i++)
         {
             CharacterSheet chara = _activeStory.Characters[i];
             if (chara != null) _chara = chara;
             else _chara = null;
-            _chara = (CharacterSheet)EditorGUI.ObjectField(new Rect(3+position.width/6, 180 + i * 50, position.width / 6 - 6, 20), "", _chara, typeof(CharacterSheet), false);
+            _chara = (CharacterSheet)EditorGUILayout.ObjectField( _chara, typeof(CharacterSheet), false, GUILayout.MaxWidth(320));
             if (_chara)
             {
                 _activeStory.SetChara(i, _chara);
             }
-            if (GUI.Button(new Rect(3 + position.width / 6, 205 + i * 50, position.width / 6 - 6, 20), "RemoveChar"))
+            if (GUILayout.Button("RemoveChar", new GUIStyle(GUI.skin.button) { fixedWidth = 320 }))
             {
                 _activeStory.RemoveChara(i);
                 return;
             }
             else _chara = null;
         }
-        if (GUI.Button(new Rect(3 + position.width / 6, 180 + _activeStory.Characters.Count * 50, position.width / 6 - 6, 20), "AddChara"))
+        if (GUILayout.Button( "AddChara", new GUIStyle(GUI.skin.button) { fixedWidth = 320 }))
         {
             _activeStory.AddChara();
+        }
+        EditorGUILayout.EndVertical();
+        EditorGUILayout.BeginVertical();
+        GUILayout.Label("Time  : ", new GUIStyle(GUI.skin.label) { fixedWidth = 320, fontSize = 14, alignment = TextAnchor.MiddleLeft });
+        TimeData timeData = _activeStory.TimeData;
+        day = timeData.Day;
+        month = timeData.Month;
+        year = timeData.Year;
+        hour = timeData.Hour;
+        min = timeData.Min;
+        year = EditorGUILayout.IntField("year :", year,GUILayout.MaxWidth(320));
+        month = EditorGUILayout.IntSlider("month :", month, 1, 12, GUILayout.MaxWidth(320));
+        int daymax = 31;
+        switch (month)
+        {
+            case 2:
+                daymax = 28;
+                break;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                daymax = 30;
+                break;
+        }
+        day = EditorGUILayout.IntSlider("day :", day, 1, daymax, GUILayout.MaxWidth(320));
+        hour = EditorGUILayout.IntSlider("hour :", hour, 1, 24, GUILayout.MaxWidth(320));
+        min = EditorGUILayout.IntSlider("hour :", min, 1, 60, GUILayout.MaxWidth(320));
+        _activeStory.SetTime(new TimeData(day, month, year, hour, min));
+        EditorGUILayout.EndVertical();
+        EditorGUILayout.BeginVertical();
+        GUILayout.Label("SFX  : ", new GUIStyle(GUI.skin.label) { fixedWidth = 320, fontSize = 14, alignment = TextAnchor.MiddleLeft });
+        for(int i = 0; i < _activeStory.StorySFX.Count; i++)
+        {
+            SFX sfx = _activeStory.StorySFX[i];
+            sfx.name= GUILayout.TextField(_activeStory.Name, new GUIStyle(GUI.skin.textField) {fontSize = 14, alignment = TextAnchor.MiddleCenter });
         }
         EditorGUILayout.EndVertical();
         EditorGUILayout.EndHorizontal();

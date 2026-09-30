@@ -18,6 +18,12 @@ public class TimeData
 
     public DateTime CurrentTime;
 
+    public int Day { get => _day;}
+    public int Month { get => _month;}
+    public int Year { get => _year;}
+    public int Hour { get => _hour;}
+    public int Min { get => _minute;}
+
     public void SetCurrentTime()
     {
         CurrentTime = new DateTime(_year, _month, _day, _hour, _minute, 0);
@@ -49,6 +55,18 @@ public class TimeData
     {
         CurrentTime= time;
         SetTimeFromCurrentTime();
+    }
+    public TimeData(int day, int month, int year, int hour, int minute)
+    {
+        _day = day;
+        if (_day < 1) _day = 1;
+        _month = month;
+        if (_month < 1) _month = 1;
+        _year = year;
+        if (_year < 1) _year = 1;
+        _hour = hour;
+        _minute = minute;
+        SetCurrentTime(); ;
     }
 
     public void SetTimeFromCurrentTime()
