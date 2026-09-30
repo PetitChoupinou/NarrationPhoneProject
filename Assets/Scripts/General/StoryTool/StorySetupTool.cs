@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
+using UnityEngine.Rendering;
 using static Unity.VisualScripting.Member;
 
 public class StorySetupTool:EditorWindow
@@ -17,6 +18,8 @@ public class StorySetupTool:EditorWindow
     private List<StoryAppSetup> _stories=new List<StoryAppSetup>();
     private StoryAppSetup _activeStory;
     Vector2 _scrollPos;
+    Vector2 _scrollPos2;
+    Vector2 _scrollPos3;
     Rect _rect;
     private ActiveWindow _activeWindow=ActiveWindow.Base;
     public GameObject _obj = null;
@@ -215,10 +218,48 @@ public class StorySetupTool:EditorWindow
         EditorGUILayout.EndVertical();
         EditorGUILayout.BeginVertical();
         GUILayout.Label("SFX  : ", new GUIStyle(GUI.skin.label) { fixedWidth = 320, fontSize = 14, alignment = TextAnchor.MiddleLeft });
-        for(int i = 0; i < _activeStory.StorySFX.Count; i++)
+        _scrollPos2 = EditorGUILayout.BeginScrollView(_scrollPos2, GUILayout.MaxHeight(Mathf.Min(600, _activeStory.StorySFX.Count*86)),GUILayout.MaxWidth(340));
+        for (int i = 0; i < _activeStory.StorySFX.Count; i++)
         {
             SFX sfx = _activeStory.StorySFX[i];
-            sfx.name= GUILayout.TextField(_activeStory.Name, new GUIStyle(GUI.skin.textField) {fontSize = 14, alignment = TextAnchor.MiddleCenter });
+            sfx.name= GUILayout.TextField(sfx.name, new GUIStyle(GUI.skin.textField) { fixedWidth = 320,fontSize = 14, alignment = TextAnchor.MiddleCenter });
+            sfx.clip= (AudioClip)EditorGUILayout.ObjectField(sfx.clip,typeof(AudioClip),false,GUILayout.MaxWidth(320));
+            sfx.volume = EditorGUILayout.Slider("volume :", sfx.volume, 0, 1, GUILayout.MaxWidth(320));
+            _activeStory.SetSFX(i, sfx);
+            if (GUILayout.Button("RemoveSFX", new GUIStyle(GUI.skin.button) { fixedWidth = 320 }))
+            {
+                _activeStory.RemoveSFX(i);
+                return;
+            }
+            else _chara = null;
+        }
+        EditorGUILayout.EndScrollView();
+        if (GUILayout.Button("AddSFX", new GUIStyle(GUI.skin.button) { fixedWidth = 320 }))
+        {
+            _activeStory.AddSFX();
+        }
+        EditorGUILayout.EndVertical();
+        EditorGUILayout.BeginVertical();
+        GUILayout.Label("Music/Amb  : ", new GUIStyle(GUI.skin.label) { fixedWidth = 320, fontSize = 14, alignment = TextAnchor.MiddleLeft });
+        _scrollPos3 = EditorGUILayout.BeginScrollView(_scrollPos3, GUILayout.MaxHeight(Mathf.Min(600, _activeStory.StoryMus.Count * 86)),GUILayout.MaxWidth(340));
+        for (int i = 0; i < _activeStory.StoryMus.Count; i++)
+        {
+            Music mus = _activeStory.StoryMus[i];
+            mus.name = GUILayout.TextField(mus.name, new GUIStyle(GUI.skin.textField) { fixedWidth = 320, fontSize = 14, alignment = TextAnchor.MiddleCenter });
+            mus.clip = (AudioClip)EditorGUILayout.ObjectField(mus.clip, typeof(AudioClip), false, GUILayout.MaxWidth(320));
+            mus.volume = EditorGUILayout.Slider("volume :", mus.volume, 0, 1, GUILayout.MaxWidth(320));
+            _activeStory.SetMus(i, mus);
+            if (GUILayout.Button("Remove Music", new GUIStyle(GUI.skin.button) { fixedWidth = 320 }))
+            {
+                _activeStory.RemoveMus(i);
+                return;
+            }
+            else _chara = null;
+        }
+        EditorGUILayout.EndScrollView();
+        if (GUILayout.Button("Add Music", new GUIStyle(GUI.skin.button) { fixedWidth = 320 }))
+        {
+            _activeStory.AddMus();
         }
         EditorGUILayout.EndVertical();
         EditorGUILayout.EndHorizontal();

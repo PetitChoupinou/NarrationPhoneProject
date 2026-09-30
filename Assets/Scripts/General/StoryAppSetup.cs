@@ -71,7 +71,8 @@ public class StoryAppSetup : ScriptableObject
     }
     public void AddSFX()
     {
-        _storySFX.Add(null);
+        SFX sfx = new SFX();
+        _storySFX.Add(sfx);
     }
     public void RemoveSFX(int appPos)
     {
@@ -83,7 +84,8 @@ public class StoryAppSetup : ScriptableObject
     }
     public void AddMus()
     {
-        _storyMus.Add(null);
+        Music mus= new Music();
+        _storyMus.Add(mus);
     }
     public void RemoveMus(int appPos)
     {
