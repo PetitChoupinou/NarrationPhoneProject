@@ -8,7 +8,7 @@ public class Options : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        _soundManager = SoundManager.instance;
+        _soundManager = SoundManager.Instance;
     }
     public void SFXToggled(bool toggle)
     {

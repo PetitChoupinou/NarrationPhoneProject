@@ -34,8 +34,8 @@ public class SceneLoader : MonoBehaviour
 
    public void LoadMenuScene()
     {
-        SoundManager.instance.RemoveSFX(currentStorySetup.StorySFX);
-        SoundManager.instance.RemoveMusic(currentStorySetup.StoryMus);
+        SoundManager.Instance.RemoveSFX(currentStorySetup.StorySFX);
+        SoundManager.Instance.RemoveMusic(currentStorySetup.StoryMus);
         StartCoroutine(LoadGameSceneAsync(_menuScene));
     }
     public void LoadGameScene(StoryAppSetup storySetup, bool isStartingAgain)
@@ -51,8 +51,8 @@ public class SceneLoader : MonoBehaviour
         /*ResetAllDialogues();
         SaveManager.Instance.SaveDialogues();*/
         StartCoroutine(LoadGameSceneAsync(_sceneToLoad));
-        SoundManager.instance.AddSFX(storySetup.StorySFX);
-        SoundManager.instance.AddMusic(storySetup.StoryMus);
+        SoundManager.Instance.AddSFX(storySetup.StorySFX);
+        SoundManager.Instance.AddMusic(storySetup.StoryMus);
     }
 
     IEnumerator LoadGameSceneAsync(string sceneToLoad)
@@ -93,7 +93,7 @@ public class SceneLoader : MonoBehaviour
     }
     public void OnButtonClicked()
     {
-        SoundManager.instance.PlaySound(_buttonSfx);
+        SoundManager.Instance.PlaySound(_buttonSfx);
     }
     #endregion
 }

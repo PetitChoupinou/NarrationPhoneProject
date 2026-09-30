@@ -33,7 +33,7 @@ public class StorySelectionButton : MonoBehaviour
     }
     public void OnButtonClicked()
     {
-        SoundManager.instance.PlaySound(_buttonSfx);
+        SoundManager.Instance.PlaySound(_buttonSfx);
     }
 
 }
