@@ -112,7 +112,7 @@ public class Discussion : MonoBehaviour
     /// <param name="button">button to discussion</param>
     /// <param name="headerText">Text field</param>
     /// <param name="background">conversation background image</param>
-    public void SetUp(string name, SentText[] texts, GameObject button, TMP_Text headerText, Sprite background, Dictionary<CharaEmotion, Sprite> chara,List<String> wrongPhotoResponse)
+    public void SetUp(string name, SentText[] texts, GameObject button, TMP_Text headerText, Sprite background, Dictionary<CharaEmotion, Sprite> chara,List<String> wrongPhotoResponse,bool isPhotoVisible=true)
     {
         DialogueDataReader = GetComponent<DialogueDataReader>();
         _dialogueDataReader.OnWrongPhotoSent += OnWrongPhotoSent ;
@@ -125,6 +125,10 @@ public class Discussion : MonoBehaviour
         _charaEmotions = chara;
         ChangeEmotion(CharaEmotion.Base);
         _wrongPhotoResponse = wrongPhotoResponse;
+        if (!isPhotoVisible)
+        {
+            _charaVisu.gameObject.SetActive(false);
+        }
         /*if (texts.Length<=0) return;
         for (int i = 0; i < texts.Length; i++)
         {

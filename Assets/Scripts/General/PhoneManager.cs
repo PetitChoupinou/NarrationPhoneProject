@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TCG.Core.Dialogues;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PhoneManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class PhoneManager : MonoBehaviour
     [SerializeField] private GameObject _appButtonCanvas;
     [SerializeField] private GameObject _thoughtSystem;
     [SerializeField] private Network _network;
+    [SerializeField] private List<Button> _phoneButtons = new List<Button>();
     public Dictionary<ApplicationType, GameObject> lockedApps=new Dictionary<ApplicationType, GameObject>();
     private List<BaseApplication> _apps=new List<BaseApplication>();
     private NotificationManager _notifManager;
@@ -171,5 +173,12 @@ public class PhoneManager : MonoBehaviour
         GameObject button = Instantiate(_appButtonPrefabs, _appButtonCanvas.transform);
         button.GetComponent<AppButton>().Type = app.GetComponent<BaseApplication>()._appType;
         _notifManager.Buttons.Add(button.GetComponent<AppButton>());
+    }
+    public void DeactivatePhoneButtons()
+    {
+        foreach(Button b in _phoneButtons)
+        {
+            b.enabled = false;
+        }
     }
 }

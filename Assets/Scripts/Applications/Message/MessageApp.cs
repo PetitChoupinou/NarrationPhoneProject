@@ -1,12 +1,13 @@
 using NUnit.Framework;
-using System.Collections.Generic;
-using System.Collections;
-using UnityEngine;
-using TMPro;
-using UnityEngine.TextCore.Text;
-using System.Linq;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using TMPro;
+using UnityEngine;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
+using static UnityEngine.Audio.GeneratorInstance;
 
 public class MessageApp : BaseApplication
 {
@@ -21,6 +22,7 @@ public class MessageApp : BaseApplication
     [SerializeField] private Image _bgImage;
     private Sprite _baseBackground;
     private string _storyName;
+    private StoryAppSetup _setup;
 
     public GameObject CurrentConv { get => _currentConv;}
     public string StoryName { get => _storyName;}
@@ -39,6 +41,7 @@ public class MessageApp : BaseApplication
     }
     public override void SetUp(StoryAppSetup setup)
     {
+        _setup = setup;
         _storyName = setup.Name;
         List<CharacterSheet> characters = setup.Characters;
         _baseBackground= setup.MessageBackGround;
@@ -66,6 +69,24 @@ public class MessageApp : BaseApplication
         var save = SaveManager.Instance.Save;
         print(SaveManager.Instance.Save.name);
         StartCoroutine(StartGame());
+    }
+    public void AddEndConversation()
+    {
+        string name = _setup.EndGameContact.phone.title;
+        SentText[] texts = null;
+        Sprite background = _baseBackground;
+        GameObject button = Instantiate(_buttonPrefab, _buttonCanvas.transform);
+        GameObject discussion = Instantiate(_discussionPrefab, transform);
+        discussion.name = "message " + name;
+        Dictionary<CharaEmotion, Sprite> endProfilePics = new Dictionary<CharaEmotion, Sprite>();
+        endProfilePics.Add(CharaEmotion.Base, _setup.EndGameContact.profilePic);
+        button.GetComponent<InAppButton>().SetUp(name, discussion, _headerButton);
+        discussion.GetComponent<Discussion>().SetUp(name, texts, button, _headerText, background, endProfilePics,null, _setup.EndGameContact.shouldShowPictureInConversation);
+        DialogueDataReader dialogueDataReader = discussion.GetComponent<DialogueDataReader>();
+        _discussions.Add(discussion.GetComponent<Discussion>());
+        dialogueDataReader.dialogueDatas.AddRange(_setup.EndGameContact.dialogues);
+        Destroy(_headerButton);
+        PhoneManager.Instance.DeactivatePhoneButtons();
     }
     public override void CloseCurrent()
     {

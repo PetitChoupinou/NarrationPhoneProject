@@ -31,7 +31,8 @@ public class InAppButton : MonoBehaviour
             d.Enable();
         }
         _parent.SetActive(false);
-        _returnButton.SetActive(true);
+        if(_returnButton)
+            _returnButton.SetActive(true);
     }
 
     
