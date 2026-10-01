@@ -85,6 +85,7 @@ public class MessageApp : BaseApplication
         DialogueDataReader dialogueDataReader = discussion.GetComponent<DialogueDataReader>();
         _discussions.Add(discussion.GetComponent<Discussion>());
         dialogueDataReader.dialogueDatas.AddRange(_setup.EndGameContact.dialogues);
+        dialogueDataReader.StartConversation(name);
         Destroy(_headerButton);
         PhoneManager.Instance.DeactivatePhoneButtons();
     }
