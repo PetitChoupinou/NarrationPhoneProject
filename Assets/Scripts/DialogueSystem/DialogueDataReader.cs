@@ -35,14 +35,14 @@ public class DialogueDataReader : MonoBehaviour
 
     private Sprite _askedImage = null;
 
+    private bool _shouldBeSaved = true;
+
     public event Action<bool> OnWrongPhotoSent;
 
     public string CharacterID { get => _characterID; set => _characterID = value; }
     public DialogueData CurrentDialogueData { get => _currentDialogueData; set => _currentDialogueData = value; }
+    public bool ShouldBeSaved { get => _shouldBeSaved; set => _shouldBeSaved = value; }
 
-
-    
-    
     private void OnEnable()
     {
         _messageApp = AppManager.Instance.GetApplication(ApplicationType.Messages) as MessageApp;
@@ -59,30 +59,47 @@ public class DialogueDataReader : MonoBehaviour
 
 
 
-    public void StartConversation(string conversationID)
+    public void StartConversation(string conversationID, bool shouldBeSaved = true)
     {
         _contactApp = AppManager.Instance.GetApplication(ApplicationType.Contacts) as ContactApp;
         _noteApp = AppManager.Instance.GetApplication(ApplicationType.Notes) as NoteApp;
         _hackApp = AppManager.Instance.GetApplication(ApplicationType.Hack) as HackApp;
         if (dialogueDatas.Count == 0) { return; }
-        _currentDialogueData = SaveManager.Instance.LoadDialogue(conversationID, _messageApp.StoryName);
-        _currentDialogueData.OnDialogueStatutChange += _messageApp.GetDiscussion(CharacterID).GetComponent<Discussion>().UpdateStatutConv;
-        List<NodeData> nodes = _currentDialogueData.nodes;
-        List<NodeData> temporaryNodes = _currentDialogueData.temporaryNodes;
-        //_currentDialogueData = dialogueDatas.FirstOrDefault(data => data.name == conversationID);
+        if (shouldBeSaved)
+        {
+            _currentDialogueData = SaveManager.Instance.LoadDialogue(conversationID, _messageApp.StoryName);
+            _currentDialogueData.OnDialogueStatutChange += _messageApp.GetDiscussion(CharacterID).GetComponent<Discussion>().UpdateStatutConv;
+            
+        }
+        else
+        {
+            
+            if(conversationID == "")
+            {
+
+                _currentDialogueData = dialogueDatas.FirstOrDefault(x => x.IsLocked == false);
+            }
+            else
+            {
+                _currentDialogueData = dialogueDatas.FirstOrDefault(data => data.name == conversationID);
+            }
+        }
+
         if (!_currentDialogueData.HasStarted && !_isWaitingForStart)
         {
             _isWaitingForStart = true;
             StartCoroutine(WaitForDialogueToStart());
             return;
         }
-
+        _shouldBeSaved = shouldBeSaved;
         //Check if temporaryNodes to display before starting?
 
         StartReadingDialogue();
         //var affinityProperty = _currentDialogueData.properties.FirstOrDefault(x => x.Name == "Affinity");
 
     }
+
+    
 
     private void StartReadingDialogue()
     {
@@ -125,8 +142,10 @@ public class DialogueDataReader : MonoBehaviour
         {
             ReadNodeData(node, false, true).Invoke();
         }
-
-        SaveManager.Instance.SaveDialogue(_currentDialogueData, _messageApp.StoryName);
+        if (_shouldBeSaved)
+        {
+            SaveManager.Instance.SaveDialogue(_currentDialogueData, _messageApp.StoryName);
+        }
         _lastNodeData = _currentNodeData;
         ReadNodeData(nextData, isChoice).Invoke();
     }
@@ -553,7 +572,7 @@ public class DialogueDataReader : MonoBehaviour
     {
         var data = dialogueDatas.FirstOrDefault(x => x.name == dialogueID);
         data.IsLocked = false;
-        StartConversation(dialogueID);  
+        StartConversation(dialogueID, _shouldBeSaved);  
         Debug.Log($"Dialogue avec {CharacterID} est maintenant débloqué");
     }
 
