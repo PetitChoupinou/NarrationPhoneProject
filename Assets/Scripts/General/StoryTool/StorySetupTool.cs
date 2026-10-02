@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Security.Cryptography.X509Certificates;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.Windows;
 using static Unity.VisualScripting.Member;
 
 public class StorySetupTool:EditorWindow
@@ -20,6 +19,9 @@ public class StorySetupTool:EditorWindow
     Vector2 _scrollPos;
     Vector2 _scrollPos2;
     Vector2 _scrollPos3;
+    Vector2 _scrollPos4;
+    Vector2 _scrollPos5;
+    int numValue;
     Rect _rect;
     private ActiveWindow _activeWindow=ActiveWindow.Base;
     public GameObject _obj = null;
@@ -138,10 +140,7 @@ public class StorySetupTool:EditorWindow
         switch (_activeAppSetup)
         {
             case ApplicationType.Base:
-                EditorGUILayout.BeginHorizontal();
-                GUILayout.Label("Name  : " + _activeAppSetup.ToString(), new GUIStyle(GUI.skin.label) { fixedWidth = 200, fontSize = 14, alignment = TextAnchor.MiddleLeft });
-                _activeStory.Name = GUILayout.TextField(_activeStory.Name, new GUIStyle(GUI.skin.textField) { fixedWidth = 200, fontSize = 14, alignment = TextAnchor.MiddleCenter });
-                EditorGUILayout.EndHorizontal();
+                _activeStory.Name = EditorGUILayout.TextField("Name : ",_activeStory.Name, new GUIStyle(GUI.skin.textField) { fontSize = 14, alignment = TextAnchor.MiddleCenter }, GUILayout.MaxWidth(400));
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.BeginVertical();
                 GUILayout.Label("Applications  : ", new GUIStyle(GUI.skin.label) { fixedWidth = 320, fontSize = 14, alignment = TextAnchor.MiddleLeft });
@@ -158,7 +157,7 @@ public class StorySetupTool:EditorWindow
                     if (GUILayout.Button("RemoveApp", new GUIStyle(GUI.skin.button) { fixedWidth = 320 }))
                     {
                         _activeStory.RemoveApp(i);
-                        return;
+                        break;
                     }
                     else _obj = null;
                 }
@@ -182,7 +181,7 @@ public class StorySetupTool:EditorWindow
                     if (GUILayout.Button("RemoveChar", new GUIStyle(GUI.skin.button) { fixedWidth = 320 }))
                     {
                         _activeStory.RemoveChara(i);
-                        return;
+                        break;
                     }
                     else _chara = null;
                 }
@@ -225,16 +224,15 @@ public class StorySetupTool:EditorWindow
                 for (int i = 0; i < _activeStory.StorySFX.Count; i++)
                 {
                     SFX sfx = _activeStory.StorySFX[i];
-                    sfx.name = GUILayout.TextField(sfx.name, new GUIStyle(GUI.skin.textField) { fixedWidth = 320, fontSize = 14, alignment = TextAnchor.MiddleCenter });
+                    sfx.name = EditorGUILayout.TextField("name ",sfx.name, new GUIStyle(GUI.skin.textField) { fontSize = 14, alignment = TextAnchor.MiddleCenter }, GUILayout.MaxWidth(340));
                     sfx.clip = (AudioClip)EditorGUILayout.ObjectField(sfx.clip, typeof(AudioClip), false, GUILayout.MaxWidth(320));
                     sfx.volume = EditorGUILayout.Slider("volume :", sfx.volume, 0, 1, GUILayout.MaxWidth(320));
                     _activeStory.SetSFX(i, sfx);
                     if (GUILayout.Button("RemoveSFX", new GUIStyle(GUI.skin.button) { fixedWidth = 320 }))
                     {
                         _activeStory.RemoveSFX(i);
-                        return;
+                        break;
                     }
-                    else _chara = null;
                 }
                 EditorGUILayout.EndScrollView();
                 if (GUILayout.Button("AddSFX", new GUIStyle(GUI.skin.button) { fixedWidth = 320 }))
@@ -248,16 +246,15 @@ public class StorySetupTool:EditorWindow
                 for (int i = 0; i < _activeStory.StoryMus.Count; i++)
                 {
                     Music mus = _activeStory.StoryMus[i];
-                    mus.name = GUILayout.TextField(mus.name, new GUIStyle(GUI.skin.textField) { fixedWidth = 320, fontSize = 14, alignment = TextAnchor.MiddleCenter });
+                    mus.name = EditorGUILayout.TextField("name ",mus.name, new GUIStyle(GUI.skin.textField) { fontSize = 14, alignment = TextAnchor.MiddleCenter },GUILayout.MaxWidth(340));
                     mus.clip = (AudioClip)EditorGUILayout.ObjectField(mus.clip, typeof(AudioClip), false, GUILayout.MaxWidth(320));
                     mus.volume = EditorGUILayout.Slider("volume :", mus.volume, 0, 1, GUILayout.MaxWidth(320));
                     _activeStory.SetMus(i, mus);
                     if (GUILayout.Button("Remove Music", new GUIStyle(GUI.skin.button) { fixedWidth = 320 }))
                     {
                         _activeStory.RemoveMus(i);
-                        return;
+                        break;
                     }
-                    else _chara = null;
                 }
                 EditorGUILayout.EndScrollView();
                 if (GUILayout.Button("Add Music", new GUIStyle(GUI.skin.button) { fixedWidth = 320 }))
@@ -272,6 +269,69 @@ public class StorySetupTool:EditorWindow
                 EditorGUILayout.BeginVertical();
                 _activeStory.MessageBackGround = (Sprite)EditorGUILayout.ObjectField("Background" ,_activeStory.MessageBackGround, typeof(Sprite), false, GUILayout.MaxWidth(200));
                 EditorGUILayout.EndVertical();
+                break;
+            case ApplicationType.Contacts:
+                EditorGUILayout.BeginVertical();
+                EndGameContact egc = _activeStory.EndGameContact;
+                PhoneNumbers phone = egc.phone;
+                phone.title= EditorGUILayout.TextField("name ",phone.title, new GUIStyle(GUI.skin.textField) { fontSize = 14, alignment = TextAnchor.MiddleCenter }, GUILayout.MaxWidth(960));
+                numValue= Int32.Parse(phone.numbers);
+                numValue = EditorGUILayout.IntField("phone num ",numValue, new GUIStyle(GUI.skin.textField){ fontSize = 14, alignment = TextAnchor.MiddleCenter }, GUILayout.MaxWidth(960));
+                phone.numbers=numValue.ToString();
+                egc.dialogues[0] = (DialogueData)EditorGUILayout.ObjectField("Dialogue Data ",egc.dialogues[0], typeof(DialogueData), false, GUILayout.MaxWidth(960));
+                egc.profilePic = (Sprite)EditorGUILayout.ObjectField("Profile picture ", egc.profilePic, typeof(Sprite), false, GUILayout.MaxWidth(200));
+                GUILayout.Label("Call texts ", new GUIStyle(GUI.skin.label) { fixedWidth = 320, fontSize = 14, alignment = TextAnchor.MiddleLeft });
+                _scrollPos4 = EditorGUILayout.BeginScrollView(_scrollPos4, GUILayout.MaxHeight(Mathf.Min(500, phone.callText.Count * 45)), GUILayout.MaxWidth(960));
+
+                for (int i = 0; i < phone.callText.Count; i++)
+                {
+                    phone.callText[i] = EditorGUILayout.TextField(phone.callText[i], new GUIStyle(GUI.skin.textField) { fontSize = 14, alignment = TextAnchor.MiddleCenter },GUILayout.MaxWidth(960));
+                    if (GUILayout.Button("Remove Text", new GUIStyle(GUI.skin.button) { fixedWidth = 940 }))
+                    {
+                        phone.callText.RemoveAt(i);
+                        break;
+                    }
+                }
+                EditorGUILayout.EndScrollView();
+                if (GUILayout.Button("Add Text", new GUIStyle(GUI.skin.button) { fixedWidth = 960 }))
+                {
+                    phone.callText.Add(null);
+                }
+                phone.ringTime = EditorGUILayout.IntField("ring time ", phone.ringTime, new GUIStyle(GUI.skin.textField) { fontSize = 14, alignment = TextAnchor.MiddleCenter }, GUILayout.MaxWidth(960));
+                phone.ringAudio = (AudioClip)EditorGUILayout.ObjectField(" ing Audio ",phone.ringAudio, typeof(AudioClip), false, GUILayout.MaxWidth(320));
+                phone.callAudio = (AudioClip)EditorGUILayout.ObjectField("call Audio ",phone.callAudio, typeof(AudioClip), false, GUILayout.MaxWidth(320));
+                EditorGUILayout.EndVertical();
+                egc.phone = phone;
+                _activeStory.SetEndConv(egc);
+                break;
+            case ApplicationType.Notes:
+                int lCount = 0;
+                foreach(NotesData s in _activeStory.Notes)
+                {
+                    lCount += s.content.Split('\n').Length-1;
+                }
+                _scrollPos5 = EditorGUILayout.BeginScrollView(_scrollPos5, GUILayout.MaxHeight(Mathf.Min(800, _activeStory.Notes.Count * 60+ lCount * 20)), GUILayout.MaxWidth(960));
+                for (int i = 0; i < _activeStory.Notes.Count; i++)
+                {
+                    NotesData note = _activeStory.Notes[i];
+                    note.title = EditorGUILayout.TextField("title ", note.title, new GUIStyle(GUI.skin.textField) { fontSize = 14, alignment = TextAnchor.MiddleCenter }, GUILayout.MaxWidth(940));
+                    //TextAreaAttribute(int minLines, int maxLines);
+                    EditorGUILayout.BeginHorizontal();
+                    EditorGUILayout.LabelField("content ", GUILayout.MaxWidth(150));
+                    note.content = EditorGUILayout.TextArea( note.content, new GUIStyle(GUI.skin.textArea) { fontSize = 14, alignment = TextAnchor.MiddleLeft}, GUILayout.MaxWidth(785));
+                    EditorGUILayout.EndHorizontal();
+                    _activeStory.SetNote(i, note);
+                    if (GUILayout.Button("Remove Note", new GUIStyle(GUI.skin.button) { fixedWidth = 940 }))
+                    {
+                        _activeStory.RemoveNote(i);
+                        break;
+                    }
+                }
+                EditorGUILayout.EndScrollView();
+                if (GUILayout.Button("Add Note", new GUIStyle(GUI.skin.button) { fixedWidth = 960 }))
+                {
+                    _activeStory.AddNote();
+                }
                 break;
         }
 

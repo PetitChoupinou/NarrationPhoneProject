@@ -20,8 +20,8 @@ public class StoryAppSetup : ScriptableObject
     [SerializeField] HackSetup _hackAppSetup;
     List<LocationData> _locations = new List<LocationData>();
     [SerializeField] TimeData _timeData = new TimeData();
-    [SerializeField] List<SFX> storySFX = new List<SFX>();
-    [SerializeField] List<Music> storyMus = new List<Music>();
+    [SerializeField] List<SFX> _storySFX = new List<SFX>();
+    [SerializeField] List<Music> _storyMus = new List<Music>();
     [SerializeField] EndGameContact _endGameContact;
 
 
@@ -41,6 +41,7 @@ public class StoryAppSetup : ScriptableObject
     public bool HasPhotoBeenTaken { get => _hasPhotoBeenTaken; set => _hasPhotoBeenTaken = value; }
     public List<SFX> StorySFX { get => _storySFX;}
     public List<Music> StoryMus { get => _storyMus;}
+    public EndGameContact EndGameContact { get => _endGameContact; }
 
     public void AddApplication()
     {
@@ -95,6 +96,22 @@ public class StoryAppSetup : ScriptableObject
     public void SetMus(int i, Music obj)
     {
         _storyMus[i] = obj;
+    }
+    public void SetEndConv(EndGameContact contactPage)
+    {
+        _endGameContact = contactPage;
+    }
+    public void AddNote()
+    {
+        _notes.Add(new NotesData());
+    }
+    public void RemoveNote(int appPos)
+    {
+        _storyMus.RemoveAt(appPos);
+    }
+    public void SetNote(int i, NotesData obj)
+    {
+        _notes[i] = obj;
     }
 }
 

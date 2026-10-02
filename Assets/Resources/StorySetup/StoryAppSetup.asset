@@ -66,7 +66,97 @@ MonoBehaviour:
   - title: A
     content: ah
   - title: B
-    content: beh
+    content: 'beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh'
   _phoneNumbers: []
   _internetSearches:
   - search: Feur?
@@ -195,6 +285,7 @@ MonoBehaviour:
       ringAudio: {fileID: 8300000, guid: 04781cc3066655d4ea4a74726914cc23, type: 3}
     dialogues:
     - {fileID: 11400000, guid: 25e59629402745e4ba9705e92096d4da, type: 2}
+    emotion: 0
     shouldShowPictureInConversation: 0
     warinngMessage: "Attention lancer cette conversation mettra fin \xE0 l'histoire
       \\n, assurez d'avoir fini ce que vous vouliez faire avant!"
