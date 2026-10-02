@@ -181,7 +181,8 @@ public class Discussion : MonoBehaviour
         {
                 visuTransform.localScale=new Vector3(-1,1,1);
                 _charaVisu.GetComponent<RectTransform>().anchoredPosition = new Vector3(-_charaVisuBasePosition.x,_charaVisuBasePosition.y,_charaVisuBasePosition.z);
-         
+            if (_messageApp.CurrentConv == gameObject)
+                _soundManager.PlaySound("SFX_MessageSend");
         }
         ChangeEmotion(emotion);
     }
@@ -403,7 +404,6 @@ public class Discussion : MonoBehaviour
         {
             
             _charaVisu.sprite= _charaEmotions[Emotion];
-            print("SFX_NPC_" + ID + Emotion);
             if(Emotion!=CharaEmotion.Base&& _messageApp.CurrentConv == gameObject)
             _soundManager.PlaySound("SFX_NPC_" + ID + Emotion);
         }
@@ -483,7 +483,6 @@ public class Discussion : MonoBehaviour
         _choicePanel.SetActive(true);
         _soundManager.PlaySound("SFX_MessageTyping");
         _choices.AddRange(choices);
-
         for (int i = 0; i < choices.Count; i++)
         {
             GameObject choice = Instantiate(_choicePrefab, _choicePanel.transform.GetChild(0));
