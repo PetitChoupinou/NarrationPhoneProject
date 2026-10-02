@@ -5,11 +5,13 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.LowLevelPhysics2D.PhysicsShape;
 
 public class ContactApp : BaseApplication
 {
     [SerializeField] private GameObject _buttonPrefab;
     [SerializeField] private GameObject _contactPagePrefab;
+    [SerializeField] private GameObject _endContactPagePrefab;
     [SerializeField] private GameObject _storagePrefab;
     [SerializeField] private GameObject _buttonCanvas;
     private RectTransform _buttonCanvasRect;
@@ -53,6 +55,20 @@ public class ContactApp : BaseApplication
             _contacts.Add(contactPage);
             contact.SetActive(false);
         }
+        string endName = setup.EndGameContact.phone.title;
+        string endNum = setup.EndGameContact.phone.numbers;
+        Dictionary<CharaEmotion, Sprite> endProfilePics=new Dictionary<CharaEmotion, Sprite>();
+        endProfilePics.Add(CharaEmotion.Base, setup.EndGameContact.profilePic);
+        if (!alphabeticalStorage.ContainsKey(endName[0]))
+        {
+            AlphabeticalStorageCreation(endName[0]);
+        }
+        GameObject endButton = Instantiate(_buttonPrefab, alphabeticalStorage[endName[0]].transform);
+        GameObject endContact = Instantiate(_endContactPagePrefab, transform);
+        endButton.GetComponent<ContactAppButton>().SetUp(name, setup.EndGameContact.profilePic, endContact, _headerButton);
+        var endContactPage = endContact.GetComponent<EndContactPage>();
+        endContactPage.SetUp(endName, endNum, endButton, _headerText, endProfilePics);
+        endContact.SetActive(false);
         SortStorage();
     }
     public void AlphabeticalStorageCreation(char letter)

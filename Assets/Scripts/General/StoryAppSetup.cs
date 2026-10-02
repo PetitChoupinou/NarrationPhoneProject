@@ -21,7 +21,7 @@ public class StoryAppSetup : ScriptableObject
     [SerializeField] TimeData _timeData = new TimeData();
     [SerializeField] List<SFX> storySFX = new List<SFX>();
     [SerializeField] List<Music> storyMus = new List<Music>();
-
+    [SerializeField] EndGameContact _endGameContact;
 
     public string Name { get => _name;}
     public List<GameObject> Applications { get => _applications; }
@@ -39,6 +39,7 @@ public class StoryAppSetup : ScriptableObject
     public bool HasPhotoBeenTaken { get => _hasPhotoBeenTaken; set => _hasPhotoBeenTaken = value; }
     public List<SFX> StorySFX { get => storySFX;}
     public List<Music> StoryMus { get => storyMus;}
+    public EndGameContact EndGameContact { get => _endGameContact;}
 }
 
 [Serializable]
@@ -67,7 +68,16 @@ public struct PhotoPreviews
    public string password;
     public List<PhotoData> photoDatas;
 }
-
+[Serializable]
+public struct EndGameContact
+{
+    public Sprite profilePic;
+    public PhoneNumbers phone;
+    public DialogueData[] dialogues;
+    public CharaEmotion emotion;
+    public bool shouldShowPictureInConversation;
+    public string warinngMessage;
+}
 [Serializable]
 public struct LocationData
 {
@@ -119,6 +129,7 @@ public enum NetworkState
     Mid,
     Good
 };
+[Serializable]
 public enum CharaEmotion
 {
     Base,
