@@ -20,8 +20,9 @@ public class StoryAppSetup : ScriptableObject
     [SerializeField] HackSetup _hackAppSetup;
     List<LocationData> _locations = new List<LocationData>();
     [SerializeField] TimeData _timeData = new TimeData();
-    [SerializeField] List<SFX> _storySFX = new List<SFX>();
-    [SerializeField] List<Music> _storyMus = new List<Music>();
+    [SerializeField] List<SFX> storySFX = new List<SFX>();
+    [SerializeField] List<Music> storyMus = new List<Music>();
+    [SerializeField] EndGameContact _endGameContact;
 
 
     public string Name { get => _name; set => _name = value; }
@@ -123,7 +124,16 @@ public struct PhotoPreviews
    public string password;
     public List<PhotoData> photoDatas;
 }
-
+[Serializable]
+public struct EndGameContact
+{
+    public Sprite profilePic;
+    public PhoneNumbers phone;
+    public DialogueData[] dialogues;
+    public CharaEmotion emotion;
+    public bool shouldShowPictureInConversation;
+    public string warinngMessage;
+}
 [Serializable]
 public struct LocationData
 {
@@ -175,6 +185,7 @@ public enum NetworkState
     Mid,
     Good
 };
+[Serializable]
 public enum CharaEmotion
 {
     Base,

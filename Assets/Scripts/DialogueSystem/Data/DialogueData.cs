@@ -69,7 +69,7 @@ public class DialogueData : ScriptableObject
     {
         bool result = !IsLocked && HasStarted;
         //Debug.Log($"{IsLocked} && {HasStarted} ====> {result}");
-        OnDialogueStatutChange.Invoke(result);
+        OnDialogueStatutChange?.Invoke(result);
         return result;
     }
 }
