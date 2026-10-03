@@ -4,8 +4,10 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
+using UnityEngine.AdaptivePerformance;
 using UnityEngine.Rendering;
 using UnityEngine.Windows;
+using UnityEngine.WSA;
 using static Unity.VisualScripting.Member;
 
 public class StorySetupTool:EditorWindow
@@ -21,6 +23,11 @@ public class StorySetupTool:EditorWindow
     Vector2 _scrollPos3;
     Vector2 _scrollPos4;
     Vector2 _scrollPos5;
+    Vector2 _scrollPos6;
+    Vector2 _scrollPos8;
+    List<Vector2> _scrollPos7=new List<Vector2>();
+    List<Vector2> _scrollPos9=new List<Vector2>();
+    List<Vector2> _scrollPos10=new List<Vector2>();
     int numValue;
     Rect _rect;
     private ActiveWindow _activeWindow=ActiveWindow.Base;
@@ -306,9 +313,12 @@ public class StorySetupTool:EditorWindow
                 break;
             case ApplicationType.Notes:
                 int lCount = 0;
-                foreach(NotesData s in _activeStory.Notes)
+                if(_activeStory.Notes.Count > 0)
                 {
-                    lCount += s.content.Split('\n').Length-1;
+                    foreach (NotesData s in _activeStory.Notes)
+                    {
+                        lCount += s.content.Split('\n').Length - 1;
+                    }
                 }
                 _scrollPos5 = EditorGUILayout.BeginScrollView(_scrollPos5, GUILayout.MaxHeight(Mathf.Min(800, _activeStory.Notes.Count * 60+ lCount * 20)), GUILayout.MaxWidth(960));
                 for (int i = 0; i < _activeStory.Notes.Count; i++)
@@ -333,6 +343,182 @@ public class StorySetupTool:EditorWindow
                     _activeStory.AddNote();
                 }
                 break;
+            case ApplicationType.Photos:
+                GUILayout.BeginVertical();
+                GUILayout.Label("Fichiers :", new GUIStyle(GUI.skin.label) { fontSize = 14, fontStyle = FontStyle.Bold, alignment = TextAnchor.MiddleLeft });
+                while (_scrollPos7.Count != _activeStory.Photos.Count)
+                    _scrollPos7.Add(Vector2.zero);
+                _scrollPos6 = EditorGUILayout.BeginScrollView(_scrollPos6, GUILayout.MaxHeight(Mathf.Min(800, _activeStory.Photos.Count * 400)), GUILayout.MaxWidth(960));
+                for (int i = 0; i < _activeStory.Photos.Count; i++)
+                {
+                    PhotoPreviews folder = _activeStory.Photos[i];
+                    GUILayout.Label(folder.title, new GUIStyle(GUI.skin.label) { fontSize = 14, fontStyle = FontStyle.Bold, alignment = TextAnchor.MiddleCenter });
+                    folder.title = EditorGUILayout.TextField("name ", folder.title, new GUIStyle(GUI.skin.textField) { fontSize = 14, alignment = TextAnchor.MiddleCenter }, GUILayout.MaxWidth(940));
+                    GUILayout.BeginHorizontal();
+                    folder.locked = EditorGUILayout.Toggle("is locked ", folder.locked, GUILayout.MaxWidth(200));
+                    if (folder.locked) folder.password = EditorGUILayout.TextField("password ", folder.password, new GUIStyle(GUI.skin.textField) { fontSize = 14, alignment = TextAnchor.MiddleCenter }, GUILayout.MaxWidth(735));
+                    GUILayout.EndHorizontal();
+                    _scrollPos7[i] = EditorGUILayout.BeginScrollView(_scrollPos7[i], GUILayout.MaxHeight(400),GUILayout.MinHeight(400), GUILayout.MaxWidth(940));
+                    for (int j = 0; j < folder.photoDatas.Count; j++)
+                    {
+                        PhotoData photo = folder.photoDatas[j];
+                        photo.image = (Sprite)EditorGUILayout.ObjectField("image ", photo.image, typeof(Sprite), false, GUILayout.MaxWidth(200));
+                        photo.year = EditorGUILayout.IntField("year :", year, GUILayout.MaxWidth(920));
+                        photo.month = EditorGUILayout.IntSlider("month :", month, 1, 12, GUILayout.MaxWidth(920));
+                        int daymax2 = 31;
+                        switch (month)
+                        {
+                            case 2:
+                                daymax2 = 28;
+                                break;
+                            case 4:
+                            case 6:
+                            case 9:
+                            case 11:
+                                daymax2 = 30;
+                                break;
+                        }
+                        photo.day = EditorGUILayout.IntSlider("day :", day, 1, daymax2, GUILayout.MaxWidth(920));
+                        photo.hour = EditorGUILayout.IntSlider("hour :", hour, 1, 24, GUILayout.MaxWidth(920));
+                        photo.minute = EditorGUILayout.IntSlider("hour :", min, 1, 60, GUILayout.MaxWidth(920));
+                        folder.photoDatas[j] = photo;
+                        if (GUILayout.Button("Remove photo", new GUIStyle(GUI.skin.button) { fixedWidth = 920 }))
+                        {
+                            folder.photoDatas.RemoveAt(i);
+                            break;
+                        }
+                    }
+                    EditorGUILayout.EndScrollView();
+                    if (GUILayout.Button("Add Photo", new GUIStyle(GUI.skin.button) { fixedWidth = 940 }))
+                    {
+                        folder.photoDatas.Add(new PhotoData());
+                    }
+                    _activeStory.SetPhotoFolder(i, folder);
+                    if (GUILayout.Button("Remove Folder", new GUIStyle(GUI.skin.button) { fixedWidth = 960 }))
+                    {
+                        _activeStory.RemovePhotoFolder(i);
+                        _scrollPos7.RemoveAt(i);
+                        break;
+                    }
+                    GUILayout.Space(20);
+                }
+                EditorGUILayout.EndScrollView();
+                if (GUILayout.Button("Add Folder", new GUIStyle(GUI.skin.button) { fixedWidth = 960 }))
+                {
+                    _activeStory.AddPhotoFolder();
+                    _scrollPos7.Add( Vector2.zero);
+                }
+                GUILayout.EndVertical();
+                break;
+            case ApplicationType.Hack:
+                HackSetup hack = _activeStory.HackAppSetup;
+                hack.title = EditorGUILayout.TextField("app name ", hack.title, new GUIStyle(GUI.skin.textField) { fontSize = 14, alignment = TextAnchor.MiddleCenter }, GUILayout.MaxWidth(940));
+                GUILayout.Label("Fichiers :", new GUIStyle(GUI.skin.label) { fontSize = 14, fontStyle = FontStyle.Bold, alignment = TextAnchor.MiddleLeft });
+                while (_scrollPos9.Count != hack.folders.Count)
+                    _scrollPos9.Add(Vector2.zero);
+                while (_scrollPos10.Count != hack.folders.Count)
+                    _scrollPos10.Add(Vector2.zero);
+                _scrollPos8 = EditorGUILayout.BeginScrollView(_scrollPos8, GUILayout.MaxHeight(Mathf.Min(800, hack.folders.Count * 400)), GUILayout.MaxWidth(1900));
+                for(int i = 0; i < hack.folders.Count; i++)
+                {
+                    HackFolderSetup folderSetup = hack.folders[i];
+                    folderSetup.title = EditorGUILayout.TextField("folder name ", folderSetup.title, new GUIStyle(GUI.skin.textField) { fontSize = 14, alignment = TextAnchor.MiddleCenter }, GUILayout.MaxWidth(940));
+                    folderSetup.isHackedFromStart = EditorGUILayout.Toggle("is unlocked ", folderSetup.isHackedFromStart, GUILayout.MaxWidth(200));
+
+                    EditorGUILayout.BeginHorizontal();
+                    EditorGUILayout.BeginVertical();
+                    GUILayout.Label("Photos ", new GUIStyle(GUI.skin.label) { fontSize = 14, fontStyle = FontStyle.Bold, alignment = TextAnchor.MiddleLeft });
+                    _scrollPos9[i] = EditorGUILayout.BeginScrollView(_scrollPos9[i], GUILayout.MaxHeight(400), GUILayout.MinHeight(400), GUILayout.MaxWidth(940));
+                    for (int j = 0; j < folderSetup.spPhoto.Count; j++)
+                    {
+                        PhotoData photo = folderSetup.spPhoto[j];
+                        photo.image = (Sprite)EditorGUILayout.ObjectField("image ", photo.image, typeof(Sprite), false, GUILayout.MaxWidth(200));
+                        photo.year = EditorGUILayout.IntField("year :", year, GUILayout.MaxWidth(920));
+                        photo.month = EditorGUILayout.IntSlider("month :", month, 1, 12, GUILayout.MaxWidth(920));
+                        int daymax2 = 31;
+                        switch (month)
+                        {
+                            case 2:
+                                daymax2 = 28;
+                                break;
+                            case 4:
+                            case 6:
+                            case 9:
+                            case 11:
+                                daymax2 = 30;
+                                break;
+                        }
+                        photo.day = EditorGUILayout.IntSlider("day :", day, 1, daymax2, GUILayout.MaxWidth(920));
+                        photo.hour = EditorGUILayout.IntSlider("hour :", hour, 1, 24, GUILayout.MaxWidth(920));
+                        photo.minute = EditorGUILayout.IntSlider("hour :", min, 1, 60, GUILayout.MaxWidth(920));
+                        folderSetup.spPhoto[j]=photo;
+                        if (GUILayout.Button("Remove photo", new GUIStyle(GUI.skin.button) { fixedWidth = 920 }))
+                        {
+                            folderSetup.spPhoto.RemoveAt(j);
+                            break;
+                        }
+                    }
+                    EditorGUILayout.EndScrollView();
+                    if (GUILayout.Button("Add Photo", new GUIStyle(GUI.skin.button) { fixedWidth = 940 }))
+                    {
+                        folderSetup.spPhoto.Add(new PhotoData());
+                    }
+                    EditorGUILayout.EndVertical();
+                    EditorGUILayout.BeginVertical();
+                    int lCount2 = 0;
+                    if(folderSetup.spNotes.Count > 0)
+                    {
+                        foreach (NotesData s in folderSetup.spNotes)
+                        {
+                            if(s.content!=null)
+                            lCount2 += s.content.Split('\n').Length - 1;
+                        }
+                    }
+                    GUILayout.Label("Notes ", new GUIStyle(GUI.skin.label) { fontSize = 14, fontStyle = FontStyle.Bold, alignment = TextAnchor.MiddleLeft });
+                    _scrollPos10[i] = EditorGUILayout.BeginScrollView(_scrollPos10[i], GUILayout.MaxHeight(Mathf.Min(400, folderSetup.spNotes.Count * 60 + lCount2 * 20)), GUILayout.MaxWidth(940));
+                    for (int j = 0; j < folderSetup.spNotes.Count; j++)
+                    {
+                        NotesData note = folderSetup.spNotes[j];
+                        if (note.title == null) note.title = "";
+                        if (note.content == null) note.content = "";
+                        note.title = EditorGUILayout.TextField("title ", note.title, new GUIStyle(GUI.skin.textField) { fontSize = 14, alignment = TextAnchor.MiddleCenter }, GUILayout.MaxWidth(940));
+                        //TextAreaAttribute(int minLines, int maxLines);
+                        EditorGUILayout.BeginHorizontal();
+                        EditorGUILayout.LabelField("content ", GUILayout.MaxWidth(150));
+                        note.content = EditorGUILayout.TextArea(note.content, new GUIStyle(GUI.skin.textArea) { fontSize = 14, alignment = TextAnchor.MiddleLeft }, GUILayout.MaxWidth(785));
+                        EditorGUILayout.EndHorizontal();
+                        folderSetup.spNotes[j] = note;
+                        if (GUILayout.Button("Remove Note", new GUIStyle(GUI.skin.button) { fixedWidth = 920 }))
+                        {
+                            folderSetup.spNotes.RemoveAt(j);
+                            break;
+                        }
+                    }
+                    EditorGUILayout.EndScrollView();
+                    if (GUILayout.Button("Add Note", new GUIStyle(GUI.skin.button) { fixedWidth = 940 }))
+                    {
+                        folderSetup.spNotes.Add(new NotesData());
+
+                    }
+                    EditorGUILayout.EndVertical();
+                    EditorGUILayout.EndHorizontal();
+                    hack.folders[i] = folderSetup;
+                    if (GUILayout.Button("Remove Folder", new GUIStyle(GUI.skin.button) { fixedWidth = 1900 }))
+                    {
+                        hack.folders.RemoveAt(i);
+                        _scrollPos10.RemoveAt(i);
+                        _scrollPos9.RemoveAt(i);
+                        break;
+                    }
+                }
+                GUILayout.EndScrollView();
+                if (GUILayout.Button("Add Folder", new GUIStyle(GUI.skin.button) { fixedWidth = 1920 }))
+                {
+                    hack.folders.Add(new HackFolderSetup());
+                }
+                _activeStory.SetHackApplication(hack);
+                break;
+
         }
 
     }

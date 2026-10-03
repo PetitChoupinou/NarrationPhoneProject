@@ -113,6 +113,25 @@ public class StoryAppSetup : ScriptableObject
     {
         _notes[i] = obj;
     }
+    public void AddPhotoFolder()
+    {
+        PhotoPreviews newPhoto = new PhotoPreviews();
+        newPhoto.photoDatas = new List<PhotoData>();
+        _photos.Add(newPhoto);
+       
+    }
+    public void RemovePhotoFolder(int appPos)
+    {
+        _photos.RemoveAt(appPos);
+    }
+    public void SetPhotoFolder(int i, PhotoPreviews obj)
+    {
+        _photos[i] = obj;
+    }
+    public void SetHackApplication(HackSetup obj)
+    {
+        _hackAppSetup = obj;
+    }
 }
 
 [Serializable]
