@@ -339,6 +339,7 @@ public class DialogueGraphView : GraphView
                 
                 propertyDropdown.RegisterValueChangedCallback(evt =>
                 {
+                    if (evt.newValue == "Property" || evt.newValue == "Invalid Property") return;
                     ExposedProperty selectedProperty = FindPropertyByName(evt.newValue);
                     if (selectedProperty != null)
                     {
@@ -1060,15 +1061,26 @@ public class DialogueGraphView : GraphView
             case NodeType.Set:
                 var nodeSetProperty = node as SetPropertyNode;
                 var nodeSetPropertyData = nodeData as SetPropertyNodeData;
-                ExposedProperty property = FindPropertyByName(nodeSetPropertyData.property.Name);
-                nodeSetProperty.valueString = nodeSetPropertyData.valueString;
-                if (property != null)
+                if (nodeSetPropertyData.property != null )
                 {
-                    nodeSetProperty.property = property;
-                    nodeSetProperty.GetValueFromString();
-                    nodeSetProperty.propertyField.value = property.Name;
-                   
+                    ExposedProperty property = FindPropertyByName(nodeSetPropertyData.property.Name);
+
+                    nodeSetProperty.valueString = nodeSetPropertyData.valueString;
+
+                    if (property != null)
+                    {
+                        nodeSetProperty.property = property;
+                        nodeSetProperty.GetValueFromString();
+                        nodeSetProperty.propertyField.value = property.Name;
+
+                    }
                 }
+                else
+                {
+                    nodeSetProperty.propertyField.style.backgroundColor = new Color(0.5f, 0, 0, 1);
+                    nodeSetProperty.propertyField.SetValueWithoutNotify("Invalid Property");
+                }
+
                 break;
             case NodeType.Unlock:
                 var nodeUnlock = node as UnlockNode;
