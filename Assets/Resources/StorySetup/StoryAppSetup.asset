@@ -66,8 +66,105 @@ MonoBehaviour:
   - title: A
     content: ah
   - title: B
-    content: beh
-  _phoneNumbers: []
+    content: 'beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh
+
+      beh'
+  _phoneNumbers:
+  - title: Santa
+    numbers: 3630
+    ringTime: 1
+    callText:
+    - HO HO HO
+    callAudio: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
+    ringAudio: {fileID: 8300000, guid: 04781cc3066655d4ea4a74726914cc23, type: 3}
   _internetSearches:
   - search: Feur?
     text: coubeh
@@ -104,7 +201,7 @@ MonoBehaviour:
     _year: 2004
     _hour: 7
     _minute: 21
-  storySFX:
+  _storySFX:
   - name: SFX_PNJ_MargauxShocked
     clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
     volume: 0
@@ -165,7 +262,7 @@ MonoBehaviour:
   - name: SFX_PNJ_SachaThinking
     clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
     volume: 0
-  storyMus:
+  _storyMus:
   - name: AMB_Dialogue
     clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
     volume: 0
@@ -195,6 +292,7 @@ MonoBehaviour:
       ringAudio: {fileID: 8300000, guid: 04781cc3066655d4ea4a74726914cc23, type: 3}
     dialogues:
     - {fileID: 11400000, guid: 25e59629402745e4ba9705e92096d4da, type: 2}
+    emotion: 0
     shouldShowPictureInConversation: 0
     warinngMessage: "Attention lancer cette conversation mettra fin \xE0 l'histoire
       \\n, assurez d'avoir fini ce que vous vouliez faire avant!"

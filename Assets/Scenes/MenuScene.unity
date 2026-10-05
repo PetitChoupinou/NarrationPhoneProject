@@ -6269,12 +6269,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5619117892250465613, guid: 0b53b56413384e940a4cee518cbd64f1, type: 3}
       propertyPath: _soundEffects.Array.size
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 5619117892250465613, guid: 0b53b56413384e940a4cee518cbd64f1, type: 3}
+      propertyPath: _soundEffects.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: bdad2da53b08092488b8d835a7b71b87, type: 3}
+    - target: {fileID: 5619117892250465613, guid: 0b53b56413384e940a4cee518cbd64f1, type: 3}
+      propertyPath: _soundEffects.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: bb6d3b8eccd816f4fb2913326ec8dab2, type: 3}
     - target: {fileID: 5619117892250465613, guid: 0b53b56413384e940a4cee518cbd64f1, type: 3}
       propertyPath: _soundEffects.Array.data[1].name
       value: SFX_MessageReceived
       objectReference: {fileID: 0}
+    - target: {fileID: 5619117892250465613, guid: 0b53b56413384e940a4cee518cbd64f1, type: 3}
+      propertyPath: _soundEffects.Array.data[3].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 7d808613bb2175a468968269385d99ea, type: 3}
+    - target: {fileID: 5619117892250465613, guid: 0b53b56413384e940a4cee518cbd64f1, type: 3}
+      propertyPath: _soundEffects.Array.data[4].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 26ae3b089d05d944fba4597e6b64ef00, type: 3}
+    - target: {fileID: 5619117892250465613, guid: 0b53b56413384e940a4cee518cbd64f1, type: 3}
+      propertyPath: _soundEffects.Array.data[5].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: f3d3f4d9bdfd663458b02bd9a5dab886, type: 3}
     - target: {fileID: 5619117892250465613, guid: 0b53b56413384e940a4cee518cbd64f1, type: 3}
       propertyPath: _soundEffects.Array.data[6].name
       value: SFX_Blocked
@@ -6290,9 +6310,25 @@ PrefabInstance:
     - target: {fileID: 5619117892250465613, guid: 0b53b56413384e940a4cee518cbd64f1, type: 3}
       propertyPath: _soundEffects.Array.data[9].clip
       value: 
-      objectReference: {fileID: 8300000, guid: 04781cc3066655d4ea4a74726914cc23, type: 3}
+      objectReference: {fileID: 8300000, guid: 2570fc7b3cdfb10479ecc3a59ebd4ae1, type: 3}
     - target: {fileID: 5619117892250465613, guid: 0b53b56413384e940a4cee518cbd64f1, type: 3}
       propertyPath: _soundEffects.Array.data[9].name
+      value: SFX_MessageUserDelete
+      objectReference: {fileID: 0}
+    - target: {fileID: 5619117892250465613, guid: 0b53b56413384e940a4cee518cbd64f1, type: 3}
+      propertyPath: _soundEffects.Array.data[10].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 1b9dc8536831240489c5e499c8764fe5, type: 3}
+    - target: {fileID: 5619117892250465613, guid: 0b53b56413384e940a4cee518cbd64f1, type: 3}
+      propertyPath: _soundEffects.Array.data[10].name
+      value: SFX_MessageUserTyping
+      objectReference: {fileID: 0}
+    - target: {fileID: 5619117892250465613, guid: 0b53b56413384e940a4cee518cbd64f1, type: 3}
+      propertyPath: _soundEffects.Array.data[11].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 04781cc3066655d4ea4a74726914cc23, type: 3}
+    - target: {fileID: 5619117892250465613, guid: 0b53b56413384e940a4cee518cbd64f1, type: 3}
+      propertyPath: _soundEffects.Array.data[11].name
       value: ringtone
       objectReference: {fileID: 0}
     - target: {fileID: 5619117892250465613, guid: 0b53b56413384e940a4cee518cbd64f1, type: 3}
@@ -6301,6 +6337,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5619117892250465613, guid: 0b53b56413384e940a4cee518cbd64f1, type: 3}
       propertyPath: _soundEffects.Array.data[9].volume
+      value: 0.187
+      objectReference: {fileID: 0}
+    - target: {fileID: 5619117892250465613, guid: 0b53b56413384e940a4cee518cbd64f1, type: 3}
+      propertyPath: _soundEffects.Array.data[10].volume
+      value: 0.187
+      objectReference: {fileID: 0}
+    - target: {fileID: 5619117892250465613, guid: 0b53b56413384e940a4cee518cbd64f1, type: 3}
+      propertyPath: _soundEffects.Array.data[11].volume
       value: 0.187
       objectReference: {fileID: 0}
     m_RemovedComponents: []

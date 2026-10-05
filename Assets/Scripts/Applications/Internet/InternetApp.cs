@@ -25,7 +25,7 @@ public class InternetApp : BaseApplication
     public override void SetUp(StoryAppSetup setup)
     {
         _setup = setup;
-        foreach(InternetSerach s in _setup.InternetSeraches)
+        foreach(InternetSearch s in _setup.InternetSeraches)
         {
             GameObject search = Instantiate(_searchPrefab, _basePageContent.transform);
             search.GetComponent<Search>().SetUp(s.search, s.text);

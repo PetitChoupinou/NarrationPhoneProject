@@ -15,7 +15,8 @@ public enum ApplicationType
     Telephone,
     Camera,
     Internet,
-    Hack
+    Hack,
+    Base
 }
 abstract public class BaseApplication : MonoBehaviour
 {

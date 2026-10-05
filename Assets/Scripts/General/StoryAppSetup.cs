@@ -4,6 +4,7 @@ using System.ComponentModel;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "StoryAppSetup", menuName = "Scriptable Objects/StoryAppSetup")]
+[Serializable]
 public class StoryAppSetup : ScriptableObject
 {
     [SerializeField] private string _name;
@@ -13,33 +14,153 @@ public class StoryAppSetup : ScriptableObject
     [SerializeField] List<PhotoPreviews> _photos = new List<PhotoPreviews>();
     [SerializeField] List<NotesData> _notes = new List<NotesData>();
     [SerializeField] List<PhoneNumbers> _phoneNumbers = new List<PhoneNumbers>();
-    [SerializeField] List<InternetSerach> _internetSearches = new List<InternetSerach>();
+    [SerializeField] List<InternetSearch> _internetSearches = new List<InternetSearch>();
     [SerializeField] Sprite _baseCameraPhoto;
     [SerializeField] bool _hasPhotoBeenTaken;
     [SerializeField] HackSetup _hackAppSetup;
     List<LocationData> _locations = new List<LocationData>();
     [SerializeField] TimeData _timeData = new TimeData();
-    [SerializeField] List<SFX> storySFX = new List<SFX>();
-    [SerializeField] List<Music> storyMus = new List<Music>();
+    [SerializeField] List<SFX> _storySFX = new List<SFX>();
+    [SerializeField] List<Music> _storyMus = new List<Music>();
     [SerializeField] EndGameContact _endGameContact;
 
-    public string Name { get => _name;}
+
+    public string Name { get => _name; set => _name = value; }
     public List<GameObject> Applications { get => _applications; }
 
     public List<CharacterSheet> Characters { get => _characters;}
     public List<PhotoPreviews> Photos { get => _photos;}
     public List<NotesData> Notes { get => _notes;}
     public List<PhoneNumbers> PhoneNumbers { get => _phoneNumbers;}
-    public List<InternetSerach> InternetSeraches { get => _internetSearches; }
+    public List<InternetSearch> InternetSeraches { get => _internetSearches; }
     public List<LocationData> Locations { get => _locations; }
     public HackSetup HackAppSetup { get => _hackAppSetup;  }
     public TimeData TimeData { get => _timeData;}
     public Sprite BaseCameraPhoto { get => _baseCameraPhoto; }
-    public Sprite MessageBackGround { get => _messageBackGround;}
+    public Sprite MessageBackGround { get => _messageBackGround;set => _messageBackGround = value; }
     public bool HasPhotoBeenTaken { get => _hasPhotoBeenTaken; set => _hasPhotoBeenTaken = value; }
-    public List<SFX> StorySFX { get => storySFX;}
-    public List<Music> StoryMus { get => storyMus;}
-    public EndGameContact EndGameContact { get => _endGameContact;}
+    public List<SFX> StorySFX { get => _storySFX;}
+    public List<Music> StoryMus { get => _storyMus;}
+    public EndGameContact EndGameContact { get => _endGameContact; }
+
+    public void AddApplication()
+    {
+        _applications.Add(null);
+    }
+    public void RemoveApp(int appPos)
+    {
+        _applications.RemoveAt(appPos);
+    }
+    public void SetApplication(int i,GameObject obj)
+    {
+        _applications[i] = obj;
+    }
+    public void AddChara()
+    {
+        _characters.Add(null);
+    }
+    public void RemoveChara(int appPos)
+    {
+        _characters.RemoveAt(appPos);
+    }
+    public void SetChara(int i, CharacterSheet obj)
+    {
+        _characters[i] = obj;
+    }
+    public void SetTime(TimeData timeData)
+    {
+        _timeData = timeData;
+    }
+    public void AddSFX()
+    {
+        SFX sfx = new SFX();
+        _storySFX.Add(sfx);
+    }
+    public void RemoveSFX(int appPos)
+    {
+        _storySFX.RemoveAt(appPos);
+    }
+    public void SetSFX(int i, SFX obj)
+    {
+        _storySFX[i] = obj;
+    }
+    public void AddMus()
+    {
+        Music mus= new Music();
+        _storyMus.Add(mus);
+    }
+    public void RemoveMus(int appPos)
+    {
+        _storyMus.RemoveAt(appPos);
+    }
+    public void SetMus(int i, Music obj)
+    {
+        _storyMus[i] = obj;
+    }
+    public void SetEndConv(EndGameContact contactPage)
+    {
+        _endGameContact = contactPage;
+    }
+    public void AddNote()
+    {
+        _notes.Add(new NotesData());
+    }
+    public void RemoveNote(int appPos)
+    {
+        _notes.RemoveAt(appPos);
+    }
+    public void SetNote(int i, NotesData obj)
+    {
+        _notes[i] = obj;
+    }
+    public void AddPhotoFolder()
+    {
+        PhotoPreviews newPhoto = new PhotoPreviews();
+        newPhoto.photoDatas = new List<PhotoData>();
+        _photos.Add(newPhoto);
+       
+    }
+    public void RemovePhotoFolder(int appPos)
+    {
+        _photos.RemoveAt(appPos);
+    }
+    public void SetPhotoFolder(int i, PhotoPreviews obj)
+    {
+        _photos[i] = obj;
+    }
+    public void SetHackApplication(HackSetup obj)
+    {
+        _hackAppSetup = obj;
+    }
+    public void AddPhoneNbr()
+    {
+        PhoneNumbers newNbr = new PhoneNumbers();
+        newNbr.callText = new List<string>();
+        _phoneNumbers.Add(newNbr);
+
+    }
+    public void RemovePhoneNbr(int appPos)
+    {
+        _phoneNumbers.RemoveAt(appPos);
+    }
+    public void SetPhoneNbrr(int i, PhoneNumbers obj)
+    {
+        _phoneNumbers[i] = obj;
+    }
+    public void AddSearch()
+    {
+        InternetSearch newSearch = new InternetSearch();
+        _internetSearches.Add(newSearch);
+
+    }
+    public void RemoveSearch(int appPos)
+    {
+        _internetSearches.RemoveAt(appPos);
+    }
+    public void SetSearch(int i, InternetSearch obj)
+    {
+        _internetSearches[i] = obj;
+    }
 }
 
 [Serializable]
@@ -102,7 +223,7 @@ public struct PhoneNumbers
 }
 
 [Serializable]
-public struct InternetSerach
+public struct InternetSearch
 {
     public string search;
     public string text;

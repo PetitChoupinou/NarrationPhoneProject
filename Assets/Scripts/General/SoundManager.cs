@@ -10,6 +10,13 @@ public class SFX
     public string name;
     public AudioClip clip;
     [Range(0, 1)] public float volume = 1.0f;
+
+    public SFX()
+    {
+        name = "";
+        clip = null;
+        volume = 1;
+    }
 }
 [Serializable]
 public class Music
@@ -17,6 +24,12 @@ public class Music
     public string name;
     public AudioClip clip;
     [Range(0, 1)] public float volume = 1.0f;
+    public Music()
+    {
+        name = "";
+        clip = null;
+        volume = 1;
+    }
 }
 public class SoundManager : MonoBehaviour
 {
