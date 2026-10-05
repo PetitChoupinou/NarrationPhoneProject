@@ -333,7 +333,8 @@ public class StorySetupTool:EditorWindow
                 {
                     foreach (NotesData s in _activeStory.Notes)
                     {
-                        lCount += s.content.Split('\n').Length - 1;
+                        if (s.content == null || s.content.Length == 0) continue;
+                            lCount += s.content.Split('\n').Length - 1;
                     }
                 }
                 _scrollPos5 = EditorGUILayout.BeginScrollView(_scrollPos5, GUILayout.MaxHeight(Mathf.Min(800, _activeStory.Notes.Count * 60+ lCount * 20)), GUILayout.MaxWidth(960));

@@ -107,7 +107,7 @@ public class StoryAppSetup : ScriptableObject
     }
     public void RemoveNote(int appPos)
     {
-        _storyMus.RemoveAt(appPos);
+        _notes.RemoveAt(appPos);
     }
     public void SetNote(int i, NotesData obj)
     {
