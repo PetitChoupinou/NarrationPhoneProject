@@ -157,7 +157,14 @@ MonoBehaviour:
       beh
 
       beh'
-  _phoneNumbers: []
+  _phoneNumbers:
+  - title: Santa
+    numbers: 3630
+    ringTime: 1
+    callText:
+    - HO HO HO
+    callAudio: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
+    ringAudio: {fileID: 8300000, guid: 04781cc3066655d4ea4a74726914cc23, type: 3}
   _internetSearches:
   - search: Feur?
     text: coubeh

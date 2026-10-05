@@ -14,7 +14,7 @@ public class StoryAppSetup : ScriptableObject
     [SerializeField] List<PhotoPreviews> _photos = new List<PhotoPreviews>();
     [SerializeField] List<NotesData> _notes = new List<NotesData>();
     [SerializeField] List<PhoneNumbers> _phoneNumbers = new List<PhoneNumbers>();
-    [SerializeField] List<InternetSerach> _internetSearches = new List<InternetSerach>();
+    [SerializeField] List<InternetSearch> _internetSearches = new List<InternetSearch>();
     [SerializeField] Sprite _baseCameraPhoto;
     [SerializeField] bool _hasPhotoBeenTaken;
     [SerializeField] HackSetup _hackAppSetup;
@@ -32,7 +32,7 @@ public class StoryAppSetup : ScriptableObject
     public List<PhotoPreviews> Photos { get => _photos;}
     public List<NotesData> Notes { get => _notes;}
     public List<PhoneNumbers> PhoneNumbers { get => _phoneNumbers;}
-    public List<InternetSerach> InternetSeraches { get => _internetSearches; }
+    public List<InternetSearch> InternetSeraches { get => _internetSearches; }
     public List<LocationData> Locations { get => _locations; }
     public HackSetup HackAppSetup { get => _hackAppSetup;  }
     public TimeData TimeData { get => _timeData;}
@@ -132,6 +132,35 @@ public class StoryAppSetup : ScriptableObject
     {
         _hackAppSetup = obj;
     }
+    public void AddPhoneNbr()
+    {
+        PhoneNumbers newNbr = new PhoneNumbers();
+        newNbr.callText = new List<string>();
+        _phoneNumbers.Add(newNbr);
+
+    }
+    public void RemovePhoneNbr(int appPos)
+    {
+        _phoneNumbers.RemoveAt(appPos);
+    }
+    public void SetPhoneNbrr(int i, PhoneNumbers obj)
+    {
+        _phoneNumbers[i] = obj;
+    }
+    public void AddSearch()
+    {
+        InternetSearch newSearch = new InternetSearch();
+        _internetSearches.Add(newSearch);
+
+    }
+    public void RemoveSearch(int appPos)
+    {
+        _internetSearches.RemoveAt(appPos);
+    }
+    public void SetSearch(int i, InternetSearch obj)
+    {
+        _internetSearches[i] = obj;
+    }
 }
 
 [Serializable]
@@ -194,7 +223,7 @@ public struct PhoneNumbers
 }
 
 [Serializable]
-public struct InternetSerach
+public struct InternetSearch
 {
     public string search;
     public string text;
