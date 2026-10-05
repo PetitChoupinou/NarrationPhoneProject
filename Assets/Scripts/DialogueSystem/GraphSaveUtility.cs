@@ -211,6 +211,18 @@ public class GraphSaveUtility
                 imageNodeData.outputs.Add(CreateOutputData(connectedPorts, node, "Next"));
                 data = imageNodeData;
                 break;
+            case NodeType.End:
+                var endNode = node as EndNode;
+                EndNodeData endNodeData = new EndNodeData(data);
+                endNodeData.endID = endNode.endID;
+                data = endNodeData; 
+                break;
+            case NodeType.Sound:
+                var soundNode = node as SoundNode;
+                SoundNodeData soundNodeData = new SoundNodeData(data);
+                soundNodeData.soundName = soundNode.soundName;
+                data = soundNodeData;
+                break;
             default:
                 break;
         }

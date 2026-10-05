@@ -204,6 +204,31 @@ public class ImageNodeData : NodeData
 }
 
 [Serializable]
+public class EndNodeData : NodeData
+{
+    public EndID endID;
+    public EndNodeData(NodeData data)
+    {
+        nodeGUID = data.nodeGUID;
+        nodeType = data.nodeType;
+        position = data.position;
+    }
+}
+
+[Serializable]
+public class SoundNodeData : NodeData
+{
+    public string soundName;
+    public SoundNodeData(NodeData data)
+    {
+        nodeGUID = data.nodeGUID;
+        nodeType = data.nodeType;
+        position = data.position;
+        outputs = data.outputs;
+    }
+}
+
+[Serializable]
 public class OutputData
 {
     public string portValue;
