@@ -13,7 +13,6 @@ using static Unity.VisualScripting.Member;
 public class StorySetupTool:EditorWindow
 {
     private string FolderPath = "Assets/Resources/StorySetup/";
-    private string ShortPath = "StorySetup/";
     private string _extention = ".asset";
     private Vector2 _windowSize;
     private List<StoryAppSetup> _stories=new List<StoryAppSetup>();

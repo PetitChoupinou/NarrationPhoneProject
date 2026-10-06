@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6fcc9d44dae16c4ebfccd6530d48821, type: 3}
+  m_Name: TestTool
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterSheet
+  _CharacterName: TestTool
+  _baseText: []
+  _baseNotes: 'TEST
+
+    T
+
+    t
+
+    t
+
+    test
+
+    t
+
+    t
+
+    t
+
+    T
+
+    T
+
+    T
+
+    TEST'
+  _baseAffinity: 18
+  _messageBackground: {fileID: 0}
+  _dialogues: []
+  _telNum:
+    title: TestTool
+    numbers: 3333333
+    ringTime: 3
+    callText:
+    - AHHHHHHHHH
+    callAudio: {fileID: 8300000, guid: 1b9dc8536831240489c5e499c8764fe5, type: 3}
+    ringAudio: {fileID: 8300000, guid: bdad2da53b08092488b8d835a7b71b87, type: 3}
+  _wrongPhotoResponses: []
+  dialogueIndex: 0
+  EmotionPIcs: []
