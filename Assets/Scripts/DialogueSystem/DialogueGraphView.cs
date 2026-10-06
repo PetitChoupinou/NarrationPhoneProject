@@ -25,7 +25,9 @@ public enum NodeType
     NewApplication,
     NewFile,
     Time,
-    Image
+    Image,
+    End, 
+    Sound
 }
 
 public enum Talker
@@ -339,6 +341,7 @@ public class DialogueGraphView : GraphView
                 
                 propertyDropdown.RegisterValueChangedCallback(evt =>
                 {
+                    if (evt.newValue == "Property" || evt.newValue == "Invalid Property") return;
                     ExposedProperty selectedProperty = FindPropertyByName(evt.newValue);
                     if (selectedProperty != null)
                     {
@@ -775,6 +778,68 @@ public class DialogueGraphView : GraphView
                 node.RefreshPorts();
                 node.SetPosition(new Rect(position, BaseNode.defaultNodeSize));
                 break;
+            case NodeType.End:
+                node = new EndNode
+                {
+                    GUID = Guid.NewGuid().ToString(),
+                    title = "End",
+                    nodeType = NodeType.End
+                };
+                EndNode endNode = node as EndNode;
+                inputPort = node.GeneratePort(Direction.Input, Port.Capacity.Multi);
+                inputPort.portName = "Input";
+                node.inputContainer.Add(inputPort);
+
+                DropdownField endIDField = new DropdownField
+                {
+                    label = "End ID",
+                    choices = Enum.GetNames(typeof(EndID)).ToList(),
+                };
+                endIDField.value = endIDField.choices[0];
+                endNode.endIDField = endIDField;
+                endIDField.RegisterValueChangedCallback(evt =>
+                {
+                    Enum.TryParse(evt.newValue, out EndID endID);
+                    endNode.endID = endID;
+                });
+                node.mainContainer.Add(endIDField);
+
+                node.RefreshExpandedState();
+                node.RefreshPorts();
+                node.SetPosition(new Rect(position, BaseNode.defaultNodeSize));
+                break;
+            case NodeType.Sound:
+                node = new SoundNode
+                {
+                    GUID = Guid.NewGuid().ToString(),
+                    title = "Play Sound",
+                    nodeType = NodeType.Sound
+                };
+                SoundNode soundNode = node as SoundNode;
+                inputPort = node.GeneratePort(Direction.Input, Port.Capacity.Multi);
+                inputPort.portName = "Input";
+                node.inputContainer.Add(inputPort);
+
+                TextField soundNameField = new TextField
+                {
+                    label = "Sound Name",
+                    value = ""
+                };
+                soundNode.soundNameField = soundNameField;
+                soundNameField.RegisterValueChangedCallback(evt =>
+                {
+                    soundNode.soundName = evt.newValue;
+                });
+                node.mainContainer.Add(soundNameField);
+
+                outputPort = node.GeneratePort(Direction.Output);
+                outputPort.portName = "Next";
+                node.outputContainer.Add(outputPort);
+
+                node.RefreshExpandedState();
+                node.RefreshPorts();
+                node.SetPosition(new Rect(position, BaseNode.defaultNodeSize));
+                break;
 
         }
         if(type != NodeType.Start)
@@ -1060,15 +1125,26 @@ public class DialogueGraphView : GraphView
             case NodeType.Set:
                 var nodeSetProperty = node as SetPropertyNode;
                 var nodeSetPropertyData = nodeData as SetPropertyNodeData;
-                ExposedProperty property = FindPropertyByName(nodeSetPropertyData.property.Name);
-                nodeSetProperty.valueString = nodeSetPropertyData.valueString;
-                if (property != null)
+                if (nodeSetPropertyData.property != null )
                 {
-                    nodeSetProperty.property = property;
-                    nodeSetProperty.GetValueFromString();
-                    nodeSetProperty.propertyField.value = property.Name;
-                   
+                    ExposedProperty property = FindPropertyByName(nodeSetPropertyData.property.Name);
+
+                    nodeSetProperty.valueString = nodeSetPropertyData.valueString;
+
+                    if (property != null)
+                    {
+                        nodeSetProperty.property = property;
+                        nodeSetProperty.GetValueFromString();
+                        nodeSetProperty.propertyField.value = property.Name;
+
+                    }
                 }
+                else
+                {
+                    nodeSetProperty.propertyField.style.backgroundColor = new Color(0.5f, 0, 0, 1);
+                    nodeSetProperty.propertyField.SetValueWithoutNotify("Invalid Property");
+                }
+
                 break;
             case NodeType.Unlock:
                 var nodeUnlock = node as UnlockNode;
@@ -1120,6 +1196,16 @@ public class DialogueGraphView : GraphView
                 nodeImage.TimeField.value = nodeImage.timerSending;
                 nodeImage.UpdateImageField();
                 nodeImage.UpdateSenderField();
+                break;
+            case NodeType.End:
+                var nodeEnd = node as EndNode;
+                var nodeEndData = nodeData as EndNodeData;
+                nodeEnd.UpdateEndIDField(nodeEndData.endID);
+                break;
+            case NodeType.Sound:
+                var nodeSound = node as SoundNode;
+                var nodeSoundData = nodeData as SoundNodeData;
+                nodeSound.UpdateSoundField(nodeSoundData.soundName);
                 break;
         }
         node.isSentToggle.value = nodeData.IsSentBase;

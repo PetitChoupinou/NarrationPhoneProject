@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.Windows;
 
 
 public class GraphSaveUtility
@@ -210,6 +211,18 @@ public class GraphSaveUtility
                 imageNodeData.outputs.Add(CreateOutputData(connectedPorts, node, "Next"));
                 data = imageNodeData;
                 break;
+            case NodeType.End:
+                var endNode = node as EndNode;
+                EndNodeData endNodeData = new EndNodeData(data);
+                endNodeData.endID = endNode.endID;
+                data = endNodeData; 
+                break;
+            case NodeType.Sound:
+                var soundNode = node as SoundNode;
+                SoundNodeData soundNodeData = new SoundNodeData(data);
+                soundNodeData.soundName = soundNode.soundName;
+                data = soundNodeData;
+                break;
             default:
                 break;
         }
@@ -247,7 +260,6 @@ public class GraphSaveUtility
             return;
         }
 
-
         ClearGraph();
 
         LoadBlackboard();
@@ -255,17 +267,20 @@ public class GraphSaveUtility
         CreateNodes();
 
         ConnectNodes();
+
     }
 
     private void ConnectNodes()
     {
-        
-        for (int i = 0; i < _nodes.Count; i++)
+       
+        var nodes = _nodes;
+
+        for (int i = 0; i < nodes.Count; i++)
         {
             int j = 0;
-            var nodeData = _dataCache.nodes.First(x => x.nodeGUID == _nodes[i].GUID);
+            var nodeData = _dataCache.nodes.First(x => x.nodeGUID == nodes[i].GUID);
             
-            foreach (var output in _nodes[i].outputContainer.Children())
+            foreach (var output in nodes[i].outputContainer.Children())
             {
 
                 Port port = output.Q<Port>();
@@ -278,8 +293,12 @@ public class GraphSaveUtility
                 var targetNodeGUID = nodeData.outputs[j].targetNodeGuid;
                 if (targetNodeGUID != "")
                 {
-                    var targetNode = _nodes.First(x => x.GUID == targetNodeGUID);
-                    LinkNodes(_nodes[i].outputContainer[j].Q<Port>(), (Port)targetNode.inputContainer[0]);
+                    long start;
+                    start = System.Diagnostics.Stopwatch.GetTimestamp();
+                    var targetNode = nodes.First(x => x.GUID == targetNodeGUID);
+                    LinkNodes(port, targetNode.inputContainer[0].Q<Port>());
+
+                   
                 }
 
 
@@ -289,6 +308,8 @@ public class GraphSaveUtility
             }
 
         }
+
+        
     }
 
     private void LinkNodes(Port output, Port input)
