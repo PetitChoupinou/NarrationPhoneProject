@@ -12,26 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ef08a29b60933941822e91151f6e732, type: 3}
   m_Name: blabla
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  secondsToWait: 60
+  secondsToWaitFast: 5
   nodes:
-  - rid: 5760394386037801027
-  - rid: 5760394386037801028
+  - rid: 6468779974332252269
+  - rid: 6468779974332252270
+  temporaryNodes: []
   entryPointNodeGuid: bcb36f16-f40e-4ebb-9155-46da8bb3634b
-  isLocked: 0
   _isLocked: 0
   references:
     version: 2
     RefIds:
-    - rid: 5760394386037801027
+    - rid: 6468779974332252269
       type: {class: NodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: bcb36f16-f40e-4ebb-9155-46da8bb3634b
         nodeType: 0
-        position: {x: 100, y: 200}
+        position: {x: 250.4, y: 200}
         outputs:
         - portValue: Next
           targetNodeGuid: 72dcef29-3018-41bc-9fa4-15621bbbed21
         isSentCurrent: 0
-    - rid: 5760394386037801028
+    - rid: 6468779974332252270
       type: {class: DialogueNodeData, ns: , asm: Assembly-CSharp}
       data:
         nodeGUID: 72dcef29-3018-41bc-9fa4-15621bbbed21
@@ -40,7 +42,8 @@ MonoBehaviour:
         outputs:
         - portValue: Next
           targetNodeGuid: 
-        isSentCurrent: 1
+        isSentCurrent: 0
         dialogueText: BLABLABLA
         isNPC: 0
         timerSending: 0
+        emotion: 0

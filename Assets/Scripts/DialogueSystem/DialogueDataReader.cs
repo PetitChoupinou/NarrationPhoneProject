@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -374,10 +373,29 @@ public class DialogueDataReader : MonoBehaviour
                         WaitForSendingImage(imageNodeData.image, _characterID);
                     }
                 };
+            case NodeType.End:
+                EndNodeData endNodeData = nodeData as EndNodeData;
+                return () =>
+                {
+                    End(endNodeData.endID);
+                };
+            case NodeType.Sound:
+                SoundNodeData soundNodeData = nodeData as SoundNodeData;
+                return () =>
+                {
+                    print("New Sound " + soundNodeData.soundName);
+                    SoundManager.Instance.PlaySound(soundNodeData.soundName);
+                    ReadNextNode(nodeData, 0);
+                };
             default:
                 return () => { };
         }
         
+    }
+
+    private void End(EndID endID)
+    {
+        //Do something with endID
     }
 
     private void WaitForSendingImage(Sprite image, string ID)

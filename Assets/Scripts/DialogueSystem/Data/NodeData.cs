@@ -187,6 +187,11 @@ public class TimeNodeData : NodeData
         outputs = data.outputs;
     }
 }
+public enum EndID
+{
+    Good,
+    Bad
+}
 
 [Serializable]
 public class ImageNodeData : NodeData
@@ -195,6 +200,31 @@ public class ImageNodeData : NodeData
     public Sprite image;
     public float timerSending;
     public ImageNodeData(NodeData data)
+    {
+        nodeGUID = data.nodeGUID;
+        nodeType = data.nodeType;
+        position = data.position;
+        outputs = data.outputs;
+    }
+}
+
+[Serializable]
+public class EndNodeData : NodeData
+{
+    public EndID endID;
+    public EndNodeData(NodeData data)
+    {
+        nodeGUID = data.nodeGUID;
+        nodeType = data.nodeType;
+        position = data.position;
+    }
+}
+
+[Serializable]
+public class SoundNodeData : NodeData
+{
+    public string soundName;
+    public SoundNodeData(NodeData data)
     {
         nodeGUID = data.nodeGUID;
         nodeType = data.nodeType;
