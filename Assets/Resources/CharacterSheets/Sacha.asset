@@ -12,24 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6fcc9d44dae16c4ebfccd6530d48821, type: 3}
   m_Name: Sacha
   m_EditorClassIdentifier: Assembly-CSharp::CharacterSheet
-  name: Sacha
-  baseText: []
-  baseNotes: ...
-  baseAffinity: 15
-  messageBackground: {fileID: 8957324059118975939, guid: e7a84a3f83fe6134b871252e612f2597, type: 3}
-  dialogues:
+  _CharacterName: Sacha
+  _baseText: []
+  _baseNotes: UwU
+  _baseAffinity: 15
+  _messageBackground: {fileID: 8957324059118975939, guid: e7a84a3f83fe6134b871252e612f2597, type: 3}
+  _dialogues:
   - {fileID: 11400000, guid: d75c0c457fcb5e843ab9ee42aae9d983, type: 2}
-  telNum:
-    title: Sach
+  _telNum:
+    title: Sacha
     numbers: 0707070707
-    ringTime: 0
+    ringTime: 3
     callText:
     - ...
     callAudio: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
-    ringAudio: {fileID: 0}
-  wrongPhotoResponses:
+    ringAudio: {fileID: 8300000, guid: 04781cc3066655d4ea4a74726914cc23, type: 3}
+  _wrongPhotoResponses:
   - '?'
-  - "Pk tu m'envois \xE7a"
+  - "Pk tu m'envois \xE7a?"
   dialogueIndex: 0
   EmotionPIcs:
   - Emotion: 0

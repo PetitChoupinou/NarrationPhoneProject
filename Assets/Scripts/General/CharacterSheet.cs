@@ -5,55 +5,85 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "CharacterSheet", menuName = "Scriptable Objects/CharacterSheet")]
 public class CharacterSheet : ScriptableObject
 {
-    [SerializeField] private string name;
-    [SerializeField] private SentText[] baseText;
-    [SerializeField] private string  baseNotes;
-    [SerializeField,Range(0,20)] private int  baseAffinity;
-    private Dictionary<CharaEmotion, Sprite> profilePics;
+    [SerializeField] private string _CharacterName;
+    [SerializeField] private SentText[] _baseText;
+    [SerializeField] private string  _baseNotes;
+    [SerializeField,Range(0,20)] private int  _baseAffinity;
+    private Dictionary<CharaEmotion, Sprite> _profilePics;
 
-    [SerializeField] private Sprite messageBackground;
-    [SerializeField] private DialogueData[] dialogues;
-    [SerializeField] private PhoneNumbers telNum;
-    [SerializeField] private List<String> wrongPhotoResponses=new List<string>() ;
+    [SerializeField] private Sprite _messageBackground;
+    [SerializeField] private List<DialogueData> _dialogues=new List<DialogueData>();
+    [SerializeField] private PhoneNumbers _telNum;
+    [SerializeField] private List<String> _wrongPhotoResponses=new List<string>() ;
     public int dialogueIndex;
 
-    public string Name { get => name;}
-    public SentText[] BaseText { get => baseText; }
+    public string Name { get => _CharacterName;
+            set => _CharacterName = value; }
 
-    public List<EmotiionPic> EmotionPIcs=new List<EmotiionPic>();
-    public string BaseNotes { get => baseNotes;}
-    public int BaseAffinity { get => baseAffinity;}
-    public PhoneNumbers TelNum { get => telNum; }
+    public SentText[] BaseText { get => _baseText; }
+
+    public List<EmotionPic> EmotionPIcs=new List<EmotionPic>();
+    public string BaseNotes { get => _baseNotes; set => _baseNotes = value; }
+    public int BaseAffinity { get => _baseAffinity; set=>_baseAffinity=value; }
+    public PhoneNumbers TelNum { get => _telNum; set => _telNum = value; }
     public Dictionary<CharaEmotion, Sprite > ProfilePics { get
         {
-            if(profilePics != null)
+            if(_profilePics != null)
             {
-                return profilePics;
+                return _profilePics;
             }
-            profilePics = new Dictionary<CharaEmotion,Sprite>();
+            _profilePics = new Dictionary<CharaEmotion,Sprite>();
             for(int i=0;i< EmotionPIcs.Count;i++)
             {
-                profilePics.Add(EmotionPIcs[i].Emotion, EmotionPIcs[i].Picture);
+                _profilePics.Add(EmotionPIcs[i].Emotion, EmotionPIcs[i].Picture);
             }
-            return profilePics;
+            return _profilePics;
         }
     }
     public DialogueData currentDialogue
     {
         get
         {
-            if (dialogueIndex >= dialogues.Length) return null;
-            return dialogues[dialogueIndex];
+            if (dialogueIndex >= _dialogues.Count) return null;
+            return _dialogues[dialogueIndex];
         }
     }
 
-    public DialogueData[] Dialogues { get => dialogues; set => dialogues = value; }
-    public Sprite MessageBackground { get => messageBackground;}
-    public List<string> WrongPhotoResponses { get => wrongPhotoResponses; }
+    public List<DialogueData> Dialogues { get => _dialogues; set => _dialogues = value; }
+    public Sprite MessageBackground { get => _messageBackground; set => _messageBackground = value; }
+    public List<string> WrongPhotoResponses { get => _wrongPhotoResponses; }
 
     public Sprite GetBasePicture()
     {
-        return profilePics[CharaEmotion.Base];
+        return _profilePics[CharaEmotion.Base];
+    }
+    public CharacterSheet()
+    {
+        _telNum.callText = new List<string>();
+    }
+    public void AddDialogue()
+    {
+        _dialogues.Add(new DialogueData());
+    }
+    public void RemoveDialogue(int appPos)
+    {
+        _dialogues.RemoveAt(appPos);
+    }
+    public void SetDialogue(int i, DialogueData obj)
+    {
+        _dialogues[i] = obj;
+    }
+    public void AddWPR()
+    {
+        _wrongPhotoResponses.Add(null);
+    }
+    public void RemoveWPR(int appPos)
+    {
+        _wrongPhotoResponses.RemoveAt(appPos);
+    }
+    public void SetWPR(int i, string obj)
+    {
+        _wrongPhotoResponses[i] = obj;
     }
 }
 
@@ -64,7 +94,7 @@ public class SentText
     public bool isNPC; 
 }
 [Serializable]
-public class EmotiionPic
+public class EmotionPic
 {
     public CharaEmotion Emotion;
     public Sprite Picture;

@@ -2,11 +2,6 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public enum EndID
-{
-    Good,
-    Bad
-}
 
 public class EndNode : BaseNode
 {
