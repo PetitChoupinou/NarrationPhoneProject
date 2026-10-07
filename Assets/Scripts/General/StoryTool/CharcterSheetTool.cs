@@ -204,7 +204,7 @@ public class CharacterSheetTool : EditorWindow
                     _currentSheet.AddDialogue();
                 }
                 _currentSheet.dialogueIndex = EditorGUILayout.IntSlider("dialogue index :", _currentSheet.dialogueIndex, 0, _currentSheet.Dialogues.Count-1,GUILayout.MaxWidth(400));
-                _scrollPos5 = EditorGUILayout.BeginScrollView(_scrollPos5, GUILayout.MaxHeight(Mathf.Min(300, _currentSheet.WrongPhotoResponses.Count * 40)), GUILayout.MaxWidth(400));
+                _scrollPos5 = EditorGUILayout.BeginScrollView(_scrollPos5, GUILayout.MaxHeight(Mathf.Min(300, _currentSheet.WrongPhotoResponses.Count * 80)), GUILayout.MaxWidth(400));
                 for (int i = 0; i < _currentSheet.WrongPhotoResponses.Count; i++)
                 {
                     _currentSheet.WrongPhotoResponses[i] = EditorGUILayout.TextField(_currentSheet.WrongPhotoResponses[i], new GUIStyle(GUI.skin.textField) { fontSize = 14, alignment = TextAnchor.MiddleCenter }, GUILayout.MaxWidth(400));

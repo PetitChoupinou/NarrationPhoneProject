@@ -38,16 +38,18 @@ MonoBehaviour:
 
     TEST'
   _baseAffinity: 18
-  _messageBackground: {fileID: 0}
-  _dialogues: []
+  _messageBackground: {fileID: 2343584826158338666, guid: 45611bbae59f5f847ae2324ebc528ab6, type: 3}
+  _dialogues:
+  - {fileID: 11400000, guid: 7d8a609fa1774114b8e5091146e2447e, type: 2}
   _telNum:
     title: TestTool
-    numbers: 3333333
+    numbers: 03333333
     ringTime: 3
     callText:
     - AHHHHHHHHH
     callAudio: {fileID: 8300000, guid: 1b9dc8536831240489c5e499c8764fe5, type: 3}
     ringAudio: {fileID: 8300000, guid: bdad2da53b08092488b8d835a7b71b87, type: 3}
-  _wrongPhotoResponses: []
+  _wrongPhotoResponses:
+  - 
   dialogueIndex: 0
   EmotionPIcs: []
