@@ -30,133 +30,90 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 18984e76137db364da5204a88e2e5a0d, type: 2}
   - {fileID: 11400000, guid: bc79f0f89360505468de47a0e763c247, type: 2}
   _photos:
-  - title: oui
+  - title: Photos
     locked: 0
     password: 
     photoDatas:
-    - image: {fileID: 21300000, guid: f2cadabc03eed8f47a2f521453bfe63a, type: 3}
+    - image: {fileID: -1795282074631900718, guid: 424b25df5a31d3f4b8d42f4e6ae7e955, type: 3}
       year: 2004
       month: 9
       day: 18
       hour: 7
-      minute: 21
-    - image: {fileID: 21300000, guid: 010861aecb582804594e2e5b87bbe5db, type: 3}
+      minute: 22
+    - image: {fileID: 7298310966751983079, guid: f6cd726496e77b84b878fd7637c091fe, type: 3}
       year: 2004
       month: 9
       day: 18
       hour: 7
-      minute: 21
-    - image: {fileID: 21300000, guid: 2cf0cd442c01540458da28c2e47364f9, type: 3}
+      minute: 22
+    - image: {fileID: -6339490155590231895, guid: bc0e8cf4e20220347ab29c12043161ad, type: 3}
       year: 2004
       month: 9
       day: 18
       hour: 7
-      minute: 21
+      minute: 22
+    - image: {fileID: -3377733585956486557, guid: b876b05016e2ffe4090cfc98183377f9, type: 3}
+      year: 2004
+      month: 9
+      day: 18
+      hour: 7
+      minute: 22
+    - image: {fileID: 1032789822446295852, guid: df3a1e6d07e17f34b9c25f1dd0e2d64a, type: 3}
+      year: 2004
+      month: 9
+      day: 18
+      hour: 7
+      minute: 22
+    - image: {fileID: 6744153285509335332, guid: 3b7e7ae6f317e504781f28933dd8e9ed, type: 3}
+      year: 2004
+      month: 9
+      day: 18
+      hour: 7
+      minute: 22
   - title: Locked
     locked: 1
     password: Feur
     photoDatas:
-    - image: {fileID: 21300000, guid: f2cadabc03eed8f47a2f521453bfe63a, type: 3}
+    - image: {fileID: -181613783411769538, guid: 1e044e63a5f64ff458c81330e918efe5, type: 3}
       year: 2004
       month: 9
       day: 18
       hour: 7
-      minute: 21
+      minute: 22
   _notes:
-  - title: A
-    content: ah
-  - title: B
-    content: 'beh
-
-      beh
-
-      beh
-
-      beh
-
-      beh
-
-      beh
-
-      beh
-
-      beh
-
-      beh
-
-      beh
-
-      beh
-
-      beh
-
-      beh
-
-      beh
-
-      beh
-
-      beh
-
-      beh
-
-      beh
-
-      beh
-
-      beh
-
-      beh
-
-      beh
-
-      beh
-
-      beh
-
-      beh
-
-      beh
-
-      beh
-
-      beh
-
-      beh
-
-      beh
-
-      beh
-
-      beh
-
-      beh
-
-      beh
-
-      beh
-
-      beh
-
-      beh
-
-      beh
-
-      beh
-
-      beh
-
-      beh
-
-      beh
-
-      beh
-
-      beh
-
-      beh
-
-      beh'
+  - title: Cours
+    content: "<b>Lundi</b>: \L- Fran\xE7ais / Madame Koleti\L- Math / Madame Guarez\n\n<b>Mardi</b>
+      : \L- SVT / Madame Giron\L- Physique Chimie / Madame Topaz\L- Math / Madame
+      Guarez\n\n<b>Mercredi</b> : \L- Espagnol / Monsieur Diaz\L- Philo / Monsieur
+      Aguire\n\n<b>Jeudi</b> : \L- Histoire G\xE9o / Monsieur Idris\L- Anglais /
+      Monsieur McMiller\L- SVT / Madame Giron\n\n<b>Vendredi</b> : \L- Physique Chimie
+      / Madame Topaz\L- Histoire G\xE9o / Monsieur Idris\L- Fran\xE7ais / Madame
+      Koleti"
+  - title: Quotidien de Val
+    content: "<b>Note du 18</b> : \L- Une journ\xE9e tranquille, je suis all\xE9
+      \xE0 ma session de psy avec monsieur Afton. J\u2019aime bien le voir, \xE7a
+      me fait me sentir mieux.\n\n<b>Note du 19</b> : \L- Encore cette sensation
+      \xE9trange. Parfois j\u2019ai vraiment l\u2019impression de me faire espionner
+      par quelqu\u2019un, \xE7a me fait froid dans le dos.\n\n<b>Note du 20</b> :
+      \L- Je suis encore allez voir Sacha aujourd\u2019hui. Je l\u2019aime trop,
+      on se comprend trop bien iel et moi.\n\n<b>Note du 21</b> : \L- Petite sortis
+      avec Margaux et Ethan, le pique nique en plein air m\u2019a vraiment fait du
+      bien. Surtout en haut de la falaise, le vent souffle fort et j\u2019aime trop.\n\n<b>Note
+      du 22</b> : \L- Je sens que ce soir je vais encore le faire. Je devrais pas,
+      mais j\u2019ai trop envie. On verra bien ce qui se passe."
+  - title: "Pense-b\xEAte"
+    content: "<b>Philo (phrases que j\u2019aime bien)</b> : \L- \u201CL\u2019oiseau
+      de Minerve ne prend son envole qu\u2019au cr\xE9puscule\u201D - Je sais plus
+      qui\L- \u201CJe pense donc je suis\u201D - Descartes\L- \u201CLe d\xE9sir est
+      l\u2019essence m\xEAme de l\u2019homme\u201D - Spinoza.\L - \u201CSocrate est
+      un gros con.\u201D - Val\n\n<b>Histoire</b> : \L- Napol\xE9on : Empereur de
+      France, a regn\xE9 de 1804 a 1815.\L- Louis X : Frere de Louis 14, a regn\xE9
+      de 1824 a 1830.\L- Napol\xE9on 3 : Neveu de Napoleon 1er, a regn\xE9 de 1852
+      a 1870. \n\n<b>Physique - Chimie</b>  : \L- Halogenes : Fluor, Chlore, Iode,
+      Brome.\L- Gaz Nobles : Helium, N\xE9on, Argon, Krypton, X\xE9non, Radon.\L-
+      Autres non-m\xE9taux : Hydrogene, Carbone, Azote, Oxygene, Phosphore, Souffre,
+      S\xE9lenium.\L- Alcanins : Lithium, Sodium, Potassium, Rubidium, C\xE9sium,
+      Francium."
   _phoneNumbers:
   - title: Santa
     numbers: 3630
@@ -166,12 +123,13 @@ MonoBehaviour:
     callAudio: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
     ringAudio: {fileID: 8300000, guid: 04781cc3066655d4ea4a74726914cc23, type: 3}
   _internetSearches:
-  - search: Feur?
-    text: coubeh
-  - search: "faut il jouer \xE0 DbD?"
-    text: ' non c''est de la merde :)!!!'
-  - search: pourquoi 42?
-    text: "c'est la r\xE9ponse \xE0 la vie."
+  - search: "Est ce que le feu \xE7a br\xFBle ?"
+    text: Oui
+  - search: "Est ce que l'eau \xE7a mouille ?"
+    text: Non
+  - search: "Quel est le plus complexe entre la conjecture de Hodge et l'\xE9quation
+      de Yang-Mills ?"
+    text: "Aucune id\xE9e"
   _baseCameraPhoto: {fileID: 0}
   _hasPhotoBeenTaken: 0
   _hackAppSetup:
@@ -181,26 +139,28 @@ MonoBehaviour:
       isHackedFromStart: 1
       spPhoto:
       - image: {fileID: 2343584826158338666, guid: 45611bbae59f5f847ae2324ebc528ab6, type: 3}
-        year: 1920
-        month: 3
-        day: 1
-        hour: 4
-        minute: 20
+        year: 2004
+        month: 9
+        day: 18
+        hour: 7
+        minute: 21
       - image: {fileID: 4875404568758535411, guid: 2319caa043bdb1149a1fc49d13fa3570, type: 3}
-        year: 1921
-        month: 2
-        day: 4
-        hour: 4
-        minute: 33
+        year: 2004
+        month: 9
+        day: 18
+        hour: 7
+        minute: 21
       spNotes:
       - title: text
         content: text
+      - title: 
+        content: 
   _timeData:
     _day: 18
     _month: 9
     _year: 2004
     _hour: 7
-    _minute: 21
+    _minute: 22
   _storySFX:
   - name: SFX_PNJ_MargauxShocked
     clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
@@ -279,19 +239,19 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
     volume: 0
   _endGameContact:
-    profilePic: {fileID: 6748820506961262863, guid: 521044b30c7abdd4f90a60edc5fcedde, type: 3}
+    profilePic: {fileID: -3749740228694047907, guid: c1defb481481ceb49ac8c4c0023b48b1, type: 3}
     phone:
       title: Police
       numbers: 17
       ringTime: 5
       callText:
       - "Merci d'avoir appel\xE9 la police ."
-      - Pour vous remercier nous allons fermer votre application.
-      - Au revoir!
+      - "La b\xEAta du jeu est maitenant termin\xE9 !"
+      - Au revoir, n'oubliez pas de remplir le google form !
       callAudio: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
       ringAudio: {fileID: 8300000, guid: 04781cc3066655d4ea4a74726914cc23, type: 3}
     dialogues:
-    - {fileID: 11400000, guid: 25e59629402745e4ba9705e92096d4da, type: 2}
+    - {fileID: 11400000, guid: 255e6c0fc7620c14aa6b35b01c896cae, type: 2}
     emotion: 0
     shouldShowPictureInConversation: 0
     warinngMessage: "Attention lancer cette conversation mettra fin \xE0 l'histoire
