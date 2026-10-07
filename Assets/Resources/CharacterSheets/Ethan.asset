@@ -18,7 +18,7 @@ MonoBehaviour:
   baseAffinity: 4
   messageBackground: {fileID: 8957324059118975939, guid: e7a84a3f83fe6134b871252e612f2597, type: 3}
   dialogues:
-  - {fileID: 11400000, guid: 4009751a5c1e1dd4fb7c012b2c11a127, type: 2}
+  - {fileID: 11400000, guid: 0597f89e329c372448eb866c5092a8b8, type: 2}
   telNum:
     title: Ethan
     numbers: 0612047223

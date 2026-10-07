@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -681,3 +682,4 @@ public class StorySetupTool:EditorWindow
         AssetDatabase.Refresh();
     }
 }
+#endif

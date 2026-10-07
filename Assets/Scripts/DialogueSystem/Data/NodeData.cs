@@ -187,6 +187,11 @@ public class TimeNodeData : NodeData
         outputs = data.outputs;
     }
 }
+public enum EndID
+{
+    Good,
+    Bad
+}
 
 [Serializable]
 public class ImageNodeData : NodeData
