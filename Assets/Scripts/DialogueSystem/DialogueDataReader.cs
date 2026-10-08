@@ -84,9 +84,9 @@ public class DialogueDataReader : MonoBehaviour
             }
         }
 
-        if (!_currentDialogueData.HasStarted && !_isWaitingForStart)
+        if (!_currentDialogueData.HasStarted && !_currentDialogueData.ShouldNotWaitToStart)
         {
-            _isWaitingForStart = true;
+            _currentDialogueData.ShouldNotWaitToStart = true;
             StartCoroutine(WaitForDialogueToStart());
             return;
         }

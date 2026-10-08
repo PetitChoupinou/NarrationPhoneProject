@@ -65,7 +65,7 @@ public class ContactApp : BaseApplication
         }
         GameObject endButton = Instantiate(_buttonPrefab, alphabeticalStorage[endName[0]].transform);
         GameObject endContact = Instantiate(_endContactPagePrefab, transform);
-        endButton.GetComponent<ContactAppButton>().SetUp(name, setup.EndGameContact.profilePic, endContact, _headerButton);
+        endButton.GetComponent<ContactAppButton>().SetUp(endName, setup.EndGameContact.profilePic, endContact, _headerButton);
         var endContactPage = endContact.GetComponent<EndContactPage>();
         endContactPage.SetUp(endName, endNum, endButton, _headerText, endProfilePics);
         endContact.SetActive(false);

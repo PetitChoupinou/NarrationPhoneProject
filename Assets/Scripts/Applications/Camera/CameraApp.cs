@@ -2,6 +2,7 @@ using System;
 using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.FilePathAttribute;
 
 
 public class CameraApp : BaseApplication
@@ -10,6 +11,7 @@ public class CameraApp : BaseApplication
     private PhotoApp _photoApp;
     private MapApp _mapApp;
     private Sprite _basePhoto;
+    private StoryAppSetup _setup;
     private PhoneManager _phoneManager;
     public override void CloseCurrent()
     {
@@ -21,15 +23,38 @@ public class CameraApp : BaseApplication
         _phoneManager=PhoneManager.Instance;
         _basePhoto =setup.BaseCameraPhoto;
         _photoApp = AppManager.Instance.GetApplication(ApplicationType.Photos).GetComponent<PhotoApp>();
-        _mapApp = AppManager.Instance.GetApplication(ApplicationType.Map).GetComponent<MapApp>();
+        if (AppManager.Instance.GetApplication(ApplicationType.Map))
+         _mapApp = AppManager.Instance.GetApplication(ApplicationType.Map).GetComponent<MapApp>();
     }
 
     public override void PostSetUp()
     {
-        StoryAppSetup setup = _phoneManager.Setup;
-        foreach (var location in _mapApp.locations)
+         _setup = _phoneManager.Setup;
+        if (AppManager.Instance.GetApplication(ApplicationType.Map))
         {
-            LocationPhotoData photoSavedData = SaveManager.Instance.LoadLocationPhoto(location.Data.locationName, setup.Name);
+            foreach (var location in _mapApp.locations)
+            {
+                LocationPhotoData photoSavedData = SaveManager.Instance.LoadLocationPhoto(location.Data.locationName, _setup.Name);
+                if (photoSavedData != null)
+                {
+                    photoSavedData.datePhoto.SetCurrentTime();
+                    PhotoData photoData = new PhotoData()
+                    {
+                        image = photoSavedData.photo,
+                        year = photoSavedData.datePhoto.CurrentTime.Year,
+                        month = photoSavedData.datePhoto.CurrentTime.Month,
+                        day = photoSavedData.datePhoto.CurrentTime.Day,
+                        hour = photoSavedData.datePhoto.CurrentTime.Hour,
+                        minute = photoSavedData.datePhoto.CurrentTime.Minute
+                    };
+                    _photoApp.AddPhoto(photoData);
+                    _mapApp.SetPhotoHasBeenTaken(location.Data.locationName);
+                }
+            }
+        }
+        else
+        {
+           BasePhotoData photoSavedData = SaveManager.Instance.LoadBasePhoto(_setup.Name);
             if (photoSavedData != null)
             {
                 photoSavedData.datePhoto.SetCurrentTime();
@@ -43,14 +68,14 @@ public class CameraApp : BaseApplication
                     minute = photoSavedData.datePhoto.CurrentTime.Minute
                 };
                 _photoApp.AddPhoto(photoData);
-                _mapApp.SetPhotoHasBeenTaken(location.Data.locationName);
+                _setup.HasPhotoBeenTaken = true;
             }
+
         }
     }
 
     public void TakePhoto()
     {
-        
         DateTime now = _phoneManager.ClockSystem.CurrentTimeData.CurrentTime;
         DateTime time = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, 0);
         Sprite photo=_basePhoto;
@@ -58,13 +83,23 @@ public class CameraApp : BaseApplication
         if (AppManager.Instance.GetApplication(ApplicationType.Map))
         {
             photo = _phoneManager.CurrentLocation.photo;
+            if (_phoneManager.CurrentLocation.hasPhotoBeenTaken)
+            {
+                _phoneManager.CreateThought(" j'ai déjà pris cette photo");
+                return;
+            }
         }
-        if (_phoneManager.CurrentLocation.hasPhotoBeenTaken) 
+        else
         {
-            _phoneManager.CreateThought(" j'ai déjà pris cette photo");
-            return;
+            photo= _setup.BaseCameraPhoto;
+            if (_setup.HasPhotoBeenTaken)
+            {
+                _phoneManager.CreateThought(" j'ai déjà pris cette photo");
+                return;
+            }
+            else _setup.HasPhotoBeenTaken = true;
         }
-        Debug.Log("*Clic* New photo");
+            Debug.Log("*Clic* New photo");
         PhotoData newPhoto = new PhotoData
         {
             image = photo,
@@ -76,8 +111,15 @@ public class CameraApp : BaseApplication
         };
         _photoApp.AddPhoto(newPhoto);
         _thumbnail.sprite = newPhoto.image;
-        _mapApp.SetPhotoHasBeenTaken(_phoneManager.CurrentLocation.locationName);
-        SaveManager.Instance.SaveLocationPhoto(_phoneManager.CurrentLocation.locationName, newPhoto, _phoneManager.Setup.Name);
+        if (AppManager.Instance.GetApplication(ApplicationType.Map))
+        {
+            _mapApp.SetPhotoHasBeenTaken(_phoneManager.CurrentLocation.locationName);
+            SaveManager.Instance.SaveLocationPhoto(_phoneManager.CurrentLocation.locationName, newPhoto, _phoneManager.Setup.Name);
+        }
+        else
+        {
+            SaveManager.Instance.SaveBasePhoto( newPhoto, _phoneManager.Setup.Name);
+        }
     }
 
     public void OpenGallery()

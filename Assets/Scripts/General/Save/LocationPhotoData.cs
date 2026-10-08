@@ -16,3 +16,17 @@ public class LocationPhotoData
         this.photo = photo;
     }
 }
+[Serializable]
+public class BasePhotoData
+{
+    public TimeData datePhoto;
+    public Sprite photo;
+
+    public BasePhotoData(DateTime time, Sprite photo)
+    {
+        datePhoto = new TimeData();
+        datePhoto.CurrentTime = time;
+        datePhoto.SetTimeFromCurrentTime();
+        this.photo = photo;
+    }
+}

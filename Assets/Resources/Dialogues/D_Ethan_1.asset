@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ef08a29b60933941822e91151f6e732, type: 3}
   m_Name: D_Ethan_1
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
-  secondsToWait: 60
+  secondsToWait: 0
   secondsToWaitFast: 5
   nodes:
   - rid: 983296095431164831
@@ -180,9 +180,8 @@ MonoBehaviour:
   - rid: 983296095558828097
   temporaryNodes: []
   entryPointNodeGuid: 57d19e6d-5947-4440-8f71-14ec6da652a0
-  isLocked: 0
   _isLocked: 0
-  hasStarted: 0
+  _shouldNotWaitToStart: 0
   references:
     version: 2
     RefIds:

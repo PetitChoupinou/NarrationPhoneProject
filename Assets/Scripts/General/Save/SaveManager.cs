@@ -147,9 +147,15 @@ public class SaveManager : MonoBehaviour
             storyData.locationPhotoData[index] = newData;
         }
         SaveStory(storyData);
-        
     }
-
+    public void SaveBasePhoto(PhotoData photoData, string storyName)
+    {
+        StorySaveData storyData = LoadStory(storyName);
+        DateTime time = new DateTime(photoData.year, photoData.month, photoData.day, photoData.hour, photoData.minute, 0);
+        BasePhotoData PhotoData = new BasePhotoData(time, photoData.image);
+        string newData = JsonUtility.ToJson(PhotoData);
+        storyData.basePhotoData = newData;
+    }
     public LocationPhotoData LoadLocationPhoto(string locationName, string storyName)
     {
         StorySaveData storyData = LoadStory(storyName);
@@ -165,6 +171,16 @@ public class SaveManager : MonoBehaviour
         newData.locationName = foundLocationDataName;
         return newData;
     }
-
+    public BasePhotoData LoadBasePhoto( string storyName)
+    {
+        StorySaveData storyData = LoadStory(storyName);
+        string baseData = storyData.basePhotoData;
+        if (baseData == "")
+        {
+            return null;
+        }
+        BasePhotoData newData = JsonUtility.FromJson<BasePhotoData>(baseData);
+        return newData;
+    }
     #endregion
 }

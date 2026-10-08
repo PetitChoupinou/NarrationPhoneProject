@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ef08a29b60933941822e91151f6e732, type: 3}
   m_Name: D_Evangeline_1
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  secondsToWait: 60
+  secondsToWaitFast: 5
   nodes:
   - rid: 983295504692805721
   - rid: 983295504692805722
@@ -102,10 +104,10 @@ MonoBehaviour:
   - rid: 983295504692805807
   - rid: 983295504692805808
   - rid: 983295504692805809
+  temporaryNodes: []
   entryPointNodeGuid: 3f50b2bc-b167-4730-a757-9ec98ca3ed75
-  isLocked: 0
   _isLocked: 0
-  hasStarted: 0
+  _shouldNotWaitToStart: 0
   references:
     version: 2
     RefIds:

@@ -29,6 +29,7 @@ public class PhoneApp : BaseApplication
         {
             _numbers.Add(n);
         }
+        _numbers.Add(setup.EndGameContact.phone);
         _phoneManager = PhoneManager.Instance;
     }
     public void AddToCurrentNbr(string x)

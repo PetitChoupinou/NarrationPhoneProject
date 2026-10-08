@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ef08a29b60933941822e91151f6e732, type: 3}
   m_Name: D_Police
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
-  secondsToWait: 60
+  secondsToWait: 3
   secondsToWaitFast: 5
   nodes:
   - rid: 8182623933815062589

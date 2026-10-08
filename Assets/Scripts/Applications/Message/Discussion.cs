@@ -435,9 +435,9 @@ public class Discussion : MonoBehaviour
         }
         if (isGood)
         {
-            CreateThought(_iD + "a apprécié ça!");
+            CreateThought(_iD + " a apprécié !");
         }
-        else CreateThought(_iD + "n'as pas aimé!");
+        else CreateThought(_iD + " n'as pas aimé !");
         yield return new WaitForSeconds(_feedbackDuration);
         duration = 0;
         while (duration < .5f)

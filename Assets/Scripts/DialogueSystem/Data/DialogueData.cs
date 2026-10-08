@@ -17,6 +17,8 @@ public class DialogueData : ScriptableObject
     [HideInInspector] private bool isLocked;
     [SerializeField] private bool _isLocked;
     [HideInInspector] private bool hasStarted;
+    [SerializeField]private bool _shouldNotWaitToStart;
+
 
     public bool IsLocked { 
         get => isLocked;
@@ -35,6 +37,8 @@ public class DialogueData : ScriptableObject
             GetIsActive();
         }
     }
+
+    public bool ShouldNotWaitToStart { get => _shouldNotWaitToStart; set => _shouldNotWaitToStart = value; }
 
     public event Action<bool> OnDialogueStatutChange;
   

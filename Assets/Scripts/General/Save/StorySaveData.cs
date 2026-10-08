@@ -11,6 +11,7 @@ public class StorySaveData : SaveData
     public bool photoTaken1;
     public TimeData dateOfSave;
     public bool isNewStory;
+    public string basePhotoData;
 
     [SerializeReference]
     public List<string> dialoguesData= new List<string>();
