@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class HackApp : BaseApplication
 {
-    private GameObject _currentFolder;
     private PhoneManager _phoneManager;
     private HackSetup _hackSetup;
     private string _name="";
@@ -14,23 +13,15 @@ public class HackApp : BaseApplication
     [SerializeField] private  TMP_Text _headerTxt;
     [SerializeField] private GameObject _folderButtonPrefab;
     [SerializeField] private GameObject _folderPrefab;
-
-    public GameObject CurrentFolder { get => _currentFolder; set => _currentFolder = value; }
-
+    [SerializeField] private GameObject _imagePanel;
     public override void CloseCurrent()
     {
-        if (CurrentFolder == null) return;
-        if (_phoneManager.CurrentDepth == PhoneManager.AppDepth.deep)
+         if(_phoneManager.CurrentDepth == PhoneManager.AppDepth.inApp)
         {
-            _currentFolder.GetComponent<HackFolder>().CloseCurrent();
-        }
-        else if(_phoneManager.CurrentDepth == PhoneManager.AppDepth.inApp)
-        {
-            _currentFolder.SetActive(false);
-            _content.SetActive(true);
             _phoneManager.ChangeDepth(PhoneManager.AppDepth.app);
-            _currentFolder = null;
+            _imagePanel.SetActive(false);
             _headerTxt.text = _name;
+            _content.SetActive(true);
         }
     }
 
@@ -51,9 +42,9 @@ public class HackApp : BaseApplication
         HackFolderSetup folderSetup = _hackSetup.folders.Find(x => x.title == name);
         if (folderSetup == null) return;
         GameObject button = Instantiate(_folderButtonPrefab, _content.transform);
-        GameObject folder = Instantiate(_folderPrefab, transform);
-        button.GetComponent<InAppButton>().SetUp(folderSetup.title, folder, _returnButton);
-        folder.GetComponent<HackFolder>().Setup(folderSetup, _image, _headerTxt, _returnButton);
-        folder.SetActive(false);
+        //GameObject folder = Instantiate(_folderPrefab, transform);
+        button.GetComponent<HackButton>().SetUp(folderSetup.title, _returnButton,_image,folderSetup.spPhoto,_imagePanel,_headerTxt);
+        //folder.GetComponent<HackFolder>().Setup(folderSetup, _image, _headerTxt, _returnButton);
+        //folder.SetActive(false);
     }
 }

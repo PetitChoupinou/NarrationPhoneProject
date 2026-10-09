@@ -30,7 +30,6 @@ public class HackFolder : MonoBehaviour
     private void OnEnable()
     {
         if (_hackApp == null) return;
-        _hackApp.CurrentFolder = gameObject;
         if (_headerTxt)
             _headerTxt.text = _name;
         _phoneManager.ChangeDepth(PhoneManager.AppDepth.inApp);
@@ -53,27 +52,27 @@ public class HackFolder : MonoBehaviour
         _content.SetActive(true);
         _headerTxt.text = _name;
     }
-    public void Setup(HackFolderSetup folder,Image image,TMP_Text header,GameObject returnButton)
-    {
-        _hackApp = AppManager.Instance.GetApplication(ApplicationType.Hack).GetComponent<HackApp>();
-        _displayImage = image;
-        _headerTxt = header;
-        _name = folder.title;
-        _returnButton = returnButton;
-        _imagePanel  = image.transform.parent.gameObject;
-        foreach (PhotoData photo in folder.spPhoto)
-        {
-            GameObject photoDisplay =Instantiate(_photoPrefab, _content.transform);
-            photoDisplay.GetComponent<Photo>().Setup(photo, _headerTxt, _imagePanel, gameObject, image, _returnButton,gameObject);
-        }
-        foreach(NotesData noteData in folder.spNotes)
-        {
-            GameObject docPreview = Instantiate(_filePrefab, _content.transform);
-            GameObject txtDoc = Instantiate(_txtDocPrefab, transform);
-            docPreview.GetComponent<InAppButton>().SetUp(noteData.title,txtDoc,_returnButton);
-            txtDoc.GetComponent<Note>().SetUp(noteData.title, noteData.title, docPreview,_headerTxt,gameObject);
-            txtDoc.GetComponent<Note>().Content.color = Color.black;
-            txtDoc.SetActive(false);
-        }
-    }
+    /* public void Setup(HackFolderSetup folder,Image image,TMP_Text header,GameObject returnButton)
+     {
+         _hackApp = AppManager.Instance.GetApplication(ApplicationType.Hack).GetComponent<HackApp>();
+         _displayImage = image;
+         _headerTxt = header;
+         _name = folder.title;
+         _returnButton = returnButton;
+         _imagePanel  = image.transform.parent.gameObject;
+         foreach (PhotoData photo in folder.spPhoto)
+         {
+             GameObject photoDisplay =Instantiate(_photoPrefab, _content.transform);
+             photoDisplay.GetComponent<Photo>().Setup(photo, _headerTxt, _imagePanel, gameObject, image, _returnButton,gameObject);
+         }
+         foreach(NotesData noteData in folder.spNotes)
+         {
+             GameObject docPreview = Instantiate(_filePrefab, _content.transform);
+             GameObject txtDoc = Instantiate(_txtDocPrefab, transform);
+             docPreview.GetComponent<InAppButton>().SetUp(noteData.title,txtDoc,_returnButton);
+             txtDoc.GetComponent<Note>().SetUp(noteData.title, noteData.title, docPreview,_headerTxt,gameObject);
+             txtDoc.GetComponent<Note>().Content.color = Color.black;
+             txtDoc.SetActive(false);
+     }
+    }*/
 }

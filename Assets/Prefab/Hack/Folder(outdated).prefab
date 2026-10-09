@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 5809845400134650895}
   - component: {fileID: 3066733965635602028}
   m_Layer: 5
-  m_Name: Folder
+  m_Name: Folder(outdated)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

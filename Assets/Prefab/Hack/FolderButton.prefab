@@ -33,9 +33,9 @@ RectTransform:
   m_Father: {fileID: 2875227665829077927}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 25}
-  m_SizeDelta: {x: 0, y: 50}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5238353013648922366
 CanvasRenderer:
@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 4996652253231531745}
   - component: {fileID: 126227043314234737}
   - component: {fileID: 7589467240703576733}
-  - component: {fileID: 778509922125967625}
+  - component: {fileID: 7766770663012684096}
   m_Layer: 5
   m_Name: FolderButton
   m_TagString: Untagged
@@ -172,10 +172,10 @@ RectTransform:
   - {fileID: 3558294768746161505}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 70, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4996652253231531745
 CanvasRenderer:
@@ -259,8 +259,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 778509922125967625}
-        m_TargetAssemblyTypeName: InAppButton, Assembly-CSharp
+      - m_Target: {fileID: 7766770663012684096}
+        m_TargetAssemblyTypeName: HackButton, Assembly-CSharp
         m_MethodName: OnButtonClicked
         m_Mode: 1
         m_Arguments:
@@ -271,7 +271,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &778509922125967625
+--- !u!114 &7766770663012684096
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -280,8 +280,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 7917979737190859742}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f916f4cde73c0048b78bcb53fe57d3b, type: 3}
+  m_Script: {fileID: 11500000, guid: d26b168e2012a734a8660fd3e2c13222, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InAppButton
+  m_EditorClassIdentifier: Assembly-CSharp::HackButton
   _name: {fileID: 5438523709078170298}
-  Preview: {fileID: 5438523709078170298}
+  Preview: {fileID: 0}

@@ -125,7 +125,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 357291307713472603}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -202,7 +202,8 @@ MonoBehaviour:
   _image: {fileID: 524333597517657798}
   _headerTxt: {fileID: 7840794927283290736}
   _folderButtonPrefab: {fileID: 7917979737190859742, guid: a21d7a5bb7d4e8149a4095fe554fa4a0, type: 3}
-  _folderPrefab: {fileID: 7164720494736135024, guid: 1ea752de8e6656b43a7f838d7f9abed4, type: 3}
+  _folderPrefab: {fileID: 0}
+  _imagePanel: {fileID: 4684167919004441259}
 --- !u!1 &613720164382788723
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,7 +213,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2949756226211806329}
-  - component: {fileID: 1864142428336128177}
+  - component: {fileID: 3142693942505769419}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -239,7 +240,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
---- !u!114 &1864142428336128177
+--- !u!114 &3142693942505769419
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -248,21 +249,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 613720164382788723}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GridLayoutGroup
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.VerticalLayoutGroup
   m_Padding:
     m_Left: 20
     m_Right: 20
     m_Top: 20
-    m_Bottom: 20
-  m_ChildAlignment: 0
-  m_StartCorner: 0
-  m_StartAxis: 0
-  m_CellSize: {x: 200, y: 200}
-  m_Spacing: {x: 0, y: 0}
-  m_Constraint: 0
-  m_ConstraintCount: 2
+    m_Bottom: 0
+  m_ChildAlignment: 1
+  m_Spacing: 40
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 1
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &1356806459726961559
 GameObject:
   m_ObjectHideFlags: 0

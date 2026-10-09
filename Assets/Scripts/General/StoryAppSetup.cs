@@ -241,8 +241,7 @@ public class HackFolderSetup
 {
     public string title;
     public bool isHackedFromStart;//pour de futures histoires possibles?
-    public List<PhotoData> spPhoto=new List<PhotoData>();
-    public List<NotesData> spNotes = new List<NotesData>();
+    public PhotoData spPhoto;
 }
 public enum NetworkState
 {
