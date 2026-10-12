@@ -28,6 +28,7 @@ public class QuestBase
     public int EReward { get => _energyReward; }
     public int GReward { get => _gemReward; }
     public bool IsComp { get => _hasBeenCompleted;}
+    public QuestType Type { get => _type;}
 
     public void UpdateValue(int value)
     {

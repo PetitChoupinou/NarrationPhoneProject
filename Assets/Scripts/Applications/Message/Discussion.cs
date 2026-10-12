@@ -182,7 +182,15 @@ public class Discussion : MonoBehaviour
                 visuTransform.localScale=new Vector3(-1,1,1);
                 _charaVisu.GetComponent<RectTransform>().anchoredPosition = new Vector3(-_charaVisuBasePosition.x,_charaVisuBasePosition.y,_charaVisuBasePosition.z);
             if (_messageApp.CurrentConv == gameObject)
+            {
                 _soundManager.PlaySound("SFX_MessageSend");
+                List<QuestBase> questBases = QuestManager.Instance.SearchSelectedQuestsByType(QuestType.Message);
+                if (questBases.Count <= 0) return;
+                foreach (QuestBase quest in questBases)
+                {
+                    quest.UpdateValue(1);
+                }
+            }
         }
         ChangeEmotion(emotion);
     }
@@ -219,9 +227,18 @@ public class Discussion : MonoBehaviour
         {
             visuTransform.localScale = new Vector3(-1, 1, 1);
             _charaVisu.GetComponent<RectTransform>().anchoredPosition = new Vector3(-_charaVisuBasePosition.x, _charaVisuBasePosition.y, _charaVisuBasePosition.z);
+            if (_messageApp.CurrentConv == gameObject)
+            {
+                _soundManager.PlaySound("SFX_MessageSend");
+                List<QuestBase> questBases = QuestManager.Instance.SearchSelectedQuestsByType(QuestType.Message);
+                if (questBases.Count <= 0) return;
+                foreach (QuestBase quest in questBases)
+                {
+                    quest.UpdateValue(1);
+                }
+            }
         }
-        if (_messageApp.CurrentConv == gameObject)
-            _soundManager.PlaySound("SFX_MessageSend");
+
     }
 
     /// <summary>
@@ -415,6 +432,15 @@ public class Discussion : MonoBehaviour
         {
             _relationFeedback.material = _positifRel;
             _soundManager.PlaySound("SFX_AffinityIncrease");
+            List<QuestBase> questBases = QuestManager.Instance.SearchSelectedQuestsByType(QuestType.Affinity);
+            if (questBases.Count > 0)
+            {
+                foreach (QuestBase quest in questBases)
+                {
+                    quest.UpdateValue(1);
+                }
+                yield return null;
+            }
             yield return null;
         }
         else

@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -73,7 +74,18 @@ public class QuestManager : MonoBehaviour
             }
         }
     }
-
+    public List<QuestBase> SearchSelectedQuestsByType(QuestType type)
+    {
+        List<QuestBase>  typedQuest=new List<QuestBase>();
+        foreach(QuestBase item in _selectedQuests)
+        {
+            if (item.Type == type)
+            {
+                typedQuest.Add(item);
+            }
+        }
+        return typedQuest;
+    }
     public void TempAddOne()
     {
         _selectedQuests[1].UpdateValue(1);
