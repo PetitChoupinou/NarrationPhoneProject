@@ -125,7 +125,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 357291307713472603}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -196,7 +196,7 @@ MonoBehaviour:
   _appType: 11
   _logo: {fileID: 3644473966692851444, guid: 3b8b7c84955a12144870e3e9bca3dfdb, type: 3}
   _closingTime: 1
-  _isUnlocked: 1
+  _isUnlocked: 0
   _content: {fileID: 613720164382788723}
   _returnButton: {fileID: 3285876406555764792}
   _image: {fileID: 524333597517657798}
