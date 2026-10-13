@@ -23,6 +23,7 @@ MonoBehaviour:
   - {fileID: 8123866142440240300, guid: 0c0a5083cf932d94ca165c2f2eb25048, type: 3}
   - {fileID: 2372866346507516327, guid: 496976407bf37244ab1db600c2eb5e20, type: 3}
   - {fileID: 357291307713472603, guid: 0e1daa4f95d6f1f40a797e471db891b9, type: 3}
+  - {fileID: 2372866346507516327, guid: 2c692f2db795cdb44973ff299d5151a5, type: 3}
   _characters:
   - {fileID: 11400000, guid: 3f8e0b0da478e3e4f9f7f3a5b69d87e5, type: 2}
   - {fileID: 11400000, guid: 03c603d32ab85ca42ad6c85194d2b689, type: 2}

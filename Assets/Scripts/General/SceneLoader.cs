@@ -18,13 +18,25 @@ public class SceneLoader : MonoBehaviour
 
     public List<StoryAppSetup> StoriesList { get => _storiesList; set => _storiesList = value; }
     public StoryAppSetup CurrentStorySetup { get => currentStorySetup; set => currentStorySetup = value; }
+    public static SceneLoader Instance { get; private set; }
     #endregion
 
     #region Methods
-
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        else
+        {
+            Instance = this;
+        }
+        DontDestroyOnLoad(this.gameObject);
+    }
     private void Start()
     {
-        DontDestroyOnLoad(this);
     }
     public StoryAppSetup GetStorySetup(string storyName)
     {

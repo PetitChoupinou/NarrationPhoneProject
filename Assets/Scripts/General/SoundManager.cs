@@ -33,8 +33,8 @@ public class Music
 }
 public class SoundManager : MonoBehaviour
 {
-    private float _sfxVolume=1.0f;
-    private float _musicVolume=1.0f;
+    [SerializeField] private float _sfxVolume=1.0f;
+    [SerializeField] private float _musicVolume=1.0f;
 
 
     [SerializeField] private List<SFX> _soundEffects=new List<SFX>();
@@ -53,6 +53,11 @@ public class SoundManager : MonoBehaviour
             if (value > 1.0f) value = 1.0f;
             else if (value < .0f) value = .0f;
             _sfxVolume = value;
+            float soudVolume = 1 * _sfxVolume;
+            foreach (SFX sound in _soundEffects)
+            {
+                soudVolume = sound.volume * _sfxVolume;
+            }
         }
     }
     public float MusicVolume { get => _musicVolume; set
@@ -60,6 +65,11 @@ public class SoundManager : MonoBehaviour
             if(value>1.0f) value=1.0f;
             else if(value<.0f) value=.0f;
             _musicVolume = value;
+            float soundVolume = 1 * _musicVolume;
+            foreach (Music music in _musics)
+            {
+                soundVolume = music.volume * _musicVolume;
+            }
         }
     }
     public void AddSFX(List<SFX> sfxs)
@@ -149,7 +159,7 @@ public class SoundManager : MonoBehaviour
         {
             if (sound.name == soundName)
             {
-                soudVolume = sound.volume;
+                soudVolume = sound.volume* _sfxVolume;
                 break;
             }
         }
@@ -184,7 +194,7 @@ public class SoundManager : MonoBehaviour
         {
             if (music.name == name)
             {
-                soudVolume = music.volume;
+                soudVolume = music.volume * _musicVolume;
                 break;
             }
         }

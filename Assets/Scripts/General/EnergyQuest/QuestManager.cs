@@ -91,4 +91,13 @@ public class QuestManager : MonoBehaviour
         _selectedQuests[1].UpdateValue(1);
         _save.currentQuests = _selectedQuests;
     }
+    public void AddOne(QuestType questType)
+    {
+        List<QuestBase> questBases = Instance.SearchSelectedQuestsByType(questType);
+        if (questBases.Count <= 0) return;
+        foreach (QuestBase quest in questBases)
+        {
+            quest.UpdateValue(1);
+        }
+    }
 }

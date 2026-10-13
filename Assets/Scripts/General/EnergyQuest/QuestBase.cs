@@ -5,7 +5,7 @@ public enum QuestType
 {
     Energy,
     Affinity,
-    Pub,
+    Ads,
     AffinityThreshold,
     Message
 }

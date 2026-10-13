@@ -56,6 +56,10 @@ public class ContactPage : MonoBehaviour
                     visibleValue = 1;
                     break;
             }
+            if (visibleValue > _materialInstance.GetFloat("_RelValue"))
+            {
+                QuestManager.Instance?.AddOne(QuestType.AffinityThreshold);
+            }
             _materialInstance.SetFloat("_RelValue", visibleValue);
             _relation = value;
         }}

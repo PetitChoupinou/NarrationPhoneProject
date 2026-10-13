@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Unity.Services.LevelPlay;
 using UnityEngine;
 
@@ -181,6 +182,7 @@ public class LevelPlayAdsManager : MonoBehaviour
         {
             _interstitialAd.ShowAd();
             Debug.Log("Interstitial Ad Shown");
+            QuestManager.Instance?.AddOne(QuestType.Ads);
         }
     }
 
@@ -230,6 +232,7 @@ public class LevelPlayAdsManager : MonoBehaviour
         {
             _rewardedAd.ShowAd();
             Debug.Log("Rewarded Ad Shown");
+            QuestManager.Instance?.AddOne(QuestType.Ads);
         }
     }
 

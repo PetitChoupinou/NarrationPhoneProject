@@ -184,12 +184,7 @@ public class Discussion : MonoBehaviour
             if (_messageApp.CurrentConv == gameObject)
             {
                 _soundManager.PlaySound("SFX_MessageSend");
-                List<QuestBase> questBases = QuestManager.Instance.SearchSelectedQuestsByType(QuestType.Message);
-                if (questBases.Count <= 0) return;
-                foreach (QuestBase quest in questBases)
-                {
-                    quest.UpdateValue(1);
-                }
+                QuestManager.Instance?.AddOne(QuestType.Message);
             }
         }
         ChangeEmotion(emotion);
@@ -230,12 +225,7 @@ public class Discussion : MonoBehaviour
             if (_messageApp.CurrentConv == gameObject)
             {
                 _soundManager.PlaySound("SFX_MessageSend");
-                List<QuestBase> questBases = QuestManager.Instance.SearchSelectedQuestsByType(QuestType.Message);
-                if (questBases.Count <= 0) return;
-                foreach (QuestBase quest in questBases)
-                {
-                    quest.UpdateValue(1);
-                }
+                QuestManager.Instance?.AddOne(QuestType.Message);
             }
         }
 
@@ -432,15 +422,7 @@ public class Discussion : MonoBehaviour
         {
             _relationFeedback.material = _positifRel;
             _soundManager.PlaySound("SFX_AffinityIncrease");
-            List<QuestBase> questBases = QuestManager.Instance.SearchSelectedQuestsByType(QuestType.Affinity);
-            if (questBases.Count > 0)
-            {
-                foreach (QuestBase quest in questBases)
-                {
-                    quest.UpdateValue(1);
-                }
-                yield return null;
-            }
+            QuestManager.Instance?.AddOne(QuestType.Affinity);
             yield return null;
         }
         else
