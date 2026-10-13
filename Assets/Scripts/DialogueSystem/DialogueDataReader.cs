@@ -540,6 +540,7 @@ public class DialogueDataReader : MonoBehaviour
     public void MakeChoice(string choiceText)
     {
         ChoiceNodeData choiceNodeData = _currentNodeData as ChoiceNodeData;
+        EnergyManager.Instance.CostEnergy(5);
         OutputData choice = GetChoiceFromText(choiceText);
         int choiceID = _currentNodeData.outputs.IndexOf(choice);
         choiceNodeData.chosenChoiceID = choiceID;

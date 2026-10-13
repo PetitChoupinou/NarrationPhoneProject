@@ -17,6 +17,8 @@ public class EnergyManager : MonoBehaviour
     PlayerSaveData _playerSave;
     private SaveManager _saveManager;
     public static EnergyManager Instance { get; private set; }
+
+    public Action<int> OnEnergyChange;
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -36,6 +38,7 @@ public class EnergyManager : MonoBehaviour
             _currentEnergy = value;
             if (_currentEnergy > _energyMax) _currentEnergy = _energyMax;
             if(_currentEnergy<0)_currentEnergy = 0;
+            OnEnergyChange?.Invoke(_currentEnergy);
         }
     }
    
