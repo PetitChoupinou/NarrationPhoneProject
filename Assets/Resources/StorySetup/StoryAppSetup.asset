@@ -153,7 +153,7 @@ MonoBehaviour:
     _month: 9
     _year: 2004
     _hour: 7
-    _minute: 30
+    _minute: 31
   _storySFX:
   - name: SFX_PNJ_MargauxShocked
     clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}

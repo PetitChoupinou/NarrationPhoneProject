@@ -62,19 +62,20 @@ public class MapUI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHan
     {
         _mapApp=FindAnyObjectByType<MapApp>();
         _mapTexture.sprite = map.mapImage;
-        _mapTexture.transform.localScale = new Vector2(map.mapImage.texture.width * map.scale, map.mapImage.texture.height * map.scale);
+        _mapTexture.SetNativeSize();
+        _mapTexture.transform.localScale= Vector3.one*map.scale;
         foreach(LocationData locationData in locations)
         {
            
-            _mapApp.locations.Add(CreateLocation(locationData));
+            _mapApp.locations.Add(CreateLocation(locationData,map.scale));
         }
     }
-    public MapLocation CreateLocation(LocationData data)
+    public MapLocation CreateLocation(LocationData data,float scale)
     {
         GameObject newLocation = Instantiate(_locationPrefab, transform);
         newLocation.GetComponent<RectTransform>().anchoredPosition = new Vector2(data.coordinates.x, data.coordinates.y);
         var mapLocation = newLocation.GetComponent<MapLocation>();
-        mapLocation.SetupInstantiate(data);
+        mapLocation.SetupInstantiate(data,scale);
         
         return mapLocation;
     }
