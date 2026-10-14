@@ -17,6 +17,8 @@ public class MapLocation : MonoBehaviour
 
     public void Setup()
     {
+        transform.localPosition = _data.coordinates;
+        isMainLocation = Data.isStartLocation;
         _infos.SetupInfos(_data);
         if (isMainLocation)
         {

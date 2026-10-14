@@ -11,6 +11,7 @@ public class MapUI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHan
     private Vector2 _originMapPosition;
     private Vector2[] _boundsMap;
     private Vector2 _basePosition;
+    private MapApp _mapApp;
 
     [SerializeField] Image _mapTexture;
     [SerializeField] GameObject _locationPrefab;
@@ -57,7 +58,17 @@ public class MapUI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHan
     {
 
     }
-
+    public void Setup(MapSetup map,List<LocationData> locations)
+    {
+        _mapApp=FindAnyObjectByType<MapApp>();
+        _mapTexture.sprite = map.mapImage;
+        _mapTexture.transform.localScale = new Vector2(map.mapImage.texture.width * map.scale, map.mapImage.texture.height * map.scale);
+        foreach(LocationData locationData in locations)
+        {
+           
+            _mapApp.locations.Add(CreateLocation(locationData));
+        }
+    }
     public MapLocation CreateLocation(LocationData data)
     {
         GameObject newLocation = Instantiate(_locationPrefab, transform);

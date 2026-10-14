@@ -21,13 +21,7 @@ public class MapApp : BaseApplication
 
     public override void SetUp(StoryAppSetup setup)
     {
-        locations.Clear();
-        locations.AddRange(_mapUI.GetExistingLocations());
-        foreach (LocationData location in setup.Locations)
-        {
-            MapLocation newLocation = _mapUI.CreateLocation(location);
-            locations.Add(newLocation);
-        }
+        _mapUI.Setup(setup.Map,setup.Locations);
     }
 
     public void SetPhotoHasBeenTaken(string locationName)

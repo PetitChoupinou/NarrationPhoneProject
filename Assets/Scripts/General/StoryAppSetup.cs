@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,6 +19,7 @@ public class StoryAppSetup : ScriptableObject
     [SerializeField] Sprite _baseCameraPhoto;
     [SerializeField] bool _hasPhotoBeenTaken;
     [SerializeField] HackSetup _hackAppSetup;
+    [SerializeField] MapSetup _map;
     List<LocationData> _locations = new List<LocationData>();
     [SerializeField] TimeData _timeData = new TimeData();
     [SerializeField] List<SFX> _storySFX = new List<SFX>();
@@ -42,6 +44,7 @@ public class StoryAppSetup : ScriptableObject
     public List<SFX> StorySFX { get => _storySFX;}
     public List<Music> StoryMus { get => _storyMus;}
     public EndGameContact EndGameContact { get => _endGameContact; }
+    public MapSetup Map { get => _map; set => _map = value; }
 
     public void AddApplication()
     {
@@ -161,6 +164,20 @@ public class StoryAppSetup : ScriptableObject
     {
         _internetSearches[i] = obj;
     }
+    public void AddLocation()
+    {
+        LocationData newLoc = new LocationData();
+        _locations.Add(newLoc);
+
+    }
+    public void RemoveLocation(int appPos)
+    {
+        _locations.RemoveAt(appPos);
+    }
+    public void SetLocation(int i, LocationData obj)
+    {
+        _locations[i] = obj;
+    }
 }
 
 [Serializable]
@@ -207,10 +224,16 @@ public struct LocationData
     public Vector2 coordinates;
     public Sprite photo;
     public bool hasPhotoBeenTaken;
+    public bool isStartLocation;
     public NetworkState networkState;
 }
 
-
+[Serializable]
+public struct MapSetup
+{
+    public Sprite mapImage;
+    public int scale;
+}
 [Serializable]
 public struct PhoneNumbers
 {
