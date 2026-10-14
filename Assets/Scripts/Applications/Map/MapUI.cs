@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class MapUI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
+public class MapUI : MonoBehaviour
 {
     private RectTransform _rectTransform;
     private Vector2 _originPointerPosition;
@@ -42,28 +42,28 @@ public class MapUI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHan
 
     }
 
-    public void OnDrag(PointerEventData eventData)
-    {
-        var drag = eventData.position - _originPointerPosition;
-        Vector2 newPosition = _originMapPosition + drag;
-        Vector2 clampedPosition = new Vector2(
-            Mathf.Clamp(newPosition.x, _boundsMap[0].x, _boundsMap[1].x),
-            Mathf.Clamp(newPosition.y, _boundsMap[0].y, _boundsMap[1].y));
-        _rectTransform.anchoredPosition = clampedPosition;
-        /*pointPos.transform.position = clampedPosition;
-        Debug.Log($"{_boundsMap[0].x} < {clampedPosition.x} < {_boundsMap[1].x} \n {_boundsMap[0].y} < {clampedPosition.y} < {_boundsMap[1].y}");*/
-    }
+    /*public void OnDrag(PointerEventData eventData)
+     {
+         var drag = eventData.position - _originPointerPosition;
+         Vector2 newPosition = _originMapPosition + drag;
+         Vector2 clampedPosition = new Vector2(
+             Mathf.Clamp(newPosition.x, _boundsMap[0].x, _boundsMap[1].x),
+             Mathf.Clamp(newPosition.y, _boundsMap[0].y, _boundsMap[1].y));
+         _rectTransform.anchoredPosition = clampedPosition;
+         /*pointPos.transform.position = clampedPosition;
+         Debug.Log($"{_boundsMap[0].x} < {clampedPosition.x} < {_boundsMap[1].x} \n {_boundsMap[0].y} < {clampedPosition.y} < {_boundsMap[1].y}");
+     }
 
-    public void OnEndDrag(PointerEventData eventData)
-    {
+     public void OnEndDrag(PointerEventData eventData)
+     {
 
-    }
+     }*/
     public void Setup(MapSetup map,List<LocationData> locations)
     {
         _mapApp=FindAnyObjectByType<MapApp>();
         _mapTexture.sprite = map.mapImage;
         _mapTexture.SetNativeSize();
-        _mapTexture.transform.localScale= Vector3.one*map.scale;
+        _mapTexture.rectTransform.sizeDelta*=map.scale;
         foreach(LocationData locationData in locations)
         {
            
@@ -72,7 +72,7 @@ public class MapUI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHan
     }
     public MapLocation CreateLocation(LocationData data,float scale)
     {
-        GameObject newLocation = Instantiate(_locationPrefab, transform);
+        GameObject newLocation = Instantiate(_locationPrefab, _mapTexture.transform);
         newLocation.GetComponent<RectTransform>().anchoredPosition = new Vector2(data.coordinates.x, data.coordinates.y);
         var mapLocation = newLocation.GetComponent<MapLocation>();
         mapLocation.SetupInstantiate(data,scale);
