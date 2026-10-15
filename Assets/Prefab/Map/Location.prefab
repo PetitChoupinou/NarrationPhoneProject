@@ -188,6 +188,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   _infos: {fileID: 2261527203352367184}
+  isMainLocation: 0
+  _data:
+    locationName: 
+    image: {fileID: 0}
+    coordinates: {x: 0, y: 0}
+    photo: {fileID: 0}
+    hasPhotoBeenTaken: 0
+    isStartLocation: 0
+    networkState: 0
 --- !u!1 &7235124811293448783
 GameObject:
   m_ObjectHideFlags: 0
@@ -353,10 +362,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1232383198490396207}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 71.72003}
-  m_SizeDelta: {x: 0, y: 143.44}
+  m_SizeDelta: {x: 270, y: 143.44}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5438696347009145059
 CanvasRenderer:
@@ -504,3 +513,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MapLocationsInfos
   _image: {fileID: 3446047979925059502}
   _title: {fileID: 5022993468840446849}
+  _networkS: 0

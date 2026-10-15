@@ -27,6 +27,7 @@ public class StorySetupTool:EditorWindow
     Vector2 _scrollPos8;
     Vector2 _scrollPos11;
     Vector2 _scrollPos13;
+    Vector2 _scrollPos14;
     List<Vector2> _scrollPos7=new List<Vector2>();
     List<Vector2> _scrollPos9=new List<Vector2>();
     List<Vector2> _scrollPos10=new List<Vector2>();
@@ -577,6 +578,121 @@ public class StorySetupTool:EditorWindow
                 {
                     _activeStory.AddSearch();
                 }
+                break;
+            case ApplicationType.Map:
+               EditorGUILayout.BeginHorizontal();
+                EditorGUILayout.BeginVertical(GUILayout.Width(960));
+                MapSetup map = _activeStory.Map;
+                 map.mapImage = (Sprite)EditorGUILayout.ObjectField("map ", map.mapImage, typeof(Sprite), false, GUILayout.MaxWidth(200));
+                bool isWider=true;
+                float xMin = 10;
+                float yMin = 200;
+                float width = 0;
+                float height = 0;
+                float MaxSize = 700;
+                if(map.mapImage != null)
+                {
+                    map.scale = EditorGUILayout.IntSlider("map Scale", map.scale, 3, 10);
+                    if (map.mapImage.textureRect.width > map.mapImage.textureRect.height)
+                    {
+                        width = map.mapImage.textureRect.width / map.mapImage.textureRect.width * MaxSize;
+                        height = map.mapImage.textureRect.height / map.mapImage.textureRect.width * MaxSize;
+                    }
+                    else
+                    {
+                        width = map.mapImage.textureRect.width / map.mapImage.textureRect.height * MaxSize;
+                        height = map.mapImage.textureRect.height / map.mapImage.textureRect.height * MaxSize;
+                        isWider = false;
+                    }
+                    Rect displayRect = new Rect(xMin, yMin, width, height);
+                    GUI.DrawTexture(displayRect, map.mapImage.texture);
+                    for (int i = 0; i < _activeStory.Locations.Count; i++)
+                    {
+                        LocationData currentLocation = _activeStory.Locations[i];
+                        if (currentLocation.image == null) continue;
+                        float locXMin = xMin + width / 2;
+                        float locYMin = yMin + height / 2;
+                        float topLeftLocationX = currentLocation.coordinates.x;
+                        float topLeftLocationY = currentLocation.coordinates.y;
+                        if (isWider)
+                        {                     
+                            locXMin += Mathf.Min(topLeftLocationX / map.mapImage.textureRect.width * MaxSize, width/2-80);
+                            locYMin += Mathf.Max(-topLeftLocationY / map.mapImage.textureRect.width * MaxSize, -height/2-80);
+                        }
+                        else
+                        {
+                            locXMin += Mathf.Min(topLeftLocationX / map.mapImage.textureRect.height * MaxSize, width/2 - 80);
+                            locYMin += Mathf.Max(-topLeftLocationY / map.mapImage.textureRect.height * MaxSize, -height/2 -80);
+                        }
+                        float locWidth = 0;
+                        float locHeight = 0;
+                        if (currentLocation.image.textureRect.width > currentLocation.image.textureRect.height)
+                        {
+
+                            locWidth = currentLocation.image.textureRect.width / currentLocation.image.textureRect.width * 80;
+                            locHeight = currentLocation.image.textureRect.height / currentLocation.image.textureRect.width * 80;
+                        }
+                        else
+                        {
+                            locWidth = currentLocation.image.textureRect.width / currentLocation.image.textureRect.height * 80;
+                            locHeight = currentLocation.image.textureRect.height / currentLocation.image.textureRect.height * 80;
+                        }                        
+                        if (currentLocation.image != null)
+                        {
+                            Rect displayLocRect = new Rect(locXMin, locYMin, locWidth, locHeight);
+                            GUI.DrawTexture(displayLocRect, currentLocation.image.texture);
+                        }
+                    }
+                }
+                _activeStory.Map = map;
+                EditorGUILayout.EndVertical();
+                if (map.mapImage != null)
+                {
+                    EditorGUILayout.BeginVertical();
+                    _scrollPos14 = EditorGUILayout.BeginScrollView(_scrollPos14, GUILayout.MaxHeight(Mathf.Min(800, _activeStory.Locations.Count * 300)), GUILayout.MaxWidth(960));
+                    for (int i = 0; i < _activeStory.Locations.Count; i++)
+                    {
+                        LocationData currentLocation = _activeStory.Locations[i];
+                        currentLocation.locationName = EditorGUILayout.TextField("Locarion Name : ", currentLocation.locationName, new GUIStyle(GUI.skin.textField) { fontSize = 14, alignment = TextAnchor.MiddleCenter }, GUILayout.MaxWidth(940));
+                        currentLocation.image = (Sprite)EditorGUILayout.ObjectField("Visual ", currentLocation.image, typeof(Sprite), false, GUILayout.MaxWidth(200));
+                        GUILayout.Label("Coordinates :", new GUIStyle(GUI.skin.label) { fontSize = 14, fontStyle = FontStyle.Bold, alignment = TextAnchor.MiddleCenter });
+                        currentLocation.coordinates.x = EditorGUILayout.Slider("x",currentLocation.coordinates.x, -map.mapImage.textureRect.width / 2, map.mapImage.textureRect.width / 2,GUILayout.MaxWidth(940));
+                        currentLocation.coordinates.y = EditorGUILayout.Slider("y",currentLocation.coordinates.y, -map.mapImage.textureRect.height / 2, map.mapImage.textureRect.height / 2, GUILayout.MaxWidth(940));
+                        if (GUILayout.Button("Reset Coordinates", new GUIStyle(GUI.skin.button) { fixedWidth = 940 }))
+                        {
+                            currentLocation.coordinates = Vector2.zero;
+                        }
+                        currentLocation.photo = (Sprite)EditorGUILayout.ObjectField("Photo ", currentLocation.photo, typeof(Sprite), false, GUILayout.MaxWidth(200));
+                        currentLocation.hasPhotoBeenTaken = false;
+                        currentLocation.networkState= (NetworkState)EditorGUILayout.EnumPopup("Network State", (NetworkState)currentLocation.networkState, GUILayout.MaxWidth(940));
+                        currentLocation.isStartLocation = EditorGUILayout.Toggle("startLocation", currentLocation.isStartLocation);
+                        if (currentLocation.isStartLocation)
+                        {
+                            for(int j=0;j< _activeStory.Locations.Count;j++)
+                            {
+                                if (i == j) continue;
+                                LocationData temp = _activeStory.Locations[j];
+                                temp.isStartLocation = false;
+                                _activeStory.SetLocation(j, temp);
+                            }
+                        }
+                        _activeStory.SetLocation(i, currentLocation);
+                        if (GUILayout.Button("Remove Location", new GUIStyle(GUI.skin.button) { fixedWidth = 940 }))
+                        {
+                            _activeStory.RemoveLocation(i);
+                            break;
+                        }
+                        if (i != _activeStory.InternetSeraches.Count - 1)
+                            GUILayout.Label("----------------- ", new GUIStyle(GUI.skin.label) { fixedWidth = 320, fontSize = 14, alignment = TextAnchor.MiddleLeft });
+                    }
+                    EditorGUILayout.EndScrollView();
+                    if (GUILayout.Button("Add Location", new GUIStyle(GUI.skin.button) { fixedWidth = 960 }))
+                    {
+                        _activeStory.AddLocation();
+                    }
+                    EditorGUILayout.EndVertical();
+                }                 
+                EditorGUILayout.EndHorizontal();
                 break;
         }
 

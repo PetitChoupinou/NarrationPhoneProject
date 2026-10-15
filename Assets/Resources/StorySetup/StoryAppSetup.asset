@@ -24,6 +24,7 @@ MonoBehaviour:
   - {fileID: 2372866346507516327, guid: 496976407bf37244ab1db600c2eb5e20, type: 3}
   - {fileID: 357291307713472603, guid: 0e1daa4f95d6f1f40a797e471db891b9, type: 3}
   - {fileID: 2372866346507516327, guid: 2c692f2db795cdb44973ff299d5151a5, type: 3}
+  - {fileID: 2250242251753996431, guid: 8c7873ef089222d48b008521f06136c0, type: 3}
   _characters:
   - {fileID: 11400000, guid: 3f8e0b0da478e3e4f9f7f3a5b69d87e5, type: 2}
   - {fileID: 11400000, guid: 03c603d32ab85ca42ad6c85194d2b689, type: 2}
@@ -39,37 +40,37 @@ MonoBehaviour:
       month: 9
       day: 18
       hour: 7
-      minute: 24
+      minute: 29
     - image: {fileID: 7298310966751983079, guid: f6cd726496e77b84b878fd7637c091fe, type: 3}
       year: 2004
       month: 9
       day: 18
       hour: 7
-      minute: 24
+      minute: 29
     - image: {fileID: -6339490155590231895, guid: bc0e8cf4e20220347ab29c12043161ad, type: 3}
       year: 2004
       month: 9
       day: 18
       hour: 7
-      minute: 24
+      minute: 29
     - image: {fileID: -3377733585956486557, guid: b876b05016e2ffe4090cfc98183377f9, type: 3}
       year: 2004
       month: 9
       day: 18
       hour: 7
-      minute: 24
+      minute: 29
     - image: {fileID: 1032789822446295852, guid: df3a1e6d07e17f34b9c25f1dd0e2d64a, type: 3}
       year: 2004
       month: 9
       day: 18
       hour: 7
-      minute: 24
+      minute: 29
     - image: {fileID: 6744153285509335332, guid: 3b7e7ae6f317e504781f28933dd8e9ed, type: 3}
       year: 2004
       month: 9
       day: 18
       hour: 7
-      minute: 24
+      minute: 29
   - title: Locked
     locked: 1
     password: Feur
@@ -79,7 +80,7 @@ MonoBehaviour:
       month: 9
       day: 18
       hour: 7
-      minute: 24
+      minute: 29
   _notes:
   - title: Cours
     content: "<b>Lundi</b>: \L- Fran\xE7ais / Madame Koleti\L- Math / Madame Guarez\n\n<b>Mardi</b>
@@ -144,12 +145,30 @@ MonoBehaviour:
         day: 18
         hour: 7
         minute: 29
+  _map:
+    mapImage: {fileID: 5560895361754357282, guid: c76fa425048026643aa11e3ea479f652, type: 3}
+    scale: 4
+  _locations:
+  - locationName: Good Place
+    image: {fileID: 21300000, guid: 2cf0cd442c01540458da28c2e47364f9, type: 3}
+    coordinates: {x: -90, y: -371}
+    photo: {fileID: 6748820506961262863, guid: 521044b30c7abdd4f90a60edc5fcedde, type: 3}
+    hasPhotoBeenTaken: 0
+    isStartLocation: 1
+    networkState: 2
+  - locationName: Bad Place
+    image: {fileID: 3644473966692851444, guid: 3b8b7c84955a12144870e3e9bca3dfdb, type: 3}
+    coordinates: {x: -213, y: 952}
+    photo: {fileID: 8263758102705654945, guid: fac3dcea5c7d8b04c9e32747b717483d, type: 3}
+    hasPhotoBeenTaken: 0
+    isStartLocation: 0
+    networkState: 0
   _timeData:
     _day: 18
     _month: 9
     _year: 2004
     _hour: 7
-    _minute: 29
+    _minute: 31
   _storySFX:
   - name: SFX_PNJ_MargauxShocked
     clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}

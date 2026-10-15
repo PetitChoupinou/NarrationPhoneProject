@@ -11,9 +11,11 @@ public class MapLocationsInfos : MonoBehaviour
     [SerializeField] private NetworkState _networkS;
 
 
-    public void SetupInfos(LocationData data)
+    public void SetupInfos(LocationData data,float scale)
     {
         _image.sprite = data.image;
+        _image.SetNativeSize();
+        transform.localScale = Vector3.one*scale;
         _title.text = data.locationName;
         _networkS = data.networkState;
     }
