@@ -8,17 +8,20 @@ using UnityEngine.UI;
 
 public class DarkModeManager : MonoBehaviour
 {
-    [SerializeField] List<TextMeshProUGUI> _darkModeTexts = new List<TextMeshProUGUI>();
-    [SerializeField] List<Image> _darkModeBackgrounds = new List<Image>();
-    [SerializeField] List<Image> _darkModeBackgroundsBlackAndWhite = new List<Image>();
+    List<TextMeshProUGUI> _darkModeTexts = new List<TextMeshProUGUI>();
+    List<Image> _darkModeBackgrounds = new List<Image>();
+    List<Image> _darkModeBackgroundsBlackAndWhite = new List<Image>();
+    List<Image> _darkModePanels = new List<Image>();
 
     [Header("Light Mode")]
     [SerializeField] Color _lightModeTextColor;
     [SerializeField] Color _lightModeBackgroundColor;
+    [SerializeField] Color _lightModePanelColor;
 
     [Header("Dark Mode")]
     [SerializeField] Color _darkModeTextColor;
     [SerializeField] Color _darkModeBackgroundColor;
+    [SerializeField] Color _darkModePanelColor;
 
     bool _isDarkMode;
 
@@ -82,6 +85,13 @@ public class DarkModeManager : MonoBehaviour
             _darkModeBackgroundsBlackAndWhite.Add(image.GetComponent<Image>());
         }
 
+        _darkModePanels.Clear();
+        var tempPanel = GameObject.FindGameObjectsWithTag("DarkModePanel");
+        foreach (var image in tempPanel)
+        {
+            _darkModePanels.Add(image.GetComponent<Image>());
+        }
+
     }
 
     public void SwitchMode(bool toDarkMode)
@@ -104,6 +114,12 @@ public class DarkModeManager : MonoBehaviour
         {
             if (toDarkMode) _darkModeBackgroundsBlackAndWhite[i].color = Color.black;
             else _darkModeBackgroundsBlackAndWhite[i].color = Color.white;
+        }
+
+        for (int i = 0; i < _darkModePanels.Count; i++)
+        {
+            if (toDarkMode) _darkModePanels[i].color = _darkModePanelColor;
+            else _darkModePanels[i].color = _lightModePanelColor;
         }
     }
 

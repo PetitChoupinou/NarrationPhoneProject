@@ -507,7 +507,6 @@ GameObject:
   - component: {fileID: 5896309710404336793}
   - component: {fileID: 7631096056837703605}
   - component: {fileID: 8943198865856775698}
-  - component: {fileID: 1363618133360884016}
   m_Layer: 5
   m_Name: Viewport
   m_TagString: DarkModeBackgroundBlackWhite
@@ -573,19 +572,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1363618133360884016
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5117226412392144362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Mask
-  m_ShowMaskGraphic: 0
 --- !u!1 &5979657365239897478
 GameObject:
   m_ObjectHideFlags: 0
