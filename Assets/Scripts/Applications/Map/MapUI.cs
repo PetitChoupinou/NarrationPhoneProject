@@ -67,7 +67,7 @@ public class MapUI : MonoBehaviour
         foreach(LocationData locationData in locations)
         {
            
-            _mapApp.locations.Add(CreateLocation(locationData,map.scale));
+            _mapApp.AddLocation(CreateLocation(locationData,map.scale));
         }
     }
     public MapLocation CreateLocation(LocationData data,float scale)

@@ -26,7 +26,7 @@ public class PhoneManager : MonoBehaviour
     public AppDepth CurrentDepth { get => _currentDepth; }
     public LocationData CurrentLocation {
         get {
-            return AppManager.Instance.GetApplication(ApplicationType.Map).GetComponent<MapApp>().locations.Find(x => x.Data.locationName == _currentLocation.locationName).Data;
+            return AppManager.Instance.GetApplication(ApplicationType.Map).GetComponent<MapApp>().Locations.Find(x => x.Data.locationName == _currentLocation.locationName).Data;
         }
                 
         set {

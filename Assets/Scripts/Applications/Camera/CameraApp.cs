@@ -31,7 +31,7 @@ public class CameraApp : BaseApplication
         _setup = _phoneManager.Setup;
         if (AppManager.Instance.GetApplication(ApplicationType.Map))
         {
-            foreach (var location in _mapApp.locations)
+            foreach (var location in _mapApp.Locations)
             {
                 LocationPhotoData photoSavedData = SaveManager.Instance.LoadLocationPhoto(location.Data.locationName, _setup.Name);
                 if (photoSavedData != null)

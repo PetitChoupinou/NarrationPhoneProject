@@ -6,7 +6,10 @@ public class MapApp : BaseApplication
 {
     [SerializeField] private GameObject _mapContent;
     [SerializeField] private MapUI _mapUI;
-    public List<MapLocation> locations = new List<MapLocation>();
+    private List<MapLocation> _locations = new List<MapLocation>();
+
+    public List<MapLocation> Locations { get => _locations;}
+
     public void OnActivated()
     {
 
@@ -23,10 +26,13 @@ public class MapApp : BaseApplication
     {
         _mapUI.Setup(setup.Map,setup.Locations);
     }
-
+    public void AddLocation(MapLocation loc)
+    {
+        _locations.Add(loc);
+    }
     public void SetPhotoHasBeenTaken(string locationName)
     {
-        MapLocation foundLocation = locations.Find(x => x.Data.locationName == locationName);
+        MapLocation foundLocation = _locations.Find(x => x.Data.locationName == locationName);
         if( foundLocation != null)
         {
             LocationData newLocation = new LocationData()

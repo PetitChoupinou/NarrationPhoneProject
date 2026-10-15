@@ -147,7 +147,22 @@ MonoBehaviour:
         minute: 29
   _map:
     mapImage: {fileID: 5560895361754357282, guid: c76fa425048026643aa11e3ea479f652, type: 3}
-    scale: 5
+    scale: 4
+  _locations:
+  - locationName: Good Place
+    image: {fileID: 21300000, guid: 2cf0cd442c01540458da28c2e47364f9, type: 3}
+    coordinates: {x: -90, y: -371}
+    photo: {fileID: 6748820506961262863, guid: 521044b30c7abdd4f90a60edc5fcedde, type: 3}
+    hasPhotoBeenTaken: 0
+    isStartLocation: 1
+    networkState: 2
+  - locationName: Bad Place
+    image: {fileID: 3644473966692851444, guid: 3b8b7c84955a12144870e3e9bca3dfdb, type: 3}
+    coordinates: {x: -213, y: 952}
+    photo: {fileID: 8263758102705654945, guid: fac3dcea5c7d8b04c9e32747b717483d, type: 3}
+    hasPhotoBeenTaken: 0
+    isStartLocation: 0
+    networkState: 0
   _timeData:
     _day: 18
     _month: 9

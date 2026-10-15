@@ -20,7 +20,7 @@ public class StoryAppSetup : ScriptableObject
     [SerializeField] bool _hasPhotoBeenTaken;
     [SerializeField] HackSetup _hackAppSetup;
     [SerializeField] MapSetup _map;
-    List<LocationData> _locations = new List<LocationData>();
+    [SerializeField]List<LocationData> _locations = new List<LocationData>();
     [SerializeField] TimeData _timeData = new TimeData();
     [SerializeField] List<SFX> _storySFX = new List<SFX>();
     [SerializeField] List<Music> _storyMus = new List<Music>();
