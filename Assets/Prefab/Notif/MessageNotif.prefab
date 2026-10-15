@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4269382575234380802}
   m_Layer: 5
   m_Name: titre
-  m_TagString: Untagged
+  m_TagString: DarkModeText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 5663826432938162322}
   m_Layer: 5
   m_Name: content
-  m_TagString: Untagged
+  m_TagString: DarkModeText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -292,7 +292,7 @@ GameObject:
   - component: {fileID: 5595225160885862084}
   m_Layer: 5
   m_Name: MessageNotif
-  m_TagString: Untagged
+  m_TagString: DarkModeBackground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

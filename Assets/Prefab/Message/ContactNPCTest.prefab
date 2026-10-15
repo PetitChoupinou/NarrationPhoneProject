@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2443845873608045551}
   m_Layer: 5
   m_Name: ContactNPCTest
-  m_TagString: Untagged
+  m_TagString: DarkModeBackground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -190,7 +190,7 @@ GameObject:
   - component: {fileID: 7802302841867479686}
   m_Layer: 5
   m_Name: Name
-  m_TagString: Untagged
+  m_TagString: DarkModeText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -402,7 +402,7 @@ GameObject:
   - component: {fileID: 2721011294333558583}
   m_Layer: 5
   m_Name: LastText
-  m_TagString: Untagged
+  m_TagString: DarkModeText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

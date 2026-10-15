@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 5261589508315288709}
   m_Layer: 5
   m_Name: Name
-  m_TagString: Untagged
+  m_TagString: DarkModeText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 8048567857644077451}
   m_Layer: 5
   m_Name: Preview
-  m_TagString: Untagged
+  m_TagString: DarkModeText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -365,7 +365,7 @@ GameObject:
   - component: {fileID: -4234063966190668335}
   m_Layer: 5
   m_Name: Button
-  m_TagString: Untagged
+  m_TagString: DarkModePanel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

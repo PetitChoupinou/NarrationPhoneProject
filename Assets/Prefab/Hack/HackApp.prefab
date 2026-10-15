@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8431413774917877647}
   m_Layer: 5
   m_Name: BackGround
-  m_TagString: Untagged
+  m_TagString: DarkModeBackgroundBlackWhite
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -552,7 +552,7 @@ GameObject:
   - component: {fileID: 8746281559276803869}
   m_Layer: 5
   m_Name: Button
-  m_TagString: Untagged
+  m_TagString: DarkModeBackground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -761,7 +761,7 @@ GameObject:
   - component: {fileID: 2127459435414901505}
   m_Layer: 5
   m_Name: Header
-  m_TagString: Untagged
+  m_TagString: DarkModePanel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -864,7 +864,7 @@ GameObject:
   - component: {fileID: 6000128905983545686}
   m_Layer: 5
   m_Name: Text (TMP)
-  m_TagString: Untagged
+  m_TagString: DarkModeText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1001,7 +1001,7 @@ GameObject:
   - component: {fileID: 7840794927283290736}
   m_Layer: 5
   m_Name: Text (TMP)
-  m_TagString: Untagged
+  m_TagString: DarkModeText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -349,7 +349,7 @@ GameObject:
   - component: {fileID: 325279070}
   m_Layer: 5
   m_Name: Panel
-  m_TagString: Untagged
+  m_TagString: DarkModeBackground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -448,7 +448,7 @@ GameObject:
   - component: {fileID: 332904378}
   m_Layer: 5
   m_Name: BaseClock
-  m_TagString: Untagged
+  m_TagString: DarkModeText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1089,7 +1089,7 @@ GameObject:
   - component: {fileID: 822452678}
   m_Layer: 5
   m_Name: Text (TMP)
-  m_TagString: Untagged
+  m_TagString: DarkModeText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1363,7 +1363,7 @@ GameObject:
   - component: {fileID: 895542948}
   m_Layer: 5
   m_Name: BgPhone
-  m_TagString: Untagged
+  m_TagString: DarkModeBackground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1847,7 +1847,7 @@ GameObject:
   - component: {fileID: 981459800}
   m_Layer: 5
   m_Name: Time
-  m_TagString: Untagged
+  m_TagString: DarkModeText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2147,7 +2147,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -21731984, y: 13317442}
+  m_AnchoredPosition: {x: -21998370, y: 13480629}
   m_SizeDelta: {x: 0, y: 217.0715}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1056708366
@@ -2294,7 +2294,7 @@ GameObject:
   - component: {fileID: 1310047009}
   m_Layer: 5
   m_Name: Date
-  m_TagString: Untagged
+  m_TagString: DarkModeText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2863,7 +2863,7 @@ GameObject:
   - component: {fileID: 1872290648}
   m_Layer: 5
   m_Name: Footer
-  m_TagString: Untagged
+  m_TagString: DarkModeBackground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3206,6 +3206,75 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Clock
   _clock: {fileID: 332904378}
   _date: {fileID: 1310047009}
+--- !u!1001 &124547063261366348
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 992345089646472197, guid: 375f642a1cf92a94d868618b6884b3d9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1409.8774
+      objectReference: {fileID: 0}
+    - target: {fileID: 992345089646472197, guid: 375f642a1cf92a94d868618b6884b3d9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1296.6381
+      objectReference: {fileID: 0}
+    - target: {fileID: 992345089646472197, guid: 375f642a1cf92a94d868618b6884b3d9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 992345089646472197, guid: 375f642a1cf92a94d868618b6884b3d9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 992345089646472197, guid: 375f642a1cf92a94d868618b6884b3d9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 992345089646472197, guid: 375f642a1cf92a94d868618b6884b3d9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 992345089646472197, guid: 375f642a1cf92a94d868618b6884b3d9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 992345089646472197, guid: 375f642a1cf92a94d868618b6884b3d9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 992345089646472197, guid: 375f642a1cf92a94d868618b6884b3d9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 992345089646472197, guid: 375f642a1cf92a94d868618b6884b3d9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5411528199638788296, guid: 375f642a1cf92a94d868618b6884b3d9, type: 3}
+      propertyPath: m_Name
+      value: DarkModeManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432038365686289591, guid: 375f642a1cf92a94d868618b6884b3d9, type: 3}
+      propertyPath: _lightModeTextColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432038365686289591, guid: 375f642a1cf92a94d868618b6884b3d9, type: 3}
+      propertyPath: _lightModeTextColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432038365686289591, guid: 375f642a1cf92a94d868618b6884b3d9, type: 3}
+      propertyPath: _lightModeTextColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 375f642a1cf92a94d868618b6884b3d9, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -3216,3 +3285,4 @@ SceneRoots:
   - {fileID: 221021131}
   - {fileID: 1753935422}
   - {fileID: 498558611}
+  - {fileID: 124547063261366348}

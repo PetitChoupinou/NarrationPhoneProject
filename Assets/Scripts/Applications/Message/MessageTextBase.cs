@@ -18,6 +18,7 @@ public class MessageTextBase : MonoBehaviour
     private void Awake()
     {
         _layoutGroup = GetComponent<HorizontalLayoutGroup>();
+        DarkModeManager.Instance.SwitchObjectToDarkMode(gameObject.transform.GetChild(0).GetComponent<Image>());
 
     }
     public void SetIsNPC(bool isNPC)
@@ -44,6 +45,7 @@ public class MessageTextBase : MonoBehaviour
            msg= AddLineReturn(msg);
         }
         _textTyper.ReadText(msg);
+        DarkModeManager.Instance.SwitchObjectToDarkMode(_textTyper.TextField);
     }
 
     

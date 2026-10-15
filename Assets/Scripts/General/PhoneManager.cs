@@ -88,6 +88,7 @@ public class PhoneManager : MonoBehaviour
             app.PostSetUp();
         }
         ClockSystem.SetUp(_setup);
+        
     }
     public void CloseApps()
     {

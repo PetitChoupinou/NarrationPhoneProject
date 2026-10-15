@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 4737167027249347800}
   m_Layer: 5
   m_Name: BGmsg
-  m_TagString: Untagged
+  m_TagString: DarkModeBackground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -13,6 +13,8 @@ public class MessageChoice : MonoBehaviour
     {
         CheckForEnergy(EnergyManager.Instance.CurrentEnergy);
         EnergyManager.Instance.OnEnergyChange += CheckForEnergy;
+        DarkModeManager.Instance.SwitchObjectToDarkMode(text.GetComponent<TextMeshProUGUI>());
+        DarkModeManager.Instance.SwitchObjectToDarkMode(GetComponent<Image>());
     }
     public void OnPressed()
     {

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1917859792880904686}
   m_Layer: 5
   m_Name: ShareButton
-  m_TagString: Untagged
+  m_TagString: DarkModeBackground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
