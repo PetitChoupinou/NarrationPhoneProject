@@ -43,7 +43,8 @@ public class Discussion : MonoBehaviour
     private List<GameObject> _choiceButtons = new List<GameObject>();
     private ScrollRect _scrollRect;
     private SoundManager _soundManager;
-    
+    private PhoneManager _phoneManager;
+    private AppManager _appManager;
 
     private DialogueDataReader _dialogueDataReader;
 
@@ -74,18 +75,9 @@ public class Discussion : MonoBehaviour
         _scrollRect = GetComponentInChildren<ScrollRect>();
         _charaVisuBasePosition = _charaVisu.GetComponent<RectTransform>().anchoredPosition;
         _soundManager = SoundManager.Instance;
+        _phoneManager = PhoneManager.Instance;
+        _appManager = AppManager.Instance;
     }
-#if UNITY_EDITOR
-    bool isCharaVisuSideMode=true;
-    private void Update()
-    {
-        if (Keyboard.current.spaceKey.wasReleasedThisFrame)
-        {
-            print("f");
-            isCharaVisuSideMode = !isCharaVisuSideMode;
-        }
-    }
-#endif
     /// <summary>
     /// Not OnEnable as it is not disabled when not on it
     /// </summary>
@@ -97,7 +89,7 @@ public class Discussion : MonoBehaviour
         _isEnabled = true;
         if(_headerText)
         _headerText.text = _iD;
-        PhoneManager.Instance.ChangeDepth(PhoneManager.AppDepth.inApp);
+        _phoneManager.ChangeDepth(PhoneManager.AppDepth.inApp);
         _messageApp.SetCurrentConv(transform.gameObject);
       /*  if (_sendingButton.Enabled)
         {
@@ -151,7 +143,7 @@ public class Discussion : MonoBehaviour
     /// <param name="emotion">the emotion shown by the character</param>
     public void AddMessage(string text,bool isNPC, CharaEmotion emotion = CharaEmotion.Base)
     {
-        if (AppManager.Instance.GetApplication(ApplicationType.Map)&&PhoneManager.Instance.CurrentLocation.networkState == NetworkState.Bad)
+        if (_appManager.GetApplication(ApplicationType.Map)&&_phoneManager.CurrentNetworkState == NetworkState.Bad)
         {
             _pendingMsgs.Enqueue(new PendingMsg(isNPC, text));
             return;
@@ -192,7 +184,7 @@ public class Discussion : MonoBehaviour
 
     public void AddImage(Sprite image, bool isNPC)
     {
-        if (AppManager.Instance.GetApplication(ApplicationType.Map) && PhoneManager.Instance.CurrentLocation.networkState == NetworkState.Bad)
+        if (_appManager.GetApplication(ApplicationType.Map) && _phoneManager.CurrentNetworkState == NetworkState.Bad)
         {
 
             _pendingMsgs.Enqueue(new PendingMsg(isNPC, image));
@@ -237,7 +229,7 @@ public class Discussion : MonoBehaviour
     /// <param name="type">What app is downloadable from the link</param>
     public void AddLinkTo(ApplicationType type)
     {
-        if (AppManager.Instance.GetApplication(ApplicationType.Map) && PhoneManager.Instance.CurrentLocation.networkState == NetworkState.Bad)
+        if (_appManager.GetApplication(ApplicationType.Map) && _phoneManager.CurrentNetworkState == NetworkState.Bad)
         {
 
             _pendingMsgs.Enqueue(new PendingMsg(type));
@@ -357,9 +349,9 @@ public class Discussion : MonoBehaviour
     {
         _choicePanel.SetActive(false);
         _blurImage.transform.gameObject.SetActive(false);
-        if (AppManager.Instance.GetApplication(ApplicationType.Map)&&PhoneManager.Instance.CurrentLocation.networkState == NetworkState.Bad)
+        if (_appManager.GetApplication(ApplicationType.Map)&&_phoneManager.CurrentNetworkState == NetworkState.Bad)
         {
-            PhoneManager.Instance.CreateThought("Hmm pas de réseaux.");
+            _phoneManager.CreateThought("Hmm pas de réseaux.");
             return;
         }
         _canChoose = false;
@@ -374,7 +366,7 @@ public class Discussion : MonoBehaviour
 
     public void CreateThought(string thought)
     {
-        PhoneManager.Instance.CreateThought(thought);
+        _phoneManager.CreateThought(thought);
     }
     /// <summary>
     /// When out of network the incoming messages are stored to be added in order

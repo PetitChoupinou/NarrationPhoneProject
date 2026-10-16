@@ -49,7 +49,7 @@ public class PhoneApp : BaseApplication
     }
     public void Call()
     {
-        if (AppManager.Instance.GetApplication(ApplicationType.Map)&& _phoneManager.CurrentLocation.networkState != NetworkState.Good)
+        if (AppManager.Instance.GetApplication(ApplicationType.Map)&& _phoneManager.CurrentNetworkState != NetworkState.Good)
         {
             _phoneManager.CreateThought("Hmm pas de réseaux.");
             _currentNum = "";

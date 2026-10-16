@@ -289,7 +289,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3276794820545527556}
         m_TargetAssemblyTypeName: MapLocation, Assembly-CSharp
-        m_MethodName: ToggleInfos
+        m_MethodName: GoToLocation
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
