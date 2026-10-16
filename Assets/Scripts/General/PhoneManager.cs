@@ -11,6 +11,7 @@ public class PhoneManager : MonoBehaviour
     [SerializeField] private GameObject _appButtonCanvas;
     [SerializeField] private GameObject _thoughtSystem;
     [SerializeField] private Network _network;
+    [SerializeField]private NetworkState _currentNetworkState;
     [SerializeField] private List<Button> _phoneButtons = new List<Button>();
     public Dictionary<ApplicationType, GameObject> lockedApps=new Dictionary<ApplicationType, GameObject>();
     private List<BaseApplication> _apps=new List<BaseApplication>();
@@ -31,9 +32,14 @@ public class PhoneManager : MonoBehaviour
                 
         set {
             _network.ChangeReception(value.networkState);
-            if (value.networkState != NetworkState.Bad && _currentLocation.networkState == NetworkState.Bad)
+            if (value.networkState != NetworkState.Bad && _currentNetworkState == NetworkState.Bad)
             {
+                _currentNetworkState = value.networkState;
                 AppManager.Instance.GetApplication(ApplicationType.Messages).GetComponent<MessageApp>().NetworkIsGood();
+            }
+            else
+            {
+                _currentNetworkState = value.networkState;
             }
             _currentLocation = value;
         }
@@ -41,6 +47,8 @@ public class PhoneManager : MonoBehaviour
 
     public ClockSystem ClockSystem { get => _clockSystem; set => _clockSystem = value; }
     public StoryAppSetup Setup { get => _setup;}
+    public NetworkState CurrentNetworkState { get => _currentNetworkState; }
+
     public enum AppDepth
     {
         phone,
@@ -64,6 +72,7 @@ public class PhoneManager : MonoBehaviour
         {
             instance = this;
         }
+        _currentNetworkState = NetworkState.Good;
     }
   
     void Start()
@@ -155,7 +164,7 @@ public class PhoneManager : MonoBehaviour
 
     public void ChangeLocation(LocationData location)
     {
-        _currentLocation = location;
+        CurrentLocation = location;
         Debug.Log($"Go to {location.locationName}");
         //Play location VFX
     }

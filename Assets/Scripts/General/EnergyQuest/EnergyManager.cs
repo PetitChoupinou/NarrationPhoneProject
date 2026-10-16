@@ -5,6 +5,7 @@ using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Networking;
 
 public class EnergyManager : MonoBehaviour
@@ -16,6 +17,7 @@ public class EnergyManager : MonoBehaviour
     [SerializeField] private int _currentEnergy;
     PlayerSaveData _playerSave;
     private SaveManager _saveManager;
+    public UnityEvent EnergyChange;
     public static EnergyManager Instance { get; private set; }
 
     public Action<int> OnEnergyChange;
@@ -87,10 +89,12 @@ public class EnergyManager : MonoBehaviour
     public void AddEnergy (int energyAdded)
     {
         CurrentEnergy += energyAdded;
+        EnergyChange.Invoke();
     }
     public void CostEnergy(int energyRemoved)
     {
         CurrentEnergy -= energyRemoved;
+        EnergyChange.Invoke();
     }
     IEnumerator RecurrentEnergyGain(int diffInMin)
     {
