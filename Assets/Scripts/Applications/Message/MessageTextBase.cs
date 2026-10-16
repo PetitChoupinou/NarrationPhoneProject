@@ -45,7 +45,7 @@ public class MessageTextBase : MonoBehaviour
            msg= AddLineReturn(msg);
         }
         _textTyper.ReadText(msg);
-        DarkModeManager.Instance.SwitchObjectToDarkMode(_textTyper.TextField);
+        DarkModeManager.Instance.SwitchTextToDarkMode(_textTyper.TextField);
     }
 
     

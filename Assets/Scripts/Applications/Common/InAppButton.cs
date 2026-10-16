@@ -32,7 +32,12 @@ public class InAppButton : MonoBehaviour
         }
         _parent.SetActive(false);
         if(_returnButton)
+        {
+            
             _returnButton.SetActive(true);
+            DarkModeManager.Instance.SwitchButtonToDarkMode(_returnButton);
+        }
+            
     }
 
     

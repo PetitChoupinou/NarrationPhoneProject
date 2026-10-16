@@ -233,7 +233,6 @@ MonoBehaviour:
   _isUnlocked: 1
   _mapContent: {fileID: 2304810459169663278}
   _mapUI: {fileID: 7999445922203236203}
-  locations: []
 --- !u!1 &2304810459169663278
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,7 +320,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 121, y: 307.0801}
+  m_AnchoredPosition: {x: 121, y: 187.09654}
   m_SizeDelta: {x: 5000, y: 5000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8329187478102268426

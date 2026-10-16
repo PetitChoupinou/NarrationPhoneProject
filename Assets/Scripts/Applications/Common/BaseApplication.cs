@@ -57,7 +57,7 @@ abstract public class BaseApplication : MonoBehaviour
     {
         if (_canvas.isActiveAndEnabled)
         {
-            _header.AppChangedUpdate(true,false);
+            _header.AppChangedUpdate(!DarkModeManager.Instance.IsDarkMode,false);
             _canvas.enabled = false;
             //_phoneCanvas.enabled = true;
             PhoneManager.Instance.ChangeDepth(PhoneManager.AppDepth.phone);

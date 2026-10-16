@@ -152,7 +152,7 @@ GameObject:
   - component: {fileID: 7766770663012684096}
   m_Layer: 5
   m_Name: FolderButton
-  m_TagString: DarkModeBackgroundBlackWhite
+  m_TagString: DarkModeButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -9,19 +9,22 @@ using UnityEngine.UI;
 public class DarkModeManager : MonoBehaviour
 {
     List<TextMeshProUGUI> _darkModeTexts = new List<TextMeshProUGUI>();
-    List<Image> _darkModeBackgrounds = new List<Image>();
-    List<Image> _darkModeBackgroundsBlackAndWhite = new List<Image>();
-    List<Image> _darkModePanels = new List<Image>();
+    List<Image> _darkModeElements = new List<Image>();
+
 
     [Header("Light Mode")]
     [SerializeField] Color _lightModeTextColor;
     [SerializeField] Color _lightModeBackgroundColor;
+    [SerializeField] Color _lightModeBackground2Color;
     [SerializeField] Color _lightModePanelColor;
+    [SerializeField] Color _lightModeButtonColor;
 
     [Header("Dark Mode")]
     [SerializeField] Color _darkModeTextColor;
     [SerializeField] Color _darkModeBackgroundColor;
+    [SerializeField] Color _darkModeBackground2Color;
     [SerializeField] Color _darkModePanelColor;
+    [SerializeField] Color _darkModeButtonColor;
 
     bool _isDarkMode;
 
@@ -62,6 +65,7 @@ public class DarkModeManager : MonoBehaviour
     {
         _darkModeTexts.Clear();
         var tempTexts = GameObject.FindGameObjectsWithTag("DarkModeText");
+        
         foreach (var text in tempTexts)
         {
             if (text.GetComponent<TextMeshProUGUI>() == null)
@@ -71,25 +75,17 @@ public class DarkModeManager : MonoBehaviour
             _darkModeTexts.Add(text.GetComponent<TextMeshProUGUI>());
         }
 
-        _darkModeBackgrounds.Clear();
-        var tempImages = GameObject.FindGameObjectsWithTag("DarkModeBackground");
-        foreach (var image in tempImages)
+       
+        _darkModeElements.Clear();
+        var tempElements = new List<GameObject>();
+        tempElements.AddRange(GameObject.FindGameObjectsWithTag("DarkModeBackground"));
+        tempElements.AddRange(GameObject.FindGameObjectsWithTag("DarkModeBackground_2"));
+        tempElements.AddRange(GameObject.FindGameObjectsWithTag("DarkModePanel"));
+        tempElements.AddRange(GameObject.FindGameObjectsWithTag("DarkModeButton"));
+        
+        foreach(var element in tempElements)
         {
-            _darkModeBackgrounds.Add(image.GetComponent<Image>());
-        }
-
-        _darkModeBackgroundsBlackAndWhite.Clear();
-        var tempImagesBW = GameObject.FindGameObjectsWithTag("DarkModeBackgroundBlackWhite");
-        foreach (var image in tempImagesBW)
-        {
-            _darkModeBackgroundsBlackAndWhite.Add(image.GetComponent<Image>());
-        }
-
-        _darkModePanels.Clear();
-        var tempPanel = GameObject.FindGameObjectsWithTag("DarkModePanel");
-        foreach (var image in tempPanel)
-        {
-            _darkModePanels.Add(image.GetComponent<Image>());
+            _darkModeElements.Add(element.GetComponent<Image>());
         }
 
     }
@@ -97,43 +93,55 @@ public class DarkModeManager : MonoBehaviour
     public void SwitchMode(bool toDarkMode)
     {
         _isDarkMode = toDarkMode;
+
         for(int i = 0; i < _darkModeTexts.Count; i++)
         {
-            
             if (toDarkMode) _darkModeTexts[i].color = _darkModeTextColor;
             else _darkModeTexts[i].color = _lightModeTextColor;
         }
-
-        for (int i = 0; i < _darkModeBackgrounds.Count; i++)
+        Color objectColor = Color.white;
+        for (int i = 0; i < _darkModeElements.Count; i++)
         {
-            if (toDarkMode) _darkModeBackgrounds[i].color = _darkModeBackgroundColor;
-            else _darkModeBackgrounds[i].color = _lightModeBackgroundColor;
+            
+            switch (_darkModeElements[i].gameObject.tag)
+            {
+                case "DarkModeBackground":
+                    objectColor = _isDarkMode ? _darkModeBackgroundColor : _lightModeBackgroundColor;
+                    break;
+                case "DarkModeBackground_2":
+                    objectColor = _isDarkMode ? _darkModeBackground2Color : _lightModeBackground2Color;
+                    break;
+                case "DarkModePanel":
+                    objectColor = _isDarkMode ? _darkModePanelColor : _lightModePanelColor;
+                    break;
+                case "DarkModeButton":
+                    objectColor = _isDarkMode ? _darkModeButtonColor : _lightModeButtonColor;
+                    break;
+            }
+            _darkModeElements[i].color = objectColor;
         }
 
-        for (int i = 0; i < _darkModeBackgroundsBlackAndWhite.Count; i++)
-        {
-            if (toDarkMode) _darkModeBackgroundsBlackAndWhite[i].color = Color.black;
-            else _darkModeBackgroundsBlackAndWhite[i].color = Color.white;
-        }
-
-        for (int i = 0; i < _darkModePanels.Count; i++)
-        {
-            if (toDarkMode) _darkModePanels[i].color = _darkModePanelColor;
-            else _darkModePanels[i].color = _lightModePanelColor;
-        }
+        
     }
 
-    public void SwitchObjectToDarkMode(TextMeshProUGUI text)
+    public void SwitchTextToDarkMode(TextMeshProUGUI text)
     {
-        if (_darkModeTexts.Contains(text)) Debug.Log("Contains text");
         if (_isDarkMode) text.color = _darkModeTextColor;
         else text.color = _lightModeTextColor;
     }
 
     public void SwitchObjectToDarkMode(Image image)
     {
-        if (_darkModeBackgrounds.Contains(image)) Debug.Log("Contains image");
         if (_isDarkMode) image.color = _darkModeBackgroundColor;
         else image.color = _lightModeBackgroundColor;
+    }
+
+    public void SwitchButtonToDarkMode(GameObject button)
+    {
+        Image image = button.GetComponent<Image>();
+        TextMeshProUGUI text = button.GetComponentInChildren<TextMeshProUGUI>();
+        if (_isDarkMode) image.color = _darkModeButtonColor;
+        else image.color = _lightModeButtonColor;
+        SwitchTextToDarkMode(text);
     }
 }

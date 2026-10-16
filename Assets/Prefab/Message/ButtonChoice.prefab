@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 1995084949560426814}
   m_Layer: 5
   m_Name: ButtonChoice
-  m_TagString: DarkModeBackground
+  m_TagString: DarkModeButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
