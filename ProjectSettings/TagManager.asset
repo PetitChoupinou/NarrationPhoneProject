@@ -9,7 +9,6 @@ TagManager:
   - DarkModePanel
   - DarkModeButton
   - DarkModeBackground_2
-  - DarkModeBackgroundBlackWhite
   layers:
   - Default
   - TransparentFX

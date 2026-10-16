@@ -56,7 +56,7 @@ public class DarkModeManager : MonoBehaviour
         yield return new WaitForSeconds(0.05f);
 
         GetAllObjects();
-        SwitchMode(true);
+        SwitchMode(false);
         yield return null;
     }
     

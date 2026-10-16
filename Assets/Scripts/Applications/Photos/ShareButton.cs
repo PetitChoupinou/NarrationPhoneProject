@@ -18,6 +18,10 @@ public class ShareButton : MonoBehaviour
             _visu.material = mat;
         }
     }
+    private void OnEnable()
+    {
+        DarkModeManager.Instance.SwitchObjectToDarkMode(GetComponent<Image>());
+    }
     public void Setup(Discussion discussion,Sprite visu)
     {
         _discussion = discussion;
