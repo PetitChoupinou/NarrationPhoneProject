@@ -1,6 +1,7 @@
 
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NotificationMsg : Notification
 {
@@ -10,6 +11,7 @@ public class NotificationMsg : Notification
     {
         _apps = AppManager.Instance.Apps;
         _messageApp = AppManager.Instance.GetApplication(ApplicationType.Messages).GetComponent<MessageApp>();
+
     }
     public override void ButtonPressed()
     {
@@ -35,6 +37,7 @@ public class NotificationMsg : Notification
         _scrollview = scrollview;
         _titre.text = title;
         _content.text = content;
+        DarkModeManager.Instance.SwitchButtonToDarkMode(gameObject);
 
     }
 }

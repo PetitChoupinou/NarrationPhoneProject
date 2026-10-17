@@ -34,4 +34,14 @@ public class QuestDisplay : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+    private void OnEnable()
+    {
+        var darkModeManager = DarkModeManager.Instance;
+        darkModeManager.SwitchObjectToDarkMode(GetComponent<Image>());
+        darkModeManager.SwitchTextToDarkMode(_titre.GetComponent<TextMeshProUGUI>());
+        darkModeManager.SwitchTextToDarkMode(_description.GetComponent<TextMeshProUGUI>());
+        darkModeManager.SwitchTextToDarkMode(_completion.GetComponent<TextMeshProUGUI>());
+        darkModeManager.SwitchTextToDarkMode(_reward.GetComponent<TextMeshProUGUI>());
+    }
 }

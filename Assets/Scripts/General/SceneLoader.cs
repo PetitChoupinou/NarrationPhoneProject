@@ -83,12 +83,14 @@ public class SceneLoader : MonoBehaviour
         {
             yield return null;
         }
+        DarkModeManager.Instance.ApplyDarkMode(true);
         while (_timer < _loadingTime) // and then we fade out the splash scrren
         {
             _timer += Time.deltaTime;
             _splashScreen.alpha = Mathf.Lerp(1.0f, 0.0f, _timer / _loadingTime);
             yield return null;
         }
+        
         yield return null;
     }
 

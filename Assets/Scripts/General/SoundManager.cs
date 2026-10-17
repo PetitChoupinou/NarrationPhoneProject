@@ -58,6 +58,8 @@ public class SoundManager : MonoBehaviour
             {
                 soudVolume = sound.volume * _sfxVolume;
             }
+            SaveManager.Instance.Save.optionsData.sfxVolume = value;
+            SaveManager.Instance.SavePlayerData();
         }
     }
     public float MusicVolume { get => _musicVolume; set
@@ -70,6 +72,8 @@ public class SoundManager : MonoBehaviour
             {
                 soundVolume = music.volume * _musicVolume;
             }
+            SaveManager.Instance.Save.optionsData.musicVolume = value;
+            SaveManager.Instance.SavePlayerData();
         }
     }
     public void AddSFX(List<SFX> sfxs)
@@ -121,6 +125,12 @@ public class SoundManager : MonoBehaviour
         }
         _musicSource = gameObject.AddComponent<AudioSource>();
         _musicSource.loop = true ;
+    }
+    private void Start()
+    {
+        var save = SaveManager.Instance.Save;
+        _sfxVolume = save.optionsData.sfxVolume;
+        _musicVolume = save.optionsData.musicVolume;
     }
     private AudioSource GetAvailableSource()
     {

@@ -3,7 +3,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEngine.Rendering.DebugUI;
+
 
 public class ContactPage : MonoBehaviour
 {
@@ -24,6 +24,7 @@ public class ContactPage : MonoBehaviour
     [SerializeField] private TMP_Text _content;
     [SerializeField] private Image _profilPic;
     [SerializeField] private Image _relationBackground;
+    [SerializeField] private Image _panelContact;
     
     [SerializeField] private Color _relationshipGoodColor;
     [SerializeField] private Color _relationshipBadColor;
@@ -70,6 +71,14 @@ public class ContactPage : MonoBehaviour
         if (_headerText)
             _headerText.text = _iD;
         PhoneManager.Instance.ChangeDepth(PhoneManager.AppDepth.inApp);
+
+        DarkModeManager.Instance.SwitchPanelToDarkMode(_panelContact);
+        var buttons = _panelContact.GetComponentsInChildren<Button>();
+        for(int i = 0; i < buttons.Length; i++)
+        {
+            DarkModeManager.Instance.SwitchButtonToDarkMode(buttons[i].gameObject);
+        }
+        DarkModeManager.Instance.SwitchTextToDarkMode(_content.GetComponent<TextMeshProUGUI>());
     }
     public void SetUp(string title, string num,int relation, GameObject button, TMP_Text headerText,Dictionary<CharaEmotion,Sprite> profilePics)
     {

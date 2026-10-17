@@ -349,7 +349,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Call
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -543,6 +543,7 @@ MonoBehaviour:
   _content: {fileID: 5895142668598187688}
   _profilPic: {fileID: 3267434098299718512}
   _relationBackground: {fileID: 7348118270332184652}
+  _panelContact: {fileID: 2330535311615525860}
   _relationshipGoodColor: {r: 1, g: 0, b: 0.101475716, a: 1}
   _relationshipBadColor: {r: 0.3018868, g: 0, b: 0, a: 1}
   _outlineColor: {r: 0, g: 0, b: 0, a: 1}
@@ -612,7 +613,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Go to messages
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

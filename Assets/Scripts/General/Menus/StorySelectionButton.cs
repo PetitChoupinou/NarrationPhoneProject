@@ -8,13 +8,17 @@ public class StorySelectionButton : MonoBehaviour
     private StoryTab _storySelectionPanel;
     [SerializeField] private TMP_Text _text;
     [SerializeField] public string _buttonSfx;
-
+    private void OnEnable()
+    {
+        DarkModeManager.Instance.SwitchButtonToDarkMode(gameObject);
+    }
     public void SetUp(StoryAppSetup setup,StoryTab storySelection)
     {
         _loader = FindFirstObjectByType<SceneLoader>();
         _storySelectionPanel = storySelection;
         _setup = setup;
         _text.text = setup.Name;
+        
     }
     public void ContinueStory()
     {

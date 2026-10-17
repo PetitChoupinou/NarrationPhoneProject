@@ -17,5 +17,6 @@ public class QuestMenu : MonoBehaviour
             questDisp.GetComponent<QuestDisplay>().QuestDisplaySetup(quest);
         }
         returnButton.transform.SetAsLastSibling();
+        DarkModeManager.Instance.ApplyDarkMode();
     }
 }

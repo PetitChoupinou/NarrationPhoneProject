@@ -8,6 +8,9 @@ using UnityEngine.UI;
 
 public class DarkModeManager : MonoBehaviour
 {
+
+  
+
     List<TextMeshProUGUI> _darkModeTexts = new List<TextMeshProUGUI>();
     List<Image> _darkModeElements = new List<Image>();
 
@@ -25,6 +28,7 @@ public class DarkModeManager : MonoBehaviour
     [SerializeField] Color _darkModeBackground2Color;
     [SerializeField] Color _darkModePanelColor;
     [SerializeField] Color _darkModeButtonColor;
+
 
     bool _isDarkMode;
 
@@ -48,16 +52,20 @@ public class DarkModeManager : MonoBehaviour
 
     private void Start()
     {
+        var savedData = SaveManager.Instance.Save;
+        _isDarkMode = savedData.optionsData.isDarkMode;
         StartCoroutine(Startup());
     }
 
     IEnumerator Startup()
     {
-        yield return new WaitForSeconds(0.05f);
+        //yield return new WaitForSeconds(0.05f);
+        yield return new WaitForEndOfFrame();
 
         GetAllObjects();
-        SwitchMode(false);
+        SwitchMode(_isDarkMode);
         yield return null;
+
     }
     
 
@@ -68,10 +76,7 @@ public class DarkModeManager : MonoBehaviour
         
         foreach (var text in tempTexts)
         {
-            if (text.GetComponent<TextMeshProUGUI>() == null)
-            {
-                print(text.name + " in " + text.transform.parent.name);
-            }
+            
             _darkModeTexts.Add(text.GetComponent<TextMeshProUGUI>());
         }
 
@@ -85,9 +90,21 @@ public class DarkModeManager : MonoBehaviour
         
         foreach(var element in tempElements)
         {
-            _darkModeElements.Add(element.GetComponent<Image>());
+            if (element != null || element.activeInHierarchy)
+                _darkModeElements.Add(element.GetComponent<Image>());
         }
 
+    }
+
+
+    public void ApplyDarkMode(bool shouldWait = false)
+    {
+        if(shouldWait) StartCoroutine(Startup());
+        else
+        {
+            GetAllObjects();
+            SwitchMode(_isDarkMode);
+        }
     }
 
     public void SwitchMode(bool toDarkMode)
@@ -102,7 +119,7 @@ public class DarkModeManager : MonoBehaviour
         Color objectColor = Color.white;
         for (int i = 0; i < _darkModeElements.Count; i++)
         {
-            
+            if (_darkModeElements[i].gameObject != null || _darkModeElements[i].gameObject.activeInHierarchy)
             switch (_darkModeElements[i].gameObject.tag)
             {
                 case "DarkModeBackground":
@@ -139,9 +156,20 @@ public class DarkModeManager : MonoBehaviour
     public void SwitchButtonToDarkMode(GameObject button)
     {
         Image image = button.GetComponent<Image>();
-        TextMeshProUGUI text = button.GetComponentInChildren<TextMeshProUGUI>();
+        
         if (_isDarkMode) image.color = _darkModeButtonColor;
         else image.color = _lightModeButtonColor;
-        SwitchTextToDarkMode(text);
+
+        var texts = button.GetComponentsInChildren<TextMeshProUGUI>();
+        for (int i = 0; i < texts.Length; i++)
+        {
+            SwitchTextToDarkMode(texts[i]);
+        }        
+    }
+
+    public void SwitchPanelToDarkMode(Image image)
+    {
+        if (_isDarkMode) image.color = _darkModePanelColor;
+        else image.color = _lightModePanelColor;
     }
 }

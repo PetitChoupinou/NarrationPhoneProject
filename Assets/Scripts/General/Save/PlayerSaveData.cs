@@ -9,12 +9,15 @@ public class PlayerSaveData : SaveData
     public TimeData lastAppQuit;
     public int currentEnergy;
     public QuestBase[] currentQuests;
+    public OptionData optionsData;
+
 
     public PlayerSaveData(string name) : base(name)
     {
         lastAppQuit=new TimeData();
         currentEnergy = 100;
         currentQuests = new QuestBase[3];
+        optionsData = new OptionData();
     }
     public string GetSaveTimeToString()
     {
@@ -59,4 +62,12 @@ public class PlayerSaveData : SaveData
     {
         currentEnergy = energy;
     }
+}
+
+[Serializable]
+public struct OptionData
+{
+    public float sfxVolume;
+    public float musicVolume;
+    public bool isDarkMode;
 }

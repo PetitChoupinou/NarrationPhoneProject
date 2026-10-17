@@ -124,6 +124,11 @@ public class PhotoApp : BaseApplication
         }*/
     }
 
+    public void ChangeMode(UnityEngine.Object panel)
+    {
+        DarkModeManager.Instance.SwitchPanelToDarkMode(panel.GetComponent<Image>());
+    }
+
     
 
 }

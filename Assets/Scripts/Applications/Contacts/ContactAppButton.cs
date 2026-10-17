@@ -29,5 +29,6 @@ public class ContactAppButton : MonoBehaviour
         _discussion.SetActive(true);
         _parent.SetActive(false);
         _returnButton.SetActive(true);
+        DarkModeManager.Instance.SwitchButtonToDarkMode(_returnButton);
     }
 }

@@ -7,6 +7,11 @@ public class StoryTab : MonoBehaviour
     [SerializeField] GameObject _button;
     [SerializeField] GameObject _confirmationPanel;
 
+    private void OnEnable()
+    {
+        DarkModeManager.Instance.ApplyDarkMode();
+    }
+
     void Start()
     {
         loader = FindAnyObjectByType<SceneLoader>();
@@ -23,8 +28,5 @@ public class StoryTab : MonoBehaviour
         gameObject.SetActive(false);
     }
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }

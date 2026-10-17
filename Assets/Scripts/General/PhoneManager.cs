@@ -84,6 +84,7 @@ public class PhoneManager : MonoBehaviour
            BaseApplication app= Instantiate(_setup.Applications[i]).GetComponent<BaseApplication>();
             if (app.IsUnlocked)
             {
+                
                AddApplication(_setup.Applications[i]);
             }
             else

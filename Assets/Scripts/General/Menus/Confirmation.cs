@@ -32,6 +32,7 @@ public class Confirmation : MonoBehaviour
             _continueButton.GetComponentInChildren<TMP_Text>().text = "Continuer l'histoire : " + save.dateOfSave.CurrentTime.ToString();
             _restartButton.GetComponentInChildren<TMP_Text>().text = "Recommencer l'histoire à zéro";
         }
+        DarkModeManager.Instance.ApplyDarkMode();
     }
     public void Restart()
     {

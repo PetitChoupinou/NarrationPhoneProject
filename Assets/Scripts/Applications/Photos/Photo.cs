@@ -52,7 +52,10 @@ public class Photo : MonoBehaviour
         hours += _date.Hour;
         _previewText.text = "le " + _date.Day + " " + monthString + " " + _date.Year + " à " + hours + ":" + minutes;
         _imageFull.sprite = _image.sprite;
+
         _fullImagePanel.SetActive(true);
+        DarkModeManager.Instance.SwitchButtonToDarkMode(_fullImagePanel.transform.Find("OpenShareButton").gameObject);
+
         _returnButton.SetActive(true);
         _previewImagePanel.SetActive(false);
     }
