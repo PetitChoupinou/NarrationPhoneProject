@@ -18,7 +18,6 @@ public class OptionAPP : BaseApplication
 
     public override void SetUp(StoryAppSetup setup)
     {
-        
         _soundManager = SoundManager.Instance;
         _sceneLoader = SceneLoader.Instance;
         _darkModeManager = DarkModeManager.Instance;

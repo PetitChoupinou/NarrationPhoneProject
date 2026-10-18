@@ -54,14 +54,13 @@ public class DarkModeManager : MonoBehaviour
     {
         var savedData = SaveManager.Instance.Save;
         _isDarkMode = savedData.optionsData.isDarkMode;
-        StartCoroutine(Startup());
+        ApplyDarkMode();
     }
 
     IEnumerator Startup()
     {
         //yield return new WaitForSeconds(0.05f);
         yield return new WaitForEndOfFrame();
-
         GetAllObjects();
         SwitchMode(_isDarkMode);
         yield return null;
@@ -71,6 +70,7 @@ public class DarkModeManager : MonoBehaviour
 
     void GetAllObjects()
     {
+        
         _darkModeTexts.Clear();
         var tempTexts = GameObject.FindGameObjectsWithTag("DarkModeText");
         

@@ -91,10 +91,13 @@ public class PhoneManager : MonoBehaviour
             {
                 lockedApps.Add(app._appType, _setup.Applications[i]);
             }
+            
             Destroy(app.gameObject);
+            
         }
         foreach (BaseApplication app in _apps)
         {
+            
             app.PostSetUp();
         }
         ClockSystem.SetUp(_setup);
@@ -171,6 +174,7 @@ public class PhoneManager : MonoBehaviour
     }
     public void AddApplication(GameObject appli)
     {
+        
         GameObject app = Instantiate(appli);
         BaseApplication application = app.GetComponent<BaseApplication>();
         if (_apps.Find(x => x._appType == application._appType))
@@ -179,11 +183,13 @@ public class PhoneManager : MonoBehaviour
             return;
         }
         _apps.Add(application);
+        //
         AppManager.Instance.addToApps(application);
         application.SetUp(_setup);
         GameObject button = Instantiate(_appButtonPrefabs, _appButtonCanvas.transform);
         button.GetComponent<AppButton>().Type = app.GetComponent<BaseApplication>()._appType;
         _notifManager.Buttons.Add(button.GetComponent<AppButton>());
+        //
     }
     public void DeactivatePhoneButtons()
     {

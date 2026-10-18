@@ -20,6 +20,7 @@ public class Name : MonoBehaviour
     private void OnEnable()
     {
         _setup = FindFirstObjectByType<Confirmation>().Setup;
+        DarkModeManager.Instance.ApplyDarkMode();
     }
     public void SetName()
     {
