@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 
 public class MessageImage : MonoBehaviour
 {
@@ -9,6 +10,10 @@ public class MessageImage : MonoBehaviour
     [SerializeField] private float _minWidth = 300;
     [SerializeField] private float _maxWidth = 600;
     [SerializeField] private Image _bgImage;
+    [SerializeField] private GameObject _readMark;
+    [SerializeField] private Sprite _sent;
+    [SerializeField] private Sprite _recieved;
+    [SerializeField] private Sprite _read;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -23,6 +28,7 @@ public class MessageImage : MonoBehaviour
     {
         if (isNPC)
         {
+            Destroy(_readMark);
             _layoutGroup.childAlignment = TextAnchor.UpperLeft;
             _bgImage.sprite = bgNPC;
         }
@@ -30,6 +36,7 @@ public class MessageImage : MonoBehaviour
         {
             _layoutGroup.childAlignment = TextAnchor.UpperRight;
             _bgImage.sprite = bgPlayer;
+            StartCoroutine(SendToRead());
         }
     }
 
@@ -51,5 +58,13 @@ public class MessageImage : MonoBehaviour
         
         
     }
-    
+    IEnumerator SendToRead()
+    {
+        _readMark.GetComponent<Image>().sprite = _sent;
+        yield return new WaitForSeconds(.5f);
+        _readMark.GetComponent<Image>().sprite = _recieved;
+        yield return new WaitForSeconds(.5f);
+        _readMark.GetComponent<Image>().sprite = _read;
+        yield return null;
+    }
 }

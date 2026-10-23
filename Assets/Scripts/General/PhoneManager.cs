@@ -78,7 +78,6 @@ public class PhoneManager : MonoBehaviour
     void Start()
     {
         _notifManager = NotificationManager.Instance;
-        
         for (int i = 0; i < _setup.Applications.Count; i++)
         {
            BaseApplication app= Instantiate(_setup.Applications[i]).GetComponent<BaseApplication>();
@@ -101,7 +100,10 @@ public class PhoneManager : MonoBehaviour
             app.PostSetUp();
         }
         ClockSystem.SetUp(_setup);
-        
+        if (SoundManager.Instance.CurrentMus != SoundManager.Instance.MusicDictionary["AMB_BaseTel"].name)
+        {
+            SoundManager.Instance.PlayMusic("AMB_BaseTel");
+        }
     }
     public void CloseApps()
     {

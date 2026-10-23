@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using TCG.Core.Dialogues;
+using System.Collections;
 
 public class MessageTextBase : MonoBehaviour
 {
@@ -12,7 +13,11 @@ public class MessageTextBase : MonoBehaviour
     [SerializeField] private UITextTyperMsg _textTyper;
     [SerializeField] private Image _bgImage;
     [SerializeField] int _maxMsgWidth=15;
-
+    [SerializeField] private GameObject _readMark;
+    [SerializeField] private Sprite _sent;
+    [SerializeField] private Sprite _recieved;
+    [SerializeField] private Sprite _read;
+    private WaitForSecondsRealtime wait = new WaitForSecondsRealtime(.5f);
     public TMP_Text Message { get => _message;}
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -27,19 +32,21 @@ public class MessageTextBase : MonoBehaviour
         _isNPCMsg = isNPC;
         if (_isNPCMsg)
         {
-            _layoutGroup.childAlignment = TextAnchor.UpperLeft;
+            Destroy(_readMark);
+            _layoutGroup.childAlignment = TextAnchor.LowerLeft;
             _bgImage.sprite = bgNPC;
         }
         else
         {
-            _layoutGroup.childAlignment = TextAnchor.UpperRight;
+            _layoutGroup.childAlignment = TextAnchor.LowerRight;
             _bgImage.sprite = bgPlayer;
+            StartCoroutine(SendToRead());
         }
     }
 
     public void SetTextMsg(string msg)
     {
-        GameObject message=GameObject.Instantiate(_messagePrefab,transform.GetChild(0));
+        GameObject message=GameObject.Instantiate(_messagePrefab,transform.GetChild(1));
         _message = message.GetComponent<TMP_Text>();
         _textTyper.TextField =_message.GetComponent<TextMeshProUGUI>();
         _textTyper._text=_message;
@@ -79,5 +86,16 @@ public class MessageTextBase : MonoBehaviour
             }
         }
         return returnText;
+    }
+    IEnumerator SendToRead()
+    {
+        Debug.Log("aahahhauohfaoifh");
+        _readMark.GetComponent<Image>().sprite = _sent;
+        yield return wait;
+        Debug.Log("ddddd");
+        _readMark.GetComponent<Image>().sprite = _recieved;
+        yield return wait;
+        _readMark.GetComponent<Image>().sprite = _read;
+        yield return null;
     }
 }

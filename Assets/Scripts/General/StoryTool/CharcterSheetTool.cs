@@ -186,12 +186,13 @@ public class CharacterSheetTool : EditorWindow
                 break;
             case CharaSetup.Message:
                 _currentSheet.MessageBackground = (Sprite)EditorGUILayout.ObjectField("Message Background : ", _currentSheet.MessageBackground, typeof(Sprite), false, GUILayout.MaxWidth(200));
+                _currentSheet.IsTensed = EditorGUILayout.Toggle("is Music Tensed", _currentSheet.IsTensed);
                 _scrollPos4= EditorGUILayout.BeginScrollView(_scrollPos4, GUILayout.MaxHeight(Mathf.Min(300, _currentSheet.Dialogues.Count * 60)), GUILayout.MaxWidth(400));
                 for (int i = 0; i < _currentSheet.Dialogues.Count; i++)
                 {
-                    _currentSheet.Dialogues[i] = (DialogueData)EditorGUILayout.ObjectField("Dialogues : ", _currentSheet.Dialogues[i], typeof(DialogueData), false, GUILayout.MaxWidth(400));
+                    _currentSheet.Dialogues[i] = (DialogueData)EditorGUILayout.ObjectField("Dialogues : ", _currentSheet.Dialogues[i], typeof(DialogueData), false, GUILayout.MaxWidth(380));
                     _currentSheet.SetDialogue(i, _currentSheet.Dialogues[i]);
-                    if (GUILayout.Button("Remove Dialogue", new GUIStyle(GUI.skin.button) { fixedWidth = 400 }))
+                    if (GUILayout.Button("Remove Dialogue", new GUIStyle(GUI.skin.button) { fixedWidth = 380 }))
                     {
                         _currentSheet.RemoveDialogue(i);
                         break;

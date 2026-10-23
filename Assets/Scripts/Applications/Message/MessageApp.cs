@@ -56,7 +56,7 @@ public class MessageApp : BaseApplication
             Sprite background = character.MessageBackground;
             discussion.name = "message " + name;
             button.GetComponent<InAppButton>().SetUp(name, discussion, _headerButton);
-            discussion.GetComponent<Discussion>().SetUp(name, texts, button, _headerText, background, character.ProfilePics, character.WrongPhotoResponses,setup.MessageTextBackGroundNPC,setup.MessageTextBackGroundPlayer);
+            discussion.GetComponent<Discussion>().SetUp(name, texts, button, _headerText, background, character.ProfilePics, character.WrongPhotoResponses,setup.MessageTextBackGroundNPC,setup.MessageTextBackGroundPlayer,character.IsTensed);
 
             gameObjectsToDeactivate.Add(discussion);
             _discussions.Add(discussion.GetComponent<Discussion>());
@@ -81,7 +81,7 @@ public class MessageApp : BaseApplication
         Dictionary<CharaEmotion, Sprite> endProfilePics = new Dictionary<CharaEmotion, Sprite>();
         endProfilePics.Add(CharaEmotion.Base, _setup.EndGameContact.profilePic);
         button.GetComponent<InAppButton>().SetUp(name, discussion, _headerButton);
-        discussion.GetComponent<Discussion>().SetUp(name, texts, button, _headerText, background, endProfilePics,null, _setup.MessageTextBackGroundNPC, _setup.MessageTextBackGroundPlayer, _setup.EndGameContact.shouldShowPictureInConversation);
+        discussion.GetComponent<Discussion>().SetUp(name, texts, button, _headerText, background, endProfilePics,null, _setup.MessageTextBackGroundNPC, _setup.MessageTextBackGroundPlayer, true, _setup.EndGameContact.shouldShowPictureInConversation);
         DialogueDataReader dialogueDataReader = discussion.GetComponent<DialogueDataReader>();
         _discussions.Add(discussion.GetComponent<Discussion>());
         dialogueDataReader.dialogueDatas.AddRange(_setup.EndGameContact.dialogues);
@@ -112,6 +112,7 @@ public class MessageApp : BaseApplication
         _headerButton.SetActive(false);
         _currentConv.GetComponent<Discussion>().IsEnabled = false;
         _currentConv = null;
+        SoundManager.Instance.PlayMusic("AMB_BaseTel");
     }
     public void AddMessage(string text, bool isNPC,string ID, CharaEmotion emotion = CharaEmotion.Base)
     {

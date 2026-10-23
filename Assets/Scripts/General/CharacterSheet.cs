@@ -15,6 +15,7 @@ public class CharacterSheet : ScriptableObject
     [SerializeField] private List<DialogueData> _dialogues=new List<DialogueData>();
     [SerializeField] private PhoneNumbers _telNum;
     [SerializeField] private List<String> _wrongPhotoResponses=new List<string>() ;
+    [SerializeField] private bool _isTensed;
     public int dialogueIndex;
 
     public string Name { get => _CharacterName;
@@ -26,6 +27,7 @@ public class CharacterSheet : ScriptableObject
     public string BaseNotes { get => _baseNotes; set => _baseNotes = value; }
     public int BaseAffinity { get => _baseAffinity; set=>_baseAffinity=value; }
     public PhoneNumbers TelNum { get => _telNum; set => _telNum = value; }
+    public bool IsTensed { get => _isTensed; set => _isTensed = value; }
     public Dictionary<CharaEmotion, Sprite > ProfilePics { get
         {
             if(_profilePics != null)

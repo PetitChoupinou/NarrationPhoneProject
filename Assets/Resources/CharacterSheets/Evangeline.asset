@@ -31,6 +31,7 @@ MonoBehaviour:
   _wrongPhotoResponses:
   - '?'
   - "Pourquoi tu m'envoie \xE7a?"
+  _isTensed: 1
   dialogueIndex: 0
   EmotionPIcs:
   - Emotion: 0

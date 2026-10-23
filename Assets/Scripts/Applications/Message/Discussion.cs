@@ -21,6 +21,7 @@ public class Discussion : MonoBehaviour
     private Sprite _backgroundImage;
     private Sprite _bgMessageNPC;
     private Sprite _bgMessagePlayer;
+    private bool _isTensed;
 
 
     [SerializeField] private GameObject _content;
@@ -93,10 +94,19 @@ public class Discussion : MonoBehaviour
         _headerText.text = _iD;
         _phoneManager.ChangeDepth(PhoneManager.AppDepth.inApp);
         _messageApp.SetCurrentConv(transform.gameObject);
-      /*  if (_sendingButton.Enabled)
+        if (_isTensed)
         {
-            SetBlur();
-        }*/
+            SoundManager.Instance.PlayMusic("AMB_Tension");
+        }
+        else
+        {
+            SoundManager.Instance.PlayMusic("AMB_Dialogue");
+
+        }
+        /*  if (_sendingButton.Enabled)
+          {
+              SetBlur();
+          }*/
     }
     /// <summary>
     /// Set the discussions elements up
@@ -106,8 +116,9 @@ public class Discussion : MonoBehaviour
     /// <param name="button">button to discussion</param>
     /// <param name="headerText">Text field</param>
     /// <param name="background">conversation background image</param>
-    public void SetUp(string name, SentText[] texts, GameObject button, TMP_Text headerText, Sprite background, Dictionary<CharaEmotion, Sprite> chara,List<String> wrongPhotoResponse,Sprite npcText,Sprite playerText,bool isPhotoVisible=true)
+    public void SetUp(string name, SentText[] texts, GameObject button, TMP_Text headerText, Sprite background, Dictionary<CharaEmotion, Sprite> chara,List<String> wrongPhotoResponse,Sprite npcText,Sprite playerText,bool Tension,bool isPhotoVisible=true)
     {
+        _isTensed = Tension;
         _bgMessagePlayer = playerText;
         _bgMessageNPC = npcText;
         DialogueDataReader = GetComponent<DialogueDataReader>();

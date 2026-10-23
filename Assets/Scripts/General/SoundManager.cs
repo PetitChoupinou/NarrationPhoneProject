@@ -42,6 +42,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private int _poolSize = 5;
     private List<AudioSource> _sources = new List<AudioSource>();
     Queue<AudioSource> _usedSource=new Queue<AudioSource>();
+    string _currentMus;
     AudioSource _musicSource;
     private Dictionary<string, AudioClip> _sfxDictionary = new Dictionary<string, AudioClip>();
     private Dictionary<string, AudioClip> _musicDictionary = new Dictionary<string, AudioClip>();
@@ -76,13 +77,25 @@ public class SoundManager : MonoBehaviour
             SaveManager.Instance.SavePlayerData();
         }
     }
+
+    public string CurrentMus { get => _currentMus; }
+    public Dictionary<string, AudioClip> MusicDictionary { get => _musicDictionary;}
+
     public void AddSFX(List<SFX> sfxs)
     {
         _soundEffects.AddRange(sfxs);
+        foreach (SFX sfx in sfxs)
+        {
+            _sfxDictionary.Add(sfx.name, sfx.clip);
+        }
     }
     public void AddMusic(List<Music> musics)
     {
         _musics.AddRange(musics);
+        foreach (Music music in musics)
+        {
+            _musicDictionary.Add(music.name, music.clip);
+        }
     }
     public void RemoveSFX(List<SFX> sfxs)
     {
@@ -121,7 +134,7 @@ public class SoundManager : MonoBehaviour
         }
         foreach (Music music in _musics)
         {
-            _sfxDictionary[music.name] = music.clip;
+            _musicDictionary[music.name] = music.clip;
         }
         _musicSource = gameObject.AddComponent<AudioSource>();
         _musicSource.loop = true ;
@@ -208,10 +221,10 @@ public class SoundManager : MonoBehaviour
                 break;
             }
         }
+        _currentMus = clip.name;
         //float finalVolume = soundVolume * global sfx Volume; à faire dans un truc d'option i guess;
         _musicSource.clip = clip;
         _musicSource.volume = soudVolume;
         _musicSource.Play();
     }
-    
 }

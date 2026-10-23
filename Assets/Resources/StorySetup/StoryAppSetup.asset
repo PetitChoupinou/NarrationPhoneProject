@@ -170,7 +170,7 @@ MonoBehaviour:
     _month: 9
     _year: 2004
     _hour: 7
-    _minute: 31
+    _minute: 33
   _storySFX:
   - name: SFX_PNJ_MargauxShocked
     clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
@@ -223,7 +223,7 @@ MonoBehaviour:
   - name: SFX_PNJ_SachaAngry
     clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
     volume: 0
-  - name: SFX_PNJ_SachaShocked
+  - name: SFX_PNJ_SachaScared
     clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
     volume: 0
   - name: SFX_PNJ_SachaDoubt
@@ -234,13 +234,13 @@ MonoBehaviour:
     volume: 0
   _storyMus:
   - name: AMB_Dialogue
-    clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
-    volume: 0
+    clip: {fileID: 8300000, guid: 123a4edffd8c0ec4fbc075070c9c314f, type: 3}
+    volume: 0.058
   - name: AMB_Tension
-    clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
-    volume: 0
+    clip: {fileID: 8300000, guid: 8172add294ee23741a179a9a48f8e0a4, type: 3}
+    volume: 0.058
   - name: MUS_GoodEnding
-    clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
+    clip: {fileID: 8300000, guid: 4e82238663784a94b99ced47af727929, type: 3}
     volume: 0
   - name: MUS_BadEnding
     clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
@@ -248,6 +248,9 @@ MonoBehaviour:
   - name: MUS_UncertainEnding
     clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
     volume: 0
+  - name: AMB_BaseTel
+    clip: {fileID: 8300000, guid: e11936f4af0785044a90e74b92b2b2e1, type: 3}
+    volume: 0.05
   _endGameContact:
     profilePic: {fileID: -3749740228694047907, guid: c1defb481481ceb49ac8c4c0023b48b1, type: 3}
     phone:
