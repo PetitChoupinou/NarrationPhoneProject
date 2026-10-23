@@ -16,6 +16,8 @@ MonoBehaviour:
   - rid: 983295663717220352
   - rid: 983295663717220353
   - rid: 983295663717220354
+  - rid: 8182624340652589320
+  - rid: 8182624340652589321
   references:
     version: 2
     RefIds:
@@ -33,4 +35,14 @@ MonoBehaviour:
       type: {class: 'ExposedProperty`1[[System.Boolean, mscorlib]]', ns: , asm: Assembly-CSharp}
       data:
         Name: New Boolean
+        PropertyValue: 0
+    - rid: 8182624340652589320
+      type: {class: 'ExposedProperty`1[[System.Boolean, mscorlib]]', ns: , asm: Assembly-CSharp}
+      data:
+        Name: Margaux1Check
+        PropertyValue: 0
+    - rid: 8182624340652589321
+      type: {class: 'ExposedProperty`1[[System.Boolean, mscorlib]]', ns: , asm: Assembly-CSharp}
+      data:
+        Name: New Boolean_1
         PropertyValue: 0
