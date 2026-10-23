@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MainMenu : MonoBehaviour
 {
-    private void OnEnable()
+    private void Start()
     {
         if(DarkModeManager.Instance != null) DarkModeManager.Instance.ApplyDarkMode();
     }

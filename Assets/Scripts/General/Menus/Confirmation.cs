@@ -36,8 +36,9 @@ public class Confirmation : MonoBehaviour
     }
     public void Restart()
     {
-            _loader.CurrentStorySetup = _setup;
+        _loader.CurrentStorySetup = _setup;
             _loader.LoadGameScene(_setup,true);
+
     }
 
     public void Resume()

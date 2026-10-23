@@ -52,7 +52,8 @@ public class SceneLoader : MonoBehaviour
     }
     public void LoadGameScene(StoryAppSetup storySetup, bool isStartingAgain)
     {
-        if(isStartingAgain)
+        SoundManager.Instance.PlaySound("UI_Menu_SelectionStory");
+        if (isStartingAgain)
         {
             StorySaveData newData = new StorySaveData(storySetup.Name);
             newData.isNewStory = true;

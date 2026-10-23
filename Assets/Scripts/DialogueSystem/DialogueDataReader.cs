@@ -327,6 +327,7 @@ public class DialogueDataReader : MonoBehaviour
                 BlockNodeData blockNodeData = nodeData as BlockNodeData;
                 return () =>
                 {
+                    SoundManager.Instance.PlaySound("SFX_Blocked");
                     _currentDialogueData.IsLocked = true;
                 };
             case NodeType.NewApplication:
