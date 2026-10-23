@@ -8,6 +8,7 @@ public class MessageImage : MonoBehaviour
     [SerializeField] private Image _image;
     [SerializeField] private float _minWidth = 300;
     [SerializeField] private float _maxWidth = 600;
+    [SerializeField] private Image _bgImage;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -18,15 +19,17 @@ public class MessageImage : MonoBehaviour
         AppManager appManager = AppManager.Instance;
     }
 
-    public void SetIsNPC(bool isNPC)
+    public void SetIsNPC(bool isNPC, Sprite bgPlayer, Sprite bgNPC)
     {
         if (isNPC)
         {
             _layoutGroup.childAlignment = TextAnchor.UpperLeft;
+            _bgImage.sprite = bgNPC;
         }
         else
         {
             _layoutGroup.childAlignment = TextAnchor.UpperRight;
+            _bgImage.sprite = bgPlayer;
         }
     }
 

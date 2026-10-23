@@ -30,14 +30,29 @@ public class Options : MonoBehaviour
     public void SFXToggled(bool toggle)
     {
         _soundManager.SfxVolume=toggle ? 1 : 0;
+        SwitchCheckToDarkMode(sfxToggle, toggle);
     }
     public void MusicToggled(bool toggle)
     {
         _soundManager.MusicVolume = toggle ? 1 : 0;
+        SwitchCheckToDarkMode(musicToggle, toggle);
     }
 
     public void DarkModeToggled(bool toggle)
     {
         _darkModeManager.SwitchMode(toggle);
+        SwitchCheckToDarkMode(darkModeToggle, toggle);
+        SwitchCheckToDarkMode(sfxToggle, sfxToggle.isOn);
+        SwitchCheckToDarkMode(musicToggle, musicToggle.isOn);
+    }
+
+    public void SwitchCheckToDarkMode(Toggle toggle, bool isChecked)
+    {
+        if (isChecked)
+        {
+            var checkMark = toggle.transform.GetChild(0).GetChild(0).GetComponent<Image>();
+            DarkModeManager.Instance.SwitchImageToInversedDarkMode(checkMark);
+        }
+
     }
 }

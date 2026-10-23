@@ -28,13 +28,25 @@ public class DarkModeManager : MonoBehaviour
     [SerializeField] Color _darkModeBackground2Color;
     [SerializeField] Color _darkModePanelColor;
     [SerializeField] Color _darkModeButtonColor;
+    [SerializeField] Color _inversedDarkModeBackgroundColor;
+    [SerializeField] Color _inversedLightModeBackgroundColor;
 
 
     bool _isDarkMode;
 
     public static DarkModeManager Instance;
+    
 
-    public bool IsDarkMode { get => _isDarkMode; set => _isDarkMode = value; }
+    public bool IsDarkMode
+    {
+        get => _isDarkMode;
+        set
+        {
+            _isDarkMode = value;
+            SaveManager.Instance.Save.optionsData.isDarkMode = value;
+            SaveManager.Instance.SavePlayerData();
+        }
+    }
 
     private void Awake()
     {
@@ -109,7 +121,7 @@ public class DarkModeManager : MonoBehaviour
 
     public void SwitchMode(bool toDarkMode)
     {
-        _isDarkMode = toDarkMode;
+        IsDarkMode = toDarkMode;
 
         for(int i = 0; i < _darkModeTexts.Count; i++)
         {
@@ -119,23 +131,28 @@ public class DarkModeManager : MonoBehaviour
         Color objectColor = Color.white;
         for (int i = 0; i < _darkModeElements.Count; i++)
         {
+            if (_darkModeElements[i] == null) continue;
             if (_darkModeElements[i].gameObject != null || _darkModeElements[i].gameObject.activeInHierarchy)
-            switch (_darkModeElements[i].gameObject.tag)
             {
-                case "DarkModeBackground":
-                    objectColor = _isDarkMode ? _darkModeBackgroundColor : _lightModeBackgroundColor;
-                    break;
-                case "DarkModeBackground_2":
-                    objectColor = _isDarkMode ? _darkModeBackground2Color : _lightModeBackground2Color;
-                    break;
-                case "DarkModePanel":
-                    objectColor = _isDarkMode ? _darkModePanelColor : _lightModePanelColor;
-                    break;
-                case "DarkModeButton":
-                    objectColor = _isDarkMode ? _darkModeButtonColor : _lightModeButtonColor;
-                    break;
+                switch (_darkModeElements[i].gameObject.tag)
+                {
+                    case "DarkModeBackground":
+                        objectColor = _isDarkMode ? _darkModeBackgroundColor : _lightModeBackgroundColor;
+                        break;
+                    case "DarkModeBackground_2":
+                        objectColor = _isDarkMode ? _darkModeBackground2Color : _lightModeBackground2Color;
+                        break;
+                    case "DarkModePanel":
+                        objectColor = _isDarkMode ? _darkModePanelColor : _lightModePanelColor;
+                        break;
+                    case "DarkModeButton":
+                        objectColor = _isDarkMode ? _darkModeButtonColor : _lightModeButtonColor;
+                        break;
+                }
+                _darkModeElements[i].color = objectColor;
             }
-            _darkModeElements[i].color = objectColor;
+           
+            
         }
 
         
@@ -151,6 +168,12 @@ public class DarkModeManager : MonoBehaviour
     {
         if (_isDarkMode) image.color = _darkModeBackgroundColor;
         else image.color = _lightModeBackgroundColor;
+    }
+
+    public void SwitchImageToInversedDarkMode(Image image)
+    {
+        if (_isDarkMode) image.color = _inversedDarkModeBackgroundColor;
+        else image.color = _inversedLightModeBackgroundColor;
     }
 
     public void SwitchButtonToDarkMode(GameObject button)
