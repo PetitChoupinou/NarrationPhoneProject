@@ -258,7 +258,7 @@ public class DialogueDataReader : MonoBehaviour
                         WaitForMouseClick(() =>
                         {
                             _messageApp.SendChoice(GetChoicesTexts(choiceData.outputs), _characterID);
-                        });
+                        }, true);
                     }
 
                 };
@@ -491,9 +491,9 @@ public class DialogueDataReader : MonoBehaviour
         }
     }
 
-    private void WaitForMouseClick(Action sendingAction)
+    private void WaitForMouseClick(Action sendingAction, bool shouldWait = false)
     {
-        _messageApp.EnableSendingButton(sendingAction, _characterID);
+        _messageApp.EnableSendingButton(sendingAction, _characterID, shouldWait);
     }
 
     private void OnClick(BaseEventData data)
