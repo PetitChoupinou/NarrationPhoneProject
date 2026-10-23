@@ -229,8 +229,8 @@ public class CharacterSheetTool : EditorWindow
                 _scrollPos6 = GUILayout.BeginScrollView(_scrollPos6, GUILayout.MaxHeight(Mathf.Min(700, _currentSheet.EmotionPIcs.Count * 90)), GUILayout.MaxWidth(400));
                 for (int i = 0; i < _currentSheet.EmotionPIcs.Count;i++)
                 {
-                    _currentSheet.EmotionPIcs[i].Emotion = (CharaEmotion)EditorGUILayout.EnumPopup("Emotion", (CharaEmotion)_currentSheet.EmotionPIcs[i].Emotion, GUILayout.MaxWidth(380));
-                    _currentSheet.EmotionPIcs[i].Picture = (Sprite)EditorGUILayout.ObjectField("Picture : ", (Sprite)_currentSheet.EmotionPIcs[i].Picture, typeof(Sprite), false, GUILayout.MaxWidth(380));
+                    _currentSheet.EmotionPIcs[i].Emotion = (CharaEmotion)EditorGUILayout.EnumPopup("Emotion", _currentSheet.EmotionPIcs[i].Emotion, GUILayout.MaxWidth(380));
+                    _currentSheet.EmotionPIcs[i].Picture = (Sprite)EditorGUILayout.ObjectField("Picture : ", _currentSheet.EmotionPIcs[i].Picture, typeof(Sprite), false, GUILayout.MaxWidth(380));
                    if (GUILayout.Button("Remove Emotion", new GUIStyle(GUI.skin.button) { fixedWidth = 380 }))
                     {
                         _currentSheet.EmotionPIcs.RemoveAt(i);
@@ -240,8 +240,7 @@ public class CharacterSheetTool : EditorWindow
                 GUILayout.EndScrollView();
                 if (GUILayout.Button("Add Emotion", new GUIStyle(GUI.skin.button) { fixedWidth = 400 }))
                 {
-                    _currentSheet.EmotionPIcs.Add(null);
-                    break;
+                    _currentSheet.EmotionPIcs.Add(new EmotionPic());
                 }
                 break;
         }

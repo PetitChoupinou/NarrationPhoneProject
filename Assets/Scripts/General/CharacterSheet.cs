@@ -98,6 +98,11 @@ public class EmotionPic
 {
     public CharaEmotion Emotion;
     public Sprite Picture;
+    public EmotionPic()
+        {
+        Emotion= new CharaEmotion();
+        Picture = null;
+        }
 }
 
 
