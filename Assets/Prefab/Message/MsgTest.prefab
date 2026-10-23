@@ -62,8 +62,8 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
-  m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
+  m_ChildScaleWidth: 1
+  m_ChildScaleHeight: 1
   m_ReverseArrangement: 0
 --- !u!114 &2018729163257646479
 MonoBehaviour:
@@ -80,6 +80,7 @@ MonoBehaviour:
   _isNPCMsg: 0
   _messagePrefab: {fileID: 4517546831677474601, guid: 561b26c91bc393a4884bf15087367104, type: 3}
   _textTyper: {fileID: 4244329274477848879}
+  _bgImage: {fileID: 8635455002892802820}
   _maxMsgWidth: 15
 --- !u!114 &4244329274477848879
 MonoBehaviour:
@@ -166,7 +167,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 6646207689184844792, guid: ab16f5d812577cc4e8dbaa3132547250, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -215,4 +216,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ContentSizeFitter
   m_HorizontalFit: 1
-  m_VerticalFit: 2
+  m_VerticalFit: 1

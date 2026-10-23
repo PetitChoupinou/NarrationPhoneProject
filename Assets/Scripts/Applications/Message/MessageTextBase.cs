@@ -10,6 +10,7 @@ public class MessageTextBase : MonoBehaviour
     [SerializeField] private bool _isNPCMsg;
     [SerializeField] private GameObject _messagePrefab;
     [SerializeField] private UITextTyperMsg _textTyper;
+    [SerializeField] private Image _bgImage;
     [SerializeField] int _maxMsgWidth=15;
 
     public TMP_Text Message { get => _message;}
@@ -21,16 +22,18 @@ public class MessageTextBase : MonoBehaviour
         DarkModeManager.Instance.SwitchObjectToDarkMode(gameObject.transform.GetChild(0).GetComponent<Image>());
 
     }
-    public void SetIsNPC(bool isNPC)
+    public void SetIsNPC(bool isNPC,Sprite bgPlayer,Sprite bgNPC )
     {
         _isNPCMsg = isNPC;
         if (_isNPCMsg)
         {
             _layoutGroup.childAlignment = TextAnchor.UpperLeft;
+            _bgImage.sprite = bgNPC;
         }
         else
         {
             _layoutGroup.childAlignment = TextAnchor.UpperRight;
+            _bgImage.sprite = bgPlayer;
         }
     }
 

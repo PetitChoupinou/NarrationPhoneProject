@@ -9,7 +9,9 @@ using UnityEngine;
 public class StoryAppSetup : ScriptableObject
 {
     [SerializeField] private string _name;
-    [SerializeField] private Sprite _messageBackGround;
+    [SerializeField] private Sprite _messageTextBackgroundPlayer;
+    [SerializeField] private Sprite _messageTextBackgroundNpc;
+    [SerializeField] private Sprite _messageAppBackGround;
     [SerializeField] List<GameObject> _applications = new List<GameObject>();
     [SerializeField] List<CharacterSheet> _characters = new List<CharacterSheet>();
     [SerializeField] List<PhotoPreviews> _photos = new List<PhotoPreviews>();
@@ -39,7 +41,9 @@ public class StoryAppSetup : ScriptableObject
     public HackSetup HackAppSetup { get => _hackAppSetup;  }
     public TimeData TimeData { get => _timeData;}
     public Sprite BaseCameraPhoto { get => _baseCameraPhoto; }
-    public Sprite MessageBackGround { get => _messageBackGround;set => _messageBackGround = value; }
+    public Sprite MessageAppBackGround { get => _messageAppBackGround;set => _messageAppBackGround = value; }
+    public Sprite MessageTextBackGroundPlayer { get => _messageTextBackgroundPlayer; set => _messageTextBackgroundPlayer = value; }
+    public Sprite MessageTextBackGroundNPC { get => _messageTextBackgroundNpc; set => _messageTextBackgroundNpc = value; }
     public bool HasPhotoBeenTaken { get => _hasPhotoBeenTaken; set => _hasPhotoBeenTaken = value; }
     public List<SFX> StorySFX { get => _storySFX;}
     public List<Music> StoryMus { get => _storyMus;}

@@ -285,7 +285,9 @@ public class StorySetupTool:EditorWindow
                 break;
             case ApplicationType.Messages:
                 EditorGUILayout.BeginVertical();
-                _activeStory.MessageBackGround = (Sprite)EditorGUILayout.ObjectField("Background" ,_activeStory.MessageBackGround, typeof(Sprite), false, GUILayout.MaxWidth(200));
+                _activeStory.MessageAppBackGround = (Sprite)EditorGUILayout.ObjectField("Background" ,_activeStory.MessageAppBackGround, typeof(Sprite), false, GUILayout.MaxWidth(200));
+                _activeStory.MessageTextBackGroundPlayer = (Sprite)EditorGUILayout.ObjectField("Player message Background" ,_activeStory.MessageTextBackGroundPlayer, typeof(Sprite), false, GUILayout.MaxWidth(200));
+                _activeStory.MessageTextBackGroundNPC = (Sprite)EditorGUILayout.ObjectField("npc message Background", _activeStory.MessageTextBackGroundNPC, typeof(Sprite), false, GUILayout.MaxWidth(200));
                 EditorGUILayout.EndVertical();
                 break;
             case ApplicationType.Contacts:

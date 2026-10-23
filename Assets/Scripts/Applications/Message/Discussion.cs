@@ -19,6 +19,8 @@ public class Discussion : MonoBehaviour
     private GameObject _messageButton;
     private MessageApp _messageApp;
     private Sprite _backgroundImage;
+    private Sprite _bgMessageNPC;
+    private Sprite _bgMessagePlayer;
 
 
     [SerializeField] private GameObject _content;
@@ -104,8 +106,10 @@ public class Discussion : MonoBehaviour
     /// <param name="button">button to discussion</param>
     /// <param name="headerText">Text field</param>
     /// <param name="background">conversation background image</param>
-    public void SetUp(string name, SentText[] texts, GameObject button, TMP_Text headerText, Sprite background, Dictionary<CharaEmotion, Sprite> chara,List<String> wrongPhotoResponse,bool isPhotoVisible=true)
+    public void SetUp(string name, SentText[] texts, GameObject button, TMP_Text headerText, Sprite background, Dictionary<CharaEmotion, Sprite> chara,List<String> wrongPhotoResponse,Sprite npcText,Sprite playerText,bool isPhotoVisible=true)
     {
+        _bgMessagePlayer = playerText;
+        _bgMessageNPC = npcText;
         DialogueDataReader = GetComponent<DialogueDataReader>();
         _dialogueDataReader.OnWrongPhotoSent += OnWrongPhotoSent ;
         _iD = name;
@@ -150,7 +154,8 @@ public class Discussion : MonoBehaviour
         }
         GameObject newMessage = Instantiate(_messagePrefab, _content.transform);
         MessageTextBase message = newMessage.GetComponent<MessageTextBase>();
-        message.SetIsNPC(isNPC);
+       
+        message.SetIsNPC(isNPC,_bgMessagePlayer,_bgMessageNPC);
         message.SetTextMsg(text);
         _lastMessage = message.Message;
         ChangePreview(text);
@@ -192,7 +197,7 @@ public class Discussion : MonoBehaviour
         }
         GameObject newMessage = Instantiate(_imageMessagePrefab, _content.transform);
         MessageImage message = newMessage.GetComponent<MessageImage>();
-        message.SetIsNPC(isNPC);
+        message.SetIsNPC(isNPC,_bgMessagePlayer,_bgMessageNPC);
         message.SetImage(image);
         ChangePreview("", false, true);
         newMessage.transform.localScale = Vector3.zero;
@@ -317,7 +322,6 @@ public class Discussion : MonoBehaviour
         bool isActive=false;
         if (_messageApp == null) _messageApp = FindAnyObjectByType<MessageApp>();
         if (_messageApp.CurrentConv == gameObject) isActive = true;
-        newMessage.GetComponentInChildren<HorizontalLayoutGroup>().childControlHeight = false;
         newMessage.GetComponentInChildren<HorizontalLayoutGroup>().CalculateLayoutInputHorizontal();
         newMessage.GetComponentInChildren<HorizontalLayoutGroup>().CalculateLayoutInputVertical();
        
@@ -331,7 +335,6 @@ public class Discussion : MonoBehaviour
             _content.GetComponent<VerticalLayoutGroup>().CalculateLayoutInputHorizontal();
         }
         newMessage.SetActive(true);
-        newMessage.GetComponentInChildren<HorizontalLayoutGroup>().childControlHeight = true;
         newMessage.GetComponentInChildren<HorizontalLayoutGroup>().CalculateLayoutInputHorizontal();
         newMessage.GetComponentInChildren<HorizontalLayoutGroup>().CalculateLayoutInputVertical();
         newMessage.transform.localScale = Vector3.one;

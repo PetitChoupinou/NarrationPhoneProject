@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: StoryAppSetup
   m_EditorClassIdentifier: Assembly-CSharp::StoryAppSetup
   _name: TestSetup
-  _messageBackGround: {fileID: -9044818322742739572, guid: 6301944f71e1ea74aa1935839bdd0b30, type: 3}
+  _messageTextBackgroundPlayer: {fileID: 1289550895022543623, guid: d1b7a8287180f4844a8b0e0cfafdfc3b, type: 3}
+  _messageTextBackgroundNpc: {fileID: -6660220573026210496, guid: ef711f110da39354b88dd22ae1e81015, type: 3}
+  _messageAppBackGround: {fileID: 8263758102705654945, guid: fac3dcea5c7d8b04c9e32747b717483d, type: 3}
   _applications:
   - {fileID: 7991513738419085291, guid: 1699363c4bee2a9438541c194156c950, type: 3}
   - {fileID: 7331036238270016989, guid: c04bc797bdc1ea949acd8b45d27686bc, type: 3}
