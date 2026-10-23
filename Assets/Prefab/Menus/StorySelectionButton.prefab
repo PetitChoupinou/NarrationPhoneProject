@@ -159,7 +159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StorySelectionButton
   _text: {fileID: 5785732269278679397}
-  _buttonSfx: Button
+  _buttonSfx: UI_Menu_Button
 --- !u!1 &2579560137471192464
 GameObject:
   m_ObjectHideFlags: 0
