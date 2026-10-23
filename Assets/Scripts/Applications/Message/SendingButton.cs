@@ -14,12 +14,16 @@ public class SendingButton : MonoBehaviour
 
     public bool Enabled { get => _enabled;}
 
-    public void EnableButton(Action sendingAction)
+    public void EnableButton(Action sendingAction, bool shouldWait = false)
     {
         
         _sprite.color = _enableColor;
         _button.onClick.AddListener(() => {
-            DisableButton();
+            if (!shouldWait)
+            {
+                DisableButton();
+            }
+            
             sendingAction();
         });
         _enabled = true;

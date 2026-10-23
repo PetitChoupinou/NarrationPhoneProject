@@ -143,10 +143,10 @@ public class MessageApp : BaseApplication
         _discussions.Find(x => x.ID == ID).CreateThought(thought);
     }
 
-    public void EnableSendingButton(Action sendingAction, string ID)
+    public void EnableSendingButton(Action sendingAction, string ID,  bool shouldWait = false)
     {
         var discussion = _discussions.Find(x => x.ID == ID);
-        discussion.EnableSendingButton(sendingAction);
+        discussion.EnableSendingButton(sendingAction, shouldWait);
     }
 
     public void DisableSendingButton(string ID)

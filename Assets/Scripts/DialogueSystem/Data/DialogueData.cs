@@ -7,7 +7,7 @@ using UnityEngine;
 [Serializable]
 public class DialogueData : ScriptableObject
 {
-    [SerializeField] float secondsToWait = 60;
+    [SerializeField] float secondsToWait = 5;
     [SerializeField] float secondsToWaitFast = 5;
     [SerializeReference]
     public List<NodeData> nodes = new List<NodeData>();

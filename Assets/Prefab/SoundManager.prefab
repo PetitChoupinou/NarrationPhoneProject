@@ -44,30 +44,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ba191ee4428c964fb9929f0a8e2d774, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoundManager
+  _sfxVolume: 1
+  _musicVolume: 1
   _soundEffects:
   - name: SFX_MessageSend
-    clip: {fileID: 8300000, guid: 66de0ede4d5773c469eeb07f4af45978, type: 3}
+    clip: {fileID: 8300000, guid: bdad2da53b08092488b8d835a7b71b87, type: 3}
     volume: 0.21
-  - name: SFX_MessageRecieved
-    clip: {fileID: 8300000, guid: 66de0ede4d5773c469eeb07f4af45978, type: 3}
+  - name: SFX_MessageReceived
+    clip: {fileID: 8300000, guid: bb6d3b8eccd816f4fb2913326ec8dab2, type: 3}
     volume: 0.187
   - name: SFX_MessageNotification
     clip: {fileID: 8300000, guid: 66de0ede4d5773c469eeb07f4af45978, type: 3}
     volume: 0.187
   - name: SFX_MessageTyping
-    clip: {fileID: 8300000, guid: 66de0ede4d5773c469eeb07f4af45978, type: 3}
+    clip: {fileID: 8300000, guid: 7d808613bb2175a468968269385d99ea, type: 3}
     volume: 0.187
   - name: SFX_AffinityIncrease
-    clip: {fileID: 8300000, guid: 66de0ede4d5773c469eeb07f4af45978, type: 3}
+    clip: {fileID: 8300000, guid: 26ae3b089d05d944fba4597e6b64ef00, type: 3}
     volume: 0.187
   - name: SFX_AffinityDecrease
-    clip: {fileID: 8300000, guid: 66de0ede4d5773c469eeb07f4af45978, type: 3}
+    clip: {fileID: 8300000, guid: f3d3f4d9bdfd663458b02bd9a5dab886, type: 3}
     volume: 0.187
-  - name: oui
-    clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
+  - name: SFX_Blocked
+    clip: {fileID: 8300000, guid: e261ae52df8b1984ba43fde54c369a60, type: 3}
     volume: 0.187
-  - name: Button
-    clip: {fileID: 8300000, guid: 66de0ede4d5773c469eeb07f4af45978, type: 3}
+  - name: UI_Menu_Button
+    clip: {fileID: 8300000, guid: 2bcd7d74d8f1f1b42972e9babb0c112b, type: 3}
+    volume: 0.187
+  - name: SFX_Blocked
+    clip: {fileID: 8300000, guid: e261ae52df8b1984ba43fde54c369a60, type: 3}
+    volume: 0.187
+  - name: SFX_MessageUserDelete
+    clip: {fileID: 8300000, guid: 2570fc7b3cdfb10479ecc3a59ebd4ae1, type: 3}
+    volume: 0.187
+  - name: SFX_MessageUserTyping
+    clip: {fileID: 8300000, guid: 1b9dc8536831240489c5e499c8764fe5, type: 3}
+    volume: 0.187
+  - name: UI_Menu_SelectionStory
+    clip: {fileID: 8300000, guid: 2570fc7b3cdfb10479ecc3a59ebd4ae1, type: 3}
     volume: 0.187
   _musics:
   - name: AMB_MainMenu

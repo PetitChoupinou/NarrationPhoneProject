@@ -257,9 +257,9 @@ public class Discussion : MonoBehaviour
             _soundManager.PlaySound("SFX_MessageReceived");
     }
 
-    public void EnableSendingButton(Action sendingAction)
+    public void EnableSendingButton(Action sendingAction, bool shouldWait = false)
     {
-        _sendingButton.EnableButton(sendingAction);
+        _sendingButton.EnableButton(sendingAction, shouldWait);
        // if(_messageApp.CurrentConv == gameObject)
             // SetBlur();
     }
@@ -350,6 +350,7 @@ public class Discussion : MonoBehaviour
     }
     public void Choose(string msg)
     {
+        _sendingButton.DisableButton();
         _choicePanel.SetActive(false);
         _blurImage.transform.gameObject.SetActive(false);
         if (_appManager.GetApplication(ApplicationType.Map)&&_phoneManager.CurrentNetworkState == NetworkState.Bad)
@@ -484,6 +485,7 @@ public class Discussion : MonoBehaviour
         _blurImage.sprite = LoadSpriteFromFile(System.IO.Path.Combine(Application.persistentDataPath, "ScreenBlur.png"));
         _blurImage.transform.gameObject.SetActive(true);
         _choicePanel.SetActive(true);
+        _choicePanel.GetComponent<Button>().interactable = true;
         _soundManager.PlaySound("SFX_MessageTyping");
         _choices.AddRange(choices);
         for (int i = 0; i < choices.Count; i++)
@@ -500,6 +502,21 @@ public class Discussion : MonoBehaviour
                 choice.GetComponent<Button>().interactable = false;
             }
         }
+    }
+
+    public void RemoveBlur()
+    {
+        _choices.Clear();
+        foreach(var buttton in _choiceButtons)
+        {
+            Destroy(buttton);
+        }
+        _choiceButtons.Clear();
+        _choicePanel.GetComponent<Button>().interactable = false;
+        _choicePanel.SetActive(false);
+        _blurImage.transform.gameObject.SetActive(false);
+        SoundManager.Instance.PlaySound("SFX_MessageUserDelete");
+        
     }
  
     private Sprite LoadSpriteFromFile(string filePath)
