@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class OptionAPP : BaseApplication
@@ -11,6 +13,8 @@ public class OptionAPP : BaseApplication
     [SerializeField] Toggle musicToggle;
     [SerializeField] Toggle darkModeToggle;
 
+    
+
     public override void CloseCurrent()
     {
 
@@ -21,29 +25,43 @@ public class OptionAPP : BaseApplication
         _soundManager = SoundManager.Instance;
         _sceneLoader = SceneLoader.Instance;
         _darkModeManager = DarkModeManager.Instance;
-        sfxToggle.isOn = _soundManager.SfxVolume > 0;
+       sfxToggle.isOn = _soundManager.SfxVolume > 0;
         musicToggle.isOn = _soundManager.MusicVolume > 0;
         darkModeToggle.isOn = _darkModeManager.IsDarkMode;
+       
     }
+
     public void ToggleSound(bool toggle)
     {
         if(_soundManager)
         _soundManager.SfxVolume = toggle ? 1 : 0;
+        SwitchCheckToDarkMode(sfxToggle, toggle);
     }
     public void ToggleMusic(bool toggle)
     {
         if(_soundManager)
         _soundManager.MusicVolume = toggle ? 1 : 0;
+        SwitchCheckToDarkMode(musicToggle, toggle);
     }
     public void ToggleDarkMode(bool toggle)
     {
-
         if (_darkModeManager)
         _darkModeManager.SwitchMode(toggle);
+        SwitchCheckToDarkMode(darkModeToggle, toggle);
     }
 
     public void SaveAndQuit()
     {
         _sceneLoader.LoadMenuScene();
+    }
+
+    public void SwitchCheckToDarkMode(Toggle toggle, bool isChecked)
+    {
+        if (isChecked)
+        {
+            var checkMark = toggle.transform.GetChild(0).GetChild(0).GetComponent<Image>();
+            DarkModeManager.Instance.SwitchImageToInversedDarkMode(checkMark);
+        }
+        
     }
 }

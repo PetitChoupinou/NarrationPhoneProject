@@ -54,4 +54,5 @@ MonoBehaviour:
   _darkModeBackground2Color: {r: 0.04150939, g: 0.04150939, b: 0.04150939, a: 1}
   _darkModePanelColor: {r: 0.23018861, g: 0.23018861, b: 0.23018861, a: 0.654902}
   _darkModeButtonColor: {r: 0.10943389, g: 0.10943389, b: 0.10943389, a: 1}
-  shouldStartNight: 0
+  _inversedDarkModeBackgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  _inversedLightModeBackgroundColor: {r: 0.11698109, g: 0.11698109, b: 0.11698109, a: 1}
