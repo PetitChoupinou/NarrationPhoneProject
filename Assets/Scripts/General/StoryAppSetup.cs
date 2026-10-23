@@ -283,5 +283,8 @@ public enum CharaEmotion
     Angry,
     Doubt,
     Scared,
-    Think
+    Think,
+    EmotionSup1,
+    EmotionSup2,
+    EmotionEvaSpe
 };
