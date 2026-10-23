@@ -34,7 +34,7 @@ MonoBehaviour:
     - rid: 983295663717220354
       type: {class: 'ExposedProperty`1[[System.Boolean, mscorlib]]', ns: , asm: Assembly-CSharp}
       data:
-        Name: New Boolean
+        Name: "MargauxN\xB02_3"
         PropertyValue: 0
     - rid: 8182624340652589320
       type: {class: 'ExposedProperty`1[[System.Boolean, mscorlib]]', ns: , asm: Assembly-CSharp}
@@ -44,5 +44,5 @@ MonoBehaviour:
     - rid: 8182624340652589321
       type: {class: 'ExposedProperty`1[[System.Boolean, mscorlib]]', ns: , asm: Assembly-CSharp}
       data:
-        Name: New Boolean_1
+        Name: Ethan1Check
         PropertyValue: 0
