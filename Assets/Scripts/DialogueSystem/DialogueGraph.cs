@@ -124,7 +124,10 @@ public class DialogueGraph : EditorWindow
             }
             var property = _graphView.FindPropertyByName(oldPropertyName);
             property.Name = newValue;
+            
             ((BlackboardField)element).text = newValue;
+            EditorUtility.SetDirty(_graphView.globalPropertiesData);
+            AssetDatabase.SaveAssets();
         };
         blackboard.SetPosition(new Rect(10, 30, 215, 300));
         _graphView.Add(blackboard);
