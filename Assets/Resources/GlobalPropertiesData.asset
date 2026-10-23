@@ -15,7 +15,7 @@ MonoBehaviour:
   globalProperties:
   - rid: 983295663717220352
   - rid: 983295663717220353
-  - rid: 983295663717220354
+  - rid: 3134136437843951694
   references:
     version: 2
     RefIds:
@@ -29,8 +29,8 @@ MonoBehaviour:
       data:
         Name: "MargauxN\xB02_2"
         PropertyValue: 0
-    - rid: 983295663717220354
+    - rid: 3134136437843951694
       type: {class: 'ExposedProperty`1[[System.Boolean, mscorlib]]', ns: , asm: Assembly-CSharp}
       data:
-        Name: New Boolean
+        Name: Patapim
         PropertyValue: 0
