@@ -10,7 +10,7 @@ public class MessageImage : MonoBehaviour
     [SerializeField] private float _minWidth = 300;
     [SerializeField] private float _maxWidth = 600;
     [SerializeField] private Image _bgImage;
-    [SerializeField] private GameObject _readMark;
+    [SerializeField] private Image _readMark;
     [SerializeField] private Sprite _sent;
     [SerializeField] private Sprite _recieved;
     [SerializeField] private Sprite _read;
@@ -28,15 +28,17 @@ public class MessageImage : MonoBehaviour
     {
         if (isNPC)
         {
-            Destroy(_readMark);
-            _layoutGroup.childAlignment = TextAnchor.UpperLeft;
+            Destroy(_readMark.gameObject);
+            _layoutGroup.childAlignment = TextAnchor.LowerLeft;
             _bgImage.sprite = bgNPC;
         }
         else
         {
-            _layoutGroup.childAlignment = TextAnchor.UpperRight;
+            _layoutGroup.childAlignment = TextAnchor.LowerRight;
             _bgImage.sprite = bgPlayer;
-            StartCoroutine(SendToRead());
+            Invoke("ChangeMarkToSent", 0);
+            Invoke("ChangeMarkToReceived", .5f);
+            Invoke("ChangeMarkToRead", 1.5f);
         }
     }
 
@@ -58,13 +60,16 @@ public class MessageImage : MonoBehaviour
         
         
     }
-    IEnumerator SendToRead()
+    private void ChangeMarkToSent()
     {
-        _readMark.GetComponent<Image>().sprite = _sent;
-        yield return new WaitForSeconds(.5f);
-        _readMark.GetComponent<Image>().sprite = _recieved;
-        yield return new WaitForSeconds(.5f);
-        _readMark.GetComponent<Image>().sprite = _read;
-        yield return null;
+        _readMark.sprite = _sent;
+    }
+    private void ChangeMarkToReceived()
+    {
+        _readMark.sprite = _recieved;
+    }
+    private void ChangeMarkToRead()
+    {
+        _readMark.sprite = _read;
     }
 }

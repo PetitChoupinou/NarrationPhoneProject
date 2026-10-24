@@ -83,7 +83,7 @@ MonoBehaviour:
   _textTyper: {fileID: 4244329274477848879}
   _bgImage: {fileID: 8635455002892802820}
   _maxMsgWidth: 15
-  _readMark: {fileID: 7136230768269127614}
+  _readMark: {fileID: 7770706493422227239}
   _sent: {fileID: -5489127792340862718, guid: d3ecf04203455f444891360c6bc12cb5, type: 3}
   _recieved: {fileID: 6851027276699854938, guid: 8aaaa8dcccdcda542812ae90c09b6cd5, type: 3}
   _read: {fileID: -3388950333651848458, guid: 42df5cba8622b2c48b7b2572f33880dd, type: 3}

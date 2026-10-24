@@ -156,10 +156,10 @@ MonoBehaviour:
   _minWidth: 300
   _maxWidth: 600
   _bgImage: {fileID: 8635455002892802820}
-  _readMark: {fileID: 55751455165711187}
-  _sent: {fileID: 0}
-  _recieved: {fileID: 0}
-  _read: {fileID: 0}
+  _readMark: {fileID: 4122680805572270923}
+  _sent: {fileID: -5489127792340862718, guid: d53ebd40499adba44af598eee558ec91, type: 3}
+  _recieved: {fileID: 6851027276699854938, guid: a53f8ff6f771bf3428fa041d2fce2e5c, type: 3}
+  _read: {fileID: -3388950333651848458, guid: 42df5cba8622b2c48b7b2572f33880dd, type: 3}
 --- !u!1 &4128357265548371253
 GameObject:
   m_ObjectHideFlags: 0
@@ -197,7 +197,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 10, y: -43}
+  m_AnchoredPosition: {x: 10, y: -100}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &3421001184572886756
