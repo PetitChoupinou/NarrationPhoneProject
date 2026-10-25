@@ -7,8 +7,8 @@ using UnityEngine;
 [Serializable]
 public class DialogueData : ScriptableObject
 {
-    [SerializeField] float secondsToWait = 5;
-    [SerializeField] float secondsToWaitFast = 5;
+/*    [SerializeField] float secondsToWait = 5;
+    [SerializeField] float secondsToWaitFast = 5;*/
     [SerializeReference]
     public List<NodeData> nodes = new List<NodeData>();
     [SerializeReference]
@@ -66,7 +66,8 @@ public class DialogueData : ScriptableObject
     public float GetSecondsToWait()
     {
         //Check option fast wait
-        return secondsToWait;
+        //return secondsToWait;
+        return 1;
     }
 
     public bool GetIsActive()

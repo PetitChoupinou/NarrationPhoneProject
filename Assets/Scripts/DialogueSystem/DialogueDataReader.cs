@@ -80,7 +80,9 @@ public class DialogueDataReader : MonoBehaviour
             }
             else
             {
+                
                 _currentDialogueData = dialogueDatas.FirstOrDefault(data => data.name == conversationID);
+               
             }
         }
 
