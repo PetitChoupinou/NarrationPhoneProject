@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ef08a29b60933941822e91151f6e732, type: 3}
   m_Name: D_Sacha_1
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
-  secondsToWait: 60
+  secondsToWait: 1
   secondsToWaitFast: 5
   nodes:
   - rid: 8182624341815721984
@@ -306,8 +306,8 @@ MonoBehaviour:
   - rid: 8182624341815722272
   temporaryNodes: []
   entryPointNodeGuid: 09044617-7ef1-4536-8d28-c817136d675a
-  _isLocked: 0
-  _shouldNotWaitToStart: 0
+  _isLocked: 1
+  _shouldNotWaitToStart: 1
   references:
     version: 2
     RefIds:

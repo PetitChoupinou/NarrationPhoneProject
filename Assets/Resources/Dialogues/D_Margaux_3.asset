@@ -12,8 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ef08a29b60933941822e91151f6e732, type: 3}
   m_Name: D_Margaux_3
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
-  secondsToWait: 60
-  secondsToWaitFast: 5
   nodes:
   - rid: 8182624252505883089
   - rid: 8182624252505883090
@@ -113,8 +111,8 @@ MonoBehaviour:
   - rid: 8182624252505883184
   temporaryNodes: []
   entryPointNodeGuid: 62ba4afb-4ee7-4ecb-9861-f8f2a2861c9d
-  _isLocked: 0
-  _shouldNotWaitToStart: 0
+  _isLocked: 1
+  _shouldNotWaitToStart: 1
   references:
     version: 2
     RefIds:
