@@ -6264,7 +6264,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: e11936f4af0785044a90e74b92b2b2e1, type: 3}
     - target: {fileID: 5619117892250465613, guid: 0b53b56413384e940a4cee518cbd64f1, type: 3}
       propertyPath: _musics.Array.data[0].volume
-      value: 0.187
+      value: 0.05
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

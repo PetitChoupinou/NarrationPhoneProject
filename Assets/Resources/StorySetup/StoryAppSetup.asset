@@ -170,7 +170,7 @@ MonoBehaviour:
     _month: 9
     _year: 2004
     _hour: 7
-    _minute: 33
+    _minute: 40
   _storySFX:
   - name: SFX_PNJ_MargauxShocked
     clip: {fileID: 8300000, guid: fba8f2750ec45004484c0c4089c5fe23, type: 3}
@@ -235,10 +235,10 @@ MonoBehaviour:
   _storyMus:
   - name: AMB_Dialogue
     clip: {fileID: 8300000, guid: 123a4edffd8c0ec4fbc075070c9c314f, type: 3}
-    volume: 0.058
+    volume: 0.02
   - name: AMB_Tension
     clip: {fileID: 8300000, guid: 8172add294ee23741a179a9a48f8e0a4, type: 3}
-    volume: 0.058
+    volume: 0.02
   - name: MUS_GoodEnding
     clip: {fileID: 8300000, guid: 4e82238663784a94b99ced47af727929, type: 3}
     volume: 0

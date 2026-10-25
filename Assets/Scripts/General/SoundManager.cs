@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
@@ -101,6 +102,7 @@ public class SoundManager : MonoBehaviour
     {
         foreach(SFX sfx in sfxs)
         {
+            _sfxDictionary.Remove(sfx.name);
             _soundEffects.Remove(sfx);
         }
     }
@@ -108,6 +110,7 @@ public class SoundManager : MonoBehaviour
     {
         foreach (Music music in musics)
         {
+            _musicDictionary.Remove(music.name);
             _musics.Remove(music);
         }
     }
@@ -203,7 +206,6 @@ public class SoundManager : MonoBehaviour
             }
         }
     }
-
     public void PlayMusic(string name)
     {
 
@@ -226,5 +228,14 @@ public class SoundManager : MonoBehaviour
         _musicSource.clip = clip;
         _musicSource.volume = soudVolume;
         _musicSource.Play();
+    }
+    IEnumerator PlayMusicCoroutine(string name)
+    {
+        if(_musicSource.isPlaying)
+        {
+
+        }
+
+        yield return new WaitForEndOfFrame();
     }
 }

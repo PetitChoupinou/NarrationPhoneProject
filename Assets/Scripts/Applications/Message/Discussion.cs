@@ -184,6 +184,7 @@ public class Discussion : MonoBehaviour
             _charaVisu.GetComponent<RectTransform>().anchoredPosition=new Vector3(_charaVisuBasePosition.x,_charaVisuBasePosition.y,_charaVisuBasePosition.z);
             if(_messageApp.CurrentConv == gameObject)
                 _soundManager.PlaySound("SFX_MessageReceived");
+            _soundManager.StopSound("SFX_MessageTyping");
         }
         else 
         {
@@ -192,6 +193,7 @@ public class Discussion : MonoBehaviour
             if (_messageApp.CurrentConv == gameObject)
             {
                 _soundManager.PlaySound("SFX_MessageSend");
+                _soundManager.StopSound("SFX_MessageTyping");
                 QuestManager.Instance?.AddOne(QuestType.Message);
             }
         }
@@ -225,6 +227,7 @@ public class Discussion : MonoBehaviour
             _charaVisu.GetComponent<RectTransform>().anchoredPosition = new Vector3(_charaVisuBasePosition.x, _charaVisuBasePosition.y, _charaVisuBasePosition.z);
             if (_messageApp.CurrentConv == gameObject)
                 _soundManager.PlaySound("SFX_MessageReceived");
+            _soundManager.StopSound("SFX_MessageTyping");
         }
         else
         {
@@ -233,6 +236,7 @@ public class Discussion : MonoBehaviour
             if (_messageApp.CurrentConv == gameObject)
             {
                 _soundManager.PlaySound("SFX_MessageSend");
+                _soundManager.StopSound("SFX_MessageTyping");
                 QuestManager.Instance?.AddOne(QuestType.Message);
             }
         }
@@ -266,6 +270,7 @@ public class Discussion : MonoBehaviour
         _charaVisu.GetComponent<RectTransform>().anchoredPosition = new Vector3(_charaVisuBasePosition.x, _charaVisuBasePosition.y, _charaVisuBasePosition.z);
         if (_messageApp.CurrentConv == gameObject)
             _soundManager.PlaySound("SFX_MessageReceived");
+        _soundManager.StopSound("SFX_MessageTyping");
     }
 
     public void EnableSendingButton(Action sendingAction, bool shouldWait = false)
@@ -527,9 +532,9 @@ public class Discussion : MonoBehaviour
         _choicePanel.SetActive(false);
         _blurImage.transform.gameObject.SetActive(false);
         SoundManager.Instance.PlaySound("SFX_MessageUserDelete");
-        
+        _soundManager.StopSound("SFX_MessageTyping");
     }
- 
+
     private Sprite LoadSpriteFromFile(string filePath)
     {
         if (!File.Exists(filePath))
