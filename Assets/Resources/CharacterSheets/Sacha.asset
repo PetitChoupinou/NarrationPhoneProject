@@ -21,7 +21,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d75c0c457fcb5e843ab9ee42aae9d983, type: 2}
   _telNum:
     title: Sacha
-    numbers: 0707070707
+    numbers: 070707070
     ringTime: 3
     callText:
     - ...
@@ -30,6 +30,7 @@ MonoBehaviour:
   _wrongPhotoResponses:
   - '?'
   - "Pk tu m'envois \xE7a?"
+  _isTensed: 0
   dialogueIndex: 0
   EmotionPIcs:
   - Emotion: 0

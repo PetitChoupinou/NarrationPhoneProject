@@ -22,7 +22,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c7ce9a4b4fb110243ab3023bed028438, type: 2}
   _telNum:
     title: Margaux
-    numbers: 0761964399
+    numbers: 070000222
     ringTime: 3
     callText:
     - :3
@@ -31,6 +31,7 @@ MonoBehaviour:
   _wrongPhotoResponses:
   - "Pk tu m'envois \xE7a?"
   - '?'
+  _isTensed: 0
   dialogueIndex: 0
   EmotionPIcs:
   - Emotion: 0

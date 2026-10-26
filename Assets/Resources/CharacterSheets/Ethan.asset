@@ -21,7 +21,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0597f89e329c372448eb866c5092a8b8, type: 2}
   _telNum:
     title: Ethan
-    numbers: 0612047223
+    numbers: 061239042
     ringTime: 0
     callText:
     - Allo
@@ -30,6 +30,7 @@ MonoBehaviour:
   _wrongPhotoResponses:
   - '?'
   - "Pk tu m'envois \xE7a"
+  _isTensed: 0
   dialogueIndex: 0
   EmotionPIcs:
   - Emotion: 1

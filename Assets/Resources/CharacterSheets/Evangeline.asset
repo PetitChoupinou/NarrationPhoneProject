@@ -22,7 +22,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4e1dc88d46d43e0489e42286dd20e5ff, type: 2}
   _telNum:
     title: Evangeline
-    numbers: 0101010101
+    numbers: 071212900
     ringTime: 2
     callText:
     - 00000
