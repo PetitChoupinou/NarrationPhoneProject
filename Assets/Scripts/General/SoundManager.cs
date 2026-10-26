@@ -215,27 +215,48 @@ public class SoundManager : MonoBehaviour
             return;
         }
         float soudVolume = 1*_musicVolume;
+        Music currentMusic=new Music();
         foreach (Music music in _musics)
         {
             if (music.name == name)
             {
                 soudVolume = music.volume * _musicVolume;
+                currentMusic = music;
                 break;
             }
         }
-        _currentMus = clip.name;
-        //float finalVolume = soundVolume * global sfx Volume; à faire dans un truc d'option i guess;
-        _musicSource.clip = clip;
-        _musicSource.volume = soudVolume;
-        _musicSource.Play();
-    }
-    IEnumerator PlayMusicCoroutine(string name)
-    {
-        if(_musicSource.isPlaying)
+        if (_currentMus == null||_currentMus=="")
         {
-
+            _currentMus = clip.name;
+            //float finalVolume = soundVolume * global sfx Volume; à faire dans un truc d'option i guess;
+            _musicSource.clip = clip;
+            _musicSource.volume = soudVolume;
+            _musicSource.Play();
+            return;
         }
-
+        StartCoroutine(PlayMusicCoroutine(currentMusic));
+    }
+    IEnumerator PlayMusicCoroutine(Music music)
+    {
+        float timer = 0;
+        float volume = _musicSource.volume;
+        float newVolume= music.volume * _musicVolume;
+        while (timer < .2f)
+        {
+            _musicSource.volume = Mathf.Lerp(volume, 0, timer * 5);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        _musicSource.clip = music.clip;
+        _currentMus = music.clip.name;
+        _musicSource.Play();
+        while (timer < .4f)
+        {
+            _musicSource.volume = Mathf.Lerp(0, newVolume, (timer-0.2f) * 5);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        _musicSource.volume = music.volume * _musicVolume;
         yield return new WaitForEndOfFrame();
     }
 }
