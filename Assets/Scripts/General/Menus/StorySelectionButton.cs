@@ -10,7 +10,7 @@ public class StorySelectionButton : MonoBehaviour
     [SerializeField] public string _buttonSfx;
     private void OnEnable()
     {
-        DarkModeManager.Instance.SwitchButtonToDarkMode(gameObject);
+        //DarkModeManager.Instance.SwitchButtonToDarkMode(gameObject);
     }
     public void SetUp(StoryAppSetup setup,StoryTab storySelection)
     {

@@ -10,6 +10,8 @@ public class Confirmation : MonoBehaviour
     SceneLoader _loader;
     [SerializeField]GameObject _restartButton;
     [SerializeField]GameObject _continueButton;
+    [SerializeField]TextMeshProUGUI _continueText;
+    [SerializeField] TextMeshProUGUI _dateText;
 
     public StoryAppSetup Setup { get => _setup; set => _setup = value; }
 
@@ -24,12 +26,13 @@ public class Confirmation : MonoBehaviour
         if (!SaveSystem.DoesFileExist(_setup.Name,"Story"))
         {
             _continueButton.SetActive(false);
-            _restartButton.GetComponentInChildren<TMP_Text>().text = "Commencer l'histoire";
+            _continueText.text = "Commencer l'histoire";
         }
         else
         {
             _continueButton.SetActive(true);
-            _continueButton.GetComponentInChildren<TMP_Text>().text = "Continuer l'histoire : " + save.dateOfSave.CurrentTime.ToString();
+            _continueText.text = "Continuer l'histoire";
+            _dateText.text = save.dateOfSave.CurrentTime.ToString();
             _restartButton.GetComponentInChildren<TMP_Text>().text = "Recommencer l'histoire à zéro";
         }
         DarkModeManager.Instance.ApplyDarkMode();
