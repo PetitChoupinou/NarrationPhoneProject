@@ -16,7 +16,7 @@ MonoBehaviour:
   _baseText: []
   _baseNotes: UwU
   _baseAffinity: 15
-  _messageBackground: {fileID: 8957324059118975939, guid: e7a84a3f83fe6134b871252e612f2597, type: 3}
+  _messageBackground: {fileID: 8047245662011133125, guid: 9139b495da3048a40b86cdf3a34b9e5a, type: 3}
   _dialogues:
   - {fileID: 11400000, guid: d75c0c457fcb5e843ab9ee42aae9d983, type: 2}
   _telNum:

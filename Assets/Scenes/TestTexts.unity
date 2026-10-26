@@ -385,7 +385,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 325279069}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -1363,7 +1363,7 @@ GameObject:
   - component: {fileID: 895542948}
   m_Layer: 5
   m_Name: BgPhone
-  m_TagString: DarkModeBackground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2148,7 +2148,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -22034666, y: 13502850}
+  m_AnchoredPosition: {x: -22071776, y: 13525576}
   m_SizeDelta: {x: 0, y: 217.0715}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1056708366
