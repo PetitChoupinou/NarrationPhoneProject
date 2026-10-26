@@ -471,12 +471,17 @@ public class Discussion : MonoBehaviour
    public void PreMessageEnable(float duration)
     {
         if (_preMessage == null||duration <1) return;
+        _preMessage.transform.SetAsLastSibling();
+       
         StartCoroutine(PreMessageCoroutine(duration));
+
     }
     IEnumerator PreMessageCoroutine(float duration)
     {
+        
         _preMessage.SetActive(true);
-        yield return new WaitForSeconds(duration-.5f);
+        float randEndWait = UnityEngine.Random.Range(0.1f, 0.7f);
+        yield return new WaitForSeconds(duration- randEndWait);
         _preMessage.SetActive(false);
     }
     public void AddEndOfDiscussion()

@@ -570,7 +570,7 @@ public class DialogueDataReader : MonoBehaviour
 
     IEnumerator DelayMessage(DialogueNodeData currentData, bool isTemporary = false)
     {
-        //Effet de message en cours d'envoi 
+        _messageApp.PreMessageEnable(_characterID, currentData.timerSending);
         yield return new WaitForSeconds(currentData.timerSending);
         _messageApp.AddMessage(currentData.dialogueText, true, _characterID, currentData.emotion);
         if (!isTemporary)

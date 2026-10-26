@@ -203,4 +203,11 @@ public class MessageApp : BaseApplication
     {
         return _discussions.Find(x => x.IsEnabled==true);
     }
+
+    public void PreMessageEnable(string id, float duration)
+    {
+        var discussion = GetDiscussion(id);
+        discussion.PreMessageEnable(duration);
+
+    }
 }
