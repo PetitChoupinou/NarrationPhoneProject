@@ -16,7 +16,7 @@ MonoBehaviour:
   _baseText: []
   _baseNotes: AHHHH
   _baseAffinity: 2
-  _messageBackground: {fileID: 8957324059118975939, guid: e7a84a3f83fe6134b871252e612f2597, type: 3}
+  _messageBackground: {fileID: 3291367817134867968, guid: 2cedd27229a42c84ba34817f3a8adaf3, type: 3}
   _dialogues:
   - {fileID: 11400000, guid: b4cdad12db89cdd4dbeb52cf92ae36b4, type: 2}
   - {fileID: 11400000, guid: 4e1dc88d46d43e0489e42286dd20e5ff, type: 2}
