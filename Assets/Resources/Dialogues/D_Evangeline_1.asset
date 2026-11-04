@@ -104,8 +104,8 @@ MonoBehaviour:
   - rid: 8182624454271566090
   temporaryNodes: []
   entryPointNodeGuid: 3f50b2bc-b167-4730-a757-9ec98ca3ed75
-  _isLocked: 0
-  _shouldNotWaitToStart: 0
+  _isLocked: 1
+  _shouldNotWaitToStart: 1
   references:
     version: 2
     RefIds:
