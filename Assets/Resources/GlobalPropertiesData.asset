@@ -18,9 +18,15 @@ MonoBehaviour:
   - rid: 983295663717220354
   - rid: 8182624340652589320
   - rid: 8182624340652589321
+  - rid: 250935091036160262
   references:
     version: 2
     RefIds:
+    - rid: 250935091036160262
+      type: {class: 'ExposedProperty`1[[System.Boolean, mscorlib]]', ns: , asm: Assembly-CSharp}
+      data:
+        Name: "SachaN\xB02_TalkedAboutEvangeline"
+        PropertyValue: 0
     - rid: 983295663717220352
       type: {class: 'ExposedProperty`1[[System.Boolean, mscorlib]]', ns: , asm: Assembly-CSharp}
       data:
