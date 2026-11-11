@@ -886,11 +886,11 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 1
   windowsGamepadBackendHint: 0
-  cloudProjectId: a58774df-8f25-44ee-8794-f5bdde52f27a
+  cloudProjectId: 4bd2e472-1d0d-4aa1-a8ce-1f8d894562dc
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: NarrationPhoneProject 2026-03-08_12-25-10
-  organizationId: unity_014d6cd83febc850c6d1
+  projectName: NarrationPhoneProject
+  organizationId: oneshotunity349
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
