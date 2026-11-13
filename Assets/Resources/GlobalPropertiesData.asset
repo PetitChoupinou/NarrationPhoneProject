@@ -19,6 +19,10 @@ MonoBehaviour:
   - rid: 8182624340652589320
   - rid: 8182624340652589321
   - rid: 250935091036160262
+  - rid: 250935247392998065
+  - rid: 250935247392998194
+  - rid: 250935248415359178
+  - rid: 250935248415359462
   references:
     version: 2
     RefIds:
@@ -26,6 +30,26 @@ MonoBehaviour:
       type: {class: 'ExposedProperty`1[[System.Boolean, mscorlib]]', ns: , asm: Assembly-CSharp}
       data:
         Name: "SachaN\xB02_TalkedAboutEvangeline"
+        PropertyValue: 0
+    - rid: 250935247392998065
+      type: {class: 'ExposedProperty`1[[System.Boolean, mscorlib]]', ns: , asm: Assembly-CSharp}
+      data:
+        Name: "AftonN\xB01_TalkedAboutEthan"
+        PropertyValue: 0
+    - rid: 250935247392998194
+      type: {class: 'ExposedProperty`1[[System.Boolean, mscorlib]]', ns: , asm: Assembly-CSharp}
+      data:
+        Name: "AftonN\xB01_TalkedAboutMargaux"
+        PropertyValue: 0
+    - rid: 250935248415359178
+      type: {class: 'ExposedProperty`1[[System.Boolean, mscorlib]]', ns: , asm: Assembly-CSharp}
+      data:
+        Name: "AftonN\xB01_TalkedAboutEvangeline"
+        PropertyValue: 0
+    - rid: 250935248415359462
+      type: {class: 'ExposedProperty`1[[System.Boolean, mscorlib]]', ns: , asm: Assembly-CSharp}
+      data:
+        Name: "AftonN\xB01_TalkedAboutSacha"
         PropertyValue: 0
     - rid: 983295663717220352
       type: {class: 'ExposedProperty`1[[System.Boolean, mscorlib]]', ns: , asm: Assembly-CSharp}
