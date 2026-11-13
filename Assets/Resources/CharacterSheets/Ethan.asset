@@ -43,3 +43,11 @@ MonoBehaviour:
     Picture: {fileID: 21300000, guid: 0ea2a959df0a45d41b113790167464b0, type: 3}
   - Emotion: 0
     Picture: {fileID: 21300000, guid: 5eb85982ec10f104bb21878a1b3d6976, type: 3}
+  - Emotion: 5
+    Picture: {fileID: 21300000, guid: 10c238602022f9f4a8ef5a34ce93d351, type: 3}
+  - Emotion: 6
+    Picture: {fileID: 21300000, guid: d138e797fff0fe343920a11560ddff3b, type: 3}
+  - Emotion: 7
+    Picture: {fileID: 21300000, guid: e65df9110d5e7ac44b57786c93d4759e, type: 3}
+  - Emotion: 8
+    Picture: {fileID: 21300000, guid: 3e16c903750aad94981cb9939be7d9c7, type: 3}

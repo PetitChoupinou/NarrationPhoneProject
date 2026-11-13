@@ -44,3 +44,11 @@ MonoBehaviour:
     Picture: {fileID: 21300000, guid: 21fb9fa9d46f1d04baef3103f0f744fd, type: 3}
   - Emotion: 4
     Picture: {fileID: 21300000, guid: 8eaa3fede52c6e840996012d397eb34d, type: 3}
+  - Emotion: 5
+    Picture: {fileID: 21300000, guid: da8a53abcc56b9044979438215df8e8d, type: 3}
+  - Emotion: 6
+    Picture: {fileID: 21300000, guid: 96beb299987f839409d2fa4c0f3d95f7, type: 3}
+  - Emotion: 7
+    Picture: {fileID: 21300000, guid: e4c8cbf09a3977445a3807644521db01, type: 3}
+  - Emotion: 8
+    Picture: {fileID: 21300000, guid: bc5f74cbf45098b4b8f3c7dc9193c369, type: 3}

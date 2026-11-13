@@ -284,7 +284,9 @@ public enum CharaEmotion
     Doubt,
     Scared,
     Think,
-    EmotionSup1,
-    EmotionSup2,
-    EmotionEvaSpe
+    Shy,
+    Happy,
+    Worry,
+    Surprised,
+    EvaShadow
 };
